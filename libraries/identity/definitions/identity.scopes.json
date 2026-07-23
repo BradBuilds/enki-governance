@@ -1,0 +1,42 @@
+{
+  "id": "identity.scopes",
+  "type": "custom",
+  "version": "0.1.0",
+  "description": "Scope levels for visibility and sharing boundaries",
+  "content": {
+    "category": "scopes",
+    "purpose": "Defines visibility and sharing boundary levels",
+    "scope_levels": [
+      {
+        "name": "local",
+        "description": "Node-local only, not shared beyond this node",
+        "visibility": "single_node",
+        "sharing": false
+      },
+      {
+        "name": "shared",
+        "description": "Shared within a trust boundary or group",
+        "visibility": "trust_group",
+        "sharing": true,
+        "requires": "trust_relationship"
+      },
+      {
+        "name": "global",
+        "description": "Globally visible and accessible",
+        "visibility": "public",
+        "sharing": true,
+        "requires": "none"
+      }
+    ],
+    "notes": [
+      "Scope levels are vocabulary only",
+      "Actual access control is implemented elsewhere",
+      "Trust relationships and permissions are not defined in this pack"
+    ]
+  },
+  "metadata": {
+    "created": "2025-12-31T00:00:00Z",
+    "author": "ENKI System"
+  },
+  "dependencies": ["identity.system"]
+}

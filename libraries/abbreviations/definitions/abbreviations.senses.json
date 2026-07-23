@@ -1,0 +1,370 @@
+{
+  "id": "abbreviations.senses",
+  "type": "lexical_senses",
+  "version": "0.1.0",
+  "description": "Common government, military, and intelligence initialisms. (30 seed senses).",
+  "content": {
+    "senses": [
+      {
+        "sense_id": "abbreviations-fbi",
+        "lemma": "FBI",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "abbreviation",
+        "gloss": "Federal Bureau of Investigation",
+        "forms": [
+          "FBI"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "abbreviations-cia",
+        "lemma": "CIA",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "abbreviation",
+        "gloss": "Central Intelligence Agency",
+        "forms": [
+          "CIA"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "abbreviations-nsa",
+        "lemma": "NSA",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "abbreviation",
+        "gloss": "National Security Agency",
+        "forms": [
+          "NSA"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "abbreviations-dea",
+        "lemma": "DEA",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "abbreviation",
+        "gloss": "Drug Enforcement Administration",
+        "forms": [
+          "DEA"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "abbreviations-atf",
+        "lemma": "ATF",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "abbreviation",
+        "gloss": "Bureau of Alcohol, Tobacco, Firearms and Explosives",
+        "forms": [
+          "ATF"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "abbreviations-dhs",
+        "lemma": "DHS",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "abbreviation",
+        "gloss": "Department of Homeland Security",
+        "forms": [
+          "DHS"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "abbreviations-dod",
+        "lemma": "DOD",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "abbreviation",
+        "gloss": "Department of Defense",
+        "forms": [
+          "DOD"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "abbreviations-doj",
+        "lemma": "DOJ",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "abbreviation",
+        "gloss": "Department of Justice",
+        "forms": [
+          "DOJ"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "abbreviations-dia",
+        "lemma": "DIA",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "abbreviation",
+        "gloss": "Defense Intelligence Agency",
+        "forms": [
+          "DIA"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "abbreviations-nga",
+        "lemma": "NGA",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "abbreviation",
+        "gloss": "National Geospatial-Intelligence Agency",
+        "forms": [
+          "NGA"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "abbreviations-nro",
+        "lemma": "NRO",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "abbreviation",
+        "gloss": "National Reconnaissance Office",
+        "forms": [
+          "NRO"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "abbreviations-odni",
+        "lemma": "ODNI",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "abbreviation",
+        "gloss": "Office of the Director of National Intelligence",
+        "forms": [
+          "ODNI"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "abbreviations-sec",
+        "lemma": "SEC",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "abbreviation",
+        "gloss": "Securities and Exchange Commission",
+        "forms": [
+          "SEC"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "abbreviations-irs",
+        "lemma": "IRS",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "abbreviation",
+        "gloss": "Internal Revenue Service",
+        "forms": [
+          "IRS"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "abbreviations-fincen",
+        "lemma": "FinCEN",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "abbreviation",
+        "gloss": "Financial Crimes Enforcement Network",
+        "forms": [
+          "FinCEN"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "abbreviations-ofac",
+        "lemma": "OFAC",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "abbreviation",
+        "gloss": "Office of Foreign Assets Control",
+        "forms": [
+          "OFAC"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "abbreviations-fda",
+        "lemma": "FDA",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "abbreviation",
+        "gloss": "Food and Drug Administration",
+        "forms": [
+          "FDA"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "abbreviations-epa",
+        "lemma": "EPA",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "abbreviation",
+        "gloss": "Environmental Protection Agency",
+        "forms": [
+          "EPA"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "abbreviations-nato",
+        "lemma": "NATO",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "abbreviation",
+        "gloss": "North Atlantic Treaty Organization",
+        "forms": [
+          "NATO"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "abbreviations-un",
+        "lemma": "UN",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "abbreviation",
+        "gloss": "United Nations",
+        "forms": [
+          "UN"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "abbreviations-eu",
+        "lemma": "EU",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "abbreviation",
+        "gloss": "European Union",
+        "forms": [
+          "EU"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "abbreviations-gru",
+        "lemma": "GRU",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "abbreviation",
+        "gloss": "Russian military intelligence (Glavnoye Razvedyvatelnoye Upravleniye)",
+        "forms": [
+          "GRU"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "abbreviations-fsb",
+        "lemma": "FSB",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "abbreviation",
+        "gloss": "Federal Security Service of Russia",
+        "forms": [
+          "FSB"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "abbreviations-svr",
+        "lemma": "SVR",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "abbreviation",
+        "gloss": "Foreign Intelligence Service of Russia",
+        "forms": [
+          "SVR"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "abbreviations-mi6",
+        "lemma": "MI6",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "abbreviation",
+        "gloss": "Secret Intelligence Service (UK)",
+        "forms": [
+          "MI6"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "abbreviations-mi5",
+        "lemma": "MI5",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "abbreviation",
+        "gloss": "Security Service (UK)",
+        "forms": [
+          "MI5"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "abbreviations-ied",
+        "lemma": "IED",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "abbreviation",
+        "gloss": "improvised explosive device",
+        "forms": [
+          "IED"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "abbreviations-uav",
+        "lemma": "UAV",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "abbreviation",
+        "gloss": "unmanned aerial vehicle",
+        "forms": [
+          "UAV"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "abbreviations-potus",
+        "lemma": "POTUS",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "abbreviation",
+        "gloss": "President of the United States",
+        "forms": [
+          "POTUS"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "abbreviations-scotus",
+        "lemma": "SCOTUS",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "abbreviation",
+        "gloss": "Supreme Court of the United States",
+        "forms": [
+          "SCOTUS"
+        ],
+        "relations": []
+      }
+    ]
+  }
+}

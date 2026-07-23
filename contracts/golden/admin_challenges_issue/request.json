@@ -1,0 +1,7 @@
+{
+  "method": "GET",
+  "path": "/admin/challenges/issue",
+  "query": "device_id=test-device",
+  "headers": {},
+  "body": null
+}

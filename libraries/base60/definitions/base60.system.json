@@ -1,0 +1,34 @@
+{
+  "id": "base60.system",
+  "type": "system",
+  "version": "0.1.0",
+  "description": "Core Base-60 system properties and semantics",
+  "content": {
+    "base": 60,
+    "name": "Sexagesimal",
+    "digit_range": {
+      "min": 0,
+      "max": 59
+    },
+    "place_value_semantics": {
+      "type": "positional",
+      "calculation": "sum(digit[i] * base^(n-1-i) for i in range(n))",
+      "leftmost_place": "highest"
+    },
+    "zero_handling": {
+      "explicit": true,
+      "representation": "dedicated_glyph",
+      "allows_empty": false
+    },
+    "numeric_truth": {
+      "storage": "decimal",
+      "computation": "decimal",
+      "representation_layer": "base60"
+    }
+  },
+  "metadata": {
+    "created": "2025-12-31T00:00:00Z",
+    "author": "ENKI System"
+  },
+  "dependencies": []
+}

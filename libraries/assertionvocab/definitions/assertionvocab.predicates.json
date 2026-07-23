@@ -1,0 +1,94 @@
+{
+  "id": "assertion_vocab.predicates",
+  "type": "custom",
+  "version": "0.1.0",
+  "description": "Canonical predicate verbs for assertion construction",
+  "content": {
+    "category": "predicates",
+    "purpose": "Defines the canonical verbs that express relationships in assertions",
+    "predicates": [
+      {
+        "predicate_id": "is_a",
+        "label": "is a / has type",
+        "description": "Expresses type or category membership",
+        "allowed_subject_entities": ["person", "organization", "device", "dataset", "definition_pack"],
+        "allowed_object_kinds": ["entity_ref", "string"],
+        "notes": ["Type relationship", "Subject belongs to object category"]
+      },
+      {
+        "predicate_id": "has_name",
+        "label": "has name",
+        "description": "Assigns a name or label",
+        "allowed_subject_entities": ["person", "organization", "device", "dataset", "definition_pack"],
+        "allowed_object_kinds": ["string"],
+        "notes": ["Name assignment", "Object is a string value"]
+      },
+      {
+        "predicate_id": "located_in",
+        "label": "located in",
+        "description": "Expresses physical or logical location",
+        "allowed_subject_entities": ["person", "organization", "device", "dataset"],
+        "allowed_object_kinds": ["entity_ref", "string", "uri"],
+        "notes": ["Location relationship", "Object can be place reference or location string"]
+      },
+      {
+        "predicate_id": "owns",
+        "label": "owns",
+        "description": "Expresses ownership relationship",
+        "allowed_subject_entities": ["person", "organization"],
+        "allowed_object_kinds": ["entity_ref"],
+        "notes": ["Ownership relationship", "Subject owns object entity"]
+      },
+      {
+        "predicate_id": "created",
+        "label": "created",
+        "description": "Expresses creation relationship",
+        "allowed_subject_entities": ["person", "organization", "device", "ai", "service"],
+        "allowed_object_kinds": ["entity_ref", "timestamp"],
+        "notes": ["Creation relationship", "Subject created object, or creation timestamp"]
+      },
+      {
+        "predicate_id": "derived_from",
+        "label": "derived from",
+        "description": "Expresses derivation or source relationship",
+        "allowed_subject_entities": ["dataset", "definition_pack", "device"],
+        "allowed_object_kinds": ["entity_ref", "pack_ref"],
+        "notes": ["Derivation relationship", "Subject derived from object source"]
+      },
+      {
+        "predicate_id": "references",
+        "label": "references",
+        "description": "Expresses reference or citation relationship",
+        "allowed_subject_entities": ["dataset", "definition_pack", "organization"],
+        "allowed_object_kinds": ["entity_ref", "pack_ref", "uri"],
+        "notes": ["Reference relationship", "Subject references object"]
+      },
+      {
+        "predicate_id": "mentions",
+        "label": "mentions",
+        "description": "Expresses mention or inclusion relationship",
+        "allowed_subject_entities": ["dataset", "definition_pack"],
+        "allowed_object_kinds": ["entity_ref", "string"],
+        "notes": ["Mention relationship", "Subject mentions object"]
+      },
+      {
+        "predicate_id": "has_status",
+        "label": "has status",
+        "description": "Assigns status or state",
+        "allowed_subject_entities": ["person", "organization", "device", "dataset", "definition_pack"],
+        "allowed_object_kinds": ["string", "boolean"],
+        "notes": ["Status assignment", "Object is status value"]
+      }
+    ],
+    "notes": [
+      "Predicates are vocabulary only - no enforcement",
+      "Allowed subjects/objects are conceptual guidance",
+      "Future systems may extend or constrain these definitions"
+    ]
+  },
+  "metadata": {
+    "created": "2025-12-31T00:00:00Z",
+    "author": "ENKI System"
+  },
+  "dependencies": ["assertion_vocab.system", "identity.entities"]
+}

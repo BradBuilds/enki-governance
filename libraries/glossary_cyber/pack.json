@@ -1,0 +1,10 @@
+{
+  "id": "glossary_cyber",
+  "name": "Glossary Cyber",
+  "version": "0.1.0",
+  "type": "lexical",
+  "description": "Cybersecurity terminology. Curated seed; expandable from full sources.",
+  "manifest": [
+    "definitions/glossary_cyber.senses.json"
+  ]
+}

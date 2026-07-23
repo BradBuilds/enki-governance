@@ -1,0 +1,95 @@
+{
+  "$schema": "./schemas/active_set.schema.json",
+  "version": "5.0.1",
+  "packs": [
+    {
+      "pack_id": "identity",
+      "version": "0.2.0",
+      "content_hash": "sha256:b023e0406af4daf434fd97b4eae72436a29b422d0ea4d12b3d4509ea19dbb78a"
+    },
+    {
+      "pack_id": "assertionvocab",
+      "version": "0.2.0",
+      "content_hash": "sha256:483f5c57b682fa6d3314a8f627a4b9b1656dc792708126c8484f209e4be095f0"
+    },
+    {
+      "pack_id": "auditvocab",
+      "version": "0.2.1",
+      "content_hash": "sha256:24a777cc687de1aa6a4e954e912484b494d99bcb3b5f3671026fe3dfccb13f58"
+    },
+    {
+      "pack_id": "base60",
+      "version": "0.2.0",
+      "content_hash": "sha256:e742a368cf1fab5eac675fc674f1097ab58609acc715c47c3b05d0f3ea841374"
+    },
+    {
+      "pack_id": "language",
+      "version": "0.1.0",
+      "content_hash": "sha256:f7786484ce7da1e1bc4ae8d2f5fde757d18ecf7ca6a7ae531dad3030b9d6278d"
+    },
+    {
+      "pack_id": "numeric",
+      "version": "1.0.0",
+      "content_hash": "sha256:1567c8594237bbd7ace89f64e004b8bb51e62ffda6483a06873d38b41f8ec0d2"
+    },
+    {
+      "pack_id": "signalvocab",
+      "version": "0.1.1",
+      "content_hash": "sha256:5a94469c9bde878f13867adc8e270257ee850175c256f0f9fa7d40f7448ed26d"
+    },
+    {
+      "pack_id": "alertvocab",
+      "version": "0.1.0",
+      "content_hash": "sha256:d546d0de27df941de821dd78e93547e0161851e9513d7923bbfce78bb41501cd"
+    },
+    {
+      "pack_id": "casevocab",
+      "version": "0.1.0",
+      "content_hash": "sha256:f4f56ddfabe3aacc892e4a284d4f22c8b56b6e5c04f25976d49025165f59b2f0"
+    },
+    {
+      "pack_id": "envelopevocab",
+      "version": "0.1.0",
+      "content_hash": "sha256:009e1e5c42bd9fcc2304816a4b8317c160ef3d87d0846711a4645561cd5459be"
+    },
+    {
+      "pack_id": "nodevocab",
+      "version": "0.1.0",
+      "content_hash": "sha256:8dfe1e20685a4c3538e1c533c2ea920e4742ec41693373f8283c126aa5007b9a"
+    },
+    {
+      "pack_id": "edgevocab",
+      "version": "0.1.0",
+      "content_hash": "sha256:acbff69621076d37fbe67ed539bae96e77f4b7925ccb5d8efbe623ff4be081b8"
+    },
+    {
+      "pack_id": "completenessvocab",
+      "version": "0.1.0",
+      "content_hash": "sha256:2cc70364fb66a4037be8d9d674a009456a8caf9e69f75983abd230a6ab7dda02"
+    },
+    {
+      "pack_id": "intentvocab",
+      "version": "0.1.0",
+      "content_hash": "sha256:73f5808763548cde8b03ec949bc38256c7f22eb000939a9f93e3322a4bb6d610"
+    },
+    {
+      "pack_id": "relevancevocab",
+      "version": "0.1.0",
+      "content_hash": "sha256:5ada33d1101bbf039203bdce6983e7c605b7d2b941f6ee290aa45dfb387817b2"
+    }
+  ],
+  "metadata": {
+    "name": "Active Set v5.0.1 - Knowledge Graph Rebuild Vocabulary + weather_alert",
+    "description": "Adds envelopevocab (canonical card envelope schema), nodevocab (9 node category taxonomy), edgevocab (canonical edge types), completenessvocab (4 tiers + per-subtype slot specs), intentvocab (watch intent modes for track segmentation), and relevancevocab (4 background relevance tiers + factor weights). Together these enable the signal\u2192node pipeline rebuild: every signal becomes a card with consistent envelope shape, deduplicated entities, intent-driven tracking, daily chronicle generation, and visible completeness scoring.",
+    "created": "2026-04-10T00:00:00Z",
+    "author": "ENKI System",
+    "purpose": "Enable knowledge node rebuild: canonical envelope, node taxonomy, edge palette, completeness scoring, watch intents, relevance ranking",
+    "design_basis": "Pressure-tested against 342 live RSS/Atom entries from 15 diverse feeds in tests/scenarios/envelope_pressuretest/. See findings.md and worked_examples/ for the corpus that drove the schema design.",
+    "_activation_status": "DRAFT — pending re-admission ceremony after signalvocab bump to 0.1.1 (adds signal.environmental.weather_alert).",
+    "_supersedes": "active_set_v5.0.0 (signalvocab 0.1.0 → 0.1.1 for weather_alert type)",
+    "_changelog": [
+      "5.0.0 (2026-04-10): initial v5 activation with knowledge graph rebuild vocabulary",
+      "5.0.1 (2026-04-11): signalvocab 0.1.0 → 0.1.1 — adds signal.environmental.weather_alert (distinct from weather_reading; alerts are events with area polygon + severity + expiry)"
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "id": "alert.vocab.system",
+  "type": "system",
+  "version": "0.1.0",
+  "description": "System definition for alert vocabulary. Alerts are conditions that require human attention, triggered by detection rules across any data domain.",
+  "content": {
+    "purpose": "Govern the attention lifecycle. An alert is domain-agnostic — a geofence exit, a financial threshold, a security event, or a content match all use the same lifecycle.",
+    "conceptual_model": "status + category + severity + resolution"
+  },
+  "metadata": {"created": "2026-03-21T00:00:00Z", "author": "ENKI System"},
+  "dependencies": []
+}

@@ -1,0 +1,382 @@
+{
+  "id": "demonyms.senses",
+  "type": "lexical_senses",
+  "version": "0.1.0",
+  "description": "Nationality demonyms mapped to their country (the gloss). (31 seed senses).",
+  "content": {
+    "senses": [
+      {
+        "sense_id": "demonyms-american",
+        "lemma": "American",
+        "pos": "adjective",
+        "register": "literal",
+        "domain": "demonym",
+        "gloss": "United States",
+        "forms": [
+          "American"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "demonyms-british",
+        "lemma": "British",
+        "pos": "adjective",
+        "register": "literal",
+        "domain": "demonym",
+        "gloss": "United Kingdom",
+        "forms": [
+          "British"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "demonyms-russian",
+        "lemma": "Russian",
+        "pos": "adjective",
+        "register": "literal",
+        "domain": "demonym",
+        "gloss": "Russia",
+        "forms": [
+          "Russian"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "demonyms-chinese",
+        "lemma": "Chinese",
+        "pos": "adjective",
+        "register": "literal",
+        "domain": "demonym",
+        "gloss": "China",
+        "forms": [
+          "Chinese"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "demonyms-iranian",
+        "lemma": "Iranian",
+        "pos": "adjective",
+        "register": "literal",
+        "domain": "demonym",
+        "gloss": "Iran",
+        "forms": [
+          "Iranian"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "demonyms-iraqi",
+        "lemma": "Iraqi",
+        "pos": "adjective",
+        "register": "literal",
+        "domain": "demonym",
+        "gloss": "Iraq",
+        "forms": [
+          "Iraqi"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "demonyms-israeli",
+        "lemma": "Israeli",
+        "pos": "adjective",
+        "register": "literal",
+        "domain": "demonym",
+        "gloss": "Israel",
+        "forms": [
+          "Israeli"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "demonyms-palestinian",
+        "lemma": "Palestinian",
+        "pos": "adjective",
+        "register": "literal",
+        "domain": "demonym",
+        "gloss": "Palestine",
+        "forms": [
+          "Palestinian"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "demonyms-syrian",
+        "lemma": "Syrian",
+        "pos": "adjective",
+        "register": "literal",
+        "domain": "demonym",
+        "gloss": "Syria",
+        "forms": [
+          "Syrian"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "demonyms-ukrainian",
+        "lemma": "Ukrainian",
+        "pos": "adjective",
+        "register": "literal",
+        "domain": "demonym",
+        "gloss": "Ukraine",
+        "forms": [
+          "Ukrainian"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "demonyms-german",
+        "lemma": "German",
+        "pos": "adjective",
+        "register": "literal",
+        "domain": "demonym",
+        "gloss": "Germany",
+        "forms": [
+          "German"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "demonyms-french",
+        "lemma": "French",
+        "pos": "adjective",
+        "register": "literal",
+        "domain": "demonym",
+        "gloss": "France",
+        "forms": [
+          "French"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "demonyms-japanese",
+        "lemma": "Japanese",
+        "pos": "adjective",
+        "register": "literal",
+        "domain": "demonym",
+        "gloss": "Japan",
+        "forms": [
+          "Japanese"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "demonyms-korean",
+        "lemma": "Korean",
+        "pos": "adjective",
+        "register": "literal",
+        "domain": "demonym",
+        "gloss": "Korea",
+        "forms": [
+          "Korean"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "demonyms-saudi",
+        "lemma": "Saudi",
+        "pos": "adjective",
+        "register": "literal",
+        "domain": "demonym",
+        "gloss": "Saudi Arabia",
+        "forms": [
+          "Saudi"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "demonyms-egyptian",
+        "lemma": "Egyptian",
+        "pos": "adjective",
+        "register": "literal",
+        "domain": "demonym",
+        "gloss": "Egypt",
+        "forms": [
+          "Egyptian"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "demonyms-turkish",
+        "lemma": "Turkish",
+        "pos": "adjective",
+        "register": "literal",
+        "domain": "demonym",
+        "gloss": "Turkey",
+        "forms": [
+          "Turkish"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "demonyms-indian",
+        "lemma": "Indian",
+        "pos": "adjective",
+        "register": "literal",
+        "domain": "demonym",
+        "gloss": "India",
+        "forms": [
+          "Indian"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "demonyms-pakistani",
+        "lemma": "Pakistani",
+        "pos": "adjective",
+        "register": "literal",
+        "domain": "demonym",
+        "gloss": "Pakistan",
+        "forms": [
+          "Pakistani"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "demonyms-afghan",
+        "lemma": "Afghan",
+        "pos": "adjective",
+        "register": "literal",
+        "domain": "demonym",
+        "gloss": "Afghanistan",
+        "forms": [
+          "Afghan"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "demonyms-mexican",
+        "lemma": "Mexican",
+        "pos": "adjective",
+        "register": "literal",
+        "domain": "demonym",
+        "gloss": "Mexico",
+        "forms": [
+          "Mexican"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "demonyms-canadian",
+        "lemma": "Canadian",
+        "pos": "adjective",
+        "register": "literal",
+        "domain": "demonym",
+        "gloss": "Canada",
+        "forms": [
+          "Canadian"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "demonyms-brazilian",
+        "lemma": "Brazilian",
+        "pos": "adjective",
+        "register": "literal",
+        "domain": "demonym",
+        "gloss": "Brazil",
+        "forms": [
+          "Brazilian"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "demonyms-venezuelan",
+        "lemma": "Venezuelan",
+        "pos": "adjective",
+        "register": "literal",
+        "domain": "demonym",
+        "gloss": "Venezuela",
+        "forms": [
+          "Venezuelan"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "demonyms-cuban",
+        "lemma": "Cuban",
+        "pos": "adjective",
+        "register": "literal",
+        "domain": "demonym",
+        "gloss": "Cuba",
+        "forms": [
+          "Cuban"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "demonyms-yemeni",
+        "lemma": "Yemeni",
+        "pos": "adjective",
+        "register": "literal",
+        "domain": "demonym",
+        "gloss": "Yemen",
+        "forms": [
+          "Yemeni"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "demonyms-libyan",
+        "lemma": "Libyan",
+        "pos": "adjective",
+        "register": "literal",
+        "domain": "demonym",
+        "gloss": "Libya",
+        "forms": [
+          "Libyan"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "demonyms-lebanese",
+        "lemma": "Lebanese",
+        "pos": "adjective",
+        "register": "literal",
+        "domain": "demonym",
+        "gloss": "Lebanon",
+        "forms": [
+          "Lebanese"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "demonyms-kuwaiti",
+        "lemma": "Kuwaiti",
+        "pos": "adjective",
+        "register": "literal",
+        "domain": "demonym",
+        "gloss": "Kuwait",
+        "forms": [
+          "Kuwaiti"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "demonyms-qatari",
+        "lemma": "Qatari",
+        "pos": "adjective",
+        "register": "literal",
+        "domain": "demonym",
+        "gloss": "Qatar",
+        "forms": [
+          "Qatari"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "demonyms-emirati",
+        "lemma": "Emirati",
+        "pos": "adjective",
+        "register": "literal",
+        "domain": "demonym",
+        "gloss": "United Arab Emirates",
+        "forms": [
+          "Emirati"
+        ],
+        "relations": []
+      }
+    ]
+  }
+}

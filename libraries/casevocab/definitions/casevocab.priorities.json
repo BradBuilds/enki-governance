@@ -1,0 +1,17 @@
+{
+  "id": "case.vocab.priorities",
+  "type": "custom",
+  "version": "0.1.0",
+  "description": "Case priority levels.",
+  "content": {
+    "category": "case_priorities",
+    "priorities": [
+      {"priority_id": "critical", "rank": 4, "description": "Immediate action required"},
+      {"priority_id": "high", "rank": 3, "description": "Urgent, assign within hours"},
+      {"priority_id": "medium", "rank": 2, "description": "Routine investigation/organization"},
+      {"priority_id": "low", "rank": 1, "description": "Backlog, address when possible"}
+    ]
+  },
+  "metadata": {"created": "2026-03-21T00:00:00Z", "author": "ENKI System"},
+  "dependencies": ["case.vocab.system"]
+}

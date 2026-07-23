@@ -1,0 +1,52 @@
+{
+  "id": "base60.glyphs",
+  "type": "glyphs",
+  "version": "0.1.0",
+  "description": "Cuneiform-inspired glyph rendering specifications",
+  "content": {
+    "styles": {
+      "wedge_ascii": {
+        "name": "ASCII Wedge",
+        "description": "ASCII-safe wedge representation",
+        "default": true,
+        "symbols": {
+          "unit": "|",
+          "ten": "<",
+          "zero": "∅"
+        },
+        "rendering": {
+          "deterministic": true,
+          "stateless": true,
+          "formula": "tens_symbol * tens_count + units_symbol * units_count"
+        }
+      },
+      "wedge_unicode_modern": {
+        "name": "Unicode Modern Wedge",
+        "description": "Unicode cuneiform-inspired symbols",
+        "default": false,
+        "symbols": {
+          "unit": "𒁹",
+          "ten": "𒌋",
+          "zero": "∅"
+        },
+        "rendering": {
+          "deterministic": true,
+          "stateless": true,
+          "formula": "tens_symbol * tens_count + units_symbol * units_count"
+        },
+        "warning": "Visual only - logic must not depend on these symbols"
+      }
+    },
+    "rendering_parameters": {
+      "default_separator": " ",
+      "no_trimming": true,
+      "no_collapsing": true,
+      "preserve_all_places": true
+    }
+  },
+  "metadata": {
+    "created": "2025-12-31T00:00:00Z",
+    "author": "ENKI System"
+  },
+  "dependencies": ["base60.rules"]
+}

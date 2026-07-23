@@ -1,0 +1,10 @@
+{
+  "id": "glossary_military",
+  "name": "Glossary Military",
+  "version": "0.1.0",
+  "type": "lexical",
+  "description": "Military and ISR terminology. Curated seed; expandable from full sources.",
+  "manifest": [
+    "definitions/glossary_military.senses.json"
+  ]
+}

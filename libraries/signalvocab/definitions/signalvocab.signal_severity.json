@@ -1,0 +1,22 @@
+{
+  "id": "signal.vocab.signal_severity",
+  "type": "custom",
+  "version": "0.1.0",
+  "description": "Severity levels for ingested data. Determines urgency of attention.",
+  "content": {
+    "category": "signal_severity",
+    "levels": [
+      {"level_id": "critical", "rank": 5, "description": "Immediate action required"},
+      {"level_id": "high", "rank": 4, "description": "Prompt attention needed"},
+      {"level_id": "medium", "rank": 3, "description": "Review when possible"},
+      {"level_id": "low", "rank": 2, "description": "Informational with context"},
+      {"level_id": "informational", "rank": 1, "description": "Routine data, no action needed"}
+    ],
+    "default": "informational"
+  },
+  "metadata": {
+    "created": "2026-03-21T00:00:00Z",
+    "author": "ENKI System"
+  },
+  "dependencies": ["signal.vocab.system"]
+}

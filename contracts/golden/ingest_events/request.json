@@ -1,0 +1,14 @@
+{
+  "method": "POST",
+  "path": "/ingest/events",
+  "headers": {
+    "X-Device-ID": "admin-yubikey-001",
+    "X-Challenge-ID": "<CHALLENGE_ID>",
+    "X-Tenant-ID": "practice-001",
+    "X-Body-SHA256": "computed-at-runtime",
+    "X-Signature": "computed-at-runtime",
+    "Content-Type": "application/x-ndjson"
+  },
+  "body": "{\"event_id\":\"test-event-<UNIQ>\",\"event_type\":\"node.heartbeat\",\"timestamp\":\"<NOW_ISO>\",\"actor_id\":\"test-runner\",\"severity\":\"info\",\"scope\":\"local\",\"metadata\":{}}\n",
+  "notes": "Body is JSONL (newline-delimited JSON). Single event for determinism. Headers computed at runtime. Event fields match ObservabilityEvent schema (event_id, event_type, timestamp, actor_id, severity, scope required)."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "domain_finance",
+  "name": "Finance Glossary",
+  "version": "0.1.0",
+  "type": "lexical",
+  "description": "Tiny finance-domain glossary — a SECOND library so the equation resolves across libraries (e.g. 'lead': metal from the general lexicon vs sales-prospect here, disambiguated by domain).",
+  "manifest": ["definitions/domain_finance.senses.json"]
+}

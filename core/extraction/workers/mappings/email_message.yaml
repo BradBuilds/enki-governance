@@ -1,0 +1,51 @@
+# Email message — IMAP-fetched messages.
+#
+# Subject becomes title, From becomes byline, body is full text.
+# Attachments are in payload.attachments[] but not extracted in cheap
+# pass — that's a future media-extraction phase.
+
+signal_type: signal.communications.email
+aliases:
+  - signal.communications.chat_message
+
+node_type: document
+subtype: email
+description: Email message or chat message from IMAP/communication source
+
+field_map:
+  payload.subject:         identity.title_raw
+  payload.from:            identity.byline_raw
+  payload.from_address:    _scratch.from_addr
+  payload.to:              _scratch.to
+  payload.body:            summary.body_original
+  payload.body_text:       summary.body_original
+  payload.body_html:       _scratch.body_html
+  payload.snippet:         summary.feed_summary
+  payload.date:            temporal.event_time
+  payload.timestamp:       temporal.event_time
+  payload.message_id:      _scratch.message_id
+  source.outlet:           source.outlet_name
+  source.slug:             _scratch.source_slug
+
+constants:
+  summary.domain_classification: other
+  evidence.epistemic_type: observation
+  evidence.confidence: 0.95
+  evidence.background_relevance: background
+
+templates:
+  identity.title_display: "{identity.title_raw}"
+  summary.headline: "{identity.title_raw}"
+  summary.narrative: "{summary.feed_summary}"
+  source.node_id: "source:{_scratch.source_slug}"
+
+extractors:
+  - entities_cheap
+  - topics_cheap
+  - places_cheap
+  - quotes
+
+governance:
+  author: hand_written
+  reviewed: true
+  version: 1

@@ -1,0 +1,217 @@
+{
+  "description": "Example audit events demonstrating Audit Event Vocabulary Pack usage",
+  "note": "These are illustrative examples, not validated event instances",
+  "examples": [
+    {
+      "scenario": "Assertion proposed by human actor",
+      "event": {
+        "event_id": "evt_001",
+        "event_type": "assertion.proposed",
+        "timestamp": "2025-12-31T10:00:00Z",
+        "actor_id": "person_alice",
+        "assertion_id": "assert_001",
+        "scope": "local",
+        "severity": "info",
+        "metadata": {
+          "predicate": "owns",
+          "subject": "person_alice",
+          "object_kind": "entity_ref"
+        }
+      }
+    },
+    {
+      "scenario": "Assertion validated successfully",
+      "event": {
+        "event_id": "evt_002",
+        "event_type": "assertion.validated",
+        "timestamp": "2025-12-31T10:00:05Z",
+        "assertion_id": "assert_001",
+        "severity": "info",
+        "source": "assertion_validator",
+        "metadata": {
+          "validation_duration_ms": 15,
+          "checks_passed": ["schema", "predicate", "object_kind", "scope"]
+        }
+      }
+    },
+    {
+      "scenario": "Assertion rejected due to validation failure",
+      "event": {
+        "event_id": "evt_003",
+        "event_type": "assertion.rejected",
+        "timestamp": "2025-12-31T10:15:00Z",
+        "assertion_id": "assert_bad_001",
+        "actor_id": "service_data_ingestion",
+        "severity": "error",
+        "reason": "Invalid predicate: unknown_predicate not found in assertion vocabulary",
+        "errors": [
+          {
+            "code": "INVALID_PREDICATE",
+            "field": "predicate",
+            "message": "Predicate 'unknown_predicate' not found in assertion vocabulary"
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "Pack loaded successfully",
+      "event": {
+        "event_id": "evt_004",
+        "event_type": "pack.loaded",
+        "timestamp": "2025-12-31T09:00:00Z",
+        "pack_id": "identity",
+        "version": "0.1.0",
+        "node_id": "node_primary",
+        "severity": "info",
+        "metadata": {
+          "definitions_count": 4,
+          "load_duration_ms": 45
+        }
+      }
+    },
+    {
+      "scenario": "Pack validation failed",
+      "event": {
+        "event_id": "evt_005",
+        "event_type": "pack.validation_failed",
+        "timestamp": "2025-12-31T09:05:00Z",
+        "pack_id": "invalid_pack",
+        "node_id": "node_primary",
+        "severity": "error",
+        "reason": "Pack manifest missing required field 'pack_id'",
+        "errors": [
+          {
+            "code": "MANIFEST_ERROR",
+            "message": "Missing required field: pack_id"
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "Node started",
+      "event": {
+        "event_id": "evt_006",
+        "event_type": "node.started",
+        "timestamp": "2025-12-31T08:00:00Z",
+        "node_id": "node_primary",
+        "version": "0.1.0",
+        "severity": "info",
+        "metadata": {
+          "hostname": "enki-node-01",
+          "environment": "production"
+        }
+      }
+    },
+    {
+      "scenario": "Node heartbeat",
+      "event": {
+        "event_id": "evt_007",
+        "event_type": "node.heartbeat",
+        "timestamp": "2025-12-31T12:00:00Z",
+        "node_id": "node_primary",
+        "severity": "info",
+        "metadata": {
+          "status": "healthy",
+          "uptime_seconds": 14400,
+          "packs_loaded": 4,
+          "assertions_validated": 127
+        }
+      }
+    },
+    {
+      "scenario": "Usage meter tick",
+      "event": {
+        "event_id": "evt_008",
+        "event_type": "usage.meter_tick",
+        "timestamp": "2025-12-31T13:00:00Z",
+        "node_id": "node_primary",
+        "severity": "info",
+        "metadata": {
+          "period": "hourly",
+          "metrics": {
+            "assertions_proposed": 15,
+            "assertions_validated": 14,
+            "assertions_rejected": 1,
+            "pack_loads": 0,
+            "api_calls": 203
+          }
+        }
+      }
+    },
+    {
+      "scenario": "Validation started",
+      "event": {
+        "event_id": "evt_009",
+        "event_type": "validation.started",
+        "timestamp": "2025-12-31T14:00:00Z",
+        "target_id": "assert_batch_001",
+        "target_type": "assertion_batch",
+        "severity": "info",
+        "metadata": {
+          "batch_size": 50,
+          "validator": "assertion_validator_v1"
+        }
+      }
+    },
+    {
+      "scenario": "Validation completed successfully",
+      "event": {
+        "event_id": "evt_010",
+        "event_type": "validation.completed",
+        "timestamp": "2025-12-31T14:00:02Z",
+        "target_id": "assert_batch_001",
+        "target_type": "assertion_batch",
+        "severity": "info",
+        "metadata": {
+          "batch_size": 50,
+          "valid_count": 50,
+          "invalid_count": 0,
+          "duration_ms": 2340
+        }
+      }
+    },
+    {
+      "scenario": "Critical system failure",
+      "event": {
+        "event_id": "evt_011",
+        "event_type": "node.stopped",
+        "timestamp": "2025-12-31T23:45:00Z",
+        "node_id": "node_secondary",
+        "severity": "critical",
+        "reason": "Unhandled exception: Out of memory",
+        "metadata": {
+          "exit_code": 1,
+          "last_operation": "pack.loaded",
+          "stack_trace": "..."
+        }
+      }
+    },
+    {
+      "scenario": "Assertion accepted into system",
+      "event": {
+        "event_id": "evt_012",
+        "event_type": "assertion.accepted",
+        "timestamp": "2025-12-31T15:30:00Z",
+        "actor_id": "ai_agent_analyzer",
+        "assertion_id": "assert_ai_001",
+        "scope": "shared",
+        "severity": "info",
+        "metadata": {
+          "source": "ai_inference_pipeline",
+          "confidence": 0.95
+        }
+      }
+    }
+  ],
+  "severity_distribution": {
+    "info": "Most events are informational",
+    "warning": "Used for non-critical issues",
+    "error": "Used for failures that don't affect system stability",
+    "critical": "Reserved for severe issues requiring immediate attention"
+  },
+  "notes": [
+    "These examples demonstrate vocabulary usage only",
+    "Actual audit event storage and processing are not defined in this pack",
+    "Event structures may include additional fields based on implementation"
+  ]
+}

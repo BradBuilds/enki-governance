@@ -1,0 +1,13 @@
+{
+  "description": "Example data showing how governed entities look when ingested",
+  "events": [
+    {
+      "event_type": "example.entity.created",
+      "scope": "example",
+      "data": {
+        "term": "widget",
+        "claim": {"name": "Widget Alpha", "status": "active"}
+      }
+    }
+  ]
+}

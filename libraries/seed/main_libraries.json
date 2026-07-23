@@ -1,0 +1,377 @@
+{
+  "id": "enki.main_libraries.seed",
+  "version": "0.1.0",
+  "description": "The four Main Libraries: high-signal public-domain corpora that ship with every ENKI install. New nodes can subscribe to any of these on first boot. Each library aggregates multiple source connectors (RSS feeds, public APIs, bulk downloads). Connectors marked enabled:true fire on the default schedule; enabled:false require operator setup before they ingest (usually because the source needs an API key, an EULA, or a bulk-download workflow that doesn't fit a worker tick). Format: parseable by scripts/seed_main_libraries.py.",
+  "content": {
+    "libraries": [
+      {
+        "canonical_name": "main_library/Public Records",
+        "library_subtype": "corpus_library",
+        "focal_term": "us_public_records",
+        "description": "Federal records of public business: filings, contracts, regulations, hearings, grants. Authoritative source-of-record material for understanding government actions.",
+        "is_public": true,
+        "is_published_to_network": true,
+        "subscription_policy": "open",
+        "min_yield_required": 0.0,
+        "source_connectors": [
+          {
+            "connector_type": "rss",
+            "display_name": "SEC EDGAR — All Filings (Daily Index)",
+            "config": {
+              "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcurrent&type=&company=&dateb=&owner=include&count=40&search_text=",
+              "user_agent": "ENKI Research (+https://github.com/BradBuilds/enki-governance)"
+            },
+            "refresh_cadence": "hourly",
+            "enabled": true
+          },
+          {
+            "connector_type": "rss",
+            "display_name": "Federal Register — All Documents (RSS)",
+            "config": {
+              "url": "https://www.federalregister.gov/articles.rss"
+            },
+            "refresh_cadence": "daily",
+            "enabled": true
+          },
+          {
+            "connector_type": "rest_api",
+            "display_name": "USAspending.gov — Federal Contracts (last 24h)",
+            "config": {
+              "base_url": "https://api.usaspending.gov",
+              "endpoint": "/api/v2/search/spending_by_award/",
+              "method": "POST",
+              "body_template": {
+                "filters": {
+                  "award_type_codes": ["A","B","C","D"],
+                  "time_period": [{"start_date":"{{yesterday}}","end_date":"{{today}}"}]
+                },
+                "fields": ["Award ID","Recipient Name","Award Amount","Awarding Agency","Description"],
+                "limit": 100
+              }
+            },
+            "refresh_cadence": "daily",
+            "enabled": true
+          },
+          {
+            "connector_type": "rss",
+            "display_name": "Congress.gov — Bill Activity",
+            "config": {
+              "url": "https://www.congress.gov/rss/most-viewed-bills.xml"
+            },
+            "refresh_cadence": "daily",
+            "enabled": true
+          },
+          {
+            "connector_type": "rss",
+            "display_name": "GAO — Recently Released Reports",
+            "config": {
+              "url": "https://www.gao.gov/rss/products.xml"
+            },
+            "refresh_cadence": "daily",
+            "enabled": true
+          },
+          {
+            "connector_type": "rss",
+            "display_name": "USPTO — Patent Grants (Weekly Issuance)",
+            "config": {
+              "url": "https://www.uspto.gov/learning-and-resources/electronic-data-products/patent-bibliographic-grant-data.xml"
+            },
+            "refresh_cadence": "weekly",
+            "enabled": false,
+            "notes": "Disabled by default — large weekly bulk dump (~500MB). Enable after confirming bandwidth + storage."
+          },
+          {
+            "connector_type": "rest_api",
+            "display_name": "FEC — Latest Committee Filings",
+            "config": {
+              "base_url": "https://api.open.fec.gov",
+              "endpoint": "/v1/filings/",
+              "params": {
+                "sort": "-receipt_date",
+                "per_page": 100
+              },
+              "requires_api_key": true,
+              "api_key_env": "FEC_API_KEY"
+            },
+            "refresh_cadence": "daily",
+            "enabled": false,
+            "notes": "Disabled until operator provides FEC_API_KEY (free, register at api.data.gov)."
+          },
+          {
+            "connector_type": "bulk_pull",
+            "display_name": "SEC EDGAR — Full-Text 10-K/10-Q (Quarterly)",
+            "config": {
+              "base_url": "https://www.sec.gov/Archives/edgar/full-index/",
+              "form_types": ["10-K","10-Q","8-K","13D","13G"]
+            },
+            "refresh_cadence": "weekly",
+            "enabled": false,
+            "notes": "Disabled — bulk pull of full filings is ~10GB/year. Enable on dedicated nodes."
+          }
+        ]
+      },
+      {
+        "canonical_name": "main_library/Declassified",
+        "library_subtype": "corpus_library",
+        "focal_term": "declassified_intelligence",
+        "description": "Declassified government records, FOIA releases, historical intelligence archives. Material that was once classified and is now in the public domain.",
+        "is_public": true,
+        "is_published_to_network": true,
+        "subscription_policy": "open",
+        "min_yield_required": 0.0,
+        "source_connectors": [
+          {
+            "connector_type": "web_scrape",
+            "display_name": "CIA CREST — Recently Released",
+            "config": {
+              "base_url": "https://www.cia.gov/readingroom/",
+              "list_url": "https://www.cia.gov/readingroom/historical-collections",
+              "rate_limit_secs": 5
+            },
+            "refresh_cadence": "weekly",
+            "enabled": false,
+            "notes": "Disabled by default — large archive (~13M pages total). Initial bulk pull is a multi-day operation. Enable + run scripts/bulk_pull_cia_crest.sh once."
+          },
+          {
+            "connector_type": "rss",
+            "display_name": "National Security Archive — Latest Postings",
+            "config": {
+              "url": "https://nsarchive.gwu.edu/rss.xml"
+            },
+            "refresh_cadence": "weekly",
+            "enabled": true
+          },
+          {
+            "connector_type": "rss",
+            "display_name": "FBI Vault — Recent Releases",
+            "config": {
+              "url": "https://vault.fbi.gov/recently-added/RSS"
+            },
+            "refresh_cadence": "weekly",
+            "enabled": true
+          },
+          {
+            "connector_type": "web_scrape",
+            "display_name": "NSA FOIA Reading Room",
+            "config": {
+              "base_url": "https://www.nsa.gov/news-features/declassified-documents/",
+              "rate_limit_secs": 5
+            },
+            "refresh_cadence": "weekly",
+            "enabled": false,
+            "notes": "Disabled — scraping each release page is per-document. Enable for active research."
+          },
+          {
+            "connector_type": "web_scrape",
+            "display_name": "DoD FOIA Reading Room",
+            "config": {
+              "base_url": "https://open.defense.gov/Transparency/Reading-Room/"
+            },
+            "refresh_cadence": "weekly",
+            "enabled": false
+          },
+          {
+            "connector_type": "bulk_pull",
+            "display_name": "JFK Records Collection (NARA)",
+            "config": {
+              "base_url": "https://www.archives.gov/research/jfk/release-2025",
+              "format": "pdf"
+            },
+            "refresh_cadence": "static",
+            "enabled": false,
+            "notes": "Disabled — static archive, ~13K docs. Run scripts/bulk_pull_jfk.sh once to seed."
+          },
+          {
+            "connector_type": "rss",
+            "display_name": "State Department FRUS — Historical Documents",
+            "config": {
+              "url": "https://history.state.gov/historicaldocuments/rss.xml"
+            },
+            "refresh_cadence": "weekly",
+            "enabled": true
+          }
+        ]
+      },
+      {
+        "canonical_name": "main_library/Investigative",
+        "library_subtype": "corpus_library",
+        "focal_term": "investigative_journalism",
+        "description": "Investigative reporting and consortium-leaked archives. High-signal OSINT material from outlets that focus on accountability + cross-border investigation.",
+        "is_public": true,
+        "is_published_to_network": true,
+        "subscription_policy": "open",
+        "min_yield_required": 0.0,
+        "source_connectors": [
+          {
+            "connector_type": "rss",
+            "display_name": "Bellingcat — Investigations",
+            "config": {
+              "url": "https://www.bellingcat.com/feed/"
+            },
+            "refresh_cadence": "daily",
+            "enabled": true
+          },
+          {
+            "connector_type": "rss",
+            "display_name": "OCCRP — Stories",
+            "config": {
+              "url": "https://www.occrp.org/en/rss/all.xml"
+            },
+            "refresh_cadence": "daily",
+            "enabled": true
+          },
+          {
+            "connector_type": "rss",
+            "display_name": "ICIJ — Investigations",
+            "config": {
+              "url": "https://www.icij.org/feed/"
+            },
+            "refresh_cadence": "daily",
+            "enabled": true
+          },
+          {
+            "connector_type": "rss",
+            "display_name": "ProPublica — Latest Articles",
+            "config": {
+              "url": "https://www.propublica.org/feeds/propublica/main"
+            },
+            "refresh_cadence": "daily",
+            "enabled": true
+          },
+          {
+            "connector_type": "rss",
+            "display_name": "The Intercept — Politics + National Security",
+            "config": {
+              "url": "https://theintercept.com/feed/"
+            },
+            "refresh_cadence": "daily",
+            "enabled": true
+          },
+          {
+            "connector_type": "rss",
+            "display_name": "Reveal (Center for Investigative Reporting)",
+            "config": {
+              "url": "https://revealnews.org/feed/"
+            },
+            "refresh_cadence": "daily",
+            "enabled": true
+          },
+          {
+            "connector_type": "rss",
+            "display_name": "DFRLab (Atlantic Council)",
+            "config": {
+              "url": "https://medium.com/feed/dfrlab"
+            },
+            "refresh_cadence": "daily",
+            "enabled": true
+          },
+          {
+            "connector_type": "bulk_pull",
+            "display_name": "ICIJ OffshoreLeaks — Database Dump",
+            "config": {
+              "base_url": "https://offshoreleaks.icij.org/pages/database",
+              "format": "csv_bundle"
+            },
+            "refresh_cadence": "static",
+            "enabled": false,
+            "notes": "Disabled — static archive (Panama+Paradise+Pandora+Bahamas combined, ~14M records). Run scripts/bulk_pull_icij.sh once to seed."
+          },
+          {
+            "connector_type": "rest_api",
+            "display_name": "DocumentCloud — Public Documents",
+            "config": {
+              "base_url": "https://www.documentcloud.org/api/",
+              "endpoint": "/documents/search/",
+              "params": {"access": "public"}
+            },
+            "refresh_cadence": "daily",
+            "enabled": false,
+            "notes": "Disabled — large API surface, requires query specificity. Use for targeted research."
+          }
+        ]
+      },
+      {
+        "canonical_name": "main_library/Global Events",
+        "library_subtype": "corpus_library",
+        "focal_term": "global_events_intel",
+        "description": "Real-time global events: conflicts, disasters, public health alerts, geopolitical news. Wire-service-style firehose, valuable for cross-referencing entities with their actions in context.",
+        "is_public": true,
+        "is_published_to_network": true,
+        "subscription_policy": "open",
+        "min_yield_required": 0.0,
+        "source_connectors": [
+          {
+            "connector_type": "bulk_pull",
+            "display_name": "GDELT 2.0 — Event Stream (15-min)",
+            "config": {
+              "base_url": "http://data.gdeltproject.org/gdeltv2/lastupdate.txt",
+              "fetch_format": "csv_zip"
+            },
+            "refresh_cadence": "hourly",
+            "enabled": false,
+            "notes": "Disabled by default — ~50K events / 15min = ~5M/day. Enable on dedicated event-mining nodes."
+          },
+          {
+            "connector_type": "rss",
+            "display_name": "ReliefWeb — Humanitarian Headlines",
+            "config": {
+              "url": "https://reliefweb.int/updates/rss.xml"
+            },
+            "refresh_cadence": "hourly",
+            "enabled": true
+          },
+          {
+            "connector_type": "rss",
+            "display_name": "WHO Disease Outbreaks (DON)",
+            "config": {
+              "url": "https://www.who.int/feeds/entity/csr/don/en/rss.xml"
+            },
+            "refresh_cadence": "daily",
+            "enabled": true
+          },
+          {
+            "connector_type": "rest_api",
+            "display_name": "USGS — Significant Earthquakes (Past 30 Days)",
+            "config": {
+              "base_url": "https://earthquake.usgs.gov",
+              "endpoint": "/earthquakes/feed/v1.0/summary/significant_month.geojson"
+            },
+            "refresh_cadence": "hourly",
+            "enabled": true
+          },
+          {
+            "connector_type": "rss",
+            "display_name": "NOAA NWS — Active Weather Alerts",
+            "config": {
+              "url": "https://api.weather.gov/alerts/active.atom"
+            },
+            "refresh_cadence": "hourly",
+            "enabled": true
+          },
+          {
+            "connector_type": "rss",
+            "display_name": "UN News — Top Stories",
+            "config": {
+              "url": "https://news.un.org/feed/subscribe/en/news/all/rss.xml"
+            },
+            "refresh_cadence": "daily",
+            "enabled": true
+          },
+          {
+            "connector_type": "rest_api",
+            "display_name": "ACLED — Conflict Event Data",
+            "config": {
+              "base_url": "https://api.acleddata.com",
+              "endpoint": "/acled/read/",
+              "requires_api_key": true,
+              "api_key_env": "ACLED_API_KEY"
+            },
+            "refresh_cadence": "daily",
+            "enabled": false,
+            "notes": "Disabled until operator provides ACLED_API_KEY (free academic, register at acleddata.com)."
+          }
+        ]
+      }
+    ]
+  }
+}

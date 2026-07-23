@@ -1,0 +1,16 @@
+{
+  "id": "example.entities",
+  "version": "0.1.0",
+  "terms": [
+    {
+      "term": "widget",
+      "definition": "A sample governed entity",
+      "category": "entity"
+    },
+    {
+      "term": "component",
+      "definition": "A sub-unit of a widget",
+      "category": "entity"
+    }
+  ]
+}

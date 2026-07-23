@@ -1,0 +1,7 @@
+{
+  "status_code": 200,
+  "body_shape": {
+    "events": []
+  },
+  "notes": "Returns list of assertion events. Empty list is valid (no assertions ingested yet). Non-empty list would contain event objects with assertion.* event_type prefix."
+}

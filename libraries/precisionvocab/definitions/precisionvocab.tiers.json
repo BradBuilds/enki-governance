@@ -1,0 +1,129 @@
+{
+  "id": "precision.vocab.tiers",
+  "type": "custom",
+  "version": "0.1.0",
+  "description": "The 6 base precision tiers (v0.1.0). Each tier has a stable integer depth that the collapse operator uses for ordering. Tier depths are immutable across minor-version pack bumps; new tiers extend at the bottom of the scale or as named refinements.",
+  "content": {
+    "tiers": {
+      "unspecified": {
+        "depth": -1,
+        "label": "Unspecified",
+        "description": "LDU staging — the source asserted a value but the admission worker has not yet mapped it to a precision tier. Assertions at this tier are flowable but not authoritative; they cannot collapse or federate until promoted.",
+        "examples": [
+          "raw LLM extraction before mapper runs",
+          "imported third-party data with no precision metadata"
+        ],
+        "promote_to": "named | qualified | formal | spectral | enumerated (chosen by admission worker)",
+        "ldu_eligible": true,
+        "gdu_eligible": false
+      },
+      "concept": {
+        "depth": 0,
+        "label": "Concept",
+        "description": "The property itself, with no value. Used as the root of the lattice for queries like 'does this entity have a color assertion at all?'",
+        "examples": [
+          "color (the property)",
+          "manufacturer (the property)"
+        ],
+        "ldu_eligible": false,
+        "gdu_eligible": true
+      },
+      "named": {
+        "depth": 1,
+        "label": "Named",
+        "description": "A common-language token denoting the value. Cheapest assertion; what most natural-language extraction produces. No qualifier, no formal coding.",
+        "examples": [
+          "color = 'red'",
+          "manufacturer = 'Ford'",
+          "location = 'Mexico'",
+          "time = '1947'"
+        ],
+        "typical_sources": [
+          "witness statements",
+          "news prose",
+          "general LLM extraction"
+        ],
+        "ldu_eligible": false,
+        "gdu_eligible": true
+      },
+      "qualified": {
+        "depth": 2,
+        "label": "Qualified",
+        "description": "A named value with a modifier or restriction. One step more specific than 'named' but still natural-language.",
+        "examples": [
+          "color = 'candy red'",
+          "manufacturer = 'Ford Mustang'",
+          "location = 'northern Mexico'",
+          "time = 'July 1947'"
+        ],
+        "typical_sources": [
+          "specialist descriptions",
+          "expert testimony",
+          "qualified prose extraction"
+        ],
+        "ldu_eligible": false,
+        "gdu_eligible": true
+      },
+      "formal": {
+        "depth": 3,
+        "label": "Formal",
+        "description": "A value expressed in a standardized coding scheme — controlled vocabulary, model number, registry identifier, ISO code, etc. Machine-precise within the scheme's resolution.",
+        "examples": [
+          "color = 'Pantone 199C'",
+          "color = 'RGB(220,20,60)'",
+          "manufacturer = 'Ford Motor Company, CIK 0000037996'",
+          "location = '33.6406°N, -104.5°W (GeoNames 5483999)'",
+          "time = '1947-07-08T00:00Z'",
+          "language = 'en-US' (BCP 47)"
+        ],
+        "typical_sources": [
+          "structured databases",
+          "official filings",
+          "API responses with coded fields"
+        ],
+        "ldu_eligible": false,
+        "gdu_eligible": true
+      },
+      "spectral": {
+        "depth": 4,
+        "label": "Spectral / Measured",
+        "description": "Direct physical measurement — wavelength, mass, length, instrument readout. Below this is the noise floor of the measurement itself; further refinement requires a new measurement.",
+        "examples": [
+          "color = 'λ=620nm, FWHM 15nm'",
+          "weight = '4.32 kg ± 0.01 kg'",
+          "location = '33.640612°N, -104.499784°W ± 0.5m'",
+          "time = '1947-07-08T21:31:42.143-06:00'"
+        ],
+        "typical_sources": [
+          "instrument logs",
+          "laboratory analysis",
+          "GPS / surveyed coordinates"
+        ],
+        "ldu_eligible": false,
+        "gdu_eligible": true
+      },
+      "enumerated": {
+        "depth": 999,
+        "label": "Enumerated (closed-list)",
+        "description": "A value from a fixed, closed enumeration where no further refinement is meaningful. Acts like depth=∞ for collapse purposes — alternative values at this tier are pure conflicts, not refinements of each other.",
+        "examples": [
+          "language = 'en' (ISO 639-1 — there is no 'more specific' English at this tier)",
+          "mmsi = '366999712' (a vessel's MMSI is exact, not approximable)",
+          "boolean_polarity = 'affirmative' (yes vs no — no in-between)"
+        ],
+        "typical_sources": [
+          "registry lookups",
+          "controlled enums in source schemas"
+        ],
+        "ldu_eligible": false,
+        "gdu_eligible": true
+      }
+    },
+    "collapse_ordering": {
+      "rule": "Within the same property and same lattice chain, an assertion at deeper depth SUBSUMES an assertion at shallower depth (deeper is preserved as canonical; shallower becomes a supporting attestation).",
+      "deeper_wins": "named < qualified < formal < spectral",
+      "enumerated_special": "enumerated values do not subsume named/qualified/formal of a different value — they're exact, so any disagreement at the enumerated tier is a real conflict.",
+      "unspecified_handling": "unspecified-tier assertions are kept side-by-side but never collapse with each other or with tiered assertions; they must be promoted by the admission worker first."
+    }
+  }
+}

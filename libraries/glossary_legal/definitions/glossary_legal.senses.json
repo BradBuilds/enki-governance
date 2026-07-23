@@ -1,0 +1,130 @@
+{
+  "id": "glossary_legal.senses",
+  "type": "lexical_senses",
+  "version": "0.1.0",
+  "description": "Legal and court terminology. (10 seed senses).",
+  "content": {
+    "senses": [
+      {
+        "sense_id": "glossary_legal-subpoena",
+        "lemma": "subpoena",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "legal",
+        "gloss": "a writ ordering attendance or production of evidence",
+        "forms": [
+          "subpoena"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_legal-habeas-corpus",
+        "lemma": "habeas corpus",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "legal",
+        "gloss": "a writ requiring a detained person be brought before a court",
+        "forms": [
+          "habeas corpus"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_legal-indictment",
+        "lemma": "indictment",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "legal",
+        "gloss": "a formal charge of a serious crime",
+        "forms": [
+          "indictment"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_legal-deposition",
+        "lemma": "deposition",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "legal",
+        "gloss": "sworn out-of-court testimony",
+        "forms": [
+          "deposition"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_legal-discovery",
+        "lemma": "discovery",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "legal",
+        "gloss": "the pre-trial exchange of evidence",
+        "forms": [
+          "discovery"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_legal-injunction",
+        "lemma": "injunction",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "legal",
+        "gloss": "a court order to do or stop doing something",
+        "forms": [
+          "injunction"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_legal-plaintiff",
+        "lemma": "plaintiff",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "legal",
+        "gloss": "the party bringing a lawsuit",
+        "forms": [
+          "plaintiff"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_legal-defendant",
+        "lemma": "defendant",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "legal",
+        "gloss": "the party accused or sued",
+        "forms": [
+          "defendant"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_legal-affidavit",
+        "lemma": "affidavit",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "legal",
+        "gloss": "a written statement made under oath",
+        "forms": [
+          "affidavit"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_legal-jurisdiction",
+        "lemma": "jurisdiction",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "legal",
+        "gloss": "a court's authority to hear a case",
+        "forms": [
+          "jurisdiction"
+        ],
+        "relations": []
+      }
+    ]
+  }
+}

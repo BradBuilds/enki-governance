@@ -1,0 +1,130 @@
+{
+  "id": "glossary_finance.senses",
+  "type": "lexical_senses",
+  "version": "0.1.0",
+  "description": "Finance, securities, and AML terminology. (10 seed senses).",
+  "content": {
+    "senses": [
+      {
+        "sense_id": "glossary_finance-ebitda",
+        "lemma": "EBITDA",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "finance",
+        "gloss": "earnings before interest, taxes, depreciation, and amortization",
+        "forms": [
+          "EBITDA"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_finance-ipo",
+        "lemma": "IPO",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "finance",
+        "gloss": "initial public offering",
+        "forms": [
+          "IPO"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_finance-m-a",
+        "lemma": "M&A",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "finance",
+        "gloss": "mergers and acquisitions",
+        "forms": [
+          "M&A"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_finance-shell-company",
+        "lemma": "shell company",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "finance",
+        "gloss": "a company with no active operations, often used to obscure ownership",
+        "forms": [
+          "shell company"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_finance-beneficial-owner",
+        "lemma": "beneficial owner",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "finance",
+        "gloss": "the real person who ultimately owns or controls an entity",
+        "forms": [
+          "beneficial owner"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_finance-money-laundering",
+        "lemma": "money laundering",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "finance",
+        "gloss": "concealing the origins of illegally obtained money",
+        "forms": [
+          "money laundering"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_finance-due-diligence",
+        "lemma": "due diligence",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "finance",
+        "gloss": "investigation of a business before a transaction",
+        "forms": [
+          "due diligence"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_finance-short-selling",
+        "lemma": "short selling",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "finance",
+        "gloss": "selling borrowed securities expecting their price to fall",
+        "forms": [
+          "short selling"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_finance-insider-trading",
+        "lemma": "insider trading",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "finance",
+        "gloss": "trading on material non-public information",
+        "forms": [
+          "insider trading"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_finance-liquidity",
+        "lemma": "liquidity",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "finance",
+        "gloss": "the ease of converting assets to cash",
+        "forms": [
+          "liquidity"
+        ],
+        "relations": []
+      }
+    ]
+  }
+}

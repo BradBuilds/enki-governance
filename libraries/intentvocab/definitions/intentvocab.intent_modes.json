@@ -1,0 +1,40 @@
+{
+  "id": "intent.vocab.intent_modes",
+  "type": "custom",
+  "version": "0.1.0",
+  "description": "Canonical watch intent modes.",
+  "content": {
+    "modes": {
+      "bounded": {
+        "label": "Bounded",
+        "description": "Watch only within an explicit time window. Track segment opens at first sighting in the window and closes when the window ends or the entity reaches a terminal state.",
+        "required_fields": ["bounded_window_start", "bounded_window_end"],
+        "example": "Find flight ABC123 on 2026-04-10. Segment opens at first ADS-B return, closes when the flight lands or 2026-04-11 begins.",
+        "auto_close_triggers": ["window_end", "terminal_state"]
+      },
+      "persistent": {
+        "label": "Persistent",
+        "description": "Watch indefinitely. Segments are opened and closed by idle gaps; the watch itself never closes until manually deactivated.",
+        "required_fields": ["idle_gap_seconds"],
+        "default_idle_gap_seconds": 86400,
+        "example": "Tail number N12345 — watch forever. New segment after each 24h idle gap. Watch persists across years.",
+        "auto_close_triggers": ["idle_gap_exceeded"]
+      },
+      "conditional": {
+        "label": "Conditional",
+        "description": "Watch is always armed but only opens a segment when a specific condition is met. Segment closes when the condition stops being met.",
+        "required_fields": ["conditional_trigger"],
+        "trigger_types": ["enters_geofence", "exits_geofence", "co_occurs_with_entity", "matches_pattern"],
+        "example": "Vessel MV-X — only when entering EEZ. Segment opens at boundary crossing, closes at exit. Watch persists indefinitely.",
+        "auto_close_triggers": ["trigger_no_longer_met"]
+      }
+    },
+    "default_mode": "persistent",
+    "_default_doc": "When a watch is created without an explicit mode, default to persistent with the default 24h idle gap. This is the safest assumption: the user said 'watch this' without further qualification, so we keep watching."
+  },
+  "metadata": {
+    "created": "2026-04-10T00:00:00Z",
+    "author": "ENKI System"
+  },
+  "dependencies": []
+}

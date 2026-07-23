@@ -1,0 +1,47 @@
+{
+  "id": "language.frozen_addresses",
+  "type": "frozen_addresses",
+  "version": "1.0.0",
+  "description": "Closed-set vocabulary with deterministically-pinned base-60 addresses. Every ENKI installation worldwide assigns identical addresses to these tokens so cross-ENKI dictionaries can be merged by simple address-equality, not name-matching. Subtype indexes within `form`: noun=0, verb=1, adjective=2, function_word=3, initialism=4, number_word=5, name_token=6, unknown=7, lemma=8. Address format: 11.<subtype_idx>.<sequence>. Sequences within each subtype are assigned in the order tokens appear in this file — order is therefore part of the public contract; never reorder existing entries.",
+  "rationale": "Closed-set vocabulary (function words, common numbers, name particles) does not vary corpus-to-corpus. By pinning their addresses globally, distributed ENKI installations can merge their language_form_distributions by SQL union rather than name-reconciliation. New tokens append; existing entries are immutable.",
+  "frozen_addresses": {
+    "function_word": [
+      "the", "of", "and", "to", "a", "in", "that", "have", "i", "it",
+      "for", "not", "on", "with", "he", "as", "you", "do", "at", "this",
+      "but", "his", "by", "from", "they", "we", "say", "her", "she", "or",
+      "an", "will", "my", "one", "all", "would", "there", "their", "what", "so",
+      "up", "out", "if", "about", "who", "get", "which", "go", "me", "when",
+      "make", "can", "like", "no", "just", "him", "know", "take", "into", "your",
+      "some", "could", "them", "see", "other", "than", "then", "now", "look", "only",
+      "come", "its", "over", "think", "also", "back", "after", "use", "two", "how",
+      "our", "work", "first", "well", "way", "even", "new", "want", "because", "any",
+      "these", "give", "day", "most", "us", "is", "am", "are", "was", "were",
+      "be", "been", "being", "has", "had", "having", "does", "did", "doing", "done",
+      "should", "may", "might", "must", "however", "therefore", "moreover", "actually", "perhaps", "maybe"
+    ],
+    "number_word": [
+      "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
+      "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen",
+      "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety", "hundred", "thousand",
+      "million", "billion", "trillion",
+      "first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth",
+      "eleventh", "twelfth", "thirteenth", "fourteenth", "fifteenth", "sixteenth", "seventeenth", "eighteenth", "nineteenth", "twentieth",
+      "thirtieth", "fortieth", "fiftieth", "hundredth", "thousandth",
+      "once", "twice", "thrice",
+      "single", "double", "triple", "quadruple",
+      "half", "quarter"
+    ],
+    "name_token": [
+      "san", "von", "van", "der", "den", "de", "del", "la", "le",
+      "el", "al", "mc", "mac", "o", "st", "saint",
+      "ibn", "bin", "abu", "abdul",
+      "jr", "sr", "ii", "iii", "iv", "v",
+      "mr", "mrs", "ms", "dr", "prof"
+    ]
+  },
+  "metadata": {
+    "created": "2026-05-14T00:00:00Z",
+    "author": "ENKI System",
+    "policy": "Append-only. Existing entries are immutable. New tokens are added at the END of their subtype list, never reordered. Any deviation breaks cross-ENKI dictionary merging."
+  }
+}

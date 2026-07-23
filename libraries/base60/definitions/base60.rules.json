@@ -1,0 +1,49 @@
+{
+  "id": "base60.rules",
+  "type": "rules",
+  "version": "0.1.0",
+  "description": "Operational rules for Base-60 numeric system",
+  "content": {
+    "digit_composition": {
+      "components": ["tens", "units"],
+      "tens_value": 10,
+      "units_value": 1,
+      "formula": "digit_value = (tens * 10) + units",
+      "constraints": {
+        "tens": {
+          "min": 0,
+          "max": 5
+        },
+        "units": {
+          "min": 0,
+          "max": 9
+        }
+      }
+    },
+    "place_value_calculation": {
+      "integer_formula": "sum(place[i] * 60^(n-1-i) for i in range(n))",
+      "example": {
+        "places": [1, 2, 3],
+        "calculation": "1*60^2 + 2*60^1 + 3*60^0 = 3600 + 120 + 3 = 3723"
+      }
+    },
+    "zero_rules": {
+      "representation": "explicit_glyph",
+      "value": 0,
+      "position": "any_place",
+      "cannot_be": "omitted"
+    },
+    "validation_rules": {
+      "digit_must_be_integer": true,
+      "digit_min": 0,
+      "digit_max": 59,
+      "places_cannot_be_empty": true,
+      "places_cannot_contain_null": true
+    }
+  },
+  "metadata": {
+    "created": "2025-12-31T00:00:00Z",
+    "author": "ENKI System"
+  },
+  "dependencies": ["base60.system"]
+}

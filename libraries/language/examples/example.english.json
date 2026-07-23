@@ -1,0 +1,17 @@
+{
+  "id": "example.english",
+  "name": "English Language Example",
+  "description": "Concrete example of English using language pack definitions",
+  "language": "English",
+  "script": "Latin",
+  "examples": {
+    "phonology": "English has many consonants and vowels; stress is a major suprasegmental feature.",
+    "morphology": "Regular past tense: walk → walked (suffixation -ed).",
+    "semantics": "dog is a hypernym of poodle; happy is an antonym of sad.",
+    "pragmatics": "Speech act: 'Can you pass the salt?' is typically a directive."
+  },
+  "metadata": {
+    "created": "2026-01-13T00:00:00Z",
+    "author": "ENKI System"
+  }
+}

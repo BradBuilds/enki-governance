@@ -1,0 +1,58 @@
+# Environmental reading — weather observation, water level, temperature,
+# air quality, aviation weather (METAR/PIREP).
+#
+# Catch-all for sensor / station observations that have a station id +
+# value + place name. Doesn't include weather_alert (events) which has
+# its own mapping.
+
+signal_type: signal.environmental.weather
+aliases:
+  - signal.environmental.water_level
+  - signal.environmental.temperature
+  - signal.environmental.air_quality
+  - signal.environmental.aviation_weather
+
+node_type: event
+subtype: environmental_reading
+description: Environmental sensor reading or weather observation
+
+field_map:
+  payload.station_id:      identity.canonical_name
+  payload.icaoId:          identity.canonical_name
+  payload.station:         identity.title_raw
+  payload.name:            identity.title_raw
+  payload.lat:             _scratch.lat
+  payload.lon:             _scratch.lon
+  payload.latitude:        _scratch.lat
+  payload.longitude:       _scratch.lon
+  payload.temp:            _scratch.value
+  payload.value:           _scratch.value
+  payload.water_level:     _scratch.value
+  payload.aqi:             _scratch.aqi
+  payload.units:           _scratch.units
+  payload.observation_time: temporal.event_time
+  payload.timestamp:       temporal.event_time
+  payload.reportTime:      temporal.event_time
+  payload.rawOb:           summary.body_original
+  source.outlet:           source.outlet_name
+  source.slug:             _scratch.source_slug
+
+constants:
+  summary.domain_classification: environment
+  evidence.epistemic_type: observation
+  evidence.confidence: 0.95
+  evidence.background_relevance: background
+
+templates:
+  identity.title_display: "{identity.title_raw}"
+  summary.headline: "{identity.title_raw}"
+  summary.narrative: "Reading from {identity.title_raw}: {_scratch.value} {_scratch.units}"
+  source.node_id: "source:{_scratch.source_slug}"
+
+extractors:
+  - places_cheap
+
+governance:
+  author: hand_written
+  reviewed: true
+  version: 1

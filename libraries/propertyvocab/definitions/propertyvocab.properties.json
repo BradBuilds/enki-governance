@@ -1,0 +1,301 @@
+{
+  "id": "property.vocab.properties",
+  "type": "custom",
+  "version": "0.1.0",
+  "description": "30 seed properties (v0.1.0). Cycle assignments are immutable. Order in this file reflects the cycle assignment for clarity; cycle_map.json is the authoritative lookup. Each property may optionally point at a Wikidata PID for future interoperability.",
+  "content": {
+    "groups": {
+      "identity": "Properties that name or identify a node",
+      "physical": "Observable physical attributes",
+      "spatial": "Position and movement in space",
+      "temporal": "Position and duration in time",
+      "ownership": "Who controls, made, owns",
+      "role": "What function or position",
+      "state": "Current condition or status",
+      "quantitative": "Numerical descriptors"
+    },
+    "properties": {
+      "name": {
+        "cycle": 7,
+        "group": "identity",
+        "label": "Name",
+        "description": "Common-language name or label for a node.",
+        "applicable_to": ["entity", "place", "event", "topic", "document", "source", "library"],
+        "precision_tiers": ["named", "qualified", "formal"],
+        "wikidata_pid": "P2561"
+      },
+      "identifier": {
+        "cycle": 8,
+        "group": "identity",
+        "label": "Identifier",
+        "description": "Formal identifier in some registry (CIK, DUNS, LEI, passport, MMSI, etc.). The 'scheme' modifier in the value lattice distinguishes which registry.",
+        "applicable_to": ["entity", "place", "event", "document"],
+        "precision_tiers": ["formal", "enumerated"],
+        "wikidata_pid": null
+      },
+      "alias": {
+        "cycle": 9,
+        "group": "identity",
+        "label": "Alias",
+        "description": "Alternative names a node is known by. A node may have many aliases — each is a separate assertion.",
+        "applicable_to": ["entity", "place", "topic", "document"],
+        "precision_tiers": ["named", "qualified"],
+        "wikidata_pid": null
+      },
+      "color": {
+        "cycle": 10,
+        "group": "physical",
+        "label": "Color",
+        "description": "Visual color of a physical object.",
+        "applicable_to": ["entity"],
+        "applicable_subtypes": ["vehicle", "vessel", "aircraft", "product", "facility"],
+        "precision_tiers": ["named", "qualified", "formal", "spectral"],
+        "wikidata_pid": "P462"
+      },
+      "material": {
+        "cycle": 11,
+        "group": "physical",
+        "label": "Material",
+        "description": "Substance composing a physical object.",
+        "applicable_to": ["entity"],
+        "applicable_subtypes": ["vehicle", "vessel", "aircraft", "product", "facility"],
+        "precision_tiers": ["named", "qualified", "formal", "spectral"],
+        "wikidata_pid": "P186"
+      },
+      "shape": {
+        "cycle": 12,
+        "group": "physical",
+        "label": "Shape",
+        "description": "Geometric form.",
+        "applicable_to": ["entity"],
+        "applicable_subtypes": ["vehicle", "vessel", "aircraft", "product"],
+        "precision_tiers": ["named", "qualified", "formal"],
+        "wikidata_pid": null
+      },
+      "size": {
+        "cycle": 13,
+        "group": "physical",
+        "label": "Size",
+        "description": "Categorical size descriptor. For numeric dimensions, see length/width/height.",
+        "applicable_to": ["entity"],
+        "precision_tiers": ["named", "qualified"],
+        "wikidata_pid": null
+      },
+      "weight": {
+        "cycle": 14,
+        "group": "quantitative",
+        "label": "Weight",
+        "description": "Mass of a physical object.",
+        "applicable_to": ["entity"],
+        "precision_tiers": ["qualified", "formal", "spectral"],
+        "wikidata_pid": "P2067",
+        "units": "kg"
+      },
+      "length": {
+        "cycle": 15,
+        "group": "quantitative",
+        "label": "Length",
+        "description": "Longest linear dimension.",
+        "applicable_to": ["entity"],
+        "precision_tiers": ["qualified", "formal", "spectral"],
+        "wikidata_pid": "P2043",
+        "units": "m"
+      },
+      "location": {
+        "cycle": 16,
+        "group": "spatial",
+        "label": "Location",
+        "description": "Where a node is or occurred. Value lattice: continent → country → region → city → place → coordinates.",
+        "applicable_to": ["entity", "event", "document", "signal"],
+        "precision_tiers": ["named", "qualified", "formal", "spectral"],
+        "wikidata_pid": "P276"
+      },
+      "origin": {
+        "cycle": 17,
+        "group": "spatial",
+        "label": "Origin",
+        "description": "Place of origin (birthplace, country of manufacture, source location).",
+        "applicable_to": ["entity"],
+        "precision_tiers": ["named", "qualified", "formal", "spectral"],
+        "wikidata_pid": "P495"
+      },
+      "destination": {
+        "cycle": 18,
+        "group": "spatial",
+        "label": "Destination",
+        "description": "Target location of a movement or transport.",
+        "applicable_to": ["entity", "event"],
+        "precision_tiers": ["named", "qualified", "formal", "spectral"],
+        "wikidata_pid": null
+      },
+      "residence": {
+        "cycle": 19,
+        "group": "spatial",
+        "label": "Residence",
+        "description": "Where a person lives or an organization is headquartered.",
+        "applicable_to": ["entity"],
+        "applicable_subtypes": ["person", "organization"],
+        "precision_tiers": ["named", "qualified", "formal", "spectral"],
+        "wikidata_pid": "P551"
+      },
+      "time": {
+        "cycle": 20,
+        "group": "temporal",
+        "label": "Time",
+        "description": "When something occurred. Value lattice: era → year → month → day → hour → minute → second → instant.",
+        "applicable_to": ["event", "assessment", "signal", "document"],
+        "precision_tiers": ["named", "qualified", "formal", "spectral"],
+        "wikidata_pid": "P585"
+      },
+      "start_time": {
+        "cycle": 21,
+        "group": "temporal",
+        "label": "Start Time",
+        "description": "Beginning of an event, topic span, role tenure, etc.",
+        "applicable_to": ["event", "topic", "assessment"],
+        "precision_tiers": ["named", "qualified", "formal", "spectral"],
+        "wikidata_pid": "P580"
+      },
+      "end_time": {
+        "cycle": 22,
+        "group": "temporal",
+        "label": "End Time",
+        "description": "End of an event, topic span, role tenure, etc.",
+        "applicable_to": ["event", "topic", "assessment"],
+        "precision_tiers": ["named", "qualified", "formal", "spectral"],
+        "wikidata_pid": "P582"
+      },
+      "owned_by": {
+        "cycle": 23,
+        "group": "ownership",
+        "label": "Owned By",
+        "description": "Legal or beneficial owner. For corporate ownership see also edgevocab.owned_by edge.",
+        "applicable_to": ["entity"],
+        "precision_tiers": ["named", "qualified", "formal"],
+        "wikidata_pid": "P127"
+      },
+      "manufactured_by": {
+        "cycle": 24,
+        "group": "ownership",
+        "label": "Manufactured By",
+        "description": "Producer of a physical product. Value lattice: brand → manufacturer → company-identifier.",
+        "applicable_to": ["entity"],
+        "applicable_subtypes": ["product", "vehicle", "vessel", "aircraft"],
+        "precision_tiers": ["named", "qualified", "formal"],
+        "wikidata_pid": "P176"
+      },
+      "operated_by": {
+        "cycle": 25,
+        "group": "ownership",
+        "label": "Operated By",
+        "description": "Entity currently operating the node (distinct from owner).",
+        "applicable_to": ["entity", "place"],
+        "precision_tiers": ["named", "qualified", "formal"],
+        "wikidata_pid": "P137"
+      },
+      "occupation": {
+        "cycle": 26,
+        "group": "role",
+        "label": "Occupation",
+        "description": "Person's primary work role.",
+        "applicable_to": ["entity"],
+        "applicable_subtypes": ["person"],
+        "precision_tiers": ["named", "qualified", "formal"],
+        "wikidata_pid": "P106"
+      },
+      "rank": {
+        "cycle": 27,
+        "group": "role",
+        "label": "Rank / Title",
+        "description": "Formal rank, military grade, honorific, or organizational title.",
+        "applicable_to": ["entity"],
+        "applicable_subtypes": ["person"],
+        "precision_tiers": ["named", "qualified", "formal"],
+        "wikidata_pid": "P39"
+      },
+      "affiliation": {
+        "cycle": 28,
+        "group": "role",
+        "label": "Affiliation",
+        "description": "Organization or movement a person is affiliated with.",
+        "applicable_to": ["entity"],
+        "applicable_subtypes": ["person"],
+        "precision_tiers": ["named", "qualified", "formal"],
+        "wikidata_pid": "P1416"
+      },
+      "status": {
+        "cycle": 29,
+        "group": "state",
+        "label": "Status",
+        "description": "Current state of a node (active/inactive, alive/deceased, operational/decommissioned, open/closed).",
+        "applicable_to": ["entity", "event", "topic", "case"],
+        "precision_tiers": ["named", "enumerated"],
+        "wikidata_pid": null
+      },
+      "polarity": {
+        "cycle": 30,
+        "group": "state",
+        "label": "Polarity",
+        "description": "Affirmative vs negative direction of an assertion. Used by collapse operator for conflict detection.",
+        "applicable_to": ["assessment", "signal"],
+        "precision_tiers": ["enumerated"],
+        "wikidata_pid": null
+      },
+      "certainty": {
+        "cycle": 31,
+        "group": "state",
+        "label": "Certainty / Confidence",
+        "description": "How sure the source was about its assertion.",
+        "applicable_to": ["assessment", "signal", "topic"],
+        "precision_tiers": ["named", "qualified", "formal"],
+        "wikidata_pid": null
+      },
+      "count": {
+        "cycle": 32,
+        "group": "quantitative",
+        "label": "Count / Cardinality",
+        "description": "Integer count of items, occurrences, members.",
+        "applicable_to": ["entity", "event", "topic"],
+        "precision_tiers": ["qualified", "formal"],
+        "wikidata_pid": null
+      },
+      "currency_amount": {
+        "cycle": 33,
+        "group": "quantitative",
+        "label": "Currency Amount",
+        "description": "Monetary value with implicit or explicit currency.",
+        "applicable_to": ["entity", "event", "assessment"],
+        "precision_tiers": ["qualified", "formal", "spectral"],
+        "wikidata_pid": null,
+        "units": "currency-coded"
+      },
+      "language": {
+        "cycle": 34,
+        "group": "identity",
+        "label": "Language",
+        "description": "Natural language of a node's content.",
+        "applicable_to": ["document", "signal", "source"],
+        "precision_tiers": ["named", "formal", "enumerated"],
+        "wikidata_pid": "P407"
+      },
+      "source_kind": {
+        "cycle": 35,
+        "group": "role",
+        "label": "Source Kind",
+        "description": "What kind of source produced this node (news outlet, government filing, court record, social, primary witness, etc.).",
+        "applicable_to": ["source", "document", "signal"],
+        "precision_tiers": ["named", "enumerated"],
+        "wikidata_pid": null
+      },
+      "category": {
+        "cycle": 36,
+        "group": "identity",
+        "label": "Category / Type",
+        "description": "Domain-specific categorization layered on top of nodevocab subtypes. For finer-grained type classifications without inventing new node subtypes.",
+        "applicable_to": ["entity", "event", "topic", "document", "signal", "case"],
+        "precision_tiers": ["named", "qualified", "formal", "enumerated"],
+        "wikidata_pid": null
+      }
+    }
+  }
+}

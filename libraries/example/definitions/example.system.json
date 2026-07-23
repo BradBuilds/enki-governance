@@ -1,0 +1,8 @@
+{
+  "id": "example.system",
+  "version": "0.1.0",
+  "system": {
+    "name": "Example Domain",
+    "description": "Replace this with your domain description"
+  }
+}

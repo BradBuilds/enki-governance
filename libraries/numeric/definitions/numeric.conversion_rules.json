@@ -1,0 +1,30 @@
+{
+  "id": "gdu.numeric.conversion_rules",
+  "type": "numeric_rules",
+  "version": "1.0.0",
+  "content": {
+    "decimal_to_base60": {
+      "input": "decimal_integer >= 0",
+      "output": "base60_places (non-empty list of digits 0..59)",
+      "rules": [
+        "If value == 0 => [0].",
+        "Repeatedly compute value % 60 to produce digits right-to-left.",
+        "Reverse digits to produce highest-place-first ordering."
+      ]
+    },
+    "base60_to_decimal": {
+      "input": "base60_places (non-empty list of digits 0..59)",
+      "output": "decimal_integer >= 0",
+      "rules": [
+        "Compute sum(place[i] * 60^(n-1-i)) for i in [0..n-1]."
+      ]
+    },
+    "lossless_invariant": "base60_to_decimal(decimal_to_base60(x)) MUST equal x for all x >= 0.",
+    "rejection_rules": [
+      "Reject non-integers (NUMERIC_INVALID_TYPE).",
+      "Reject negative values (NUMERIC_NEGATIVE_NOT_SUPPORTED).",
+      "Reject any base60 digit outside 0..59 (BASE60_DIGIT_RANGE).",
+      "Reject empty places list (BASE60_EMPTY_PLACES)."
+    ]
+  }
+}

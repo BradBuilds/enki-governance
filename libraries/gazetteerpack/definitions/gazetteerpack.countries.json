@@ -1,0 +1,1135 @@
+{
+  "id": "gazetteerpack.countries",
+  "version": "1.0.1",
+  "description": "Country entries with ISO codes, Wikidata QIDs, centroids, and common aliases. Centroids are approximate geographic centers (sufficient for heatmap weighting; use a real geocoding service for precise pin placement).",
+  "content": {
+    "entries": [
+      {
+        "canonical": "United States",
+        "iso2": "US",
+        "iso3": "USA",
+        "qid": "Q30",
+        "centroid": {
+          "lat": 39.8283,
+          "lng": -98.5795
+        },
+        "aliases": [
+          "united states",
+          "usa",
+          "u.s.",
+          "u.s.a.",
+          "america",
+          "us",
+          "united states of america"
+        ]
+      },
+      {
+        "canonical": "China",
+        "iso2": "CN",
+        "iso3": "CHN",
+        "qid": "Q148",
+        "centroid": {
+          "lat": 35.8617,
+          "lng": 104.1954
+        },
+        "aliases": [
+          "china",
+          "people's republic of china",
+          "prc"
+        ]
+      },
+      {
+        "canonical": "Russia",
+        "iso2": "RU",
+        "iso3": "RUS",
+        "qid": "Q159",
+        "centroid": {
+          "lat": 61.524,
+          "lng": 105.3188
+        },
+        "aliases": [
+          "russia",
+          "russian federation"
+        ]
+      },
+      {
+        "canonical": "Iran",
+        "iso2": "IR",
+        "iso3": "IRN",
+        "qid": "Q794",
+        "centroid": {
+          "lat": 32.4279,
+          "lng": 53.688
+        },
+        "aliases": [
+          "iran",
+          "persia",
+          "islamic republic of iran"
+        ]
+      },
+      {
+        "canonical": "Iraq",
+        "iso2": "IQ",
+        "iso3": "IRQ",
+        "qid": "Q796",
+        "centroid": {
+          "lat": 33.2232,
+          "lng": 43.6793
+        },
+        "aliases": [
+          "iraq"
+        ]
+      },
+      {
+        "canonical": "Israel",
+        "iso2": "IL",
+        "iso3": "ISR",
+        "qid": "Q801",
+        "centroid": {
+          "lat": 31.0461,
+          "lng": 34.8516
+        },
+        "aliases": [
+          "israel",
+          "state of israel"
+        ]
+      },
+      {
+        "canonical": "Palestine",
+        "iso2": "PS",
+        "iso3": "PSE",
+        "qid": "Q219060",
+        "centroid": {
+          "lat": 31.9522,
+          "lng": 35.2332
+        },
+        "aliases": [
+          "palestine",
+          "state of palestine"
+        ]
+      },
+      {
+        "canonical": "India",
+        "iso2": "IN",
+        "iso3": "IND",
+        "qid": "Q668",
+        "centroid": {
+          "lat": 20.5937,
+          "lng": 78.9629
+        },
+        "aliases": [
+          "india",
+          "republic of india",
+          "bharat"
+        ]
+      },
+      {
+        "canonical": "Japan",
+        "iso2": "JP",
+        "iso3": "JPN",
+        "qid": "Q17",
+        "centroid": {
+          "lat": 36.2048,
+          "lng": 138.2529
+        },
+        "aliases": [
+          "japan"
+        ]
+      },
+      {
+        "canonical": "North Korea",
+        "iso2": "KP",
+        "iso3": "PRK",
+        "qid": "Q423",
+        "centroid": {
+          "lat": 40.3399,
+          "lng": 127.5101
+        },
+        "aliases": [
+          "north korea",
+          "dprk",
+          "democratic people's republic of korea"
+        ]
+      },
+      {
+        "canonical": "South Korea",
+        "iso2": "KR",
+        "iso3": "KOR",
+        "qid": "Q884",
+        "centroid": {
+          "lat": 35.9078,
+          "lng": 127.7669
+        },
+        "aliases": [
+          "south korea",
+          "republic of korea",
+          "rok",
+          "korea"
+        ]
+      },
+      {
+        "canonical": "Germany",
+        "iso2": "DE",
+        "iso3": "DEU",
+        "qid": "Q183",
+        "centroid": {
+          "lat": 51.1657,
+          "lng": 10.4515
+        },
+        "aliases": [
+          "germany",
+          "federal republic of germany",
+          "deutschland"
+        ]
+      },
+      {
+        "canonical": "France",
+        "iso2": "FR",
+        "iso3": "FRA",
+        "qid": "Q142",
+        "centroid": {
+          "lat": 46.2276,
+          "lng": 2.2137
+        },
+        "aliases": [
+          "france",
+          "french republic"
+        ]
+      },
+      {
+        "canonical": "United Kingdom",
+        "iso2": "GB",
+        "iso3": "GBR",
+        "qid": "Q145",
+        "centroid": {
+          "lat": 55.3781,
+          "lng": -3.436
+        },
+        "aliases": [
+          "united kingdom",
+          "uk",
+          "britain",
+          "great britain",
+          "u.k."
+        ]
+      },
+      {
+        "canonical": "Italy",
+        "iso2": "IT",
+        "iso3": "ITA",
+        "qid": "Q38",
+        "centroid": {
+          "lat": 41.8719,
+          "lng": 12.5674
+        },
+        "aliases": [
+          "italy",
+          "italian republic"
+        ]
+      },
+      {
+        "canonical": "Spain",
+        "iso2": "ES",
+        "iso3": "ESP",
+        "qid": "Q29",
+        "centroid": {
+          "lat": 40.4637,
+          "lng": -3.7492
+        },
+        "aliases": [
+          "spain",
+          "kingdom of spain"
+        ]
+      },
+      {
+        "canonical": "Poland",
+        "iso2": "PL",
+        "iso3": "POL",
+        "qid": "Q36",
+        "centroid": {
+          "lat": 51.9194,
+          "lng": 19.1451
+        },
+        "aliases": [
+          "poland",
+          "republic of poland"
+        ]
+      },
+      {
+        "canonical": "Turkey",
+        "iso2": "TR",
+        "iso3": "TUR",
+        "qid": "Q43",
+        "centroid": {
+          "lat": 38.9637,
+          "lng": 35.2433
+        },
+        "aliases": [
+          "turkey",
+          "republic of turkey",
+          "türkiye"
+        ]
+      },
+      {
+        "canonical": "Brazil",
+        "iso2": "BR",
+        "iso3": "BRA",
+        "qid": "Q155",
+        "centroid": {
+          "lat": -14.235,
+          "lng": -51.9253
+        },
+        "aliases": [
+          "brazil",
+          "federative republic of brazil"
+        ]
+      },
+      {
+        "canonical": "Mexico",
+        "iso2": "MX",
+        "iso3": "MEX",
+        "qid": "Q96",
+        "centroid": {
+          "lat": 23.6345,
+          "lng": -102.5528
+        },
+        "aliases": [
+          "mexico",
+          "united mexican states"
+        ]
+      },
+      {
+        "canonical": "Canada",
+        "iso2": "CA",
+        "iso3": "CAN",
+        "qid": "Q16",
+        "centroid": {
+          "lat": 56.1304,
+          "lng": -106.3468
+        },
+        "aliases": [
+          "canada"
+        ]
+      },
+      {
+        "canonical": "Australia",
+        "iso2": "AU",
+        "iso3": "AUS",
+        "qid": "Q408",
+        "centroid": {
+          "lat": -25.2744,
+          "lng": 133.7751
+        },
+        "aliases": [
+          "australia",
+          "commonwealth of australia"
+        ]
+      },
+      {
+        "canonical": "Egypt",
+        "iso2": "EG",
+        "iso3": "EGY",
+        "qid": "Q79",
+        "centroid": {
+          "lat": 26.8206,
+          "lng": 30.8025
+        },
+        "aliases": [
+          "egypt",
+          "arab republic of egypt"
+        ]
+      },
+      {
+        "canonical": "Nigeria",
+        "iso2": "NG",
+        "iso3": "NGA",
+        "qid": "Q1033",
+        "centroid": {
+          "lat": 9.082,
+          "lng": 8.6753
+        },
+        "aliases": [
+          "nigeria",
+          "federal republic of nigeria"
+        ]
+      },
+      {
+        "canonical": "South Africa",
+        "iso2": "ZA",
+        "iso3": "ZAF",
+        "qid": "Q258",
+        "centroid": {
+          "lat": -30.5595,
+          "lng": 22.9375
+        },
+        "aliases": [
+          "south africa",
+          "republic of south africa"
+        ]
+      },
+      {
+        "canonical": "Ethiopia",
+        "iso2": "ET",
+        "iso3": "ETH",
+        "qid": "Q115",
+        "centroid": {
+          "lat": 9.145,
+          "lng": 40.4897
+        },
+        "aliases": [
+          "ethiopia"
+        ]
+      },
+      {
+        "canonical": "Kenya",
+        "iso2": "KE",
+        "iso3": "KEN",
+        "qid": "Q114",
+        "centroid": {
+          "lat": -0.0236,
+          "lng": 37.9062
+        },
+        "aliases": [
+          "kenya",
+          "republic of kenya"
+        ]
+      },
+      {
+        "canonical": "Indonesia",
+        "iso2": "ID",
+        "iso3": "IDN",
+        "qid": "Q252",
+        "centroid": {
+          "lat": -0.7893,
+          "lng": 113.9213
+        },
+        "aliases": [
+          "indonesia",
+          "republic of indonesia"
+        ]
+      },
+      {
+        "canonical": "Philippines",
+        "iso2": "PH",
+        "iso3": "PHL",
+        "qid": "Q928",
+        "centroid": {
+          "lat": 12.8797,
+          "lng": 121.774
+        },
+        "aliases": [
+          "philippines",
+          "republic of the philippines"
+        ]
+      },
+      {
+        "canonical": "Vietnam",
+        "iso2": "VN",
+        "iso3": "VNM",
+        "qid": "Q881",
+        "centroid": {
+          "lat": 14.0583,
+          "lng": 108.2772
+        },
+        "aliases": [
+          "vietnam",
+          "socialist republic of vietnam"
+        ]
+      },
+      {
+        "canonical": "Thailand",
+        "iso2": "TH",
+        "iso3": "THA",
+        "qid": "Q869",
+        "centroid": {
+          "lat": 15.87,
+          "lng": 100.9925
+        },
+        "aliases": [
+          "thailand",
+          "kingdom of thailand"
+        ]
+      },
+      {
+        "canonical": "Myanmar",
+        "iso2": "MM",
+        "iso3": "MMR",
+        "qid": "Q836",
+        "centroid": {
+          "lat": 21.9162,
+          "lng": 95.956
+        },
+        "aliases": [
+          "myanmar",
+          "burma"
+        ]
+      },
+      {
+        "canonical": "Yemen",
+        "iso2": "YE",
+        "iso3": "YEM",
+        "qid": "Q805",
+        "centroid": {
+          "lat": 15.5527,
+          "lng": 48.5164
+        },
+        "aliases": [
+          "yemen",
+          "republic of yemen"
+        ]
+      },
+      {
+        "canonical": "Libya",
+        "iso2": "LY",
+        "iso3": "LBY",
+        "qid": "Q1016",
+        "centroid": {
+          "lat": 26.3351,
+          "lng": 17.2283
+        },
+        "aliases": [
+          "libya"
+        ]
+      },
+      {
+        "canonical": "Sudan",
+        "iso2": "SD",
+        "iso3": "SDN",
+        "qid": "Q1049",
+        "centroid": {
+          "lat": 12.8628,
+          "lng": 30.2176
+        },
+        "aliases": [
+          "sudan",
+          "republic of the sudan"
+        ]
+      },
+      {
+        "canonical": "Somalia",
+        "iso2": "SO",
+        "iso3": "SOM",
+        "qid": "Q1045",
+        "centroid": {
+          "lat": 5.1521,
+          "lng": 46.1996
+        },
+        "aliases": [
+          "somalia",
+          "federal republic of somalia"
+        ]
+      },
+      {
+        "canonical": "Venezuela",
+        "iso2": "VE",
+        "iso3": "VEN",
+        "qid": "Q717",
+        "centroid": {
+          "lat": 6.4238,
+          "lng": -66.5897
+        },
+        "aliases": [
+          "venezuela",
+          "bolivarian republic of venezuela"
+        ]
+      },
+      {
+        "canonical": "Colombia",
+        "iso2": "CO",
+        "iso3": "COL",
+        "qid": "Q739",
+        "centroid": {
+          "lat": 4.5709,
+          "lng": -74.2973
+        },
+        "aliases": [
+          "colombia",
+          "republic of colombia"
+        ]
+      },
+      {
+        "canonical": "Argentina",
+        "iso2": "AR",
+        "iso3": "ARG",
+        "qid": "Q414",
+        "centroid": {
+          "lat": -38.4161,
+          "lng": -63.6167
+        },
+        "aliases": [
+          "argentina",
+          "argentine republic"
+        ]
+      },
+      {
+        "canonical": "Chile",
+        "iso2": "CL",
+        "iso3": "CHL",
+        "qid": "Q298",
+        "centroid": {
+          "lat": -35.6751,
+          "lng": -71.543
+        },
+        "aliases": [
+          "chile",
+          "republic of chile"
+        ]
+      },
+      {
+        "canonical": "Cuba",
+        "iso2": "CU",
+        "iso3": "CUB",
+        "qid": "Q241",
+        "centroid": {
+          "lat": 21.5218,
+          "lng": -77.7812
+        },
+        "aliases": [
+          "cuba",
+          "republic of cuba"
+        ]
+      },
+      {
+        "canonical": "Haiti",
+        "iso2": "HT",
+        "iso3": "HTI",
+        "qid": "Q790",
+        "centroid": {
+          "lat": 18.9712,
+          "lng": -72.2852
+        },
+        "aliases": [
+          "haiti",
+          "republic of haiti"
+        ]
+      },
+      {
+        "canonical": "Ukraine",
+        "iso2": "UA",
+        "iso3": "UKR",
+        "qid": "Q212",
+        "centroid": {
+          "lat": 48.3794,
+          "lng": 31.1656
+        },
+        "aliases": [
+          "ukraine"
+        ]
+      },
+      {
+        "canonical": "Taiwan",
+        "iso2": "TW",
+        "iso3": "TWN",
+        "qid": "Q865",
+        "centroid": {
+          "lat": 23.6978,
+          "lng": 120.9605
+        },
+        "aliases": [
+          "taiwan",
+          "republic of china (taiwan)"
+        ]
+      },
+      {
+        "canonical": "Syria",
+        "iso2": "SY",
+        "iso3": "SYR",
+        "qid": "Q858",
+        "centroid": {
+          "lat": 34.8021,
+          "lng": 38.9968
+        },
+        "aliases": [
+          "syria",
+          "syrian arab republic"
+        ]
+      },
+      {
+        "canonical": "Afghanistan",
+        "iso2": "AF",
+        "iso3": "AFG",
+        "qid": "Q889",
+        "centroid": {
+          "lat": 33.9391,
+          "lng": 67.71
+        },
+        "aliases": [
+          "afghanistan",
+          "islamic emirate of afghanistan"
+        ]
+      },
+      {
+        "canonical": "Pakistan",
+        "iso2": "PK",
+        "iso3": "PAK",
+        "qid": "Q843",
+        "centroid": {
+          "lat": 30.3753,
+          "lng": 69.3451
+        },
+        "aliases": [
+          "pakistan",
+          "islamic republic of pakistan"
+        ]
+      },
+      {
+        "canonical": "Saudi Arabia",
+        "iso2": "SA",
+        "iso3": "SAU",
+        "qid": "Q851",
+        "centroid": {
+          "lat": 23.8859,
+          "lng": 45.0792
+        },
+        "aliases": [
+          "saudi arabia",
+          "kingdom of saudi arabia",
+          "ksa"
+        ]
+      },
+      {
+        "canonical": "United Arab Emirates",
+        "iso2": "AE",
+        "iso3": "ARE",
+        "qid": "Q878",
+        "centroid": {
+          "lat": 23.4241,
+          "lng": 53.8478
+        },
+        "aliases": [
+          "united arab emirates",
+          "uae"
+        ]
+      },
+      {
+        "canonical": "Qatar",
+        "iso2": "QA",
+        "iso3": "QAT",
+        "qid": "Q846",
+        "centroid": {
+          "lat": 25.3548,
+          "lng": 51.1839
+        },
+        "aliases": [
+          "qatar"
+        ]
+      },
+      {
+        "canonical": "Singapore",
+        "iso2": "SG",
+        "iso3": "SGP",
+        "qid": "Q334",
+        "centroid": {
+          "lat": 1.3521,
+          "lng": 103.8198
+        },
+        "aliases": [
+          "singapore",
+          "republic of singapore"
+        ]
+      },
+      {
+        "canonical": "Malaysia",
+        "iso2": "MY",
+        "iso3": "MYS",
+        "qid": "Q833",
+        "centroid": {
+          "lat": 4.2105,
+          "lng": 101.9758
+        },
+        "aliases": [
+          "malaysia"
+        ]
+      },
+      {
+        "canonical": "New Zealand",
+        "iso2": "NZ",
+        "iso3": "NZL",
+        "qid": "Q664",
+        "centroid": {
+          "lat": -40.9006,
+          "lng": 174.886
+        },
+        "aliases": [
+          "new zealand"
+        ]
+      },
+      {
+        "canonical": "Sweden",
+        "iso2": "SE",
+        "iso3": "SWE",
+        "qid": "Q34",
+        "centroid": {
+          "lat": 60.1282,
+          "lng": 18.6435
+        },
+        "aliases": [
+          "sweden",
+          "kingdom of sweden"
+        ]
+      },
+      {
+        "canonical": "Norway",
+        "iso2": "NO",
+        "iso3": "NOR",
+        "qid": "Q20",
+        "centroid": {
+          "lat": 60.472,
+          "lng": 8.4689
+        },
+        "aliases": [
+          "norway",
+          "kingdom of norway"
+        ]
+      },
+      {
+        "canonical": "Finland",
+        "iso2": "FI",
+        "iso3": "FIN",
+        "qid": "Q33",
+        "centroid": {
+          "lat": 61.9241,
+          "lng": 25.7482
+        },
+        "aliases": [
+          "finland",
+          "republic of finland"
+        ]
+      },
+      {
+        "canonical": "Denmark",
+        "iso2": "DK",
+        "iso3": "DNK",
+        "qid": "Q35",
+        "centroid": {
+          "lat": 56.2639,
+          "lng": 9.5018
+        },
+        "aliases": [
+          "denmark",
+          "kingdom of denmark"
+        ]
+      },
+      {
+        "canonical": "Netherlands",
+        "iso2": "NL",
+        "iso3": "NLD",
+        "qid": "Q55",
+        "centroid": {
+          "lat": 52.1326,
+          "lng": 5.2913
+        },
+        "aliases": [
+          "netherlands",
+          "kingdom of the netherlands",
+          "holland"
+        ]
+      },
+      {
+        "canonical": "Belgium",
+        "iso2": "BE",
+        "iso3": "BEL",
+        "qid": "Q31",
+        "centroid": {
+          "lat": 50.5039,
+          "lng": 4.4699
+        },
+        "aliases": [
+          "belgium",
+          "kingdom of belgium"
+        ]
+      },
+      {
+        "canonical": "Switzerland",
+        "iso2": "CH",
+        "iso3": "CHE",
+        "qid": "Q39",
+        "centroid": {
+          "lat": 46.8182,
+          "lng": 8.2275
+        },
+        "aliases": [
+          "switzerland",
+          "swiss confederation"
+        ]
+      },
+      {
+        "canonical": "Austria",
+        "iso2": "AT",
+        "iso3": "AUT",
+        "qid": "Q40",
+        "centroid": {
+          "lat": 47.5162,
+          "lng": 14.5501
+        },
+        "aliases": [
+          "austria",
+          "republic of austria"
+        ]
+      },
+      {
+        "canonical": "Greece",
+        "iso2": "GR",
+        "iso3": "GRC",
+        "qid": "Q41",
+        "centroid": {
+          "lat": 39.0742,
+          "lng": 21.8243
+        },
+        "aliases": [
+          "greece",
+          "hellenic republic"
+        ]
+      },
+      {
+        "canonical": "Portugal",
+        "iso2": "PT",
+        "iso3": "PRT",
+        "qid": "Q45",
+        "centroid": {
+          "lat": 39.3999,
+          "lng": -8.2245
+        },
+        "aliases": [
+          "portugal",
+          "portuguese republic"
+        ]
+      },
+      {
+        "canonical": "Romania",
+        "iso2": "RO",
+        "iso3": "ROU",
+        "qid": "Q218",
+        "centroid": {
+          "lat": 45.9432,
+          "lng": 24.9668
+        },
+        "aliases": [
+          "romania"
+        ]
+      },
+      {
+        "canonical": "Hungary",
+        "iso2": "HU",
+        "iso3": "HUN",
+        "qid": "Q28",
+        "centroid": {
+          "lat": 47.1625,
+          "lng": 19.5033
+        },
+        "aliases": [
+          "hungary"
+        ]
+      },
+      {
+        "canonical": "Ireland",
+        "iso2": "IE",
+        "iso3": "IRL",
+        "qid": "Q27",
+        "centroid": {
+          "lat": 53.4129,
+          "lng": -8.2439
+        },
+        "aliases": [
+          "ireland",
+          "republic of ireland"
+        ]
+      },
+      {
+        "canonical": "Peru",
+        "iso2": "PE",
+        "iso3": "PER",
+        "qid": "Q419",
+        "centroid": {
+          "lat": -9.19,
+          "lng": -75.0152
+        },
+        "aliases": [
+          "peru",
+          "republic of peru"
+        ]
+      },
+      {
+        "canonical": "Morocco",
+        "iso2": "MA",
+        "iso3": "MAR",
+        "qid": "Q1028",
+        "centroid": {
+          "lat": 31.7917,
+          "lng": -7.0926
+        },
+        "aliases": [
+          "morocco",
+          "kingdom of morocco"
+        ]
+      },
+      {
+        "canonical": "Algeria",
+        "iso2": "DZ",
+        "iso3": "DZA",
+        "qid": "Q262",
+        "centroid": {
+          "lat": 28.0339,
+          "lng": 1.6596
+        },
+        "aliases": [
+          "algeria",
+          "people's democratic republic of algeria"
+        ]
+      },
+      {
+        "canonical": "Tunisia",
+        "iso2": "TN",
+        "iso3": "TUN",
+        "qid": "Q948",
+        "centroid": {
+          "lat": 33.8869,
+          "lng": 9.5375
+        },
+        "aliases": [
+          "tunisia",
+          "republic of tunisia"
+        ]
+      },
+      {
+        "canonical": "Lebanon",
+        "iso2": "LB",
+        "iso3": "LBN",
+        "qid": "Q822",
+        "centroid": {
+          "lat": 33.8547,
+          "lng": 35.8623
+        },
+        "aliases": [
+          "lebanon",
+          "lebanese republic"
+        ]
+      },
+      {
+        "canonical": "Jordan",
+        "iso2": "JO",
+        "iso3": "JOR",
+        "qid": "Q810",
+        "centroid": {
+          "lat": 30.5852,
+          "lng": 36.2384
+        },
+        "aliases": [
+          "jordan",
+          "hashemite kingdom of jordan"
+        ]
+      },
+      {
+        "canonical": "Kuwait",
+        "iso2": "KW",
+        "iso3": "KWT",
+        "qid": "Q817",
+        "centroid": {
+          "lat": 29.3117,
+          "lng": 47.4818
+        },
+        "aliases": [
+          "kuwait",
+          "state of kuwait"
+        ]
+      },
+      {
+        "canonical": "Bahrain",
+        "iso2": "BH",
+        "iso3": "BHR",
+        "qid": "Q398",
+        "centroid": {
+          "lat": 25.9304,
+          "lng": 50.6378
+        },
+        "aliases": [
+          "bahrain",
+          "kingdom of bahrain"
+        ]
+      },
+      {
+        "canonical": "Bangladesh",
+        "iso2": "BD",
+        "iso3": "BGD",
+        "qid": "Q902",
+        "centroid": {
+          "lat": 23.685,
+          "lng": 90.3563
+        },
+        "aliases": [
+          "bangladesh",
+          "people's republic of bangladesh"
+        ]
+      },
+      {
+        "canonical": "Sri Lanka",
+        "iso2": "LK",
+        "iso3": "LKA",
+        "qid": "Q854",
+        "centroid": {
+          "lat": 7.8731,
+          "lng": 80.7718
+        },
+        "aliases": [
+          "sri lanka",
+          "democratic socialist republic of sri lanka"
+        ]
+      },
+      {
+        "canonical": "Nepal",
+        "iso2": "NP",
+        "iso3": "NPL",
+        "qid": "Q837",
+        "centroid": {
+          "lat": 28.3949,
+          "lng": 84.124
+        },
+        "aliases": [
+          "nepal",
+          "federal democratic republic of nepal"
+        ]
+      },
+      {
+        "canonical": "Cambodia",
+        "iso2": "KH",
+        "iso3": "KHM",
+        "qid": "Q424",
+        "centroid": {
+          "lat": 12.5657,
+          "lng": 104.991
+        },
+        "aliases": [
+          "cambodia",
+          "kingdom of cambodia"
+        ]
+      },
+      {
+        "canonical": "Georgia",
+        "iso2": "GE",
+        "iso3": "GEO",
+        "qid": "Q230",
+        "centroid": {
+          "lat": 42.3154,
+          "lng": 43.3569
+        },
+        "aliases": [
+          "georgia"
+        ]
+      },
+      {
+        "canonical": "Czech Republic",
+        "iso2": "CZ",
+        "iso3": "CZE",
+        "qid": "Q213",
+        "centroid": {
+          "lat": 49.8175,
+          "lng": 15.473
+        },
+        "aliases": [
+          "czech republic",
+          "czechia"
+        ]
+      }
+    ]
+  }
+}

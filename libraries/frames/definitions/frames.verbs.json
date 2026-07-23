@@ -1,0 +1,33 @@
+{
+  "id": "frames.verbs",
+  "type": "verb_frames",
+  "version": "0.1.0",
+  "description": "Predicate-argument frames (VerbNet-style thematic roles) for the corpus's key verbs. Each frame names the roles the predicate binds (agent / proposition / patient / recipient / purpose / theme) + a polarity (pos|neg) used for contradiction. This is the STRUCTURE layer: it turns a resolved verb sense into who-did-what-to-whom. Seed pack — expand from VerbNet/FrameNet.",
+  "frames": {
+    "admit":       { "predicate_sense": "concede", "roles": ["agent", "proposition"], "polarity": "pos" },
+    "acknowledge": { "predicate_sense": "concede", "roles": ["agent", "proposition"], "polarity": "pos" },
+    "concede":     { "predicate_sense": "concede", "roles": ["agent", "proposition"], "polarity": "pos" },
+    "confirm":     { "predicate_sense": "confirm", "roles": ["agent", "proposition"], "polarity": "pos" },
+    "testify":     { "predicate_sense": "testify", "roles": ["agent", "proposition"], "polarity": "pos" },
+    "state":       { "predicate_sense": "assert",  "roles": ["agent", "proposition"], "polarity": "pos" },
+    "allege":      { "predicate_sense": "assert",  "roles": ["agent", "proposition"], "polarity": "pos" },
+    "deny":        { "predicate_sense": "deny",    "roles": ["agent", "proposition"], "polarity": "neg" },
+    "refute":      { "predicate_sense": "deny",    "roles": ["agent", "proposition"], "polarity": "neg" },
+    "dispute":     { "predicate_sense": "deny",    "roles": ["agent", "proposition"], "polarity": "neg" },
+    "refuse":      { "predicate_sense": "refuse",  "roles": ["agent", "theme"],       "polarity": "neg" },
+    "contradict":  { "predicate_sense": "contradict", "roles": ["agent", "theme"],    "polarity": "neg" },
+    "fund":        { "predicate_sense": "fund",    "roles": ["agent", "recipient", "purpose"], "polarity": "pos" },
+    "finance":     { "predicate_sense": "fund",    "roles": ["agent", "recipient", "purpose"], "polarity": "pos" },
+    "edit":        { "predicate_sense": "edit",    "roles": ["agent", "patient"], "polarity": "pos" },
+    "delete":      { "predicate_sense": "delete",  "roles": ["agent", "patient"], "polarity": "pos" },
+    "destroy":     { "predicate_sense": "delete",  "roles": ["agent", "patient"], "polarity": "pos" },
+    "withhold":    { "predicate_sense": "withhold","roles": ["agent", "patient", "recipient"], "polarity": "neg" },
+    "circumvent":  { "predicate_sense": "circumvent","roles": ["agent", "patient"], "polarity": "pos" },
+    "suppress":    { "predicate_sense": "suppress","roles": ["agent", "patient"], "polarity": "pos" },
+    "overrule":    { "predicate_sense": "overrule","roles": ["agent", "patient"], "polarity": "neg" },
+    "massage":     { "predicate_sense": "massage", "roles": ["agent", "patient"], "polarity": "pos" },
+    "observe":     { "predicate_sense": "observe", "roles": ["agent", "patient"], "polarity": "pos" },
+    "recall":      { "predicate_sense": "recall",  "roles": ["agent", "theme"], "polarity": "pos" },
+    "fund-gof":    { "predicate_sense": "fund",    "roles": ["agent", "recipient", "purpose"], "polarity": "pos" }
+  }
+}

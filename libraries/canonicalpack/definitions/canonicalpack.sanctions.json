@@ -1,0 +1,71 @@
+{
+  "id": "canonicalpack.sanctions",
+  "version": "1.0.0",
+  "description": "Sanctions metadata. Each entry keys on a normalized lower-case name (canonical or alias) and lists the sanction lists, reason, and start year. Production deployments should sync the full lists from upstream sources (OFAC SDN, EU Consolidated, UN SC). The hardcoded subset here exists as a baseline so an air-gapped install still has high-profile coverage.",
+  "content": {
+    "sources": [
+      {"id": "OFAC", "name": "US Treasury OFAC SDN List",
+       "url": "https://www.treasury.gov/ofac/downloads/sdn.csv"},
+      {"id": "EU", "name": "EU Consolidated Sanctions List",
+       "url": "https://webgate.ec.europa.eu/fsd/fsf/public/files/csvFullSanctionsList_1_1/"},
+      {"id": "UN", "name": "UN Security Council Sanctions",
+       "url": "https://scsanctions.un.org/resources/xml/en/consolidated.xml"},
+      {"id": "UK", "name": "UK OFSI Consolidated List",
+       "url": "https://www.gov.uk/government/publications/financial-sanctions-consolidated-list-of-targets"}
+    ],
+    "entries": [
+      {"key": "vladimir putin", "lists": ["EU", "UK"],
+       "reason": "Aggression against Ukraine", "since": "2022"},
+      {"key": "sergey lavrov", "lists": ["EU", "UK"],
+       "reason": "Foreign Minister, Russia aggression", "since": "2022"},
+      {"key": "yevgeny prigozhin", "lists": ["OFAC", "EU"],
+       "reason": "Wagner Group financier (deceased 2023)", "since": "2018"},
+      {"key": "alexander bortnikov", "lists": ["OFAC"],
+       "reason": "FSB Director", "since": "2018"},
+
+      {"key": "ali khamenei", "lists": ["OFAC"],
+       "reason": "Supreme Leader, IRGC Ops", "since": "2019"},
+      {"key": "qasem soleimani", "lists": ["OFAC"],
+       "reason": "IRGC Quds Force (deceased 2020)", "since": "2007"},
+      {"key": "esmail qaani", "lists": ["OFAC"],
+       "reason": "Quds Force commander", "since": "2020"},
+
+      {"key": "kim jong un", "lists": ["OFAC", "UN"],
+       "reason": "DPRK leadership", "since": "2017"},
+      {"key": "kim jong-un", "lists": ["OFAC", "UN"],
+       "reason": "DPRK leadership", "since": "2017"},
+
+      {"key": "alexander lukashenko", "lists": ["EU", "UK"],
+       "reason": "Election fraud, repression", "since": "2020"},
+
+      {"key": "bashar al-assad", "lists": ["OFAC", "EU"],
+       "reason": "Syria war crimes", "since": "2011"},
+
+      {"key": "yevgeniy bogachev", "lists": ["OFAC"],
+       "reason": "Cyber criminal (GameOver Zeus)", "since": "2014"},
+
+      {"key": "irgc", "lists": ["OFAC"],
+       "reason": "Designated FTO", "since": "2019"},
+      {"key": "islamic revolutionary guard corps", "lists": ["OFAC"],
+       "reason": "Designated FTO", "since": "2019"},
+      {"key": "hamas", "lists": ["OFAC", "EU", "UK"],
+       "reason": "Designated FTO", "since": "1997"},
+      {"key": "hezbollah", "lists": ["OFAC", "UK"],
+       "reason": "Designated FTO", "since": "1997"},
+      {"key": "isis", "lists": ["OFAC", "UN"],
+       "reason": "Designated FTO", "since": "2014"},
+      {"key": "islamic state", "lists": ["OFAC", "UN"],
+       "reason": "Designated FTO", "since": "2014"},
+      {"key": "al-qaeda", "lists": ["OFAC", "UN"],
+       "reason": "Designated FTO", "since": "2001"},
+      {"key": "wagner group", "lists": ["OFAC", "EU", "UK"],
+       "reason": "Russian PMC, war crimes", "since": "2022"},
+      {"key": "lazarus group", "lists": ["OFAC"],
+       "reason": "DPRK state-sponsored cyber", "since": "2019"},
+      {"key": "apt28", "lists": ["EU"],
+       "reason": "Russian state-sponsored cyber", "since": "2020"},
+      {"key": "apt29", "lists": ["EU"],
+       "reason": "Russian state-sponsored cyber", "since": "2020"}
+    ]
+  }
+}

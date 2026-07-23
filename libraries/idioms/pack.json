@@ -1,0 +1,10 @@
+{
+  "id": "idioms",
+  "name": "Idioms",
+  "version": "0.1.0",
+  "type": "lexical",
+  "description": "English idioms and fixed phrases. Curated seed; expandable from full sources.",
+  "manifest": [
+    "definitions/idioms.senses.json"
+  ]
+}

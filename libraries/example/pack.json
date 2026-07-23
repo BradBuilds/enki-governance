@@ -1,0 +1,27 @@
+{
+  "pack_id": "example",
+  "version": "0.1.0",
+  "name": "Example Domain Pack",
+  "description": "Template pack showing the standard structure for a new domain",
+  "definitions": [
+    {
+      "id": "example.entities",
+      "path": "definitions/example.entities.json",
+      "type": "entities"
+    },
+    {
+      "id": "example.system",
+      "path": "definitions/example.system.json",
+      "type": "system"
+    }
+  ],
+  "dependencies": [],
+  "namespaces_owned": [
+    "example"
+  ],
+  "metadata": {
+    "created": "2026-03-20T00:00:00Z",
+    "author": "ENKI System",
+    "license": "TBD"
+  }
+}

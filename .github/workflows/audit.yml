@@ -1,0 +1,48 @@
+# Leak audit — runs on every push/PR. Fails if a secret, internal IP, personal path,
+# or internal hostname is introduced. Keeps the public repo clean.
+#
+# The patterns here are generic on purpose: a pattern that names a real user, host or
+# address would publish the very thing it guards. Project-specific strings go in the
+# repository secret LEAK_PATTERNS (an extended regex, e.g. 'host-a|10\.1\.2'), which is
+# scanned when set and never printed.
+name: leak-audit
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Scan for leaks
+        env:
+          LEAK_PATTERNS: ${{ secrets.LEAK_PATTERNS }}
+        run: |
+          set -e
+          fail=0
+          scan() { # label, pattern, [quiet]
+            local out
+            out=$(grep -rInE "$2" . --exclude-dir=.git --exclude=audit.yml 2>/dev/null \
+                  | grep -vIE 'example|placeholder|<[a-z_]+>|0\.0\.0\.0|127\.0\.0\.1|CHANGE_ME|your-' \
+                  | head -20)
+            if [ -n "$out" ]; then
+              echo "FAIL: $1"
+              # Private patterns: show where, not what matched.
+              if [ -n "$3" ]; then echo "$out" | cut -d: -f1,2; else echo "$out"; fi
+              fail=1
+            else
+              echo "ok: $1"
+            fi
+          }
+          scan "private keys / cloud tokens" 'BEGIN (RSA|EC|OPENSSH|PGP)? ?PRIVATE KEY|AKIA[0-9A-Z]{16}|ghp_[A-Za-z0-9]{36}|sk-(ant-)?[A-Za-z0-9]{20}'
+          scan "private network addresses" '10\.[0-9]+\.[0-9]+\.[0-9]+|192\.168\.[0-9]+\.[0-9]+'
+          scan "personal paths" '[Cc]:\\+[Uu]sers\\+[A-Za-z0-9._-]+|/home/[a-z][a-z0-9_-]+|/Users/[A-Za-z][A-Za-z0-9._-]+|OneDrive'
+          scan "embedded credentials" '(password|secret|api_key|token)[[:space:]]*[:=][[:space:]]*["'"'"'][A-Za-z0-9]{10,}'
+          if [ -n "$LEAK_PATTERNS" ]; then
+            scan "project-specific patterns" "$LEAK_PATTERNS" quiet
+          else
+            echo "skip: project-specific patterns (LEAK_PATTERNS secret not set)"
+          fi
+          if [ "$fail" = "1" ]; then echo "::error::leak audit failed"; exit 1; fi
+          echo "leak audit passed"

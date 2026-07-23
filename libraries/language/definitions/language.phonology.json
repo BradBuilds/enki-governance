@@ -1,0 +1,27 @@
+{
+  "id": "language.phonology",
+  "type": "custom",
+  "version": "0.1.0",
+  "description": "Phonological inventory covering major world language types (non-executable reference vocabulary).",
+  "content": {
+    "phoneme_inventory": {
+      "consonants": {
+        "total": 42,
+        "manner": ["stops", "fricatives", "nasals", "approximants", "laterals"],
+        "place": ["labial", "alveolar", "retroflex", "palatal", "velar", "glottal"],
+        "voicing": ["voiced", "voiceless"]
+      },
+      "vowels": {
+        "total": 8,
+        "features": ["high", "mid", "low", "front", "central", "back", "rounded", "unrounded"]
+      },
+      "suprasegmentals": ["stress", "tone", "length", "nasalization"]
+    },
+    "ipa_reference": "International Phonetic Alphabet (reference label; exact chart versions are out of scope for v0.1.0 determinism).",
+    "scope": "v0.1.0 covers general-purpose vocabulary primitives for Indo-European and major Asian language families."
+  },
+  "metadata": {
+    "created": "2026-01-13T00:00:00Z",
+    "author": "ENKI System"
+  }
+}

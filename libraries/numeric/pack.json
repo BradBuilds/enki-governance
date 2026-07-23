@@ -1,0 +1,47 @@
+{
+  "pack_id": "numeric",
+  "version": "1.0.0",
+  "name": "ENKI GDU Numeric Core",
+  "description": "Canonical numeric truth (decimal canonical; base-60 representational). No glyphs. No language. No rendering.",
+  "namespaces_owned": ["numeric"],
+  "definitions": [
+    {
+      "id": "numeric.system",
+      "path": "definitions/numeric.system.json",
+      "type": "system"
+    },
+    {
+      "id": "numeric.decimal",
+      "path": "definitions/numeric.decimal.json",
+      "type": "custom"
+    },
+    {
+      "id": "numeric.base60",
+      "path": "definitions/numeric.base60.json",
+      "type": "custom"
+    },
+    {
+      "id": "numeric.place_value",
+      "path": "definitions/numeric.place_value.json",
+      "type": "rules"
+    },
+    {
+      "id": "numeric.conversion_rules",
+      "path": "definitions/numeric.conversion_rules.json",
+      "type": "rules"
+    }
+  ],
+  "metadata": {
+    "authority": "GDU",
+    "status": "LOCKED",
+    "owner": "MAINTAINERS",
+    "change_control": "SOLE_MAINTAINER",
+    "admission": "CEREMONY_REQUIRED",
+    "invariants": [
+      "Decimal is canonical truth.",
+      "Base-60 is representational only.",
+      "No rendering system may affect numeric truth.",
+      "All conversions must be lossless and deterministic."
+    ]
+  }
+}

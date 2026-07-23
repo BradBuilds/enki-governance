@@ -1,0 +1,24 @@
+{
+  "pack_id": "refdatapack",
+  "version": "0.1.0",
+  "name": "ENKI Reference Data Pack",
+  "description": "Manifest of locally-cached public datasets that the investigation pipeline can query without hitting the live network. Each entry in refdatapack.datasets.json describes one bulk-downloadable dataset: source URL, refresh cadence, parser, on-disk path, license, and trust class. The refdata sync worker reads this manifest to know what's available; source handlers consult the refdata_packs DB registry to decide whether a local-first lookup is current. The pack stops short of the dataset bodies themselves — those are downloaded and indexed per-operator opt-in.",
+  "definitions": [
+    {
+      "id": "refdatapack.datasets",
+      "path": "definitions/refdatapack.datasets.json",
+      "type": "custom"
+    }
+  ],
+  "dependencies": [],
+  "namespaces_owned": [
+    "refdata.packs"
+  ],
+  "metadata": {
+    "created": "2026-05-11T00:00:00Z",
+    "author": "ENKI System",
+    "license": "AGPLv3",
+    "status": "DRAFT",
+    "change_control": "Adding a new dataset requires a corresponding parser in core/refdata/packs/<dataset_id>.py. Removing a dataset deactivates the pack but leaves the on-disk and DB records intact for one refresh cycle so in-flight queries don't see partial data."
+  }
+}

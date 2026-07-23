@@ -1,0 +1,24 @@
+{
+  "id": "language.semantics",
+  "type": "custom",
+  "version": "0.1.0",
+  "description": "Semantic relationships: synonymy, antonymy, hypernymy, meronymy, etc. (canonical semantic vocabulary).",
+  "content": {
+    "semantic_relations": {
+      "synonymy": "words with same/similar meaning",
+      "antonymy": "words with opposite meaning",
+      "hypernymy": "is-a relationships (superordinate)",
+      "hyponymy": "is-a relationships (subordinate)",
+      "meronymy": "part-of relationships",
+      "holonymy": "whole-of relationships",
+      "polysemy": "one word, multiple related senses",
+      "homonymy": "one word form, unrelated senses"
+    },
+    "relation_types": 7,
+    "scope": "v0.1.0 covers basic semantic network structures and labels (no ontology engine)."
+  },
+  "metadata": {
+    "created": "2026-01-13T00:00:00Z",
+    "author": "ENKI System"
+  }
+}

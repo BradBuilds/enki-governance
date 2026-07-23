@@ -1,0 +1,10 @@
+{
+  "id": "function_words",
+  "name": "Function Words",
+  "version": "0.1.0",
+  "type": "lexical",
+  "description": "English function words (165): pronouns, determiners, conjunctions, prepositions, auxiliaries, particles. Each is a function_word-POS sense so the form layer knows it carries grammar, not content.",
+  "manifest": [
+    "definitions/function_words.senses.json"
+  ]
+}

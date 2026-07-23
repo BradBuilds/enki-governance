@@ -1,0 +1,42 @@
+{
+  "pack_id": "assertionvocab",
+  "version": "0.2.0",
+  "name": "ENKI Assertion Vocabulary Pack",
+  "description": "Canonical vocabulary for assertion construction (predicates, object kinds, forms, conflicts)",
+  "definitions": [
+    {
+      "id": "assertion.vocab.system",
+      "path": "definitions/assertionvocab.system.json",
+      "type": "system"
+    },
+    {
+      "id": "assertion.vocab.predicates",
+      "path": "definitions/assertionvocab.predicates.json",
+      "type": "custom"
+    },
+    {
+      "id": "assertion.vocab.object.kinds",
+      "path": "definitions/assertionvocab.object_kinds.json",
+      "type": "custom"
+    },
+    {
+      "id": "assertion.vocab.forms",
+      "path": "definitions/assertionvocab.forms.json",
+      "type": "custom"
+    },
+    {
+      "id": "assertion.vocab.conflicts",
+      "path": "definitions/assertionvocab.conflicts.json",
+      "type": "custom"
+    }
+  ],
+  "dependencies": [],
+  "namespaces_owned": [
+    "assertion.vocab"
+  ],
+  "metadata": {
+    "created": "2025-12-31T00:00:00Z",
+    "author": "ENKI System",
+    "license": "TBD"
+  }
+}

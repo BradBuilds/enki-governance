@@ -1,0 +1,19 @@
+{
+  "id": "gdu.numeric.decimal",
+  "type": "numeric_representation",
+  "version": "1.0.0",
+  "content": {
+    "name": "decimal",
+    "base": 10,
+    "role": "canonical",
+    "storage_rule": "All numeric values in GDU must be stored as decimal integers.",
+    "constraints": {
+      "integer_only": true,
+      "min_value": 0
+    },
+    "notes": [
+      "No floating point in v1.0.0.",
+      "No negative values in v1.0.0."
+    ]
+  }
+}

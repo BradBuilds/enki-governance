@@ -1,0 +1,22 @@
+{
+  "id": "aliaspolicy.weights",
+  "type": "collapse_policy",
+  "version": "0.1.0",
+  "description": "Alias assignment: S(a|form,C) = 10*id + 3*exact + 1.5*loose + 1.5*initial_match + 2*prior, veto identifier_conflict. theta=2.5, delta=0.5. The 'don't rely on one thing' rule is encoded in theta: initial_match alone (1.5) is BELOW theta, so initials never collapse unless corroborated by co-occurrence (prior, fed the form<->entity co-occurrence strength) or an exact/id match. A full exact name (3.0) or a strong id (10) clears theta on its own, as it should. A true tie between candidates (delta) parks -> LDU-P, never a blind alias assignment.",
+  "content": {
+    "weights": {
+      "id":            10.0,
+      "exact":          3.0,
+      "loose":          1.5,
+      "initial_match":  1.5,
+      "prior":          2.0
+    },
+    "vetoes": {
+      "identifier_conflict": true
+    },
+    "thresholds": {
+      "theta": 2.5,
+      "delta": 0.5
+    }
+  }
+}

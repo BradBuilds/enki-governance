@@ -1,0 +1,10 @@
+{
+  "id": "demonyms",
+  "name": "Demonyms",
+  "version": "0.1.0",
+  "type": "lexical",
+  "description": "Nationality demonyms mapped to their country (the gloss). Curated seed; expandable from full sources.",
+  "manifest": [
+    "definitions/demonyms.senses.json"
+  ]
+}

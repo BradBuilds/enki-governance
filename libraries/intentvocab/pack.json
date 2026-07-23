@@ -1,0 +1,29 @@
+{
+  "pack_id": "intentvocab",
+  "version": "0.1.0",
+  "name": "ENKI Watch Intent Vocabulary Pack",
+  "description": "Defines the watch intent modes (bounded, persistent, conditional) that drive track segmentation. Watch intents live on cases, threads, and watchlists; the track segmenter consults all active intents that reference an entity to decide when to open and close track segments.",
+  "definitions": [
+    {
+      "id": "intent.vocab.system",
+      "path": "definitions/intentvocab.system.json",
+      "type": "system"
+    },
+    {
+      "id": "intent.vocab.intent_modes",
+      "path": "definitions/intentvocab.intent_modes.json",
+      "type": "custom"
+    }
+  ],
+  "dependencies": ["identity"],
+  "namespaces_owned": [
+    "intent.vocab"
+  ],
+  "metadata": {
+    "created": "2026-04-10T00:00:00Z",
+    "author": "ENKI System",
+    "license": "AGPLv3",
+    "status": "LOCKED",
+    "change_control": "New intent modes via Tier 1 vocabulary extension."
+  }
+}

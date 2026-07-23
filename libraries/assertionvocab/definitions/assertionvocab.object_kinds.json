@@ -1,0 +1,84 @@
+{
+  "id": "assertion_vocab.object_kinds",
+  "type": "custom",
+  "version": "0.1.0",
+  "description": "Allowed object value types for assertions",
+  "content": {
+    "category": "object_kinds",
+    "purpose": "Defines the types of values that can serve as assertion objects",
+    "object_kinds": [
+      {
+        "kind_id": "entity_ref",
+        "label": "Entity Reference",
+        "description": "Reference to an identity entity",
+        "json_type": "object",
+        "structure": {
+          "entity_id": "string",
+          "entity_type": "string"
+        },
+        "notes": ["References entities from Identity Pack", "entity_type from identity.entities"]
+      },
+      {
+        "kind_id": "string",
+        "label": "String",
+        "description": "Text value",
+        "json_type": "string",
+        "structure": "primitive",
+        "notes": ["Unicode text", "No length limit defined at vocabulary level"]
+      },
+      {
+        "kind_id": "number",
+        "label": "Number",
+        "description": "Numeric value",
+        "json_type": "number",
+        "structure": "primitive",
+        "notes": ["Integer or floating-point", "Precision not specified at vocabulary level"]
+      },
+      {
+        "kind_id": "boolean",
+        "label": "Boolean",
+        "description": "True/false value",
+        "json_type": "boolean",
+        "structure": "primitive",
+        "notes": ["Binary state", "true or false only"]
+      },
+      {
+        "kind_id": "timestamp",
+        "label": "Timestamp",
+        "description": "ISO 8601 timestamp",
+        "json_type": "string",
+        "structure": "ISO 8601 formatted string",
+        "notes": ["Date-time format", "Example: 2025-12-31T00:00:00Z"]
+      },
+      {
+        "kind_id": "pack_ref",
+        "label": "Pack Reference",
+        "description": "Reference to a definition pack",
+        "json_type": "object",
+        "structure": {
+          "pack_id": "string",
+          "version": "string"
+        },
+        "notes": ["References ENKI definition packs", "Version follows semantic versioning"]
+      },
+      {
+        "kind_id": "uri",
+        "label": "URI",
+        "description": "Uniform resource identifier",
+        "json_type": "string",
+        "structure": "URI formatted string",
+        "notes": ["URL, URN, or other URI scheme", "Example: https://example.com/resource"]
+      }
+    ],
+    "notes": [
+      "Object kinds are vocabulary only",
+      "JSON types provided for reference",
+      "Actual validation schemas are defined elsewhere"
+    ]
+  },
+  "metadata": {
+    "created": "2025-12-31T00:00:00Z",
+    "author": "ENKI System"
+  },
+  "dependencies": ["assertion_vocab.system"]
+}

@@ -1,0 +1,1990 @@
+{
+  "id": "function_words.senses",
+  "type": "lexical_senses",
+  "version": "0.1.0",
+  "description": "English closed-class function words (165). Marks forms as grammatical, not entity/content candidates.",
+  "content": {
+    "senses": [
+      {
+        "sense_id": "fw-i",
+        "lemma": "i",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "pronoun",
+        "gloss": "pronoun (function word)",
+        "forms": [
+          "i"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-you",
+        "lemma": "you",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "pronoun",
+        "gloss": "pronoun (function word)",
+        "forms": [
+          "you"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-he",
+        "lemma": "he",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "pronoun",
+        "gloss": "pronoun (function word)",
+        "forms": [
+          "he"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-she",
+        "lemma": "she",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "pronoun",
+        "gloss": "pronoun (function word)",
+        "forms": [
+          "she"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-it",
+        "lemma": "it",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "pronoun",
+        "gloss": "pronoun (function word)",
+        "forms": [
+          "it"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-we",
+        "lemma": "we",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "pronoun",
+        "gloss": "pronoun (function word)",
+        "forms": [
+          "we"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-they",
+        "lemma": "they",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "pronoun",
+        "gloss": "pronoun (function word)",
+        "forms": [
+          "they"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-me",
+        "lemma": "me",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "pronoun",
+        "gloss": "pronoun (function word)",
+        "forms": [
+          "me"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-him",
+        "lemma": "him",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "pronoun",
+        "gloss": "pronoun (function word)",
+        "forms": [
+          "him"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-her",
+        "lemma": "her",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "pronoun",
+        "gloss": "pronoun (function word)",
+        "forms": [
+          "her"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-us",
+        "lemma": "us",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "pronoun",
+        "gloss": "pronoun (function word)",
+        "forms": [
+          "us"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-them",
+        "lemma": "them",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "pronoun",
+        "gloss": "pronoun (function word)",
+        "forms": [
+          "them"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-this",
+        "lemma": "this",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "pronoun",
+        "gloss": "pronoun (function word)",
+        "forms": [
+          "this"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-that",
+        "lemma": "that",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "pronoun",
+        "gloss": "pronoun (function word)",
+        "forms": [
+          "that"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-these",
+        "lemma": "these",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "pronoun",
+        "gloss": "pronoun (function word)",
+        "forms": [
+          "these"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-those",
+        "lemma": "those",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "pronoun",
+        "gloss": "pronoun (function word)",
+        "forms": [
+          "those"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-who",
+        "lemma": "who",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "pronoun",
+        "gloss": "pronoun (function word)",
+        "forms": [
+          "who"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-whom",
+        "lemma": "whom",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "pronoun",
+        "gloss": "pronoun (function word)",
+        "forms": [
+          "whom"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-which",
+        "lemma": "which",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "pronoun",
+        "gloss": "pronoun (function word)",
+        "forms": [
+          "which"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-what",
+        "lemma": "what",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "pronoun",
+        "gloss": "pronoun (function word)",
+        "forms": [
+          "what"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-whose",
+        "lemma": "whose",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "pronoun",
+        "gloss": "pronoun (function word)",
+        "forms": [
+          "whose"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-myself",
+        "lemma": "myself",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "pronoun",
+        "gloss": "pronoun (function word)",
+        "forms": [
+          "myself"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-yourself",
+        "lemma": "yourself",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "pronoun",
+        "gloss": "pronoun (function word)",
+        "forms": [
+          "yourself"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-himself",
+        "lemma": "himself",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "pronoun",
+        "gloss": "pronoun (function word)",
+        "forms": [
+          "himself"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-herself",
+        "lemma": "herself",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "pronoun",
+        "gloss": "pronoun (function word)",
+        "forms": [
+          "herself"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-itself",
+        "lemma": "itself",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "pronoun",
+        "gloss": "pronoun (function word)",
+        "forms": [
+          "itself"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-ourselves",
+        "lemma": "ourselves",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "pronoun",
+        "gloss": "pronoun (function word)",
+        "forms": [
+          "ourselves"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-themselves",
+        "lemma": "themselves",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "pronoun",
+        "gloss": "pronoun (function word)",
+        "forms": [
+          "themselves"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-anyone",
+        "lemma": "anyone",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "pronoun",
+        "gloss": "pronoun (function word)",
+        "forms": [
+          "anyone"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-everyone",
+        "lemma": "everyone",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "pronoun",
+        "gloss": "pronoun (function word)",
+        "forms": [
+          "everyone"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-someone",
+        "lemma": "someone",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "pronoun",
+        "gloss": "pronoun (function word)",
+        "forms": [
+          "someone"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-nobody",
+        "lemma": "nobody",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "pronoun",
+        "gloss": "pronoun (function word)",
+        "forms": [
+          "nobody"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-anybody",
+        "lemma": "anybody",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "pronoun",
+        "gloss": "pronoun (function word)",
+        "forms": [
+          "anybody"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-everybody",
+        "lemma": "everybody",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "pronoun",
+        "gloss": "pronoun (function word)",
+        "forms": [
+          "everybody"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-somebody",
+        "lemma": "somebody",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "pronoun",
+        "gloss": "pronoun (function word)",
+        "forms": [
+          "somebody"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-nothing",
+        "lemma": "nothing",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "pronoun",
+        "gloss": "pronoun (function word)",
+        "forms": [
+          "nothing"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-something",
+        "lemma": "something",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "pronoun",
+        "gloss": "pronoun (function word)",
+        "forms": [
+          "something"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-everything",
+        "lemma": "everything",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "pronoun",
+        "gloss": "pronoun (function word)",
+        "forms": [
+          "everything"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-the",
+        "lemma": "the",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "determiner",
+        "gloss": "determiner (function word)",
+        "forms": [
+          "the"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-a",
+        "lemma": "a",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "determiner",
+        "gloss": "determiner (function word)",
+        "forms": [
+          "a"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-an",
+        "lemma": "an",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "determiner",
+        "gloss": "determiner (function word)",
+        "forms": [
+          "an"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-my",
+        "lemma": "my",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "determiner",
+        "gloss": "determiner (function word)",
+        "forms": [
+          "my"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-your",
+        "lemma": "your",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "determiner",
+        "gloss": "determiner (function word)",
+        "forms": [
+          "your"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-his",
+        "lemma": "his",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "determiner",
+        "gloss": "determiner (function word)",
+        "forms": [
+          "his"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-its",
+        "lemma": "its",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "determiner",
+        "gloss": "determiner (function word)",
+        "forms": [
+          "its"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-our",
+        "lemma": "our",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "determiner",
+        "gloss": "determiner (function word)",
+        "forms": [
+          "our"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-their",
+        "lemma": "their",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "determiner",
+        "gloss": "determiner (function word)",
+        "forms": [
+          "their"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-some",
+        "lemma": "some",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "determiner",
+        "gloss": "determiner (function word)",
+        "forms": [
+          "some"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-any",
+        "lemma": "any",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "determiner",
+        "gloss": "determiner (function word)",
+        "forms": [
+          "any"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-no",
+        "lemma": "no",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "determiner",
+        "gloss": "determiner (function word)",
+        "forms": [
+          "no"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-every",
+        "lemma": "every",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "determiner",
+        "gloss": "determiner (function word)",
+        "forms": [
+          "every"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-each",
+        "lemma": "each",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "determiner",
+        "gloss": "determiner (function word)",
+        "forms": [
+          "each"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-all",
+        "lemma": "all",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "determiner",
+        "gloss": "determiner (function word)",
+        "forms": [
+          "all"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-both",
+        "lemma": "both",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "determiner",
+        "gloss": "determiner (function word)",
+        "forms": [
+          "both"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-either",
+        "lemma": "either",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "determiner",
+        "gloss": "determiner (function word)",
+        "forms": [
+          "either"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-neither",
+        "lemma": "neither",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "determiner",
+        "gloss": "determiner (function word)",
+        "forms": [
+          "neither"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-much",
+        "lemma": "much",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "determiner",
+        "gloss": "determiner (function word)",
+        "forms": [
+          "much"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-many",
+        "lemma": "many",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "determiner",
+        "gloss": "determiner (function word)",
+        "forms": [
+          "many"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-few",
+        "lemma": "few",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "determiner",
+        "gloss": "determiner (function word)",
+        "forms": [
+          "few"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-little",
+        "lemma": "little",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "determiner",
+        "gloss": "determiner (function word)",
+        "forms": [
+          "little"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-more",
+        "lemma": "more",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "determiner",
+        "gloss": "determiner (function word)",
+        "forms": [
+          "more"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-most",
+        "lemma": "most",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "determiner",
+        "gloss": "determiner (function word)",
+        "forms": [
+          "most"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-less",
+        "lemma": "less",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "determiner",
+        "gloss": "determiner (function word)",
+        "forms": [
+          "less"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-several",
+        "lemma": "several",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "determiner",
+        "gloss": "determiner (function word)",
+        "forms": [
+          "several"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-enough",
+        "lemma": "enough",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "determiner",
+        "gloss": "determiner (function word)",
+        "forms": [
+          "enough"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-such",
+        "lemma": "such",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "determiner",
+        "gloss": "determiner (function word)",
+        "forms": [
+          "such"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-and",
+        "lemma": "and",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "conjunction",
+        "gloss": "conjunction (function word)",
+        "forms": [
+          "and"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-or",
+        "lemma": "or",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "conjunction",
+        "gloss": "conjunction (function word)",
+        "forms": [
+          "or"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-but",
+        "lemma": "but",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "conjunction",
+        "gloss": "conjunction (function word)",
+        "forms": [
+          "but"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-nor",
+        "lemma": "nor",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "conjunction",
+        "gloss": "conjunction (function word)",
+        "forms": [
+          "nor"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-so",
+        "lemma": "so",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "conjunction",
+        "gloss": "conjunction (function word)",
+        "forms": [
+          "so"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-yet",
+        "lemma": "yet",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "conjunction",
+        "gloss": "conjunction (function word)",
+        "forms": [
+          "yet"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-for",
+        "lemma": "for",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "conjunction",
+        "gloss": "conjunction (function word)",
+        "forms": [
+          "for"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-because",
+        "lemma": "because",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "conjunction",
+        "gloss": "conjunction (function word)",
+        "forms": [
+          "because"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-although",
+        "lemma": "although",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "conjunction",
+        "gloss": "conjunction (function word)",
+        "forms": [
+          "although"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-though",
+        "lemma": "though",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "conjunction",
+        "gloss": "conjunction (function word)",
+        "forms": [
+          "though"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-while",
+        "lemma": "while",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "conjunction",
+        "gloss": "conjunction (function word)",
+        "forms": [
+          "while"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-if",
+        "lemma": "if",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "conjunction",
+        "gloss": "conjunction (function word)",
+        "forms": [
+          "if"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-unless",
+        "lemma": "unless",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "conjunction",
+        "gloss": "conjunction (function word)",
+        "forms": [
+          "unless"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-since",
+        "lemma": "since",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "conjunction",
+        "gloss": "conjunction (function word)",
+        "forms": [
+          "since"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-when",
+        "lemma": "when",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "conjunction",
+        "gloss": "conjunction (function word)",
+        "forms": [
+          "when"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-where",
+        "lemma": "where",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "conjunction",
+        "gloss": "conjunction (function word)",
+        "forms": [
+          "where"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-whereas",
+        "lemma": "whereas",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "conjunction",
+        "gloss": "conjunction (function word)",
+        "forms": [
+          "whereas"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-whether",
+        "lemma": "whether",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "conjunction",
+        "gloss": "conjunction (function word)",
+        "forms": [
+          "whether"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-as",
+        "lemma": "as",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "conjunction",
+        "gloss": "conjunction (function word)",
+        "forms": [
+          "as"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-than",
+        "lemma": "than",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "conjunction",
+        "gloss": "conjunction (function word)",
+        "forms": [
+          "than"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-of",
+        "lemma": "of",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "preposition",
+        "gloss": "preposition (function word)",
+        "forms": [
+          "of"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-in",
+        "lemma": "in",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "preposition",
+        "gloss": "preposition (function word)",
+        "forms": [
+          "in"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-on",
+        "lemma": "on",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "preposition",
+        "gloss": "preposition (function word)",
+        "forms": [
+          "on"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-at",
+        "lemma": "at",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "preposition",
+        "gloss": "preposition (function word)",
+        "forms": [
+          "at"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-by",
+        "lemma": "by",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "preposition",
+        "gloss": "preposition (function word)",
+        "forms": [
+          "by"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-with",
+        "lemma": "with",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "preposition",
+        "gloss": "preposition (function word)",
+        "forms": [
+          "with"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-about",
+        "lemma": "about",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "preposition",
+        "gloss": "preposition (function word)",
+        "forms": [
+          "about"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-against",
+        "lemma": "against",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "preposition",
+        "gloss": "preposition (function word)",
+        "forms": [
+          "against"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-between",
+        "lemma": "between",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "preposition",
+        "gloss": "preposition (function word)",
+        "forms": [
+          "between"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-into",
+        "lemma": "into",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "preposition",
+        "gloss": "preposition (function word)",
+        "forms": [
+          "into"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-through",
+        "lemma": "through",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "preposition",
+        "gloss": "preposition (function word)",
+        "forms": [
+          "through"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-during",
+        "lemma": "during",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "preposition",
+        "gloss": "preposition (function word)",
+        "forms": [
+          "during"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-before",
+        "lemma": "before",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "preposition",
+        "gloss": "preposition (function word)",
+        "forms": [
+          "before"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-after",
+        "lemma": "after",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "preposition",
+        "gloss": "preposition (function word)",
+        "forms": [
+          "after"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-above",
+        "lemma": "above",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "preposition",
+        "gloss": "preposition (function word)",
+        "forms": [
+          "above"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-below",
+        "lemma": "below",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "preposition",
+        "gloss": "preposition (function word)",
+        "forms": [
+          "below"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-to",
+        "lemma": "to",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "preposition",
+        "gloss": "preposition (function word)",
+        "forms": [
+          "to"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-from",
+        "lemma": "from",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "preposition",
+        "gloss": "preposition (function word)",
+        "forms": [
+          "from"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-up",
+        "lemma": "up",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "preposition",
+        "gloss": "preposition (function word)",
+        "forms": [
+          "up"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-down",
+        "lemma": "down",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "preposition",
+        "gloss": "preposition (function word)",
+        "forms": [
+          "down"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-over",
+        "lemma": "over",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "preposition",
+        "gloss": "preposition (function word)",
+        "forms": [
+          "over"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-under",
+        "lemma": "under",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "preposition",
+        "gloss": "preposition (function word)",
+        "forms": [
+          "under"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-near",
+        "lemma": "near",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "preposition",
+        "gloss": "preposition (function word)",
+        "forms": [
+          "near"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-within",
+        "lemma": "within",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "preposition",
+        "gloss": "preposition (function word)",
+        "forms": [
+          "within"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-without",
+        "lemma": "without",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "preposition",
+        "gloss": "preposition (function word)",
+        "forms": [
+          "without"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-across",
+        "lemma": "across",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "preposition",
+        "gloss": "preposition (function word)",
+        "forms": [
+          "across"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-along",
+        "lemma": "along",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "preposition",
+        "gloss": "preposition (function word)",
+        "forms": [
+          "along"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-among",
+        "lemma": "among",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "preposition",
+        "gloss": "preposition (function word)",
+        "forms": [
+          "among"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-around",
+        "lemma": "around",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "preposition",
+        "gloss": "preposition (function word)",
+        "forms": [
+          "around"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-behind",
+        "lemma": "behind",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "preposition",
+        "gloss": "preposition (function word)",
+        "forms": [
+          "behind"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-beneath",
+        "lemma": "beneath",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "preposition",
+        "gloss": "preposition (function word)",
+        "forms": [
+          "beneath"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-beside",
+        "lemma": "beside",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "preposition",
+        "gloss": "preposition (function word)",
+        "forms": [
+          "beside"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-beyond",
+        "lemma": "beyond",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "preposition",
+        "gloss": "preposition (function word)",
+        "forms": [
+          "beyond"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-despite",
+        "lemma": "despite",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "preposition",
+        "gloss": "preposition (function word)",
+        "forms": [
+          "despite"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-toward",
+        "lemma": "toward",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "preposition",
+        "gloss": "preposition (function word)",
+        "forms": [
+          "toward"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-upon",
+        "lemma": "upon",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "preposition",
+        "gloss": "preposition (function word)",
+        "forms": [
+          "upon"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-be",
+        "lemma": "be",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "auxiliary",
+        "gloss": "auxiliary (function word)",
+        "forms": [
+          "be"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-am",
+        "lemma": "am",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "auxiliary",
+        "gloss": "auxiliary (function word)",
+        "forms": [
+          "am"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-is",
+        "lemma": "is",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "auxiliary",
+        "gloss": "auxiliary (function word)",
+        "forms": [
+          "is"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-are",
+        "lemma": "are",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "auxiliary",
+        "gloss": "auxiliary (function word)",
+        "forms": [
+          "are"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-was",
+        "lemma": "was",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "auxiliary",
+        "gloss": "auxiliary (function word)",
+        "forms": [
+          "was"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-were",
+        "lemma": "were",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "auxiliary",
+        "gloss": "auxiliary (function word)",
+        "forms": [
+          "were"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-been",
+        "lemma": "been",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "auxiliary",
+        "gloss": "auxiliary (function word)",
+        "forms": [
+          "been"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-being",
+        "lemma": "being",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "auxiliary",
+        "gloss": "auxiliary (function word)",
+        "forms": [
+          "being"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-have",
+        "lemma": "have",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "auxiliary",
+        "gloss": "auxiliary (function word)",
+        "forms": [
+          "have"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-has",
+        "lemma": "has",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "auxiliary",
+        "gloss": "auxiliary (function word)",
+        "forms": [
+          "has"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-had",
+        "lemma": "had",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "auxiliary",
+        "gloss": "auxiliary (function word)",
+        "forms": [
+          "had"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-do",
+        "lemma": "do",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "auxiliary",
+        "gloss": "auxiliary (function word)",
+        "forms": [
+          "do"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-does",
+        "lemma": "does",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "auxiliary",
+        "gloss": "auxiliary (function word)",
+        "forms": [
+          "does"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-did",
+        "lemma": "did",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "auxiliary",
+        "gloss": "auxiliary (function word)",
+        "forms": [
+          "did"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-will",
+        "lemma": "will",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "auxiliary",
+        "gloss": "auxiliary (function word)",
+        "forms": [
+          "will"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-would",
+        "lemma": "would",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "auxiliary",
+        "gloss": "auxiliary (function word)",
+        "forms": [
+          "would"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-shall",
+        "lemma": "shall",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "auxiliary",
+        "gloss": "auxiliary (function word)",
+        "forms": [
+          "shall"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-should",
+        "lemma": "should",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "auxiliary",
+        "gloss": "auxiliary (function word)",
+        "forms": [
+          "should"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-can",
+        "lemma": "can",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "auxiliary",
+        "gloss": "auxiliary (function word)",
+        "forms": [
+          "can"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-could",
+        "lemma": "could",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "auxiliary",
+        "gloss": "auxiliary (function word)",
+        "forms": [
+          "could"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-may",
+        "lemma": "may",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "auxiliary",
+        "gloss": "auxiliary (function word)",
+        "forms": [
+          "may"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-might",
+        "lemma": "might",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "auxiliary",
+        "gloss": "auxiliary (function word)",
+        "forms": [
+          "might"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-must",
+        "lemma": "must",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "auxiliary",
+        "gloss": "auxiliary (function word)",
+        "forms": [
+          "must"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-ought",
+        "lemma": "ought",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "auxiliary",
+        "gloss": "auxiliary (function word)",
+        "forms": [
+          "ought"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-not",
+        "lemma": "not",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "particle",
+        "gloss": "particle (function word)",
+        "forms": [
+          "not"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-yes",
+        "lemma": "yes",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "particle",
+        "gloss": "particle (function word)",
+        "forms": [
+          "yes"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-very",
+        "lemma": "very",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "particle",
+        "gloss": "particle (function word)",
+        "forms": [
+          "very"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-too",
+        "lemma": "too",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "particle",
+        "gloss": "particle (function word)",
+        "forms": [
+          "too"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-also",
+        "lemma": "also",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "particle",
+        "gloss": "particle (function word)",
+        "forms": [
+          "also"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-just",
+        "lemma": "just",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "particle",
+        "gloss": "particle (function word)",
+        "forms": [
+          "just"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-only",
+        "lemma": "only",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "particle",
+        "gloss": "particle (function word)",
+        "forms": [
+          "only"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-even",
+        "lemma": "even",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "particle",
+        "gloss": "particle (function word)",
+        "forms": [
+          "even"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-however",
+        "lemma": "however",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "particle",
+        "gloss": "particle (function word)",
+        "forms": [
+          "however"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-therefore",
+        "lemma": "therefore",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "particle",
+        "gloss": "particle (function word)",
+        "forms": [
+          "therefore"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-thus",
+        "lemma": "thus",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "particle",
+        "gloss": "particle (function word)",
+        "forms": [
+          "thus"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-hence",
+        "lemma": "hence",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "particle",
+        "gloss": "particle (function word)",
+        "forms": [
+          "hence"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-moreover",
+        "lemma": "moreover",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "particle",
+        "gloss": "particle (function word)",
+        "forms": [
+          "moreover"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-furthermore",
+        "lemma": "furthermore",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "particle",
+        "gloss": "particle (function word)",
+        "forms": [
+          "furthermore"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-nevertheless",
+        "lemma": "nevertheless",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "particle",
+        "gloss": "particle (function word)",
+        "forms": [
+          "nevertheless"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-otherwise",
+        "lemma": "otherwise",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "particle",
+        "gloss": "particle (function word)",
+        "forms": [
+          "otherwise"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-instead",
+        "lemma": "instead",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "particle",
+        "gloss": "particle (function word)",
+        "forms": [
+          "instead"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-rather",
+        "lemma": "rather",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "particle",
+        "gloss": "particle (function word)",
+        "forms": [
+          "rather"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "fw-quite",
+        "lemma": "quite",
+        "pos": "function_word",
+        "register": "literal",
+        "domain": "particle",
+        "gloss": "particle (function word)",
+        "forms": [
+          "quite"
+        ],
+        "relations": []
+      }
+    ]
+  }
+}

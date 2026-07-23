@@ -1,0 +1,21 @@
+{
+  "id": "signal.vocab.signal_confidence",
+  "type": "custom",
+  "version": "0.1.0",
+  "description": "Confidence levels for ingested data classification accuracy.",
+  "content": {
+    "category": "signal_confidence",
+    "levels": [
+      {"level_id": "confirmed", "rank": 4, "description": "Verified by multiple sources or high-confidence parser"},
+      {"level_id": "probable", "rank": 3, "description": "Single source, high confidence detection"},
+      {"level_id": "possible", "rank": 2, "description": "Inferred or low-confidence detection"},
+      {"level_id": "unverified", "rank": 1, "description": "Raw input, no confidence assessment performed"}
+    ],
+    "default": "unverified"
+  },
+  "metadata": {
+    "created": "2026-03-21T00:00:00Z",
+    "author": "ENKI System"
+  },
+  "dependencies": ["signal.vocab.system"]
+}

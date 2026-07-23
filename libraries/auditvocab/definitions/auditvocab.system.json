@@ -1,0 +1,47 @@
+{
+  "id": "audit_vocab.system",
+  "type": "system",
+  "version": "0.1.0",
+  "description": "Core Audit Event Vocabulary Pack system properties and conceptual model",
+  "content": {
+    "pack_name": "ENKI Audit Event Vocabulary Pack",
+    "purpose": "Canonical vocabulary for describing system audit events and activities",
+    "scope": "vocabulary_only",
+    "conceptual_model": {
+      "structure": "event_type + fields + severity + timestamp",
+      "description": "Audit events capture discrete system activities and state changes",
+      "event_categories": [
+        "assertion_lifecycle",
+        "system_operations",
+        "usage_tracking"
+      ]
+    },
+    "relationship_to_assertions": {
+      "description": "Many audit events describe assertion lifecycle changes",
+      "note": "Events are descriptive records, not state claims",
+      "examples": [
+        "assertion.proposed: New assertion submitted",
+        "assertion.validated: Assertion passed validation",
+        "assertion.rejected: Assertion failed validation"
+      ]
+    },
+    "declarative_nature": "Events describe what happened, not what should happen. No enforcement or processing logic included.",
+    "version_scheme": "semantic",
+    "non_goals": [
+      "event_storage",
+      "event_processing",
+      "audit_trails",
+      "log_aggregation",
+      "event_routing",
+      "retention_policies",
+      "access_control",
+      "compliance_enforcement",
+      "event_correlation"
+    ]
+  },
+  "metadata": {
+    "created": "2025-12-31T00:00:00Z",
+    "author": "ENKI System"
+  },
+  "dependencies": []
+}

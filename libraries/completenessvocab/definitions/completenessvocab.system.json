@@ -1,0 +1,23 @@
+{
+  "id": "completeness.vocab.system",
+  "type": "system",
+  "version": "0.1.0",
+  "description": "System definition for the completeness vocabulary. Declares why completeness exists and how it is computed.",
+  "content": {
+    "purpose": "Tell users at a glance how complete a card is, surface gaps as research prompts, and let the system distinguish stub-quality nodes from verified ones. Completeness is the visible quality dimension of every card.",
+    "principle": "Completeness is per-subtype, not universal. A USGS earthquake legitimately has empty entities[]; a news article does not. The slot spec for each node subtype declares which slots are required, optional, or not applicable. The scorer reads the spec and the envelope, computes filled/total, and returns a tier.",
+    "scoring": {
+      "formula": "score = filled_required_slots / total_required_slots",
+      "tiers": "Defined in completeness.vocab.tiers — stub <0.4, partial 0.4-0.69, solid 0.7-0.89, verified ≥0.9 with corroboration and no contradictions",
+      "promotion": "Nodes auto-promote when they cross thresholds upward (e.g., a partial node receiving more sources becomes solid)",
+      "demotion": "Nodes auto-demote when contradictions appear (a verified node with a new contradiction drops to solid)"
+    },
+    "gaps": "Unfilled required slots are listed in completeness.gaps with human-readable descriptions. The dashboard surfaces gaps as research prompts; clicking a gap opens an action to fill it (re-run extraction, add a source, etc.).",
+    "verified_tier_extra_check": "The 'verified' tier requires not just score ≥0.9 but ALSO at least one corroboration AND zero open contradictions. Verified nodes are eligible for promotion to epistemic_type='fact' under the assessment rules in nodevocab."
+  },
+  "metadata": {
+    "created": "2026-04-10T00:00:00Z",
+    "author": "ENKI System"
+  },
+  "dependencies": []
+}

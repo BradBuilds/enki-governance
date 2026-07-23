@@ -1,0 +1,51 @@
+{
+  "id": "topic.vocab.composition",
+  "type": "custom",
+  "version": "0.1.0",
+  "description": "Rules for how topics carry temporal anchoring and concept/instance kind. These fields live on the `topics` table; this vocab governs their semantics.",
+  "content": {
+    "topic_kind": {
+      "description": "Each topic is either a CONCEPT (an abstract category) or an INSTANCE (a specific occurrence/case). Mirrors entity_kind on entities.",
+      "values": {
+        "concept": {
+          "description": "Abstract category that can have instances. e.g. 'UFO Crash Retrieval', 'Election Cycle', 'Pandemic'. Its members are unions of its instances' members.",
+          "membership_rule_pattern": "Usually predicate_walk or co_occurrence over the union of its instance topics."
+        },
+        "instance": {
+          "description": "Specific case anchored in time/space. e.g. 'Roswell Incident 1947', '2020 US Presidential Election', 'COVID-19 Pandemic'. Its members are scoped to a concrete event-cluster.",
+          "membership_rule_pattern": "Usually co_occurrence over a library, signal_cluster, or temporal slice."
+        }
+      },
+      "concept_topic_id_field": "When topic_kind=instance, concept_topic_id points at the parent concept topic. The substrate enforces that instance members are a subset of concept's reachable members."
+    },
+    "temporal_anchoring": {
+      "description": "Every topic CAN have a temporal_span. Some topics are timeless (concepts often are); others are tightly bounded (most instances).",
+      "fields": {
+        "temporal_span": "PostgreSQL tstzrange. Lower bound inclusive, upper bound exclusive. Open-ended on either side is valid (a topic that's still active has upper=infinity).",
+        "temporal_anchor": "How the span was determined: 'event' (from member events), 'source' (from source dates), 'inferred' (LLM-derived), 'manual' (user-set)."
+      },
+      "inheritance_rules": [
+        "Instance topic's temporal_span must be within or overlap its concept's span.",
+        "broader_than relations imply the broader topic's span CONTAINS the narrower's span.",
+        "follows / precedes relations are auto-derivable from temporal_span."
+      ]
+    },
+    "membership_inheritance": {
+      "description": "How concept-instance membership combines.",
+      "rules": [
+        "An instance's direct members (per its membership_rule) are the canonical 'about-this-instance' set.",
+        "Its concept inherits the union of all its instances' members (read-time computation; not materialized).",
+        "Members of an instance are NOT automatically members of peer instances — peers share a CONCEPT, not members."
+      ]
+    },
+    "validation_against_gdu": {
+      "description": "How topics are admitted and validated.",
+      "rules": [
+        "Topics go through gateway.admit_node(category='topic', subtype=<nodevocab.topic subtype>).",
+        "membership_rule must validate against core.topics.rules.validate() before admission.",
+        "temporal_span must use values from valuevocab.time chain when expressed as boundaries.",
+        "concept_topic_id (when present) must reference an admitted concept topic in the same tenant."
+      ]
+    }
+  }
+}

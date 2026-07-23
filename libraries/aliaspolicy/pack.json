@@ -1,0 +1,8 @@
+{
+  "id": "aliaspolicy",
+  "name": "Alias Assignment Policy",
+  "version": "0.1.0",
+  "type": "policy",
+  "description": "Weights, vetoes and thresholds for resolving a short/ambiguous surface (flight-log initials 'AA', partial names) to a canonical entity, through the ONE collapse equation. Governed, content-hashed data, not code. Tuned so initials NEVER collapse on their own — corroboration (co-occurrence, exact/id) is required — and the unresolved PARK (→ LDU-P).",
+  "manifest": ["definitions/aliaspolicy.weights.json"]
+}

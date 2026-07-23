@@ -1,0 +1,49 @@
+{
+  "pack_id": "signalvocab",
+  "version": "0.1.3",
+  "name": "ENKI Signal Classification Vocabulary Pack",
+  "description": "Universal data classification taxonomy for all ingested data. Defines signal types, sources, confidence levels, severity levels, and observable types. Every piece of data entering the system is classified against this vocabulary.",
+  "definitions": [
+    {
+      "id": "signal.vocab.system",
+      "path": "definitions/signalvocab.system.json",
+      "type": "system"
+    },
+    {
+      "id": "signal.vocab.signal_types",
+      "path": "definitions/signalvocab.signal_types.json",
+      "type": "custom"
+    },
+    {
+      "id": "signal.vocab.signal_sources",
+      "path": "definitions/signalvocab.signal_sources.json",
+      "type": "custom"
+    },
+    {
+      "id": "signal.vocab.signal_confidence",
+      "path": "definitions/signalvocab.signal_confidence.json",
+      "type": "custom"
+    },
+    {
+      "id": "signal.vocab.signal_severity",
+      "path": "definitions/signalvocab.signal_severity.json",
+      "type": "custom"
+    },
+    {
+      "id": "signal.vocab.observable_types",
+      "path": "definitions/signalvocab.observable_types.json",
+      "type": "custom"
+    }
+  ],
+  "dependencies": ["identity"],
+  "namespaces_owned": [
+    "signal.vocab"
+  ],
+  "metadata": {
+    "created": "2026-03-21T00:00:00Z",
+    "author": "ENKI System",
+    "license": "AGPLv3",
+    "status": "LOCKED",
+    "change_control": "Tier 1 vocabulary extension (Gate A) or full ceremony (Gate A+B+C)"
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://enki.system/schemas/audit_event_instance.schema.json",
+  "title": "ENKI Audit Event Instance",
+  "description": "Schema for ENKI audit event instance objects",
+  "type": "object",
+  "required": ["event_id", "event_type", "timestamp", "severity", "scope"],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]([a-z0-9._-]*[a-z0-9])?$",
+      "description": "Unique identifier for this audit event instance"
+    },
+    "event_type": {
+      "type": "string",
+      "description": "Event type ID from audit vocabulary (e.g., 'assertion.proposed', 'pack.loaded')"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of event occurrence"
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["info", "warning", "error", "critical"],
+      "description": "Event severity level from audit vocabulary"
+    },
+    "scope": {
+      "type": "string",
+      "enum": ["local", "shared", "global"],
+      "description": "Visibility scope from identity vocabulary"
+    },
+    "actor_id": {
+      "type": "string",
+      "description": "Identity of actor that triggered the event (optional)"
+    },
+    "assertion_id": {
+      "type": "string",
+      "description": "Assertion being referenced by the event (optional)"
+    },
+    "pack_id": {
+      "type": "string",
+      "description": "Definition pack being referenced (optional)"
+    },
+    "node_id": {
+      "type": "string",
+      "description": "ENKI node identifier (optional)"
+    },
+    "target_id": {
+      "type": "string",
+      "description": "Identifier of the target being operated on (optional)"
+    },
+    "target_type": {
+      "type": "string",
+      "description": "Type of target being operated on (optional)"
+    },
+    "source": {
+      "oneOf": [
+        {"type": "string"},
+        {"type": "object"}
+      ],
+      "description": "Source or origin of the event (optional)"
+    },
+    "reason": {
+      "type": "string",
+      "description": "Human-readable explanation for the event (optional)"
+    },
+    "errors": {
+      "type": "array",
+      "description": "List of error details for failure events (optional)"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional event-specific data (optional)"
+    }
+  },
+  "additionalProperties": false
+}

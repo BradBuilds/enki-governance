@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://enki.system/schemas/definition.schema.json",
+  "title": "ENKI Definition",
+  "description": "Schema for ENKI definition objects",
+  "type": "object",
+  "required": ["id", "type", "version", "content"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]([a-z0-9._-]*[a-z0-9])?$",
+      "description": "Unique identifier for this definition"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["system", "rules", "glyphs", "digits", "custom"],
+      "description": "Type of definition"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Semantic version (major.minor.patch)"
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description"
+    },
+    "content": {
+      "type": "object",
+      "description": "Definition-specific content"
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "created": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "modified": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "author": {
+          "type": "string"
+        }
+      }
+    },
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "IDs of definitions this depends on"
+    }
+  }
+}

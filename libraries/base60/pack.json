@@ -1,0 +1,37 @@
+{
+  "pack_id": "base60",
+  "version": "0.2.0",
+  "name": "ENKI Base-60 Core",
+  "description": "Core Base-60 numeric system with cuneiform-inspired glyph rendering",
+  "definitions": [
+    {
+      "id": "base60.system",
+      "path": "definitions/base60.system.json",
+      "type": "system"
+    },
+    {
+      "id": "base60.rules",
+      "path": "definitions/base60.rules.json",
+      "type": "rules"
+    },
+    {
+      "id": "base60.glyphs",
+      "path": "definitions/base60.glyphs.json",
+      "type": "glyphs"
+    },
+    {
+      "id": "base60.digits",
+      "path": "definitions/base60.digits.json",
+      "type": "digits"
+    }
+  ],
+  "dependencies": [],
+  "namespaces_owned": [
+    "base60"
+  ],
+  "metadata": {
+    "created": "2025-12-31T00:00:00Z",
+    "author": "ENKI System",
+    "license": "TBD"
+  }
+}

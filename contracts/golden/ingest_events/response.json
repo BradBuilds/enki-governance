@@ -1,0 +1,14 @@
+{
+  "status_code": 200,
+  "body_shape": {
+    "receipt_id": "<string>",
+    "outcome": "FULL_ACCEPT",
+    "accepted_count": 1,
+    "rejected_count": 0,
+    "chain_hash": "<hex64>",
+    "receipt_digest": "<hex64>",
+    "accepted_rids": ["<string>"],
+    "rejected_items": []
+  },
+  "notes": "Receipt contains TXID (receipt_id) for Tier 3 vectors. Chain hash is SHA-256 digest. RIDs are Base-60 event identifiers."
+}

@@ -1,0 +1,29 @@
+# Identifier observable type → canonical entity type
+#
+# Maps signalvocab observable_types (from
+# libraries/signalvocab/definitions/signalvocab.observable_types.json) to
+# nodevocab entity subtypes. The entity resolver consults this map to
+# decide which identifier-bearing extractions become rows in the
+# entities master table.
+#
+# Identifier types NOT listed here are sources or evidence, not
+# entities, and are filtered out by is_resolvable_entity():
+#   - url, ip_address, domain_name, hostname  → sources / network
+#   - file_hash_*                              → evidence artifacts
+#   - hashtag, mention                         → social references
+#   - btc_address                              → wallet (could be promoted later)
+#
+# Hand-edit this file to extend the substrate without code changes.
+# Loaded once at module import in core.extraction.resolvers.base.
+
+email_address: person
+phone_number:  person
+mmsi:          vessel
+imei:          device
+imsi:          device
+tail_number:   aircraft
+icao24:        aircraft
+callsign:      operator
+ein:           organization
+lei:           organization
+ticker_symbol: organization

@@ -1,0 +1,18 @@
+{
+  "id": "case.vocab.resolution",
+  "type": "custom",
+  "version": "0.1.0",
+  "description": "How a case was ultimately resolved.",
+  "content": {
+    "category": "case_resolution",
+    "resolutions": [
+      {"resolution_id": "true_positive", "description": "Confirmed threat, incident, or finding"},
+      {"resolution_id": "false_positive", "description": "Investigation found no real issue"},
+      {"resolution_id": "benign", "description": "Real activity but not harmful or actionable"},
+      {"resolution_id": "inconclusive", "description": "Insufficient evidence to determine"},
+      {"resolution_id": "referred", "description": "Handed off to another team or agency"}
+    ]
+  },
+  "metadata": {"created": "2026-03-21T00:00:00Z", "author": "ENKI System"},
+  "dependencies": ["case.vocab.system"]
+}

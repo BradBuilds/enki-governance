@@ -1,0 +1,56 @@
+{
+  "id": "language.glyphs.devanagari",
+  "type": "glyphs",
+  "version": "0.1.0",
+  "description": "Devanagari script glyph coverage markers and deterministic style labels (no executable rendering).",
+  "dependencies": ["base60.glyphs"],
+  "content": {
+    "script": "Devanagari",
+    "extends_base": "base60.glyphs",
+    "principle": "Deterministic, stateless glyph style descriptors; abugida composition described as formulas only (no code).",
+    "completeness": "partial",
+    "coverage": {
+      "scope": "v0.1.0",
+      "included_count": 84,
+      "expected_count": 128,
+      "notes": "consonants_and_vowels_only_v0.1.0"
+    },
+    "styles": {
+      "modern": {
+        "name": "Modern Style",
+        "deterministic": true,
+        "stateless": true,
+        "rendering": "font-based",
+        "formula": "consonant + vowel_modifier + combining_marks"
+      },
+      "classical": {
+        "name": "Classical Style",
+        "deterministic": true,
+        "stateless": true,
+        "rendering": "font-based",
+        "formula": "consonant + vowel_modifier + combining_marks"
+      },
+      "print": {
+        "name": "Print Style",
+        "deterministic": true,
+        "stateless": true,
+        "rendering": "font-based"
+      }
+    },
+    "character_set": {
+      "type": "Devanagari (v0.1.0 defined subset)",
+      "count": 84,
+      "unicode_range_hint": "See coverage.notes; conjuncts and extended marks are intentionally excluded from v0.1.0."
+    },
+    "abugida_system": {
+      "principle": "Consonant + inherent vowel; matras modify vowels; virama cancels inherent vowel",
+      "virama": "U+094D",
+      "notes": "This is descriptive vocabulary only; no shaping engine included."
+    }
+  },
+  "metadata": {
+    "created": "2026-01-13T00:00:00Z",
+    "author": "ENKI System",
+    "governance": "SPINE-S1.2"
+  }
+}

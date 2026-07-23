@@ -1,0 +1,40 @@
+# Enki Governance — public repo .gitignore
+
+# Secrets / local config
+.env
+.env.*
+!.env.example
+*.key
+*.key.enc
+storage/grants/
+
+# Data / runtime / logs
+*.log
+*.dump
+*.sqlite
+*.db
+catalog.json
+page_images/
+evidence/
+storage/enki-store/
+data/
+
+# Big derived lexicon data (import step, not committed)
+libraries/*/sources/
+wordnet.senses.json
+sense_frequency.json
+
+# Build artifacts / deps
+__pycache__/
+*.py[cod]
+node_modules/
+.svelte-kit/
+ui/build/
+dist/
+
+# Editor / OS
+.DS_Store
+*.bak
+*.orig
+.idea/
+.vscode/

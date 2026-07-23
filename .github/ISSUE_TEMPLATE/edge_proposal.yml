@@ -1,0 +1,49 @@
+name: "🧩 Propose an edge (Collapse Commons)"
+description: "Teach the engine a relationship, verb mapping, or entity type it doesn't know."
+title: "[edge] "
+labels: ["pack-proposal"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The packs are a governed commons. Proposals run the same gate the engine uses
+        (correct → validate → abstain → admit). Evidence is required. See CONTRIBUTING.md.
+  - type: input
+    id: edge
+    attributes:
+      label: Edge / relationship
+      description: e.g. `advised`, `succeeded`, `funded`
+    validations: {required: true}
+  - type: input
+    id: verbs
+    attributes:
+      label: Verbs / phrasings that map to it
+      description: comma-separated, e.g. advised, counseled, guided
+    validations: {required: true}
+  - type: input
+    id: type_pair
+    attributes:
+      label: Type pair
+      description: e.g. person → org
+    validations: {required: true}
+  - type: input
+    id: collapse_check
+    attributes:
+      label: Which existing edges did you rule out?
+      description: >
+        An edge is a concept; verbs collapse into it. List the closest existing edges and why
+        this isn't just a verb mapping onto one of them. "None — genuinely new concept" is a
+        valid answer, but you must have looked.
+    validations: {required: true}
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence (required)
+      description: One or more real example sentences, ideally with a source.
+      placeholder: "“Smith advised the board on strategy.”"
+    validations: {required: true}
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Rationale / edge cases
+      description: When should it apply — and when should it abstain instead?

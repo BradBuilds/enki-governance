@@ -1,0 +1,232 @@
+{
+  "id": "envelope.vocab.envelope_v1",
+  "type": "schema",
+  "version": "0.1.0",
+  "description": "Canonical envelope v1 schema. Every node in Enki carries an envelope of this shape. Subtype-specific required slots are enforced by completenessvocab, not by this schema.",
+  "content": {
+    "envelope_version": "v1",
+    "fields": {
+      "node_id": {"type": "string", "required": true, "format": "{type}:{stable_slug}"},
+      "node_type": {"type": "string", "required": true, "vocab": "nodevocab.node_types"},
+      "subtype": {"type": "string", "required": false, "vocab": "nodevocab.subtypes"},
+
+      "governance": {
+        "type": "object", "required": true,
+        "fields": {
+          "gdu_canonical": {"type": "boolean", "required": true},
+          "active_set_version": {"type": "string", "required": true, "format": "semver"},
+          "pack_versions": {"type": "object", "required": true, "additional_properties": {"type": "string", "format": "semver"}},
+          "ldu_t_id": {"type": "integer", "required": false, "nullable": true},
+          "ldu_p_id": {"type": "integer", "required": false, "nullable": true},
+          "admitted_at": {"type": "string", "required": true, "format": "iso8601"}
+        }
+      },
+
+      "identity": {
+        "type": "object", "required": true,
+        "fields": {
+          "title_raw": {"type": "string", "nullable": true},
+          "title_display": {"type": "string", "required": true},
+          "title_source": {"type": "string", "enum": ["feed", "body_synthesis", "structured", "translation", "human_edit"]},
+          "subtitle": {"type": "string", "nullable": true},
+          "canonical_name": {"type": "string", "nullable": true},
+          "aliases": {"type": "array", "items": {"type": "string"}},
+          "byline_raw": {"type": "string", "nullable": true},
+          "byline_resolved": {"type": "string", "nullable": true, "_doc": "entity node_id if resolved"}
+        }
+      },
+
+      "summary": {
+        "type": "object", "required": true,
+        "fields": {
+          "headline": {"type": "string", "required": true, "max_length": 280},
+          "narrative": {"type": "string", "required": true, "_doc": "2-3 sentence digest, never empty"},
+          "key_facts": {"type": "array", "items": {"type": "string"}, "max_items": 5},
+          "quotes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "fields": {
+                "speaker_raw": {"type": "string"},
+                "speaker_node_id": {"type": "string", "nullable": true},
+                "text": {"type": "string"},
+                "context": {"type": "string"},
+                "extraction_method": {"type": "string", "enum": ["direct_quote", "paraphrase", "attributed_statement"]}
+              }
+            }
+          },
+          "feed_summary": {"type": "string", "nullable": true},
+          "feed_summary_clean": {"type": "string", "nullable": true},
+          "feed_summary_translated": {"type": "string", "nullable": true},
+          "body_original": {"type": "string", "nullable": true},
+          "body_translated": {"type": "string", "nullable": true},
+          "structured_fields": {"type": "object", "nullable": true},
+          "domain_classification": {
+            "type": "string",
+            "enum": ["politics", "defense", "weather", "geo", "science", "tech", "finance", "sports", "health", "lifestyle", "diplomacy", "intelligence", "law_enforcement", "energy", "environment", "other"]
+          }
+        }
+      },
+
+      "temporal": {
+        "type": "object", "required": true,
+        "fields": {
+          "event_time": {"type": "string", "format": "iso8601", "required": true},
+          "ingested_at": {"type": "string", "format": "iso8601", "required": true},
+          "precision": {"type": "string", "enum": ["second", "minute", "hour", "day", "month", "year", "unknown"]}
+        }
+      },
+
+      "spatial": {
+        "type": "object", "required": true,
+        "fields": {
+          "coordinates": {"type": "object", "nullable": true, "_doc": "{lat, lon}"},
+          "bbox": {"type": "object", "nullable": true},
+          "place_text": {"type": "array", "items": {"type": "string"}},
+          "resolved_places": {"type": "array", "items": {"type": "string"}, "_doc": "place node_ids"},
+          "extraction_method": {"type": "string", "enum": ["feed", "gazetteer", "ner", "geocode", "implicit", "manual", "none"]}
+        }
+      },
+
+      "entities": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "fields": {
+            "node_id": {"type": "string"},
+            "name_raw": {"type": "string"},
+            "name_canonical": {"type": "string", "nullable": true},
+            "role": {"type": "string", "enum": ["subject", "object", "author", "target", "perpetrator", "witness", "mention", "subject_matter"]},
+            "confidence": {"type": "number", "min": 0.0, "max": 1.0},
+            "first_offset": {"type": "integer", "nullable": true}
+          }
+        }
+      },
+
+      "topics": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "fields": {
+            "node_id": {"type": "string"},
+            "weight": {"type": "number", "min": 0.0, "max": 1.0}
+          }
+        }
+      },
+
+      "events_referenced": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "fields": {
+            "node_id": {"type": "string"},
+            "role": {"type": "string", "enum": ["primary", "mentioned", "caused_by", "led_to"]}
+          }
+        }
+      },
+
+      "source": {
+        "type": "object", "required": true,
+        "fields": {
+          "node_id": {"type": "string"},
+          "url": {"type": "string"},
+          "discussion_url": {"type": "string", "nullable": true},
+          "outlet_name": {"type": "string"},
+          "language_declared": {"type": "string", "nullable": true},
+          "language_detected": {"type": "string", "nullable": true},
+          "language_displayed": {"type": "string", "nullable": true},
+          "editorial_stance": {"type": "string", "vocab": "nodevocab.editorial_stance"},
+          "fetched_at": {"type": "string", "format": "iso8601", "nullable": true}
+        }
+      },
+
+      "media": {
+        "type": "object", "required": false,
+        "fields": {
+          "thumbnail": {"type": "string", "nullable": true},
+          "thumbnail_source": {"type": "string", "enum": ["feed", "og_image", "first_image", "generated", "none"]},
+          "images": {"type": "array", "optional": true},
+          "videos": {"type": "array", "optional": true},
+          "audio": {"type": "array", "optional": true},
+          "embeds": {"type": "array", "optional": true}
+        }
+      },
+
+      "evidence": {
+        "type": "object", "required": true,
+        "fields": {
+          "epistemic_type": {"type": "string", "enum": ["fact", "observation", "claim", "hypothesis", "question", "recommendation"]},
+          "confidence": {"type": "number", "min": 0.0, "max": 1.0},
+          "source_count": {"type": "integer", "min": 0},
+          "corroborations": {"type": "integer", "min": 0},
+          "contradictions": {"type": "integer", "min": 0},
+          "background_relevance": {"type": "string", "vocab": "relevancevocab.tiers"},
+          "relevance_to_active_cases": {"type": "array", "items": {"type": "string"}},
+          "assessment_nodes": {"type": "array", "items": {"type": "string"}}
+        }
+      },
+
+      "relationships": {
+        "type": "object", "required": true,
+        "fields": {
+          "mentions": {"type": "array", "items": {"type": "string"}},
+          "cites": {"type": "array", "items": {"type": "string"}},
+          "cited_by": {"type": "array", "items": {"type": "string"}},
+          "follows": {"type": "string", "nullable": true},
+          "supersedes": {"type": "string", "nullable": true},
+          "superseded_by": {"type": "string", "nullable": true},
+          "part_of": {"type": "array", "items": {"type": "string"}}
+        }
+      },
+
+      "completeness": {
+        "type": "object", "required": true,
+        "fields": {
+          "score": {"type": "number", "min": 0.0, "max": 1.0},
+          "tier": {"type": "string", "vocab": "completenessvocab.tiers"},
+          "filled_slots": {"type": "integer", "min": 0},
+          "total_slots": {"type": "integer", "min": 0},
+          "gaps": {"type": "array", "items": {"type": "string"}}
+        }
+      },
+
+      "provenance": {
+        "type": "object", "required": true,
+        "fields": {
+          "extraction_passes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "fields": {
+                "stage": {"type": "string", "enum": ["connector", "cheap", "body_fetch", "translate", "deep", "resolution", "corroboration", "chronicle", "human"]},
+                "ts": {"type": "string", "format": "iso8601"},
+                "model": {"type": "string", "nullable": true},
+                "model_version": {"type": "string", "nullable": true},
+                "prompt_version": {"type": "string", "nullable": true},
+                "fields_filled": {"type": "array", "items": {"type": "string"}},
+                "duration_ms": {"type": "integer", "min": 0},
+                "success": {"type": "boolean"},
+                "error": {"type": "string", "nullable": true}
+              }
+            }
+          },
+          "human_edits": {"type": "array"}
+        }
+      },
+
+      "card_actions": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": ["open_dossier", "add_to_case", "pin_to_thread", "create_watch", "flag_contradiction", "merge_with", "edit_field"]
+        }
+      }
+    }
+  },
+  "metadata": {
+    "created": "2026-04-10T00:00:00Z",
+    "author": "ENKI System",
+    "design_basis": "tests/scenarios/envelope_pressuretest/findings.md — derived from 342 live RSS/Atom entries across 15 feeds covering English news, tech (HN garbage-title problem), geopolitics, state media, non-English (FR/DE), and structured event data (USGS earthquakes, NWS weather alerts)"
+  },
+  "dependencies": ["identity"]
+}

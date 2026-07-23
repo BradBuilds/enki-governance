@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 55" fill="currentColor" stroke="currentColor">
+  <!-- Symbol (scaled to 55px) -->
+  <g transform="translate(2,0) scale(0.55)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="26" y="26" width="48" height="48" rx="13" stroke-width="5.5" transform="rotate(45 50 50)"/>
+    <polygon points="85,50 67,20 33,20 15,50 33,80 67,80" stroke-width="5.5"/>
+  </g>
+  <!-- Wordmark -->
+  <g transform="translate(62,13)" stroke="none">
+    <path d="M0,0 H16 V4 H4.5 V11.5 H13 V15.5 H4.5 V24 H16 V28 H0 Z"/>
+    <path d="M20,28 H20 V0 H24.5 L38,19 V0 H42.5 V28 H38 L24.5,9 V28 Z"/>
+    <path d="M47,0 H51.5 V11 L63,0 H68.5 L55.5,12.5 L69,28 H63.5 L51.5,15 V28 H47 Z"/>
+    <path d="M73,0 H77.5 V28 H73 Z"/>
+  </g>
+</svg>

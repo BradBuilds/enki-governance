@@ -1,0 +1,34 @@
+{
+  "pack_id": "relevancevocab",
+  "version": "0.1.0",
+  "name": "ENKI Relevance Vocabulary Pack",
+  "description": "Defines the four background relevance tiers (none, low, medium, high) and the factors and weights used to compute them. Relevance bridges storage and attention: we store every signal but cannot show every signal. Relevance is the lever that lets exhaustive storage coexist with selective surfacing.",
+  "definitions": [
+    {
+      "id": "relevance.vocab.system",
+      "path": "definitions/relevancevocab.system.json",
+      "type": "system"
+    },
+    {
+      "id": "relevance.vocab.tiers",
+      "path": "definitions/relevancevocab.tiers.json",
+      "type": "custom"
+    },
+    {
+      "id": "relevance.vocab.factors",
+      "path": "definitions/relevancevocab.factors.json",
+      "type": "custom"
+    }
+  ],
+  "dependencies": ["identity", "nodevocab"],
+  "namespaces_owned": [
+    "relevance.vocab"
+  ],
+  "metadata": {
+    "created": "2026-04-10T00:00:00Z",
+    "author": "ENKI System",
+    "license": "AGPLv3",
+    "status": "LOCKED",
+    "change_control": "Tier definitions immutable in v1. Factor weights adjustable via Tier 1 extension because tuning is expected. Adding a new tier requires full ceremony."
+  }
+}

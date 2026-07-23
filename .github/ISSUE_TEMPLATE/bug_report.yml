@@ -1,0 +1,21 @@
+name: "🐛 Bug report"
+description: "Something isn't working."
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what
+    attributes: {label: What happened, description: What you saw vs. expected}
+    validations: {required: true}
+  - type: textarea
+    id: repro
+    attributes: {label: Steps to reproduce}
+    validations: {required: true}
+  - type: input
+    id: model
+    attributes: {label: Model (OLLAMA_MODEL), placeholder: "gemma4:e2b"}
+  - type: input
+    id: hardware
+    attributes: {label: Hardware, placeholder: "CPU-only / NVIDIA 8GB / …"}
+  - type: textarea
+    id: logs
+    attributes: {label: Relevant logs, description: "docker compose logs api", render: shell}

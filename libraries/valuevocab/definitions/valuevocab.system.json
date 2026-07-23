@@ -1,0 +1,14 @@
+{
+  "id": "value.vocab.system",
+  "type": "system",
+  "version": "0.1.0",
+  "description": "Value lattice system metadata.",
+  "content": {
+    "purpose": "Make values first-class. A value is not a string in an envelope; it's a node with its own base60 address, depth in a property lattice, and refinement relationships to other values. This is what makes 'red' subsume into 'candy red' subsume into 'Pantone 199C' as one chain, not three competing tokens.",
+    "value_identity": "A value's base60 address has the shape cycle.depth.instance, where cycle = its property's cycle (from propertyvocab.cycle_map), depth = its precision tier depth (from precisionvocab.tiers), instance = serial number among siblings at the same (cycle, depth).",
+    "refines_relation": "value A refines value B iff (a) A.property == B.property AND (b) A.depth > B.depth AND (c) A is a descendant of B in the lattice. The refines edge type is admitted through edgevocab.",
+    "alternatives": "Two values at the same (cycle, depth, parent) are ALTERNATIVES — they cannot both be true of the same node-property simultaneously. The collapse operator records this as a contradicted_by edge when both arrive.",
+    "ldu_relationship": "Free-form value strings extracted from LLM output go to LDU staging. A value-mapper worker either (a) finds an existing value in the lattice, (b) admits a new value as a child of an existing one, or (c) admits a new lattice root. Promotion to GDU requires depth + parent assignment.",
+    "federation_relationship": "Two nodes federating their assertions about the same property converge by walking the value lattice. Node A's 'red' and Node B's 'RGB(220,20,60)' both map to addresses in the color lattice; B's deeper address subsumes A's. The hub-side merge is deterministic because the lattice is governed."
+  }
+}

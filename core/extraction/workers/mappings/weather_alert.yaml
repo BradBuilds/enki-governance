@@ -1,0 +1,46 @@
+# Weather alert — NWS CAP alerts arriving via the NWS Atom feed.
+#
+# Keyed to signal.environmental.weather_alert which was added to
+# signalvocab 0.1.1 (active_set v5.0.1, 2026-04-11). Semantically
+# distinct from weather_reading: alerts are events with area polygon,
+# severity, and expiry. Readings are samples (temperature, humidity,
+# wind speed at a point in time).
+
+signal_type: signal.environmental.weather_alert
+aliases: []
+node_type: event
+subtype: weather   # matches completenessvocab spec key event.weather
+description: |
+  NWS CAP weather alert — event with area, severity, expiry. Covers
+  Special Weather Statements, Flood Warnings, Tornado Warnings, etc.
+
+field_map:
+  payload.title:     identity.title_raw
+  payload.link:      source.url
+  payload.published: temporal.event_time
+  payload.summary:   summary.body_original
+  source.outlet:     source.outlet_name
+  source.slug:       _scratch.source_slug
+
+constants:
+  summary.domain_classification: weather
+  identity.title_source: feed
+  evidence.epistemic_type: claim
+  evidence.confidence: 0.90
+  evidence.background_relevance: background
+
+templates:
+  identity.title_display: "{identity.title_raw}"
+  summary.headline: "{identity.title_raw}"
+  summary.narrative: "{summary.body_original}"
+  source.node_id: "source:{_scratch.source_slug}"
+
+extractors:
+  - places_cheap
+  - topics_cheap
+
+governance:
+  author: hand_written
+  reviewed: true
+  version: 1
+  notes: "Bridge mapping — replace when weather_alert vocab type lands."

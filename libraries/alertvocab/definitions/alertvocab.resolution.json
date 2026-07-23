@@ -1,0 +1,17 @@
+{
+  "id": "alert.vocab.resolution",
+  "type": "custom",
+  "version": "0.1.0",
+  "description": "How an alert was ultimately resolved.",
+  "content": {
+    "category": "alert_resolution",
+    "resolutions": [
+      {"resolution_id": "true_positive", "description": "Real condition, action taken"},
+      {"resolution_id": "false_positive", "description": "Not a real condition, rule needs tuning"},
+      {"resolution_id": "benign", "description": "Real activity but not harmful"},
+      {"resolution_id": "inconclusive", "description": "Could not determine, documented and closed"}
+    ]
+  },
+  "metadata": {"created": "2026-03-21T00:00:00Z", "author": "ENKI System"},
+  "dependencies": ["alert.vocab.system"]
+}

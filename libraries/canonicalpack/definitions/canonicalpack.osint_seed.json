@@ -1,0 +1,574 @@
+{
+  "id": "canonicalpack.osint_seed",
+  "type": "custom",
+  "version": "0.1.0",
+  "title": "Hand-curated OSINT seed entries",
+  "description": "High-prominence entities that show up constantly in OSINT reporting but may not have strong Wikidata sitelink counts (or that need extra aliases for the way news writes about them). Curated by hand; updated as gaps appear. Format mirrors canonicalpack.aliases.json.",
+  "content": {
+    "entries": [
+      {
+        "canonical_name": "The Pentagon",
+        "entity_type": "facility",
+        "qid": "Q11208",
+        "role": "US Department of Defense headquarters",
+        "aliases": ["pentagon", "the pentagon", "dod hq", "department of defense", "us department of defense", "u.s. department of defense", "dept of defense"]
+      },
+      {
+        "canonical_name": "White House",
+        "entity_type": "facility",
+        "qid": "Q35525",
+        "aliases": ["white house", "the white house", "1600 pennsylvania avenue"]
+      },
+      {
+        "canonical_name": "Kremlin",
+        "entity_type": "facility",
+        "qid": "Q132050",
+        "aliases": ["kremlin", "the kremlin", "moscow kremlin"]
+      },
+      {
+        "canonical_name": "Capitol Hill",
+        "entity_type": "facility",
+        "qid": "Q47928",
+        "aliases": ["capitol hill", "the capitol", "us capitol", "capitol", "u.s. capitol"]
+      },
+      {
+        "canonical_name": "Wall Street",
+        "entity_type": "facility",
+        "qid": "Q63952",
+        "aliases": ["wall street", "wall st"]
+      },
+      {
+        "canonical_name": "Silicon Valley",
+        "entity_type": "facility",
+        "aliases": ["silicon valley"]
+      },
+      {
+        "canonical_name": "Apple Inc.",
+        "entity_type": "organization",
+        "qid": "Q312",
+        "identifiers": {"ticker": "AAPL"},
+        "aliases": ["apple", "apple inc", "apple computer", "apple computers", "aapl"]
+      },
+      {
+        "canonical_name": "Alphabet Inc.",
+        "entity_type": "organization",
+        "qid": "Q20800404",
+        "identifiers": {"ticker": "GOOGL"},
+        "aliases": ["alphabet", "alphabet inc", "google parent", "googl", "goog"]
+      },
+      {
+        "canonical_name": "Google",
+        "entity_type": "organization",
+        "qid": "Q95",
+        "aliases": ["google", "google llc"]
+      },
+      {
+        "canonical_name": "Microsoft",
+        "entity_type": "organization",
+        "qid": "Q2283",
+        "identifiers": {"ticker": "MSFT"},
+        "aliases": ["microsoft", "microsoft corp", "microsoft corporation", "msft"]
+      },
+      {
+        "canonical_name": "Meta Platforms",
+        "entity_type": "organization",
+        "qid": "Q380",
+        "identifiers": {"ticker": "META"},
+        "aliases": ["meta", "facebook", "facebook inc", "meta platforms", "fb"]
+      },
+      {
+        "canonical_name": "Amazon",
+        "entity_type": "organization",
+        "qid": "Q3884",
+        "identifiers": {"ticker": "AMZN"},
+        "aliases": ["amazon", "amazon.com", "amazon.com inc", "amzn"]
+      },
+      {
+        "canonical_name": "Tesla, Inc.",
+        "entity_type": "organization",
+        "qid": "Q478214",
+        "identifiers": {"ticker": "TSLA"},
+        "aliases": ["tesla", "tesla inc", "tesla motors", "tsla"]
+      },
+      {
+        "canonical_name": "SpaceX",
+        "entity_type": "organization",
+        "qid": "Q193701",
+        "aliases": ["spacex", "space exploration technologies", "space x"]
+      },
+      {
+        "canonical_name": "Lockheed Martin",
+        "entity_type": "organization",
+        "qid": "Q319819",
+        "identifiers": {"ticker": "LMT"},
+        "aliases": ["lockheed", "lockheed martin", "lockheed martin corp", "lockheed martin corporation", "lmt"]
+      },
+      {
+        "canonical_name": "Boeing",
+        "entity_type": "organization",
+        "qid": "Q66",
+        "identifiers": {"ticker": "BA"},
+        "aliases": ["boeing", "the boeing company", "boeing co"]
+      },
+      {
+        "canonical_name": "Raytheon Technologies",
+        "entity_type": "organization",
+        "qid": "Q464795",
+        "identifiers": {"ticker": "RTX"},
+        "aliases": ["raytheon", "raytheon technologies", "rtx"]
+      },
+      {
+        "canonical_name": "Northrop Grumman",
+        "entity_type": "organization",
+        "qid": "Q570473",
+        "identifiers": {"ticker": "NOC"},
+        "aliases": ["northrop grumman", "northrop", "noc"]
+      },
+      {
+        "canonical_name": "General Dynamics",
+        "entity_type": "organization",
+        "qid": "Q509314",
+        "identifiers": {"ticker": "GD"},
+        "aliases": ["general dynamics", "gd"]
+      },
+      {
+        "canonical_name": "BAE Systems",
+        "entity_type": "organization",
+        "qid": "Q161885",
+        "aliases": ["bae systems", "bae"]
+      },
+      {
+        "canonical_name": "Rheinmetall",
+        "entity_type": "organization",
+        "qid": "Q170282",
+        "aliases": ["rheinmetall", "rheinmetall ag"]
+      },
+      {
+        "canonical_name": "Palantir Technologies",
+        "entity_type": "organization",
+        "qid": "Q7126381",
+        "identifiers": {"ticker": "PLTR"},
+        "aliases": ["palantir", "palantir technologies", "pltr"]
+      },
+      {
+        "canonical_name": "Anduril Industries",
+        "entity_type": "organization",
+        "qid": "Q105641038",
+        "aliases": ["anduril", "anduril industries"]
+      },
+      {
+        "canonical_name": "OpenAI",
+        "entity_type": "organization",
+        "qid": "Q21708200",
+        "aliases": ["openai", "open ai", "open a.i."]
+      },
+      {
+        "canonical_name": "Anthropic",
+        "entity_type": "organization",
+        "aliases": ["anthropic", "anthropic pbc"]
+      },
+      {
+        "canonical_name": "NVIDIA",
+        "entity_type": "organization",
+        "qid": "Q182477",
+        "identifiers": {"ticker": "NVDA"},
+        "aliases": ["nvidia", "nvidia corp", "nvidia corporation", "nvda"]
+      },
+      {
+        "canonical_name": "Intel",
+        "entity_type": "organization",
+        "qid": "Q248",
+        "identifiers": {"ticker": "INTC"},
+        "aliases": ["intel", "intel corp", "intel corporation", "intc"]
+      },
+      {
+        "canonical_name": "Tim Cook",
+        "entity_type": "person",
+        "qid": "Q312087",
+        "role": "CEO Apple",
+        "aliases": ["tim cook", "timothy cook"]
+      },
+      {
+        "canonical_name": "Elon Musk",
+        "entity_type": "person",
+        "qid": "Q317521",
+        "role": "CEO Tesla SpaceX X",
+        "aliases": ["elon musk", "musk", "@elonmusk"]
+      },
+      {
+        "canonical_name": "Jeff Bezos",
+        "entity_type": "person",
+        "qid": "Q312556",
+        "role": "founder Amazon",
+        "aliases": ["jeff bezos", "Alex bezos", "bezos"]
+      },
+      {
+        "canonical_name": "Mark Zuckerberg",
+        "entity_type": "person",
+        "qid": "Q36215",
+        "role": "CEO Meta",
+        "aliases": ["mark zuckerberg", "zuckerberg", "zuck"]
+      },
+      {
+        "canonical_name": "Sam Altman",
+        "entity_type": "person",
+        "qid": "Q30948605",
+        "role": "CEO OpenAI",
+        "aliases": ["sam altman", "samuel altman", "altman"]
+      },
+      {
+        "canonical_name": "Volodymyr Zelensky",
+        "entity_type": "person",
+        "qid": "Q291169",
+        "role": "President Ukraine",
+        "aliases": ["zelensky", "zelenskyy", "volodymyr zelensky", "volodymyr zelenskyy", "zelenskiy"]
+      },
+      {
+        "canonical_name": "Narendra Modi",
+        "entity_type": "person",
+        "qid": "Q1058",
+        "role": "PM India",
+        "aliases": ["modi", "narendra modi", "pm modi"]
+      },
+      {
+        "canonical_name": "Mohammed bin Salman",
+        "entity_type": "person",
+        "qid": "Q2522709",
+        "role": "Crown Prince Saudi Arabia",
+        "aliases": ["mbs", "mohammed bin salman", "mohammad bin salman", "crown prince mbs"]
+      },
+      {
+        "canonical_name": "Kim Jong Un",
+        "entity_type": "person",
+        "qid": "Q57231",
+        "role": "Supreme Leader North Korea",
+        "aliases": ["kim jong un", "kim jong-un", "kim", "north korea leader"]
+      },
+      {
+        "canonical_name": "Ali Khamenei",
+        "entity_type": "person",
+        "qid": "Q179695",
+        "role": "Supreme Leader Iran",
+        "aliases": ["khamenei", "ali khamenei", "ayatollah khamenei", "supreme leader khamenei"]
+      },
+      {
+        "canonical_name": "Volodymyr Putin",
+        "entity_type": "person",
+        "qid": "Q7747",
+        "role": "President Russia (alias variant)",
+        "aliases": []
+      },
+      {
+        "canonical_name": "ExxonMobil",
+        "entity_type": "organization",
+        "qid": "Q156238",
+        "identifiers": {"ticker": "XOM"},
+        "aliases": ["exxon", "exxonmobil", "exxon mobil", "xom"]
+      },
+      {
+        "canonical_name": "Chevron",
+        "entity_type": "organization",
+        "qid": "Q319642",
+        "identifiers": {"ticker": "CVX"},
+        "aliases": ["chevron", "chevron corp", "cvx"]
+      },
+      {
+        "canonical_name": "JPMorgan Chase",
+        "entity_type": "organization",
+        "qid": "Q192314",
+        "identifiers": {"ticker": "JPM"},
+        "aliases": ["jpmorgan", "jp morgan", "jpmorgan chase", "chase", "jpm"]
+      },
+      {
+        "canonical_name": "Goldman Sachs",
+        "entity_type": "organization",
+        "qid": "Q193326",
+        "identifiers": {"ticker": "GS"},
+        "aliases": ["goldman", "goldman sachs", "goldman sachs group", "gs"]
+      },
+      {
+        "canonical_name": "BlackRock",
+        "entity_type": "organization",
+        "qid": "Q219635",
+        "identifiers": {"ticker": "BLK"},
+        "aliases": ["blackrock", "black rock", "blk"]
+      },
+      {
+        "canonical_name": "Saudi Aramco",
+        "entity_type": "organization",
+        "qid": "Q1141397",
+        "aliases": ["aramco", "saudi aramco", "saudi arabian oil company"]
+      },
+      {
+        "canonical_name": "Gazprom",
+        "entity_type": "organization",
+        "qid": "Q102673",
+        "aliases": ["gazprom", "gazprom pjsc"]
+      },
+      {
+        "canonical_name": "Huawei",
+        "entity_type": "organization",
+        "qid": "Q47408",
+        "aliases": ["huawei", "huawei technologies"]
+      },
+      {
+        "canonical_name": "TSMC",
+        "entity_type": "organization",
+        "qid": "Q47472",
+        "identifiers": {"ticker": "TSM"},
+        "aliases": ["tsmc", "taiwan semiconductor", "taiwan semiconductor manufacturing", "tsm"]
+      },
+      {
+        "canonical_name": "Samsung",
+        "entity_type": "organization",
+        "qid": "Q20716",
+        "aliases": ["samsung", "samsung group", "samsung electronics"]
+      },
+      {
+        "canonical_name": "BYD",
+        "entity_type": "organization",
+        "qid": "Q834032",
+        "aliases": ["byd", "byd company", "byd auto"]
+      },
+      {
+        "canonical_name": "Hamas",
+        "entity_type": "organization",
+        "qid": "Q41716",
+        "aliases": ["hamas", "ḥarakat al-muqāwama al-islāmiyya"]
+      },
+      {
+        "canonical_name": "Hezbollah",
+        "entity_type": "organization",
+        "qid": "Q170550",
+        "aliases": ["hezbollah", "hizballah", "hizbullah"]
+      },
+      {
+        "canonical_name": "Wagner Group",
+        "entity_type": "organization",
+        "qid": "Q19606782",
+        "aliases": ["wagner", "wagner group", "pmc wagner", "wagner pmc"]
+      },
+      {
+        "canonical_name": "Houthi Movement",
+        "entity_type": "organization",
+        "qid": "Q1378252",
+        "aliases": ["houthis", "houthi movement", "ansar allah", "ansarullah"]
+      },
+      {
+        "canonical_name": "Islamic State",
+        "entity_type": "organization",
+        "qid": "Q83259",
+        "aliases": ["isis", "isil", "daesh", "islamic state", "islamic state of iraq and syria", "islamic state of iraq and the levant", "is"]
+      },
+      {
+        "canonical_name": "Taliban",
+        "entity_type": "organization",
+        "qid": "Q7843",
+        "aliases": ["taliban", "talebanic", "afghan taliban"]
+      },
+      {
+        "canonical_name": "Federal Reserve",
+        "entity_type": "government_agency",
+        "qid": "Q53536",
+        "aliases": ["fed", "the fed", "federal reserve", "federal reserve system", "us federal reserve"]
+      },
+      {
+        "canonical_name": "ECB",
+        "entity_type": "government_agency",
+        "qid": "Q8901",
+        "aliases": ["ecb", "european central bank"]
+      },
+      {
+        "canonical_name": "FBI",
+        "entity_type": "government_agency",
+        "qid": "Q8333",
+        "aliases": ["fbi", "federal bureau of investigation", "the fbi"]
+      },
+      {
+        "canonical_name": "NSA",
+        "entity_type": "government_agency",
+        "qid": "Q121594",
+        "aliases": ["nsa", "national security agency", "the nsa"]
+      },
+      {
+        "canonical_name": "MI6",
+        "entity_type": "government_agency",
+        "qid": "Q166635",
+        "aliases": ["mi6", "sis", "secret intelligence service", "british intelligence"]
+      },
+      {
+        "canonical_name": "Mossad",
+        "entity_type": "government_agency",
+        "qid": "Q21135",
+        "aliases": ["mossad", "the mossad", "israeli intelligence"]
+      },
+      {
+        "canonical_name": "FSB",
+        "entity_type": "government_agency",
+        "qid": "Q200023",
+        "aliases": ["fsb", "russian federal security service"]
+      },
+      {
+        "canonical_name": "GRU",
+        "entity_type": "government_agency",
+        "qid": "Q391031",
+        "aliases": ["gru", "russian military intelligence", "main intelligence directorate"]
+      },
+      {
+        "canonical_name": "European Union",
+        "entity_type": "organization",
+        "qid": "Q458",
+        "aliases": ["eu", "european union", "european commission", "european council"]
+      },
+      {
+        "canonical_name": "Olaf Scholz",
+        "entity_type": "person",
+        "qid": "Q61053",
+        "role": "Chancellor Germany",
+        "aliases": ["olaf scholz", "scholz", "chancellor scholz"]
+      },
+      {
+        "canonical_name": "Friedrich Merz",
+        "entity_type": "person",
+        "qid": "Q60339",
+        "role": "Chancellor Germany",
+        "aliases": ["friedrich merz", "merz", "chancellor merz"]
+      },
+      {
+        "canonical_name": "Keir Starmer",
+        "entity_type": "person",
+        "qid": "Q56542",
+        "role": "PM UK",
+        "aliases": ["keir starmer", "starmer", "pm starmer"]
+      },
+      {
+        "canonical_name": "Sundar Pichai",
+        "entity_type": "person",
+        "qid": "Q15706812",
+        "role": "CEO Google Alphabet",
+        "aliases": ["sundar pichai", "pichai"]
+      },
+      {
+        "canonical_name": "Satya Nadella",
+        "entity_type": "person",
+        "qid": "Q5466291",
+        "role": "CEO Microsoft",
+        "aliases": ["satya nadella", "nadella"]
+      },
+      {
+        "canonical_name": "Jensen Huang",
+        "entity_type": "person",
+        "qid": "Q3179580",
+        "role": "CEO NVIDIA",
+        "aliases": ["jensen huang", "jensen", "huang"]
+      },
+      {
+        "canonical_name": "Dario Amodei",
+        "entity_type": "person",
+        "role": "CEO Anthropic",
+        "aliases": ["dario amodei", "amodei"]
+      },
+      {
+        "canonical_name": "Mira Murati",
+        "entity_type": "person",
+        "aliases": ["mira murati", "murati"]
+      },
+      {
+        "canonical_name": "Sam Bankman-Fried",
+        "entity_type": "person",
+        "qid": "Q66616983",
+        "aliases": ["sam bankman-fried", "sbf", "bankman-fried"]
+      },
+      {
+        "canonical_name": "Baykar",
+        "entity_type": "organization",
+        "qid": "Q6072330",
+        "aliases": ["baykar", "baykar makina", "baykar defense"]
+      },
+      {
+        "canonical_name": "Lukoil",
+        "entity_type": "organization",
+        "qid": "Q193380",
+        "aliases": ["lukoil", "lukoil pjsc", "oao lukoil"]
+      },
+      {
+        "canonical_name": "Rosneft",
+        "entity_type": "organization",
+        "qid": "Q1141123",
+        "aliases": ["rosneft", "rosneft oil company"]
+      },
+      {
+        "canonical_name": "Bombardier",
+        "entity_type": "organization",
+        "qid": "Q263637",
+        "aliases": ["bombardier", "bombardier inc"]
+      },
+      {
+        "canonical_name": "Rolls-Royce Holdings",
+        "entity_type": "organization",
+        "qid": "Q220755",
+        "aliases": ["rolls-royce", "rolls royce", "rolls-royce holdings", "rr"]
+      },
+      {
+        "canonical_name": "Airbus",
+        "entity_type": "organization",
+        "qid": "Q67",
+        "aliases": ["airbus", "airbus se", "airbus group"]
+      },
+      {
+        "canonical_name": "Dassault Aviation",
+        "entity_type": "organization",
+        "qid": "Q179830",
+        "aliases": ["dassault", "dassault aviation"]
+      },
+      {
+        "canonical_name": "Thales Group",
+        "entity_type": "organization",
+        "qid": "Q160746",
+        "aliases": ["thales", "thales group", "thales sa"]
+      },
+      {
+        "canonical_name": "Leonardo",
+        "entity_type": "organization",
+        "qid": "Q910379",
+        "aliases": ["leonardo", "leonardo spa", "finmeccanica"]
+      },
+      {
+        "canonical_name": "Rheinmetall",
+        "entity_type": "organization",
+        "qid": "Q170282",
+        "aliases": ["rheinmetall", "rheinmetall ag"]
+      },
+      {
+        "canonical_name": "Lockheed Martin Skunk Works",
+        "entity_type": "organization",
+        "qid": "Q651583",
+        "aliases": ["skunk works", "lockheed skunk works", "advanced development programs"]
+      },
+      {
+        "canonical_name": "DARPA",
+        "entity_type": "government_agency",
+        "qid": "Q1230362",
+        "aliases": ["darpa", "defense advanced research projects agency"]
+      },
+      {
+        "canonical_name": "NORAD",
+        "entity_type": "government_agency",
+        "qid": "Q321920",
+        "aliases": ["norad", "north american aerospace defense command"]
+      },
+      {
+        "canonical_name": "U.S. Cyber Command",
+        "entity_type": "unit",
+        "qid": "Q1071957",
+        "aliases": ["cybercom", "u.s. cyber command", "us cyber command", "cyber command"]
+      },
+      {
+        "canonical_name": "U.S. Space Force",
+        "entity_type": "unit",
+        "qid": "Q72685099",
+        "aliases": ["space force", "u.s. space force", "us space force", "ussf"]
+      }
+    ]
+  }
+}

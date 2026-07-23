@@ -1,0 +1,18 @@
+{
+  "id": "precision.vocab.system",
+  "type": "system",
+  "version": "0.1.0",
+  "description": "Precision tier vocabulary system metadata.",
+  "content": {
+    "purpose": "Define the universal precision scale that every property's value lattice maps to. Without precision tiers, the collapse operator can't tell 'red' (shallow attestation) from 'RGB(220,20,60)' (formal spec) — both look like 'a value' to the substrate. With them, the substrate keeps both, knows which is more specific, and merges them as refinements rather than conflicts.",
+    "invariants": [
+      "Every value in the substrate has a precision_tier from this vocabulary.",
+      "Tier depths are integers in [0, ∞). Higher depth = more specific.",
+      "depth=0 is reserved for the property concept itself (no value, just the dimension).",
+      "depth=∞ ('enumerated') is reserved for closed enumerations where there is no further refinement possible (ISO 639 language codes, MMSI vessel numbers).",
+      "Two values at the same depth on the same property = alternatives. Two values at different depths on the same property in the same chain = refinements."
+    ],
+    "ldu_relationship": "LDU intake can record a value WITHOUT a precision tier (precision_tier='unspecified'). The admission worker uses the property's value-lattice to infer the right tier before GDU admission. Unspecified-tier assertions stay flowable in LDU but are not authoritative until promoted.",
+    "federation_relationship": "Cross-node assertions about the same (node, property) merge via the collapse operator. Tier depth IS the merge ordering — deepest assertion is the canonical value, shallower assertions become attestations. No node loses its data; the network gets the most precise version available."
+  }
+}

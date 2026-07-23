@@ -1,0 +1,3635 @@
+{
+  "id": "edgevocab.predicate_seeds",
+  "type": "predicate_dictionary",
+  "version": "1.1.0",
+  "description": "Hand-seeded verb-lemma \u2192 edge_type mapping. The verb-side counterpart to the noun-side lemma_concept_def edges. When the statement extractor sees a verb in a paragraph, this map tells it which canonical edge_type to use. Entries grow empirically over time via collapse_decisions: a verb that consistently resolves to the same edge type sharpens its confidence; new verbs accumulate observations and graduate to first-class dictionary entries.",
+  "rationale": "Surface verbs are polysemous (own/owned/owns/possessed/held/had/acquired all map to `owns`). Without this dictionary the LLM extractor has to invent the predicate per-occurrence \u2014 that's where the 19,838 invalid edges came from. The dictionary is the gate.",
+  "seeds": [
+    {
+      "lemma": "own",
+      "edge_type": "owns",
+      "confidence": 0.95
+    },
+    {
+      "lemma": "owns",
+      "edge_type": "owns",
+      "confidence": 0.95
+    },
+    {
+      "lemma": "owned",
+      "edge_type": "owns",
+      "confidence": 0.95
+    },
+    {
+      "lemma": "possess",
+      "edge_type": "owns",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "hold",
+      "edge_type": "owns",
+      "confidence": 0.7
+    },
+    {
+      "lemma": "acquire",
+      "edge_type": "owns",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "purchase",
+      "edge_type": "owns",
+      "confidence": 0.9
+    },
+    {
+      "lemma": "buy",
+      "edge_type": "owns",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "fly",
+      "edge_type": "flew_with",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "flew",
+      "edge_type": "flew_with",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "flown",
+      "edge_type": "flew_with",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "travel",
+      "edge_type": "traveled_with",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "traveled",
+      "edge_type": "traveled_with",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "travelled",
+      "edge_type": "traveled_with",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "accompany",
+      "edge_type": "accompanied",
+      "confidence": 0.9
+    },
+    {
+      "lemma": "accompanied",
+      "edge_type": "accompanied",
+      "confidence": 0.9
+    },
+    {
+      "lemma": "meet",
+      "edge_type": "met_with",
+      "confidence": 0.9
+    },
+    {
+      "lemma": "met",
+      "edge_type": "met_with",
+      "confidence": 0.9
+    },
+    {
+      "lemma": "convene",
+      "edge_type": "met_with",
+      "confidence": 0.8
+    },
+    {
+      "lemma": "gather",
+      "edge_type": "met_with",
+      "confidence": 0.7
+    },
+    {
+      "lemma": "know",
+      "edge_type": "claimed_to_know",
+      "confidence": 0.65
+    },
+    {
+      "lemma": "knew",
+      "edge_type": "claimed_to_know",
+      "confidence": 0.65
+    },
+    {
+      "lemma": "introduce",
+      "edge_type": "introduced",
+      "confidence": 0.92
+    },
+    {
+      "lemma": "introduced",
+      "edge_type": "introduced",
+      "confidence": 0.92
+    },
+    {
+      "lemma": "communicate",
+      "edge_type": "communicated_with",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "speak",
+      "edge_type": "communicated_with",
+      "confidence": 0.65
+    },
+    {
+      "lemma": "call",
+      "edge_type": "communicated_with",
+      "confidence": 0.75
+    },
+    {
+      "lemma": "email",
+      "edge_type": "communicated_with",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "write",
+      "edge_type": "communicated_with",
+      "confidence": 0.6
+    },
+    {
+      "lemma": "text",
+      "edge_type": "communicated_with",
+      "confidence": 0.8
+    },
+    {
+      "lemma": "pay",
+      "edge_type": "paid",
+      "confidence": 0.9
+    },
+    {
+      "lemma": "paid",
+      "edge_type": "paid",
+      "confidence": 0.9
+    },
+    {
+      "lemma": "receive",
+      "edge_type": "received_from",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "received",
+      "edge_type": "received_from",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "donate",
+      "edge_type": "donor_to",
+      "confidence": 0.9
+    },
+    {
+      "lemma": "contribute",
+      "edge_type": "donor_to",
+      "confidence": 0.8
+    },
+    {
+      "lemma": "transfer",
+      "edge_type": "transferred_to",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "wire",
+      "edge_type": "transferred_to",
+      "confidence": 0.8
+    },
+    {
+      "lemma": "employ",
+      "edge_type": "employed",
+      "confidence": 0.9
+    },
+    {
+      "lemma": "employed",
+      "edge_type": "employed",
+      "confidence": 0.9
+    },
+    {
+      "lemma": "hire",
+      "edge_type": "employed",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "appoint",
+      "edge_type": "appointed",
+      "confidence": 0.9
+    },
+    {
+      "lemma": "appointed",
+      "edge_type": "appointed",
+      "confidence": 0.9
+    },
+    {
+      "lemma": "represent",
+      "edge_type": "represented",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "represented",
+      "edge_type": "represented",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "testify",
+      "edge_type": "testified_against",
+      "confidence": 0.6
+    },
+    {
+      "lemma": "testified",
+      "edge_type": "testified_against",
+      "confidence": 0.6
+    },
+    {
+      "lemma": "accuse",
+      "edge_type": "accused",
+      "confidence": 0.9
+    },
+    {
+      "lemma": "accused",
+      "edge_type": "accused",
+      "confidence": 0.9
+    },
+    {
+      "lemma": "allege",
+      "edge_type": "alleged",
+      "confidence": 0.92
+    },
+    {
+      "lemma": "alleged",
+      "edge_type": "alleged",
+      "confidence": 0.92
+    },
+    {
+      "lemma": "claim",
+      "edge_type": "alleged",
+      "confidence": 0.7
+    },
+    {
+      "lemma": "claimed",
+      "edge_type": "alleged",
+      "confidence": 0.7
+    },
+    {
+      "lemma": "deny",
+      "edge_type": "denied",
+      "confidence": 0.92
+    },
+    {
+      "lemma": "denied",
+      "edge_type": "denied",
+      "confidence": 0.92
+    },
+    {
+      "lemma": "witness",
+      "edge_type": "witnessed",
+      "confidence": 0.9
+    },
+    {
+      "lemma": "witnessed",
+      "edge_type": "witnessed",
+      "confidence": 0.9
+    },
+    {
+      "lemma": "inform",
+      "edge_type": "informed_on",
+      "confidence": 0.7
+    },
+    {
+      "lemma": "corroborate",
+      "edge_type": "corroborated",
+      "confidence": 0.95
+    },
+    {
+      "lemma": "found",
+      "edge_type": "founded_by",
+      "confidence": 0.8,
+      "polarity_modifier": "inverse"
+    },
+    {
+      "lemma": "founded",
+      "edge_type": "founded_by",
+      "confidence": 0.8,
+      "polarity_modifier": "inverse"
+    },
+    {
+      "lemma": "establish",
+      "edge_type": "founded_by",
+      "confidence": 0.75,
+      "polarity_modifier": "inverse"
+    },
+    {
+      "lemma": "lead",
+      "edge_type": "officer_of",
+      "confidence": 0.65
+    },
+    {
+      "lemma": "led",
+      "edge_type": "officer_of",
+      "confidence": 0.65
+    },
+    {
+      "lemma": "direct",
+      "edge_type": "officer_of",
+      "confidence": 0.75
+    },
+    {
+      "lemma": "manage",
+      "edge_type": "officer_of",
+      "confidence": 0.7
+    },
+    {
+      "lemma": "locate",
+      "edge_type": "located_at",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "located",
+      "edge_type": "located_at",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "headquarter",
+      "edge_type": "headquartered_in",
+      "confidence": 0.92
+    },
+    {
+      "lemma": "headquartered",
+      "edge_type": "headquartered_in",
+      "confidence": 0.92
+    },
+    {
+      "lemma": "reside",
+      "edge_type": "located_at",
+      "confidence": 0.8
+    },
+    {
+      "lemma": "live",
+      "edge_type": "located_at",
+      "confidence": 0.6
+    },
+    {
+      "lemma": "stay",
+      "edge_type": "located_at",
+      "confidence": 0.55
+    },
+    {
+      "lemma": "visit",
+      "edge_type": "traveled_to",
+      "confidence": 0.88
+    },
+    {
+      "lemma": "visited",
+      "edge_type": "traveled_to",
+      "confidence": 0.88
+    },
+    {
+      "lemma": "depart",
+      "edge_type": "departed_from",
+      "confidence": 0.9
+    },
+    {
+      "lemma": "departed",
+      "edge_type": "departed_from",
+      "confidence": 0.9
+    },
+    {
+      "lemma": "arrive",
+      "edge_type": "arrived_at",
+      "confidence": 0.9
+    },
+    {
+      "lemma": "arrived",
+      "edge_type": "arrived_at",
+      "confidence": 0.9
+    },
+    {
+      "lemma": "attend",
+      "edge_type": "participated_in",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "attended",
+      "edge_type": "participated_in",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "participate",
+      "edge_type": "participated_in",
+      "confidence": 0.95
+    },
+    {
+      "lemma": "host",
+      "edge_type": "hosted",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "hosted",
+      "edge_type": "hosted",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "marry",
+      "edge_type": "spouse_of",
+      "confidence": 0.95
+    },
+    {
+      "lemma": "married",
+      "edge_type": "spouse_of",
+      "confidence": 0.95
+    },
+    {
+      "lemma": "father",
+      "edge_type": "parent_of_person",
+      "confidence": 0.9,
+      "polarity_modifier": "father"
+    },
+    {
+      "lemma": "mother",
+      "edge_type": "parent_of_person",
+      "confidence": 0.9,
+      "polarity_modifier": "mother"
+    },
+    {
+      "lemma": "born",
+      "edge_type": "child_of",
+      "confidence": 0.75
+    },
+    {
+      "lemma": "said",
+      "edge_type": "communicated_with",
+      "confidence": 0.8,
+      "_v2_note": "irregular past of say"
+    },
+    {
+      "lemma": "told",
+      "edge_type": "communicated_with",
+      "confidence": 0.8,
+      "_v2_note": "irregular past of tell"
+    },
+    {
+      "lemma": "saw",
+      "edge_type": "witnessed",
+      "confidence": 0.85,
+      "_v2_note": "irregular past of see"
+    },
+    {
+      "lemma": "seen",
+      "edge_type": "witnessed",
+      "confidence": 0.85,
+      "_v2_note": "irregular pp of see"
+    },
+    {
+      "lemma": "see",
+      "edge_type": "witnessed",
+      "confidence": 0.75
+    },
+    {
+      "lemma": "heard",
+      "edge_type": "claimed_to_know",
+      "confidence": 0.7
+    },
+    {
+      "lemma": "hear",
+      "edge_type": "claimed_to_know",
+      "confidence": 0.65
+    },
+    {
+      "lemma": "found",
+      "edge_type": "located_at",
+      "confidence": 0.65,
+      "_v2_note": "ambiguous; could be 'discovered'"
+    },
+    {
+      "lemma": "find",
+      "edge_type": "located_at",
+      "confidence": 0.6
+    },
+    {
+      "lemma": "thought",
+      "edge_type": "alleged",
+      "confidence": 0.65
+    },
+    {
+      "lemma": "think",
+      "edge_type": "alleged",
+      "confidence": 0.6
+    },
+    {
+      "lemma": "believe",
+      "edge_type": "alleged",
+      "confidence": 0.75
+    },
+    {
+      "lemma": "believed",
+      "edge_type": "alleged",
+      "confidence": 0.75
+    },
+    {
+      "lemma": "report",
+      "edge_type": "communicated_with",
+      "confidence": 0.75
+    },
+    {
+      "lemma": "reported",
+      "edge_type": "communicated_with",
+      "confidence": 0.8
+    },
+    {
+      "lemma": "confirmed",
+      "edge_type": "corroborated",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "confirm",
+      "edge_type": "corroborated",
+      "confidence": 0.8
+    },
+    {
+      "lemma": "denied",
+      "edge_type": "denied",
+      "confidence": 0.92
+    },
+    {
+      "lemma": "deny",
+      "edge_type": "denied",
+      "confidence": 0.92
+    },
+    {
+      "lemma": "accused",
+      "edge_type": "accused",
+      "confidence": 0.92
+    },
+    {
+      "lemma": "claim",
+      "edge_type": "alleged",
+      "confidence": 0.75
+    },
+    {
+      "lemma": "claimed",
+      "edge_type": "alleged",
+      "confidence": 0.8
+    },
+    {
+      "lemma": "knew",
+      "edge_type": "claimed_to_know",
+      "confidence": 0.65
+    },
+    {
+      "lemma": "known",
+      "edge_type": "claimed_to_know",
+      "confidence": 0.65
+    },
+    {
+      "lemma": "went",
+      "edge_type": "traveled_to",
+      "confidence": 0.8,
+      "_v2_note": "irregular past of go"
+    },
+    {
+      "lemma": "gone",
+      "edge_type": "traveled_to",
+      "confidence": 0.75
+    },
+    {
+      "lemma": "go",
+      "edge_type": "traveled_to",
+      "confidence": 0.7
+    },
+    {
+      "lemma": "came",
+      "edge_type": "arrived_at",
+      "confidence": 0.75
+    },
+    {
+      "lemma": "come",
+      "edge_type": "arrived_at",
+      "confidence": 0.7
+    },
+    {
+      "lemma": "took",
+      "edge_type": "communicated_with",
+      "confidence": 0.55,
+      "_v2_note": "weak: 'took a meeting with' / 'took control'"
+    },
+    {
+      "lemma": "take",
+      "edge_type": "communicated_with",
+      "confidence": 0.5
+    },
+    {
+      "lemma": "gave",
+      "edge_type": "communicated_with",
+      "confidence": 0.55,
+      "_v2_note": "'gave a statement'"
+    },
+    {
+      "lemma": "give",
+      "edge_type": "communicated_with",
+      "confidence": 0.5
+    },
+    {
+      "lemma": "asked",
+      "edge_type": "communicated_with",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "replied",
+      "edge_type": "communicated_with",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "answered",
+      "edge_type": "communicated_with",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "wrote",
+      "edge_type": "communicated_with",
+      "confidence": 0.8
+    },
+    {
+      "lemma": "write",
+      "edge_type": "communicated_with",
+      "confidence": 0.75
+    },
+    {
+      "lemma": "written",
+      "edge_type": "communicated_with",
+      "confidence": 0.8
+    },
+    {
+      "lemma": "interviewed",
+      "edge_type": "communicated_with",
+      "confidence": 0.9
+    },
+    {
+      "lemma": "interview",
+      "edge_type": "communicated_with",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "questioned",
+      "edge_type": "communicated_with",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "called",
+      "edge_type": "communicated_with",
+      "confidence": 0.75
+    },
+    {
+      "lemma": "phoned",
+      "edge_type": "communicated_with",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "operated",
+      "edge_type": "controls",
+      "confidence": 0.8
+    },
+    {
+      "lemma": "operate",
+      "edge_type": "controls",
+      "confidence": 0.75
+    },
+    {
+      "lemma": "ran",
+      "edge_type": "officer_of",
+      "confidence": 0.65,
+      "_v2_note": "'ran the company'"
+    },
+    {
+      "lemma": "run",
+      "edge_type": "officer_of",
+      "confidence": 0.6
+    },
+    {
+      "lemma": "led",
+      "edge_type": "officer_of",
+      "confidence": 0.75
+    },
+    {
+      "lemma": "lead",
+      "edge_type": "officer_of",
+      "confidence": 0.7
+    },
+    {
+      "lemma": "managed",
+      "edge_type": "officer_of",
+      "confidence": 0.8
+    },
+    {
+      "lemma": "served",
+      "edge_type": "officer_of",
+      "confidence": 0.75,
+      "_v2_note": "'served as director'"
+    },
+    {
+      "lemma": "worked",
+      "edge_type": "employed",
+      "confidence": 0.75
+    },
+    {
+      "lemma": "work",
+      "edge_type": "employed",
+      "confidence": 0.7
+    },
+    {
+      "lemma": "appear",
+      "edge_type": "appears_in",
+      "confidence": 0.7,
+      "_v3_note": "May 2026: common LLM output verb"
+    },
+    {
+      "lemma": "appeared",
+      "edge_type": "appears_in",
+      "confidence": 0.7
+    },
+    {
+      "lemma": "appears",
+      "edge_type": "appears_in",
+      "confidence": 0.7
+    },
+    {
+      "lemma": "describe",
+      "edge_type": "said_about",
+      "confidence": 0.6,
+      "_v3_note": "doc describes entity \u2192 narrator said_about entity"
+    },
+    {
+      "lemma": "described",
+      "edge_type": "said_about",
+      "confidence": 0.6
+    },
+    {
+      "lemma": "describes",
+      "edge_type": "said_about",
+      "confidence": 0.6
+    },
+    {
+      "lemma": "equal",
+      "edge_type": "same_as",
+      "confidence": 0.75,
+      "_v3_note": "identity assertion"
+    },
+    {
+      "lemma": "equals",
+      "edge_type": "same_as",
+      "confidence": 0.75
+    },
+    {
+      "lemma": "equaled",
+      "edge_type": "same_as",
+      "confidence": 0.75
+    },
+    {
+      "lemma": "relate",
+      "edge_type": "co_occurs_with",
+      "confidence": 0.5,
+      "_v3_note": "low conf; relate is weak signal"
+    },
+    {
+      "lemma": "related",
+      "edge_type": "co_occurs_with",
+      "confidence": 0.5
+    },
+    {
+      "lemma": "relates",
+      "edge_type": "co_occurs_with",
+      "confidence": 0.5
+    },
+    {
+      "lemma": "include",
+      "edge_type": "part_of",
+      "confidence": 0.6,
+      "_v3_note": "INVERSE: A includes B means B part_of A. Pipeline should swap subj/obj when this lemma fires."
+    },
+    {
+      "lemma": "included",
+      "edge_type": "part_of",
+      "confidence": 0.6,
+      "_v3_note": "INVERSE: see 'include'"
+    },
+    {
+      "lemma": "includes",
+      "edge_type": "part_of",
+      "confidence": 0.6,
+      "_v3_note": "INVERSE: see 'include'"
+    },
+    {
+      "lemma": "contain",
+      "edge_type": "covers",
+      "confidence": 0.6,
+      "_v3_note": "doc/report contains topic"
+    },
+    {
+      "lemma": "contained",
+      "edge_type": "covers",
+      "confidence": 0.6
+    },
+    {
+      "lemma": "contains",
+      "edge_type": "covers",
+      "confidence": 0.6
+    },
+    {
+      "lemma": "spoke",
+      "edge_type": "communicated_with",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "spoken",
+      "edge_type": "communicated_with",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "speaks",
+      "edge_type": "communicated_with",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "talk",
+      "edge_type": "communicated_with",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "talked",
+      "edge_type": "communicated_with",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "talking",
+      "edge_type": "communicated_with",
+      "confidence": 0.65,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "talks",
+      "edge_type": "communicated_with",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "discuss",
+      "edge_type": "communicated_with",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "discussed",
+      "edge_type": "communicated_with",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "discusses",
+      "edge_type": "communicated_with",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "converse",
+      "edge_type": "communicated_with",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "conversed",
+      "edge_type": "communicated_with",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "chat",
+      "edge_type": "communicated_with",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "chatted",
+      "edge_type": "communicated_with",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "address",
+      "edge_type": "communicated_with",
+      "confidence": 0.65,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "addressed",
+      "edge_type": "communicated_with",
+      "confidence": 0.65,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "tell",
+      "edge_type": "communicated_with",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "tells",
+      "edge_type": "communicated_with",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "inform",
+      "edge_type": "communicated_with",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "informed",
+      "edge_type": "communicated_with",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "informs",
+      "edge_type": "communicated_with",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "notify",
+      "edge_type": "communicated_with",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "notified",
+      "edge_type": "communicated_with",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "brief",
+      "edge_type": "communicated_with",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "briefed",
+      "edge_type": "communicated_with",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "debrief",
+      "edge_type": "communicated_with",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "debriefed",
+      "edge_type": "communicated_with",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "contact",
+      "edge_type": "communicated_with",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "contacted",
+      "edge_type": "communicated_with",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "reach",
+      "edge_type": "communicated_with",
+      "confidence": 0.65,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "reached",
+      "edge_type": "communicated_with",
+      "confidence": 0.65,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "approach",
+      "edge_type": "communicated_with",
+      "confidence": 0.65,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "approached",
+      "edge_type": "communicated_with",
+      "confidence": 0.65,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "dial",
+      "edge_type": "communicated_with",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "dialed",
+      "edge_type": "communicated_with",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "ring",
+      "edge_type": "communicated_with",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "rang",
+      "edge_type": "communicated_with",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "texted",
+      "edge_type": "communicated_with",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "message",
+      "edge_type": "communicated_with",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "messaged",
+      "edge_type": "communicated_with",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "dm",
+      "edge_type": "communicated_with",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "fax",
+      "edge_type": "communicated_with",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "faxed",
+      "edge_type": "communicated_with",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "mail",
+      "edge_type": "communicated_with",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "mailed",
+      "edge_type": "communicated_with",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "mention",
+      "edge_type": "communicated_with",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "mentioned",
+      "edge_type": "communicated_with",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "mentions",
+      "edge_type": "communicated_with",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "refer",
+      "edge_type": "communicated_with",
+      "confidence": 0.55,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "referred",
+      "edge_type": "communicated_with",
+      "confidence": 0.55,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "recount",
+      "edge_type": "communicated_with",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "recounted",
+      "edge_type": "communicated_with",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "narrate",
+      "edge_type": "communicated_with",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "narrated",
+      "edge_type": "communicated_with",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "relay",
+      "edge_type": "communicated_with",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "relayed",
+      "edge_type": "communicated_with",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "convey",
+      "edge_type": "communicated_with",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "conveyed",
+      "edge_type": "communicated_with",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "transmit",
+      "edge_type": "communicated_with",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "transmitted",
+      "edge_type": "communicated_with",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "explain",
+      "edge_type": "communicated_with",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "explained",
+      "edge_type": "communicated_with",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "explains",
+      "edge_type": "communicated_with",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "clarify",
+      "edge_type": "communicated_with",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "clarified",
+      "edge_type": "communicated_with",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "comment",
+      "edge_type": "communicated_with",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "commented",
+      "edge_type": "communicated_with",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "comments",
+      "edge_type": "communicated_with",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "remark",
+      "edge_type": "communicated_with",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "remarked",
+      "edge_type": "communicated_with",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "declare",
+      "edge_type": "communicated_with",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "declared",
+      "edge_type": "communicated_with",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "announce",
+      "edge_type": "communicated_with",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "announced",
+      "edge_type": "communicated_with",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "state",
+      "edge_type": "communicated_with",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "states",
+      "edge_type": "communicated_with",
+      "confidence": 0.65,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "proclaim",
+      "edge_type": "communicated_with",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "proclaimed",
+      "edge_type": "communicated_with",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "characterize",
+      "edge_type": "said_about",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "characterized",
+      "edge_type": "said_about",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "opine",
+      "edge_type": "said_about",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "opined",
+      "edge_type": "said_about",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "comment-on",
+      "edge_type": "said_about",
+      "confidence": 0.6,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "say",
+      "edge_type": "said_about",
+      "confidence": 0.55,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "says",
+      "edge_type": "said_about",
+      "confidence": 0.55,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "said",
+      "edge_type": "said_about",
+      "confidence": 0.55,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "travel",
+      "edge_type": "traveled_to",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "traveled",
+      "edge_type": "traveled_to",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "travelled",
+      "edge_type": "traveled_to",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "travels",
+      "edge_type": "traveled_to",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "journey",
+      "edge_type": "traveled_to",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "journeyed",
+      "edge_type": "traveled_to",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "drive",
+      "edge_type": "traveled_to",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "drove",
+      "edge_type": "traveled_to",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "driven",
+      "edge_type": "traveled_to",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "driving",
+      "edge_type": "traveled_to",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "walk",
+      "edge_type": "traveled_to",
+      "confidence": 0.55,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "walked",
+      "edge_type": "traveled_to",
+      "confidence": 0.55,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "move",
+      "edge_type": "traveled_to",
+      "confidence": 0.6,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "moved",
+      "edge_type": "traveled_to",
+      "confidence": 0.6,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "moves",
+      "edge_type": "traveled_to",
+      "confidence": 0.55,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "relocate",
+      "edge_type": "traveled_to",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "relocated",
+      "edge_type": "traveled_to",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "transfer",
+      "edge_type": "traveled_to",
+      "confidence": 0.65,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "transferred",
+      "edge_type": "traveled_to",
+      "confidence": 0.65,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "transit",
+      "edge_type": "traveled_to",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "transited",
+      "edge_type": "traveled_to",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "flew-to",
+      "edge_type": "traveled_to",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "commute",
+      "edge_type": "traveled_to",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "commuted",
+      "edge_type": "traveled_to",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "leave",
+      "edge_type": "departed_from",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "left",
+      "edge_type": "departed_from",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "exit",
+      "edge_type": "departed_from",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "exited",
+      "edge_type": "departed_from",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "withdraw",
+      "edge_type": "departed_from",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "withdrew",
+      "edge_type": "departed_from",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "withdrawn",
+      "edge_type": "departed_from",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "retreat",
+      "edge_type": "departed_from",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "retreated",
+      "edge_type": "departed_from",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "flee",
+      "edge_type": "departed_from",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "fled",
+      "edge_type": "departed_from",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "escape",
+      "edge_type": "departed_from",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "escaped",
+      "edge_type": "departed_from",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "reach",
+      "edge_type": "arrived_at",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "reached",
+      "edge_type": "arrived_at",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "land",
+      "edge_type": "arrived_at",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "landed",
+      "edge_type": "arrived_at",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "dock",
+      "edge_type": "arrived_at",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "docked",
+      "edge_type": "arrived_at",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "board",
+      "edge_type": "arrived_at",
+      "confidence": 0.65,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "boarded",
+      "edge_type": "arrived_at",
+      "confidence": 0.65,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "return",
+      "edge_type": "arrived_at",
+      "confidence": 0.65,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "returned",
+      "edge_type": "arrived_at",
+      "confidence": 0.65,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "returns",
+      "edge_type": "arrived_at",
+      "confidence": 0.65,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "enter",
+      "edge_type": "arrived_at",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "entered",
+      "edge_type": "arrived_at",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "lived",
+      "edge_type": "located_at",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "lives",
+      "edge_type": "located_at",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "living",
+      "edge_type": "located_at",
+      "confidence": 0.65,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "resided",
+      "edge_type": "located_at",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "resides",
+      "edge_type": "located_at",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "dwell",
+      "edge_type": "located_at",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "dwelt",
+      "edge_type": "located_at",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "inhabit",
+      "edge_type": "located_at",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "inhabited",
+      "edge_type": "located_at",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "based",
+      "edge_type": "located_at",
+      "confidence": 0.65,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "based-at",
+      "edge_type": "located_at",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "station",
+      "edge_type": "located_at",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "stationed",
+      "edge_type": "located_at",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "post",
+      "edge_type": "located_at",
+      "confidence": 0.6,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "posted",
+      "edge_type": "located_at",
+      "confidence": 0.65,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "situate",
+      "edge_type": "located_at",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "situated",
+      "edge_type": "located_at",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "place",
+      "edge_type": "located_at",
+      "confidence": 0.55,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "placed",
+      "edge_type": "located_at",
+      "confidence": 0.55,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "retain",
+      "edge_type": "owns",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "retained",
+      "edge_type": "owns",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "keep",
+      "edge_type": "owns",
+      "confidence": 0.55,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "kept",
+      "edge_type": "owns",
+      "confidence": 0.55,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "inherit",
+      "edge_type": "owns",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "inherited",
+      "edge_type": "owns",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "control",
+      "edge_type": "owns",
+      "confidence": 0.65,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "controlled",
+      "edge_type": "owns",
+      "confidence": 0.65,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "operate",
+      "edge_type": "owns",
+      "confidence": 0.6,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "operated",
+      "edge_type": "owns",
+      "confidence": 0.6,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "control",
+      "edge_type": "controls",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "controls",
+      "edge_type": "controls",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "controlled",
+      "edge_type": "controls",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "direct",
+      "edge_type": "controls",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "directed",
+      "edge_type": "controls",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "directs",
+      "edge_type": "controls",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "manage",
+      "edge_type": "controls",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "managed",
+      "edge_type": "controls",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "manages",
+      "edge_type": "controls",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "head",
+      "edge_type": "controls",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "headed",
+      "edge_type": "controls",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "heads",
+      "edge_type": "controls",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "oversee",
+      "edge_type": "controls",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "oversaw",
+      "edge_type": "controls",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "oversees",
+      "edge_type": "controls",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "supervise",
+      "edge_type": "controls",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "supervised",
+      "edge_type": "controls",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "govern",
+      "edge_type": "controls",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "governed",
+      "edge_type": "controls",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "administer",
+      "edge_type": "controls",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "administered",
+      "edge_type": "controls",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "create",
+      "edge_type": "founded_by",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "created",
+      "edge_type": "founded_by",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "creates",
+      "edge_type": "founded_by",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "start",
+      "edge_type": "founded_by",
+      "confidence": 0.65,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "started",
+      "edge_type": "founded_by",
+      "confidence": 0.65,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "launch",
+      "edge_type": "founded_by",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "launched",
+      "edge_type": "founded_by",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "initiate",
+      "edge_type": "founded_by",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "initiated",
+      "edge_type": "founded_by",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "organize",
+      "edge_type": "founded_by",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "organized",
+      "edge_type": "founded_by",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "set-up",
+      "edge_type": "founded_by",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "co-found",
+      "edge_type": "founded_by",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "cofounded",
+      "edge_type": "founded_by",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "hired",
+      "edge_type": "employed",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "recruit",
+      "edge_type": "employed",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "recruited",
+      "edge_type": "employed",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "staff",
+      "edge_type": "employed",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "staffed",
+      "edge_type": "employed",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "retain",
+      "edge_type": "employed",
+      "confidence": 0.55,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "fire",
+      "edge_type": "employed",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "fired",
+      "edge_type": "employed",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "dismiss",
+      "edge_type": "employed",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "dismissed",
+      "edge_type": "employed",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "terminate",
+      "edge_type": "employed",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "terminated",
+      "edge_type": "employed",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "preside",
+      "edge_type": "officer_of",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "presided",
+      "edge_type": "officer_of",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "chair",
+      "edge_type": "officer_of",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "chaired",
+      "edge_type": "officer_of",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "chairs",
+      "edge_type": "officer_of",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "serve",
+      "edge_type": "officer_of",
+      "confidence": 0.65,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "serves",
+      "edge_type": "officer_of",
+      "confidence": 0.65,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "investigate",
+      "edge_type": "investigated",
+      "confidence": 0.95,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "investigated",
+      "edge_type": "investigated",
+      "confidence": 0.95,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "investigates",
+      "edge_type": "investigated",
+      "confidence": 0.95,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "examine",
+      "edge_type": "investigated",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "examined",
+      "edge_type": "investigated",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "examines",
+      "edge_type": "investigated",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "probe",
+      "edge_type": "investigated",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "probed",
+      "edge_type": "investigated",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "probes",
+      "edge_type": "investigated",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "study",
+      "edge_type": "investigated",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "studied",
+      "edge_type": "investigated",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "studies",
+      "edge_type": "investigated",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "research",
+      "edge_type": "investigated",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "researched",
+      "edge_type": "investigated",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "inspect",
+      "edge_type": "investigated",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "inspected",
+      "edge_type": "investigated",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "inspects",
+      "edge_type": "investigated",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "audit",
+      "edge_type": "investigated",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "audited",
+      "edge_type": "investigated",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "audits",
+      "edge_type": "investigated",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "scrutinize",
+      "edge_type": "investigated",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "scrutinized",
+      "edge_type": "investigated",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "analyze",
+      "edge_type": "investigated",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "analyzed",
+      "edge_type": "investigated",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "analyses",
+      "edge_type": "investigated",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "review",
+      "edge_type": "investigated",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "reviewed",
+      "edge_type": "investigated",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "reviews",
+      "edge_type": "investigated",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "assess",
+      "edge_type": "investigated",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "assessed",
+      "edge_type": "investigated",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "evaluate",
+      "edge_type": "investigated",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "evaluated",
+      "edge_type": "investigated",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "monitor",
+      "edge_type": "investigated",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "monitored",
+      "edge_type": "investigated",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "monitors",
+      "edge_type": "investigated",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "surveil",
+      "edge_type": "investigated",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "surveilled",
+      "edge_type": "investigated",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "track",
+      "edge_type": "investigated",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "tracked",
+      "edge_type": "investigated",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "watch",
+      "edge_type": "witnessed",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "watched",
+      "edge_type": "witnessed",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "watches",
+      "edge_type": "witnessed",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "observe",
+      "edge_type": "witnessed",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "observed",
+      "edge_type": "witnessed",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "observes",
+      "edge_type": "witnessed",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "notice",
+      "edge_type": "witnessed",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "noticed",
+      "edge_type": "witnessed",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "spot",
+      "edge_type": "witnessed",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "spotted",
+      "edge_type": "witnessed",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "perceive",
+      "edge_type": "witnessed",
+      "confidence": 0.65,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "perceived",
+      "edge_type": "witnessed",
+      "confidence": 0.65,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "view",
+      "edge_type": "witnessed",
+      "confidence": 0.65,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "viewed",
+      "edge_type": "witnessed",
+      "confidence": 0.65,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "document",
+      "edge_type": "witnessed",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "documented",
+      "edge_type": "witnessed",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "blame",
+      "edge_type": "accused",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "blamed",
+      "edge_type": "accused",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "charge",
+      "edge_type": "accused",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "charged",
+      "edge_type": "accused",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "charges",
+      "edge_type": "accused",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "indict",
+      "edge_type": "accused",
+      "confidence": 0.9,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "indicted",
+      "edge_type": "accused",
+      "confidence": 0.9,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "prosecute",
+      "edge_type": "accused",
+      "confidence": 0.9,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "prosecuted",
+      "edge_type": "accused",
+      "confidence": 0.9,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "sue",
+      "edge_type": "accused",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "sued",
+      "edge_type": "accused",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "arrest",
+      "edge_type": "accused",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "arrested",
+      "edge_type": "accused",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "convict",
+      "edge_type": "accused",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "convicted",
+      "edge_type": "accused",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "assert",
+      "edge_type": "alleged",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "asserted",
+      "edge_type": "alleged",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "contend",
+      "edge_type": "alleged",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "contended",
+      "edge_type": "alleged",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "posit",
+      "edge_type": "alleged",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "posited",
+      "edge_type": "alleged",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "suggest",
+      "edge_type": "alleged",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "suggested",
+      "edge_type": "alleged",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "suggests",
+      "edge_type": "alleged",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "argue",
+      "edge_type": "alleged",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "argued",
+      "edge_type": "alleged",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "maintain",
+      "edge_type": "alleged",
+      "confidence": 0.65,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "maintained",
+      "edge_type": "alleged",
+      "confidence": 0.65,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "refute",
+      "edge_type": "denied",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "refuted",
+      "edge_type": "denied",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "contest",
+      "edge_type": "denied",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "contested",
+      "edge_type": "denied",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "dispute",
+      "edge_type": "denied",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "disputed",
+      "edge_type": "denied",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "reject",
+      "edge_type": "denied",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "rejected",
+      "edge_type": "denied",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "dismiss",
+      "edge_type": "denied",
+      "confidence": 0.65,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "dismissed",
+      "edge_type": "denied",
+      "confidence": 0.65,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "testifies",
+      "edge_type": "testified_against",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "swear",
+      "edge_type": "testified_against",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "swore",
+      "edge_type": "testified_against",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "sworn",
+      "edge_type": "testified_against",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "attest",
+      "edge_type": "testified_against",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "attested",
+      "edge_type": "testified_against",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "vouch",
+      "edge_type": "testified_against",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "vouched",
+      "edge_type": "testified_against",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "depose",
+      "edge_type": "testified_against",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "deposed",
+      "edge_type": "testified_against",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "verify",
+      "edge_type": "corroborated",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "verified",
+      "edge_type": "corroborated",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "validate",
+      "edge_type": "corroborated",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "validated",
+      "edge_type": "corroborated",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "support",
+      "edge_type": "corroborated",
+      "confidence": 0.65,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "supported",
+      "edge_type": "corroborated",
+      "confidence": 0.65,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "back",
+      "edge_type": "corroborated",
+      "confidence": 0.55,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "backed",
+      "edge_type": "corroborated",
+      "confidence": 0.55,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "endorse",
+      "edge_type": "corroborated",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "endorsed",
+      "edge_type": "corroborated",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "affirm",
+      "edge_type": "corroborated",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "affirmed",
+      "edge_type": "corroborated",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "join",
+      "edge_type": "participated_in",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "joined",
+      "edge_type": "participated_in",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "attends",
+      "edge_type": "participated_in",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "partake",
+      "edge_type": "participated_in",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "partook",
+      "edge_type": "participated_in",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "engage",
+      "edge_type": "participated_in",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "engaged",
+      "edge_type": "participated_in",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "organize",
+      "edge_type": "hosted",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "convene",
+      "edge_type": "hosted",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "convened",
+      "edge_type": "hosted",
+      "confidence": 0.75,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "fund",
+      "edge_type": "donor_to",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "funded",
+      "edge_type": "donor_to",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "funds",
+      "edge_type": "donor_to",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "sponsor",
+      "edge_type": "donor_to",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "sponsored",
+      "edge_type": "donor_to",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "bankroll",
+      "edge_type": "donor_to",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "bankrolled",
+      "edge_type": "donor_to",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "finance",
+      "edge_type": "donor_to",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "financed",
+      "edge_type": "donor_to",
+      "confidence": 0.8,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "underwrite",
+      "edge_type": "donor_to",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "underwrote",
+      "edge_type": "donor_to",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "underwritten",
+      "edge_type": "donor_to",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "compensate",
+      "edge_type": "paid",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "compensated",
+      "edge_type": "paid",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "settle",
+      "edge_type": "paid",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "settled",
+      "edge_type": "paid",
+      "confidence": 0.7,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "payout",
+      "edge_type": "paid",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "reimburse",
+      "edge_type": "paid",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "reimbursed",
+      "edge_type": "paid",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "publish",
+      "edge_type": "covers",
+      "confidence": 0.65,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "published",
+      "edge_type": "covers",
+      "confidence": 0.65,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "write-about",
+      "edge_type": "covers",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "report-on",
+      "edge_type": "covers",
+      "confidence": 0.85,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "address",
+      "edge_type": "covers",
+      "confidence": 0.55,
+      "source": "v3_expansion_2026_05_17"
+    },
+    {
+      "lemma": "study",
+      "edge_type": "studies",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "studied",
+      "edge_type": "studies",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "research",
+      "edge_type": "studies",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "researched",
+      "edge_type": "studies",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "investigate the",
+      "edge_type": "studies",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "examine",
+      "edge_type": "studies",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "conduct",
+      "edge_type": "conducts",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "conducted",
+      "edge_type": "conducts",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "carry out",
+      "edge_type": "conducts",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "carried out",
+      "edge_type": "conducts",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "perform",
+      "edge_type": "conducts",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "performed",
+      "edge_type": "conducts",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "run",
+      "edge_type": "conducts",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "ran",
+      "edge_type": "conducts",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "fund",
+      "edge_type": "funds",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "funded",
+      "edge_type": "funds",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "finance",
+      "edge_type": "funds",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "financed",
+      "edge_type": "funds",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "grant",
+      "edge_type": "funds",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "granted",
+      "edge_type": "funds",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "subsidize",
+      "edge_type": "funds",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "sponsor",
+      "edge_type": "sponsors",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "sponsored",
+      "edge_type": "sponsors",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "back",
+      "edge_type": "sponsors",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "backed",
+      "edge_type": "sponsors",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "cover for",
+      "edge_type": "sponsors",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "test",
+      "edge_type": "tests",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "tested",
+      "edge_type": "tests",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "testing",
+      "edge_type": "tests",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "experiment on",
+      "edge_type": "tests",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "try out",
+      "edge_type": "tests",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "trial",
+      "edge_type": "tests",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "administer",
+      "edge_type": "administered_to",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "administered",
+      "edge_type": "administered_to",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "dose",
+      "edge_type": "administered_to",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "dosed",
+      "edge_type": "administered_to",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "give",
+      "edge_type": "administered_to",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "gave",
+      "edge_type": "administered_to",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "subproject of",
+      "edge_type": "subproject_of",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "sub-project of",
+      "edge_type": "subproject_of",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "part of the program",
+      "edge_type": "subproject_of",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "under project",
+      "edge_type": "subproject_of",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "propose",
+      "edge_type": "proposes",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "proposed",
+      "edge_type": "proposes",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "suggest",
+      "edge_type": "proposes",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "suggested",
+      "edge_type": "proposes",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "recommend",
+      "edge_type": "proposes",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "recommended",
+      "edge_type": "proposes",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "develop",
+      "edge_type": "develops",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "developed",
+      "edge_type": "develops",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "devise",
+      "edge_type": "develops",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "devised",
+      "edge_type": "develops",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "create",
+      "edge_type": "develops",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "created",
+      "edge_type": "develops",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "use",
+      "edge_type": "uses_method",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "used",
+      "edge_type": "uses_method",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "employ",
+      "edge_type": "uses_method",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "employed",
+      "edge_type": "uses_method",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "utilize",
+      "edge_type": "uses_method",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "apply",
+      "edge_type": "uses_method",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "applied",
+      "edge_type": "uses_method",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "target",
+      "edge_type": "targets",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "aimed at",
+      "edge_type": "targets",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "directed against",
+      "edge_type": "targets",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "focus on",
+      "edge_type": "targets",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "evaluate",
+      "edge_type": "evaluates",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "evaluated",
+      "edge_type": "evaluates",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "assess",
+      "edge_type": "evaluates",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "assessed",
+      "edge_type": "evaluates",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "analyze",
+      "edge_type": "evaluates",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "analyzed",
+      "edge_type": "evaluates",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "review",
+      "edge_type": "evaluates",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "reviewed",
+      "edge_type": "evaluates",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "conclude",
+      "edge_type": "concludes",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "concluded",
+      "edge_type": "concludes",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "find that",
+      "edge_type": "concludes",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "found that",
+      "edge_type": "concludes",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "determine",
+      "edge_type": "concludes",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "determined",
+      "edge_type": "concludes",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "report that",
+      "edge_type": "concludes",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "authorize",
+      "edge_type": "authorizes",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "authorized",
+      "edge_type": "authorizes",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "approve",
+      "edge_type": "authorizes",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "approved",
+      "edge_type": "authorizes",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "sanction",
+      "edge_type": "authorizes",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "sanctioned",
+      "edge_type": "authorizes",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "supervise",
+      "edge_type": "supervises",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "supervised",
+      "edge_type": "supervises",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "oversee",
+      "edge_type": "supervises",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "oversaw",
+      "edge_type": "supervises",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "direct",
+      "edge_type": "supervises",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "directed",
+      "edge_type": "supervises",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "head",
+      "edge_type": "supervises",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "headed",
+      "edge_type": "supervises",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "investigate",
+      "edge_type": "studies",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "investigated",
+      "edge_type": "studies",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "probe",
+      "edge_type": "studies",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "probed",
+      "edge_type": "studies",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "look into",
+      "edge_type": "studies",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "report to",
+      "edge_type": "reports_to",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "reports to",
+      "edge_type": "reports_to",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "under the direction of",
+      "edge_type": "reports_to",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "request",
+      "edge_type": "requests",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "requested",
+      "edge_type": "requests",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "seek",
+      "edge_type": "requests",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "sought",
+      "edge_type": "requests",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "ask for",
+      "edge_type": "requests",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "apply for",
+      "edge_type": "requests",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "train",
+      "edge_type": "trains",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "trained",
+      "edge_type": "trains",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "instruct",
+      "edge_type": "trains",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "instructed",
+      "edge_type": "trains",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "recruit",
+      "edge_type": "recruits",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "recruited",
+      "edge_type": "recruits",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "enlist",
+      "edge_type": "recruits",
+      "confidence": 0.85
+    },
+    {
+      "lemma": "enlisted",
+      "edge_type": "recruits",
+      "confidence": 0.85
+    }
+  ],
+  "metadata": {
+    "created": "2026-05-14T00:00:00Z",
+    "author": "ENKI System",
+    "policy": "Seeds are starting priors. Corpus evidence updates confidence; new lemmas can be added by analysts or by the discovery cascade promoting consistent observations.",
+    "expansion_2026_05_17": {
+      "added": 368,
+      "conflicts": 21,
+      "total_after": 529
+    }
+  }
+}

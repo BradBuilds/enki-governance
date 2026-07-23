@@ -1,0 +1,58 @@
+{
+  "$schema": "./schemas/active_set.schema.json",
+  "version": "4.0.0",
+  "packs": [
+    {
+      "pack_id": "identity",
+      "version": "0.2.0",
+      "content_hash": "sha256:b023e0406af4daf434fd97b4eae72436a29b422d0ea4d12b3d4509ea19dbb78a"
+    },
+    {
+      "pack_id": "assertionvocab",
+      "version": "0.2.0",
+      "content_hash": "sha256:483f5c57b682fa6d3314a8f627a4b9b1656dc792708126c8484f209e4be095f0"
+    },
+    {
+      "pack_id": "auditvocab",
+      "version": "0.2.1",
+      "content_hash": "sha256:24a777cc687de1aa6a4e954e912484b494d99bcb3b5f3671026fe3dfccb13f58"
+    },
+    {
+      "pack_id": "base60",
+      "version": "0.2.0",
+      "content_hash": "sha256:e742a368cf1fab5eac675fc674f1097ab58609acc715c47c3b05d0f3ea841374"
+    },
+    {
+      "pack_id": "language",
+      "version": "0.1.0",
+      "content_hash": "sha256:f7786484ce7da1e1bc4ae8d2f5fde757d18ecf7ca6a7ae531dad3030b9d6278d"
+    },
+    {
+      "pack_id": "numeric",
+      "version": "1.0.0",
+      "content_hash": "sha256:1567c8594237bbd7ace89f64e004b8bb51e62ffda6483a06873d38b41f8ec0d2"
+    },
+    {
+      "pack_id": "signalvocab",
+      "version": "0.1.0",
+      "content_hash": "sha256:64999e2f2d34f0d8fc19e894df78280d401f7a614d2dec77f292efe880835896"
+    },
+    {
+      "pack_id": "alertvocab",
+      "version": "0.1.0",
+      "content_hash": "sha256:d546d0de27df941de821dd78e93547e0161851e9513d7923bbfce78bb41501cd"
+    },
+    {
+      "pack_id": "casevocab",
+      "version": "0.1.0",
+      "content_hash": "sha256:f4f56ddfabe3aacc892e4a284d4f22c8b56b6e5c04f25976d49025165f59b2f0"
+    }
+  ],
+  "metadata": {
+    "name": "Active Set v4 - Command Center Vocabulary",
+    "description": "Adds signalvocab (universal data classification), alertvocab (attention lifecycle), and casevocab (data organization) to enable the signal ingestion pipeline.",
+    "created": "2026-03-21T00:00:00Z",
+    "author": "CC-0C Pack Admission",
+    "purpose": "Enable signal pipeline: classify any data, generate alerts, organize into cases"
+  }
+}

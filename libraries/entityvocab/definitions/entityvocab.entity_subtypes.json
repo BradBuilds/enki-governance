@@ -1,0 +1,170 @@
+{
+  "id": "entityvocab.entity_subtypes",
+  "type": "entity_subtypes",
+  "version": "0.6.1",
+  "description": "Closed vocabulary of valid `canonical_type` values for entities admitted to the entities table. This file is the single source of truth that the LDU consults at write time (admit_candidate / subtype_validator) and the GDU enforces via the trg_enforce_entities_governance trigger AND the entities_canonical_type_check storage constraint (generated from valid_entity_subtypes()). Each subtype declares its canonical name plus aliases (common LLM drift and synonyms) and ner_tags (Stanford/spaCy raw output) that should be normalized to it. Types not in this file (and not in cross_category_routes) get rejected from the entities table at LDU write time. As of v0.6.0, places are first-class entity subtypes (migration 118 unified the places table into entities + the place_attributes spatial sidecar); they are NO LONGER routed out via cross_category_routes.",
+  "rationale": "Without a closed entity-subtype vocabulary, the LDU accepts whatever the LLM produces — 449 distinct subtype strings ended up in entities, of which only 13 were valid per the GDU pack. Cleaning after admission (cross_category_migrator) is detection, not prevention. The architecture pitch (LDU open mouth → GDU locked jaw) requires a write-time check. v0.6.0 closes the places fracture: migration 118 made places entities, but the pack + constraint still routed them out, so event_validator crash-looped trying to UPDATE place-typed rows the constraint rejected. Places are now accepted subtypes and the storage constraint is generated from this file so the two can never drift again.",
+  "content": {
+    "subtypes": {
+      "person": {
+        "aliases": ["per", "individual", "human", "people"],
+        "ner_tags": ["PERSON", "PER"],
+        "description": "An individual human being. Includes historical figures, fictional persons named as individuals, and entities self-identifying as individuals."
+      },
+      "organization": {
+        "aliases": ["org", "company", "corp", "corporation", "inc", "ltd", "llc", "firm", "business", "group", "association", "society", "institution", "team", "club", "ngo", "non-profit", "nonprofit", "consortium", "alliance", "military_branch", "branch", "service"],
+        "ner_tags": ["ORG", "ORGANIZATION"],
+        "description": "A formal collective entity (company, NGO, club, military branch, etc.). NOT used for government agencies (use government_agency)."
+      },
+      "government_agency": {
+        "aliases": ["gov_org", "agency", "ministry", "department", "bureau", "commission", "authority", "administration", "office", "council", "secretariat", "directorate"],
+        "ner_tags": ["GOV"],
+        "description": "A governmental body at any level — federal, state, municipal, supranational, intergovernmental."
+      },
+      "facility": {
+        "aliases": ["fac", "building", "structure", "complex", "compound", "installation", "base", "headquarters", "campus", "site", "plant", "factory", "warehouse", "depot", "military_facility", "military_base", "air_base", "naval_base", "army_base", "research_facility", "laboratory", "lab"],
+        "ner_tags": ["FAC", "FACILITY"],
+        "description": "A physical built structure or compound with a fixed location. NOT a geographic area (use a place subtype: named_area, country, city, etc.)."
+      },
+      "mass_media": {
+        "aliases": ["media", "broadcaster", "tv_network", "radio_station", "publication_outlet", "news_outlet", "magazine", "wire_service", "press_agency"],
+        "ner_tags": [],
+        "description": "An entity whose primary function is mass communication of information."
+      },
+      "aircraft": {
+        "aliases": ["plane", "spacecraft", "drone", "uav", "helicopter", "rotorcraft", "jet", "airliner", "fighter", "bomber", "satellite", "rocket"],
+        "ner_tags": [],
+        "description": "An air or space vehicle. Specific named aircraft (tail numbers, named craft); for vehicle types use product."
+      },
+      "vessel": {
+        "aliases": ["ship", "boat", "submarine", "carrier", "destroyer", "frigate", "cruiser", "tanker", "freighter", "vessel_named"],
+        "ner_tags": [],
+        "description": "A water-going vehicle. Specific named vessels (MMSI/IMO); for vessel types use product."
+      },
+      "vehicle": {
+        "aliases": ["car", "truck", "tank", "automobile", "motorcycle", "bus", "van", "trailer", "rover"],
+        "ner_tags": [],
+        "description": "A land-going vehicle. Specific named/registered vehicles (VIN/plate); for vehicle types use product."
+      },
+      "device": {
+        "aliases": ["sensor", "hardware", "equipment", "instrument", "gadget", "appliance", "machine", "tool"],
+        "ner_tags": [],
+        "description": "A discrete physical device that is not a vehicle or weapon (sensors, IoT, instruments, etc.)."
+      },
+      "weapon_system": {
+        "aliases": ["weapon", "missile", "armament", "munition", "ordnance"],
+        "ner_tags": [],
+        "description": "A weapons platform or system. Specific named/serialized systems; for weapon types use product."
+      },
+      "account": {
+        "aliases": ["user_account", "profile", "handle", "username", "screen_name", "user", "identity_account"],
+        "ner_tags": [],
+        "description": "A digital account / identity on a platform (social media handle, email account, etc.)."
+      },
+      "unit": {
+        "aliases": ["military_unit", "regiment", "battalion", "division", "brigade", "company_unit", "squadron", "wing", "platoon", "corps", "task_force"],
+        "ner_tags": [],
+        "description": "A military or paramilitary unit at any echelon."
+      },
+      "product": {
+        "aliases": ["item", "good", "brand", "model", "make", "version", "edition"],
+        "ner_tags": ["PRODUCT"],
+        "description": "A commercially-produced item, service, or branded model. Used for product *types* (e.g., 'F-35'); for specific tail-numbered units use aircraft."
+      },
+      "country": {
+        "aliases": ["nation", "sovereign_state", "nation_state"],
+        "ner_tags": [],
+        "description": "A sovereign state. Spatial data (ISO codes, geometry, hierarchy) lives in the place_attributes sidecar keyed on entity_id."
+      },
+      "city": {
+        "aliases": ["town", "municipality", "village", "metropolis", "borough", "settlement"],
+        "ner_tags": [],
+        "description": "A populated settlement. Spatial data lives in place_attributes."
+      },
+      "admin_region": {
+        "aliases": ["state", "province", "region", "county", "district", "prefecture", "oblast", "territory", "canton"],
+        "ner_tags": [],
+        "description": "A sub-national administrative division (US state, province, oblast, county, etc.). For sovereign states use country."
+      },
+      "named_area": {
+        "aliases": ["gpe", "loc", "location", "place", "continent", "island", "river", "mountain", "peninsula", "archipelago", "area", "landmark", "geographic_area", "valley", "desert", "plateau", "poi", "coordinate_cluster", "airspace"],
+        "ner_tags": ["GPE", "LOC"],
+        "description": "A named geographic area without a fixed administrative boundary (continent, island, mountain, river, region-by-name, point-of-interest, airspace). Default place subtype for ambiguous GPE/LOC tags."
+      },
+      "maritime_area": {
+        "aliases": ["strait", "sea", "gulf", "reef", "ocean", "bay", "waterbody", "channel", "lake", "lagoon", "sound"],
+        "ner_tags": [],
+        "description": "A body of water or maritime feature (sea, strait, gulf, ocean, lake)."
+      },
+      "facility_location": {
+        "aliases": ["airport", "port", "harbor", "harbour", "station", "terminal", "border_crossing", "checkpoint"],
+        "ner_tags": [],
+        "description": "A geographic place defined by an infrastructure function (airport, seaport, station, border crossing). For the built structure itself use facility."
+      }
+    },
+    "cross_category_routes": {
+      "description": "Subtype strings that are genuinely non-entity — route to the named (category, subtype) instead of admitting to entities. Places are NO LONGER routed here: as of v0.6.0 they are first-class entity subtypes (see migration 118). Remaining routes are temporal (chronicle), abstract (topic), source (document), and quantitative (form) referents that belong in their own substrates.",
+      "routes": {
+        "event":            ["event", "statement"],
+        "date":             ["chronicle", "day"],
+        "time":             ["chronicle", "day"],
+        "period":           ["chronicle", "named_period"],
+        "time_period":      ["chronicle", "named_period"],
+        "concept":          ["topic", "topic"],
+        "topic":            ["topic", "topic"],
+        "law":              ["topic", "topic"],
+        "software":         ["topic", "topic"],
+        "system":           ["topic", "topic"],
+        "process":          ["topic", "topic"],
+        "project":          ["topic", "topic"],
+        "field":            ["topic", "topic"],
+        "method":           ["topic", "topic"],
+        "program":          ["topic", "topic"],
+        "science":          ["topic", "topic"],
+        "physical_concept": ["topic", "topic"],
+        "physical phenomenon": ["topic", "topic"],
+        "phenomenon":       ["topic", "topic"],
+        "civilization":     ["topic", "topic"],
+        "field_of_study":   ["topic", "topic"],
+        "occupation":       ["topic", "topic"],
+        "technology":       ["topic", "topic"],
+        "legal_act":        ["document", "article"],
+        "work_of_art":      ["document", "article"],
+        "publication":      ["document", "article"],
+        "book":             ["document", "article"],
+        "journal":          ["document", "article"],
+        "newspaper":        ["document", "article"],
+        "document":         ["document", "article"],
+        "report":           ["document", "report"],
+        "email":            ["document", "email"],
+        "citation":         ["document", "bibliographic_reference"],
+        "reference":        ["document", "bibliographic_reference"],
+        "number":           ["form", "number_word"],
+        "num":              ["form", "number_word"],
+        "cardinal":         ["form", "number_word"],
+        "ordinal":          ["form", "number_word"],
+        "percent":          ["form", "number_word"],
+        "quantity":         ["form", "number_word"],
+        "money":            ["form", "number_word"],
+        "measurement":      ["form", "number_word"],
+        "distance":         ["form", "number_word"],
+        "speed":            ["form", "number_word"],
+        "length":           ["form", "number_word"],
+        "size":             ["form", "number_word"],
+        "altitude":         ["form", "number_word"],
+        "degree":           ["form", "number_word"],
+        "dimension":        ["form", "number_word"]
+      }
+    },
+    "drop_types": {
+      "description": "Subtype strings that are pure LLM/NER drift — meaningless fragments. Reject at LDU write time, do not route anywhere.",
+      "list": [
+        "other", "misc", "abstract", "noun", "name", "figure", "acronym", "title",
+        "entity", "thing", "n/a", "unknown", "fragment", "phrase", "material",
+        "animal", "feature", "star", "chemical", "mineral", "element",
+        "object", "sound", "color", "direction", "slogan", "url", "address",
+        "aircraft_part", "document_section", "section", "radio"
+      ]
+    }
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "id": "research.routing.source_routing",
+  "type": "custom",
+  "version": "1.2.0",
+  "description": "Per-entity-type list of source identifiers to query when an investigation is queued. The investigation worker consumes this map via core/research/source_routing.py:sources_for_entity(entity_type). Order matters — sources are queried in list order and the worker may early-out on rate-limit failures; put the highest-yield sources first. Minor 1.2.0 (Jun 4 2026): adds `_source_scope` jurisdiction tagging. Sources tagged 'US' (sec_edgar, fec, sunbiz_fl, etc.) are excluded when the target entity's jurisdiction is known and is not US. Sources tagged 'GLOBAL' always run. Entity jurisdiction is read from envelope.iso_country_code, envelope.jurisdiction, or envelope.country.",
+
+  "_routing_principles": [
+    "Person research = encyclopedic (Wikipedia/Wikidata) + sanctions (OpenSanctions/OFAC/UN) + court records (CourtListener) + politician-specific (FEC/Congress) + corporate-officer overlap (OpenCorporates). Skips org-only sources like SEC EDGAR which only surface a person if they happen to be on a Form 4 board filing — that linkage already comes from the org's investigation discovering them.",
+    "Organization research = encyclopedic + corporate filings (SEC) + government contracts (USAspending/SAM) + nonprofit (ProPublica) + sector-specific regulators (FDIC banks, FDA pharma, EPA environmental) + global registry (OpenCorporates) + regulatory mentions (Federal Register) + ownership/registration lookups (FAA aircraft). FEC committee search included because PACs are organizations.",
+    "Government agency research = encyclopedic + congressional/budget context (Congress.gov, USAspending) + regulatory output (Federal Register issuing agency).",
+    "Country research = encyclopedic + Factbook profile + REST Countries baseline + World Bank indicators + GeoNames alt-names/coords. Heavy substrate so the dossier has real depth instead of just a Wikipedia paragraph.",
+    "City / admin_region research = encyclopedic + GeoNames + Nominatim. GeoNames pulls alt-names so future Tehran/TEHRAN-style admit collisions resolve via aliases.",
+    "Aircraft research = FAA registry (only fires when entity name looks like an N-number tail). Future: IMO database for vessels, NHTSA vPIC for vehicles."
+  ],
+
+  "content": {
+    "person": [
+      "wikipedia",
+      "wikidata",
+      "duckduckgo",
+      "opensanctions",
+      "ofac",
+      "un_sanctions",
+      "courtlistener",
+      "fec",
+      "congress",
+      "loc",
+      "google_books",
+      "opencorporates",
+      "sunbiz_fl",
+      "ny_dos",
+      "ca_sos",
+      "github",
+      "reddit",
+      "wayback"
+    ],
+
+    "organization": [
+      "wikipedia",
+      "wikidata",
+      "duckduckgo",
+      "sec_edgar",
+      "opensanctions",
+      "un_sanctions",
+      "usaspending",
+      "propublica_nonprofits",
+      "fdic",
+      "fda",
+      "epa_echo",
+      "sam_gov",
+      "courtlistener",
+      "fec",
+      "opencorporates",
+      "sunbiz_fl",
+      "ny_dos",
+      "ca_sos",
+      "federal_register",
+      "faa_aircraft",
+      "github",
+      "wayback"
+    ],
+
+    "government_agency": [
+      "wikipedia",
+      "wikidata",
+      "congress",
+      "sam_gov",
+      "usaspending",
+      "loc",
+      "federal_register"
+    ],
+
+    "country": [
+      "wikipedia",
+      "wikidata",
+      "cia_factbook",
+      "rest_countries",
+      "world_bank",
+      "geonames",
+      "nominatim"
+    ],
+    "city": [
+      "wikipedia",
+      "wikidata",
+      "geonames",
+      "nominatim"
+    ],
+    "admin_region": [
+      "wikipedia",
+      "wikidata",
+      "geonames",
+      "nominatim"
+    ],
+    "facility": ["wikipedia", "wikidata", "nominatim"],
+    "facility_location": ["wikipedia", "wikidata", "nominatim"],
+
+    "aircraft": ["wikipedia", "wikidata", "faa_aircraft"],
+    "vessel":   ["wikipedia", "wikidata"],
+    "product":  ["wikipedia", "wikidata"],
+    "unit":     ["wikipedia", "wikidata"],
+
+    "_default": ["wikipedia", "wikidata"],
+
+    "_source_scope": {
+      "wikipedia": ["GLOBAL"],
+      "wikidata": ["GLOBAL"],
+      "duckduckgo": ["GLOBAL"],
+      "opensanctions": ["GLOBAL"],
+      "un_sanctions": ["GLOBAL"],
+      "ofac": ["GLOBAL"],
+      "google_books": ["GLOBAL"],
+      "github": ["GLOBAL"],
+      "reddit": ["GLOBAL"],
+      "wayback": ["GLOBAL"],
+      "opencorporates": ["GLOBAL"],
+      "geonames": ["GLOBAL"],
+      "nominatim": ["GLOBAL"],
+      "cia_factbook": ["GLOBAL"],
+      "rest_countries": ["GLOBAL"],
+      "world_bank": ["GLOBAL"],
+      "loc": ["GLOBAL"],
+
+      "sec_edgar": ["US"],
+      "fec": ["US"],
+      "usaspending": ["US"],
+      "propublica_nonprofits": ["US"],
+      "courtlistener": ["US"],
+      "fdic": ["US"],
+      "fda": ["US"],
+      "epa_echo": ["US"],
+      "sam_gov": ["US"],
+      "federal_register": ["US"],
+      "faa_aircraft": ["US"],
+      "congress": ["US"],
+      "sunbiz_fl": ["US"],
+      "ny_dos": ["US"],
+      "ca_sos": ["US"]
+    }
+  }
+}

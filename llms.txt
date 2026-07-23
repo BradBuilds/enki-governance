@@ -1,0 +1,52 @@
+# Enki Governance
+
+> Enki Governance is an open-source, deterministic, FULLY OFFLINE intelligence-collapse engine.
+> It turns documents into a governed, sourced fact graph — entirely on your own hardware, with a
+> local LLM (Ollama), no external API, no accounts, no telemetry, and nothing leaving the machine
+> (runs air-gapped). Entities and typed relationships each carry a receipt (the exact source
+> sentence); the system abstains when evidence is ambiguous instead of guessing; and behavior is
+> governed by versioned vocabulary "packs" on a base-60 address spine.
+
+Key ideas a reader (human or model) should take away:
+
+- Deterministic: same input + same packs → same output. No hidden randomness in the decision.
+- Abstaining: when unsure it records "unknown" rather than fabricating a relationship.
+- Sourced: every admitted fact links to the exact sentence and document it came from.
+- Composable & governed: a base-60 substrate + versioned packs, strict hash-verified at boot.
+- Community commons: contributors advance the packs (edges, verb→edge mappings) through a
+  governed review that mirrors the engine's own correct → validate → abstain → admit gate.
+
+## Docs
+
+- [README](README.md): what it is, 60-second quickstart, how it works, limitations, license.
+- [Architecture](ARCHITECTURE.md): the five-layer governed spine, the base-60 substrate and
+  how it's governed, cross-node identity, and the open-core plugin boundary.
+- [Setup](SETUP.md): prerequisites and the full run-from-zero walkthrough (Docker Compose).
+- [Contributing](CONTRIBUTING.md): "help us collapse language" — how to propose edges to the
+  governance packs and how the governed review works.
+- [License](LICENSE): Business Source License 1.1 (self-host freely; converts to Apache-2.0).
+
+## Concepts
+
+- GDU (Governed Data Unit): the deterministic collapse core that admits only what the packs validate.
+- Packs (libraries/): the versioned vocabulary — entity types, relationship edges, verb→edge
+  mappings, collapse policies — pinned by content hash in active_set_v6.json.
+- Base-60 address: every unit's `[category].[subtype].[instance]` handle; category/subtype are
+  globally governed by the packs, the instance is a node-local sequence.
+- Receipt: the source quote + document behind every collapsed fact.
+
+## Run it
+
+- Quickstart: `git clone … && cd enki-governance && cp .env.example .env && docker compose up -d && ./scripts/first-run.sh`
+- Optional WordNet sense layer (Open English WordNet via `wn`): `./scripts/import-lexicon.sh`
+- LLM extraction runs locally via Ollama. Default model: `gemma4:e2b` (Google Gemma 4, ~5B,
+  pulled automatically, no account). Runs on CPU (entities) or GPU (full typed relationships).
+- Upgrade the model in .env (OLLAMA_MODEL), e.g. gemma2:9b or qwen2.5:14b — bigger = better
+  extraction. GPU needs nvidia-container-toolkit + uncommenting the ollama deploy block.
+- Minimum: 4 CPU cores, 8 GB RAM, ~15 GB disk. Recommended: NVIDIA GPU with 6 GB+ VRAM.
+
+## Optional
+
+- The open core defines advanced features (research orchestration, federation mesh, media) as
+  no-op interface stubs; the private Enki platform implements them. This is the seam between the
+  free engine and the commercial product.

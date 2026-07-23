@@ -1,0 +1,178 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://enki.system/schemas/ldu_t_entry.schema.json",
+  "title": "LDU-T Entry (Raw Linguistic Data)",
+  "description": "Schema for Local Definition Universe - Temporary (raw ingestion layer with enforced ambiguity preservation)",
+  "type": "object",
+  "required": ["id", "universe", "source", "content", "provenance", "ambiguity_flags", "resolution"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^ldu_t_[a-z0-9_]+$",
+      "description": "Unique identifier for this LDU-T entry. Must start with 'ldu_t_' and use lowercase alphanumeric + underscores."
+    },
+    "universe": {
+      "type": "string",
+      "const": "LDU-T",
+      "description": "MUST be exactly 'LDU-T'. Enforces layer separation."
+    },
+    "source": {
+      "type": "object",
+      "required": ["type", "timestamp"],
+      "description": "Provenance: where did this data come from?",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["book", "speech", "api_event", "corpus", "other"],
+          "description": "Source data type. Enum prevents accidental variations."
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When was the source data created/recorded? ISO-8601 required."
+        },
+        "book": {
+          "type": "object",
+          "description": "If source.type == 'book', include these fields.",
+          "properties": {
+            "title": { "type": "string" },
+            "author": { "type": "string" },
+            "isbn": { "type": "string" },
+            "page": { "type": "integer" },
+            "chapter": { "type": "string" },
+            "edition": { "type": "string" }
+          }
+        },
+        "speech": {
+          "type": "object",
+          "description": "If source.type == 'speech', include these fields.",
+          "properties": {
+            "recording_id": { "type": "string" },
+            "speaker_id": { "type": "string" },
+            "timestamp_start": { "type": "string", "format": "date-time" },
+            "timestamp_end": { "type": "string", "format": "date-time" },
+            "duration_ms": { "type": "integer" },
+            "transcription_method": { "type": "string" },
+            "transcription_confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+          }
+        },
+        "api_event": {
+          "type": "object",
+          "description": "If source.type == 'api_event', include these fields.",
+          "properties": {
+            "endpoint": { "type": "string" },
+            "method": { "type": "string", "enum": ["GET", "POST", "PUT", "PATCH", "DELETE"] },
+            "request_id": { "type": "string" },
+            "requester_id": { "type": "string" },
+            "requester_role": { "type": "string" }
+          }
+        },
+        "corpus": {
+          "type": "object",
+          "description": "If source.type == 'corpus', include these fields.",
+          "properties": {
+            "corpus_name": { "type": "string" },
+            "corpus_version": { "type": "string" },
+            "document_id": { "type": "string" },
+            "collection_date": { "type": "string", "format": "date-time" }
+          }
+        },
+        "other": {
+          "type": "object",
+          "description": "If source.type == 'other', store metadata here.",
+          "additionalProperties": true
+        }
+      }
+    },
+    "content": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": ["text"],
+          "properties": {
+            "text": {
+              "type": "string",
+              "description": "Raw text, EXACTLY as written. No modification, no interpretation."
+            },
+            "language_detected": { "type": "string" },
+            "encoding": { "type": "string", "default": "utf-8" }
+          }
+        },
+        {
+          "type": "object",
+          "required": ["transcription"],
+          "properties": {
+            "transcription": { "type": "string" },
+            "phonological_features": {
+              "type": "object",
+              "description": "Optional: extracted phonological features (shapes only, no meaning)"
+            }
+          }
+        }
+      ],
+      "description": "Raw content from source. Can be text or transcription or other modality."
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["ingestion_timestamp", "ingestion_method", "ingestion_actor"],
+      "description": "Mandatory: how did this entry enter the system?",
+      "properties": {
+        "ingestion_timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When was this entry ingested? ISO-8601, system clock."
+        },
+        "ingestion_method": {
+          "type": "string",
+          "description": "Which tool/script/API ingested this? Must be version-specific (e.g., 'book_parser_v1.2.0')."
+        },
+        "ingestion_actor": {
+          "type": "string",
+          "description": "Who/what triggered ingestion? User ID, service name, automation ID."
+        },
+        "tenant_id": {
+          "type": "string",
+          "description": "Multi-tenancy support: which tenant owns this entry?"
+        }
+      }
+    },
+    "ambiguity_flags": {
+      "type": "array",
+      "description": "Ambiguity markers: what could this mean? Multiple interpretations PRESERVED.",
+      "items": {
+        "type": "object",
+        "required": ["type"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["polysemy", "homonymy", "homophone", "syntactic_ambiguity", "pragmatic_ambiguity", "modal_ambiguity", "other"],
+            "description": "What KIND of ambiguity exists?"
+          },
+          "note": {
+            "type": "string",
+            "description": "Human-readable description of ambiguity"
+          },
+          "affected_tokens": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Which words/segments are ambiguous?"
+          }
+        }
+      }
+    },
+    "resolution": {
+      "type": "null",
+      "description": "MUST BE NULL. This enforces: no meaning decided at LDU-T stage. Database constraint also enforces this."
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Optional metadata (does not affect content interpretation)",
+      "properties": {
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "notes": { "type": "string" },
+        "reviewed": { "type": "boolean" }
+      }
+    }
+  }
+}

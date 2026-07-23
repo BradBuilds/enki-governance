@@ -1,0 +1,352 @@
+{
+  "id": "canonicalpack.aliases",
+  "version": "1.0.0",
+  "description": "Canonical name registry. Each entry has a canonical_name, entity_type, optional Wikidata QID, optional role, and a list of lower-cased aliases. The mapper consults this at admit time so 'Bibi', 'B. Netanyahu', and 'Benjamin Netanyahu' all resolve to one entity row.",
+  "content": {
+    "entries": [
+      {
+        "canonical_name": "Benjamin Netanyahu",
+        "entity_type": "person",
+        "qid": "Q1357",
+        "role": "PM Israel",
+        "aliases": ["bibi", "bibi netanyahu", "b. netanyahu", "netanyahu", "pm netanyahu"]
+      },
+      {
+        "canonical_name": "Vladimir Putin",
+        "entity_type": "person",
+        "qid": "Q7747",
+        "role": "President Russia",
+        "aliases": ["putin", "vladimir putin", "v. putin"]
+      },
+      {
+        "canonical_name": "Xi Jinping",
+        "entity_type": "person",
+        "qid": "Q15031",
+        "role": "President China",
+        "aliases": ["xi", "xi jinping", "president xi"]
+      },
+      {
+        "canonical_name": "Donald Trump",
+        "entity_type": "person",
+        "qid": "Q22686",
+        "role": "President US",
+        "aliases": ["trump", "donald trump", "president trump", "djt", "the donald"]
+      },
+      {
+        "canonical_name": "Joe Biden",
+        "entity_type": "person",
+        "qid": "Q6279",
+        "role": "former President US",
+        "aliases": ["biden", "joe biden"]
+      },
+      {
+        "canonical_name": "Ali Khamenei",
+        "entity_type": "person",
+        "qid": "Q41970",
+        "role": "Supreme Leader Iran",
+        "aliases": ["khamenei", "ali khamenei", "supreme leader"]
+      },
+      {
+        "canonical_name": "Volodymyr Zelenskyy",
+        "entity_type": "person",
+        "qid": "Q22636148",
+        "role": "President Ukraine",
+        "aliases": ["zelensky", "zelenskyy", "volodymyr zelensky", "volodymyr zelenskyy"]
+      },
+      {
+        "canonical_name": "Emmanuel Macron",
+        "entity_type": "person",
+        "qid": "Q3052772",
+        "role": "President France",
+        "aliases": ["macron", "emmanuel macron"]
+      },
+      {
+        "canonical_name": "Keir Starmer",
+        "entity_type": "person",
+        "qid": "Q478215",
+        "role": "PM UK",
+        "aliases": ["starmer", "keir starmer"]
+      },
+      {
+        "canonical_name": "Friedrich Merz",
+        "entity_type": "person",
+        "qid": "Q703568",
+        "role": "Chancellor Germany",
+        "aliases": ["merz", "friedrich merz"]
+      },
+      {
+        "canonical_name": "Mark Carney",
+        "entity_type": "person",
+        "qid": "Q1361352",
+        "role": "PM Canada",
+        "aliases": ["carney", "mark carney"]
+      },
+      {
+        "canonical_name": "Narendra Modi",
+        "entity_type": "person",
+        "qid": "Q1058",
+        "role": "PM India",
+        "aliases": ["modi", "narendra modi"]
+      },
+      {
+        "canonical_name": "Kim Jong Un",
+        "entity_type": "person",
+        "qid": "Q58287",
+        "role": "Supreme Leader DPRK",
+        "aliases": ["kim jong un", "kim jong-un"]
+      },
+      {
+        "canonical_name": "Mohammed bin Salman",
+        "entity_type": "person",
+        "qid": "Q536840",
+        "role": "Crown Prince KSA",
+        "aliases": ["mbs", "mohammed bin salman"]
+      },
+      {
+        "canonical_name": "Recep Tayyip Erdogan",
+        "entity_type": "person",
+        "qid": "Q12731",
+        "role": "President Turkey",
+        "aliases": ["erdogan", "recep tayyip erdogan"]
+      },
+      {
+        "canonical_name": "Luiz Inacio Lula da Silva",
+        "entity_type": "person",
+        "qid": "Q60524",
+        "role": "President Brazil",
+        "aliases": ["lula", "lula da silva"]
+      },
+      {
+        "canonical_name": "Javier Milei",
+        "entity_type": "person",
+        "qid": "Q66024997",
+        "role": "President Argentina",
+        "aliases": ["milei", "javier milei"]
+      },
+      {
+        "canonical_name": "Ursula von der Leyen",
+        "entity_type": "person",
+        "qid": "Q681432",
+        "role": "EU Commission President",
+        "aliases": ["ursula von der leyen", "von der leyen", "uvdl"]
+      },
+      {
+        "canonical_name": "Islamic Revolutionary Guard Corps",
+        "entity_type": "organization",
+        "qid": "Q474268",
+        "role": "Iran military",
+        "aliases": ["irgc", "rev guard", "revolutionary guard"]
+      },
+      {
+        "canonical_name": "Federal Security Service",
+        "entity_type": "organization",
+        "qid": "Q170027",
+        "role": "Russia intelligence",
+        "aliases": ["fsb"]
+      },
+      {
+        "canonical_name": "Main Intelligence Directorate",
+        "entity_type": "organization",
+        "qid": "Q1124047",
+        "role": "Russia military intel",
+        "aliases": ["gru"]
+      },
+      {
+        "canonical_name": "Foreign Intelligence Service",
+        "entity_type": "organization",
+        "qid": "Q467473",
+        "role": "Russia foreign intel",
+        "aliases": ["svr"]
+      },
+      {
+        "canonical_name": "Central Intelligence Agency",
+        "entity_type": "organization",
+        "qid": "Q37230",
+        "role": "US foreign intel",
+        "aliases": ["cia"]
+      },
+      {
+        "canonical_name": "Federal Bureau of Investigation",
+        "entity_type": "organization",
+        "qid": "Q8333",
+        "role": "US domestic intel",
+        "aliases": ["fbi"]
+      },
+      {
+        "canonical_name": "National Security Agency",
+        "entity_type": "organization",
+        "qid": "Q121359",
+        "role": "US sigint",
+        "aliases": ["nsa"]
+      },
+      {
+        "canonical_name": "Defense Intelligence Agency",
+        "entity_type": "organization",
+        "qid": "Q482489",
+        "role": "US military intel",
+        "aliases": ["dia"]
+      },
+      {
+        "canonical_name": "Israel Defense Forces",
+        "entity_type": "organization",
+        "qid": "Q201340",
+        "role": "Israel military",
+        "aliases": ["idf"]
+      },
+      {
+        "canonical_name": "Mossad",
+        "entity_type": "organization",
+        "qid": "Q200030",
+        "role": "Israel foreign intel",
+        "aliases": ["mossad"]
+      },
+      {
+        "canonical_name": "Shin Bet",
+        "entity_type": "organization",
+        "qid": "Q190473",
+        "role": "Israel domestic intel",
+        "aliases": ["shin bet"]
+      },
+      {
+        "canonical_name": "People's Liberation Army",
+        "entity_type": "organization",
+        "qid": "Q200427",
+        "role": "China military",
+        "aliases": ["pla"]
+      },
+      {
+        "canonical_name": "Ministry of State Security",
+        "entity_type": "organization",
+        "qid": "Q865940",
+        "role": "China intel",
+        "aliases": ["mss"]
+      },
+      {
+        "canonical_name": "International Atomic Energy Agency",
+        "entity_type": "organization",
+        "qid": "Q11196",
+        "role": "UN nuclear watchdog",
+        "aliases": ["iaea"]
+      },
+      {
+        "canonical_name": "NATO",
+        "entity_type": "organization",
+        "qid": "Q7184",
+        "role": "military alliance",
+        "aliases": ["nato"]
+      },
+      {
+        "canonical_name": "United Nations",
+        "entity_type": "organization",
+        "qid": "Q1065",
+        "role": "international body",
+        "aliases": ["un"]
+      },
+      {
+        "canonical_name": "UN Security Council",
+        "entity_type": "organization",
+        "qid": "Q37470",
+        "role": "UN body",
+        "aliases": ["unsc"]
+      },
+      {
+        "canonical_name": "European Union",
+        "entity_type": "organization",
+        "qid": "Q458",
+        "role": "supranational union",
+        "aliases": ["eu"]
+      },
+      {
+        "canonical_name": "Group of Seven",
+        "entity_type": "organization",
+        "qid": "Q161243",
+        "role": "intergovernmental",
+        "aliases": ["g7"]
+      },
+      {
+        "canonical_name": "Group of Twenty",
+        "entity_type": "organization",
+        "qid": "Q210173",
+        "role": "intergovernmental",
+        "aliases": ["g20"]
+      },
+      {
+        "canonical_name": "Hamas",
+        "entity_type": "organization",
+        "qid": "Q47315",
+        "role": "Palestinian militant",
+        "aliases": ["hamas"]
+      },
+      {
+        "canonical_name": "Hezbollah",
+        "entity_type": "organization",
+        "qid": "Q204735",
+        "role": "Lebanese militant",
+        "aliases": ["hezbollah"]
+      },
+      {
+        "canonical_name": "Houthi movement",
+        "entity_type": "organization",
+        "qid": "Q3046186",
+        "role": "Yemeni militant",
+        "aliases": ["houthis"]
+      },
+      {
+        "canonical_name": "Islamic State",
+        "entity_type": "organization",
+        "qid": "Q3551774",
+        "role": "terrorist",
+        "aliases": ["isis", "isil", "daesh", "islamic state"]
+      },
+      {
+        "canonical_name": "al-Qaeda",
+        "entity_type": "organization",
+        "qid": "Q31123",
+        "role": "terrorist",
+        "aliases": ["al-qaeda", "al qaeda"]
+      },
+      {
+        "canonical_name": "Taliban",
+        "entity_type": "organization",
+        "qid": "Q7842",
+        "role": "Afghan political/militant",
+        "aliases": ["taliban"]
+      },
+      {
+        "canonical_name": "Wagner Group",
+        "entity_type": "organization",
+        "qid": "Q24938632",
+        "role": "Russian PMC",
+        "aliases": ["wagner", "wagner group"]
+      },
+      {
+        "canonical_name": "APT28",
+        "entity_type": "organization",
+        "qid": "Q14861630",
+        "role": "Russian APT (Fancy Bear)",
+        "aliases": ["apt28", "fancy bear"]
+      },
+      {
+        "canonical_name": "APT29",
+        "entity_type": "organization",
+        "qid": "Q14914551",
+        "role": "Russian APT (Cozy Bear)",
+        "aliases": ["apt29", "cozy bear"]
+      },
+      {
+        "canonical_name": "Lazarus Group",
+        "entity_type": "organization",
+        "qid": "Q22059654",
+        "role": "DPRK APT",
+        "aliases": ["lazarus", "lazarus group"]
+      },
+      {
+        "canonical_name": "Scattered Spider",
+        "entity_type": "organization",
+        "qid": null,
+        "role": "criminal hacker group",
+        "aliases": ["scattered spider"]
+      }
+    ]
+  }
+}

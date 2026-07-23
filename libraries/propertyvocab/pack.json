@@ -1,0 +1,40 @@
+{
+  "pack_id": "propertyvocab",
+  "version": "0.1.0",
+  "name": "ENKI Property Vocabulary Pack",
+  "description": "The catalog of property concepts that any node in the substrate can be described along. Each property owns one cycle in the base60 address space, has a defined value-lattice (which precision tiers from precisionvocab apply), and declares which node categories it can decorate (which entity types from nodevocab can carry it). v0.1.0 seeds 30 core properties grouped by domain: identity, physical, spatial, temporal, ownership, role, state, quantitative. Forward-compat: cycles 7–36 are reserved for v0.1.0 properties; cycles 37–59 are reserved for future properties. Properties cannot be removed or renumbered within a major version — only deprecated with a replaced_by pointer.",
+  "definitions": [
+    {
+      "id": "property.vocab.system",
+      "path": "definitions/propertyvocab.system.json",
+      "type": "system"
+    },
+    {
+      "id": "property.vocab.properties",
+      "path": "definitions/propertyvocab.properties.json",
+      "type": "custom"
+    },
+    {
+      "id": "property.vocab.cycle_map",
+      "path": "definitions/propertyvocab.cycle_map.json",
+      "type": "custom"
+    }
+  ],
+  "dependencies": ["identity", "nodevocab", "precisionvocab"],
+  "namespaces_owned": [
+    "property.vocab"
+  ],
+  "metadata": {
+    "created": "2026-05-19T00:00:00Z",
+    "author": "ENKI System",
+    "license": "AGPLv3",
+    "forward_compat_rules": [
+      "Property cycle numbers are immutable across minor-version bumps. Once cycle=7 is assigned to 'color', it stays color forever within the major version.",
+      "New properties are added by claiming the next unused cycle (start at 37 in v0.2.0+).",
+      "Existing properties can gain new applicable_to entries (decorate more node categories) without a major bump.",
+      "Properties cannot remove applicable_to entries within a minor bump — that would invalidate existing assertions.",
+      "Deprecation flow: property.deprecated=true with replaced_by pointer; old assertions remain queryable, new ones get redirected to replacement."
+    ],
+    "wikidata_alignment": "Each property may carry an optional `wikidata_pid` field (e.g. P462 for color, P176 for manufacturer). v0.1.0 seeds these pointers but does not yet import Wikidata's value graph; that becomes propertyvocab v0.2.0 once the bootstrap lattices in v0.1.0 prove out."
+  }
+}

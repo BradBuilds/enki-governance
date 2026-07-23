@@ -1,0 +1,99 @@
+{
+  "id": "assertion_vocab.forms",
+  "type": "custom",
+  "version": "0.1.0",
+  "description": "Canonical assertion form templates",
+  "content": {
+    "category": "assertion_forms",
+    "purpose": "Defines structural templates for assertions",
+    "forms": [
+      {
+        "form_id": "entity_to_entity",
+        "label": "Entity → Predicate → Entity",
+        "description": "Assertion relating two entities",
+        "template": {
+          "subject": {
+            "type": "entity_ref",
+            "description": "Source entity"
+          },
+          "predicate": {
+            "type": "predicate_id",
+            "description": "Relationship verb"
+          },
+          "object": {
+            "type": "entity_ref",
+            "description": "Target entity"
+          }
+        },
+        "examples": [
+          "person owns device",
+          "organization created dataset",
+          "dataset derived_from dataset"
+        ],
+        "notes": ["Both subject and object are entity references"]
+      },
+      {
+        "form_id": "entity_to_scalar",
+        "label": "Entity → Predicate → Scalar",
+        "description": "Assertion assigning a scalar value to an entity",
+        "template": {
+          "subject": {
+            "type": "entity_ref",
+            "description": "Entity receiving property"
+          },
+          "predicate": {
+            "type": "predicate_id",
+            "description": "Property verb"
+          },
+          "object": {
+            "type": "scalar_value",
+            "description": "String, number, boolean, or timestamp",
+            "allowed_kinds": ["string", "number", "boolean", "timestamp"]
+          }
+        },
+        "examples": [
+          "person has_name 'Alice'",
+          "device has_status true",
+          "dataset created '2025-12-31T00:00:00Z'"
+        ],
+        "notes": ["Object is a primitive value"]
+      },
+      {
+        "form_id": "entity_to_reference",
+        "label": "Entity → Predicate → Reference",
+        "description": "Assertion linking entity to external reference",
+        "template": {
+          "subject": {
+            "type": "entity_ref",
+            "description": "Entity with reference"
+          },
+          "predicate": {
+            "type": "predicate_id",
+            "description": "Reference verb"
+          },
+          "object": {
+            "type": "reference_value",
+            "description": "Pack reference or URI",
+            "allowed_kinds": ["pack_ref", "uri"]
+          }
+        },
+        "examples": [
+          "dataset references https://example.com/source",
+          "definition_pack derived_from pack_ref{base60, 0.1.0}",
+          "organization located_in https://maps.example.com/location"
+        ],
+        "notes": ["Object is a reference to external or pack resource"]
+      }
+    ],
+    "notes": [
+      "Forms are templates only - not validation schemas",
+      "Actual assertion structures may include metadata, timestamps, provenance",
+      "These forms describe core triple structure only"
+    ]
+  },
+  "metadata": {
+    "created": "2025-12-31T00:00:00Z",
+    "author": "ENKI System"
+  },
+  "dependencies": ["assertion_vocab.system", "assertion_vocab.predicates", "assertion_vocab.object_kinds"]
+}

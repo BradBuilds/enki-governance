@@ -1,0 +1,153 @@
+{
+  "id": "audit_vocab.fields",
+  "type": "custom",
+  "version": "0.1.0",
+  "description": "Canonical audit event field vocabulary",
+  "content": {
+    "category": "audit_fields",
+    "purpose": "Defines standard fields used in audit events",
+    "fields": [
+      {
+        "field_id": "event_id",
+        "label": "Event ID",
+        "description": "Unique identifier for the audit event",
+        "type_hint": "string",
+        "required": true,
+        "notes": ["Should be globally unique", "Pattern: ^[a-z0-9]([a-z0-9._-]*[a-z0-9])?$"]
+      },
+      {
+        "field_id": "event_type",
+        "label": "Event Type",
+        "description": "Type of event from audit_vocab.event_types",
+        "type_hint": "string",
+        "required": true,
+        "notes": ["Must match event_type_id from vocabulary"]
+      },
+      {
+        "field_id": "timestamp",
+        "label": "Timestamp",
+        "description": "ISO 8601 timestamp of event occurrence",
+        "type_hint": "string (ISO 8601)",
+        "required": true,
+        "notes": ["When the event occurred", "Format: YYYY-MM-DDTHH:MM:SSZ"]
+      },
+      {
+        "field_id": "actor_id",
+        "label": "Actor ID",
+        "description": "Identity of actor that triggered the event",
+        "type_hint": "string",
+        "required": false,
+        "notes": ["References Identity Pack actors", "May be human, ai, service, or node"]
+      },
+      {
+        "field_id": "assertion_id",
+        "label": "Assertion ID",
+        "description": "Assertion being referenced by the event",
+        "type_hint": "string",
+        "required": false,
+        "notes": ["Used for assertion lifecycle events"]
+      },
+      {
+        "field_id": "pack_id",
+        "label": "Pack ID",
+        "description": "Definition pack being referenced",
+        "type_hint": "string",
+        "required": false,
+        "notes": ["Used for pack operation events"]
+      },
+      {
+        "field_id": "node_id",
+        "label": "Node ID",
+        "description": "ENKI node identifier",
+        "type_hint": "string",
+        "required": false,
+        "notes": ["Identifies which node generated the event"]
+      },
+      {
+        "field_id": "scope",
+        "label": "Scope",
+        "description": "Visibility scope from Identity Pack",
+        "type_hint": "string (enum)",
+        "required": false,
+        "allowed_values": ["local", "shared", "global"],
+        "notes": ["References Identity Pack scopes"]
+      },
+      {
+        "field_id": "source",
+        "label": "Source",
+        "description": "Source or origin of the event",
+        "type_hint": "string or object",
+        "required": false,
+        "notes": ["Can be system component, service, or external source"]
+      },
+      {
+        "field_id": "severity",
+        "label": "Severity",
+        "description": "Event severity level from audit_vocab.severity",
+        "type_hint": "string (enum)",
+        "required": false,
+        "allowed_values": ["info", "warning", "error", "critical"],
+        "notes": ["Indicates importance/urgency of event"]
+      },
+      {
+        "field_id": "reason",
+        "label": "Reason",
+        "description": "Human-readable explanation for the event",
+        "type_hint": "string",
+        "required": false,
+        "notes": ["Especially useful for rejection or failure events"]
+      },
+      {
+        "field_id": "errors",
+        "label": "Errors",
+        "description": "List of error details for failure events",
+        "type_hint": "array",
+        "required": false,
+        "notes": ["Structured error information"]
+      },
+      {
+        "field_id": "metadata",
+        "label": "Metadata",
+        "description": "Additional event-specific data",
+        "type_hint": "object",
+        "required": false,
+        "notes": ["Arbitrary key-value pairs", "Event-type specific details"]
+      },
+      {
+        "field_id": "version",
+        "label": "Version",
+        "description": "Version of pack, node, or other versioned entity",
+        "type_hint": "string",
+        "required": false,
+        "notes": ["Semantic version format: x.y.z"]
+      },
+      {
+        "field_id": "target_id",
+        "label": "Target ID",
+        "description": "Identifier of the target being operated on",
+        "type_hint": "string",
+        "required": false,
+        "notes": ["Generic target reference for various operations"]
+      },
+      {
+        "field_id": "target_type",
+        "label": "Target Type",
+        "description": "Type of target being operated on",
+        "type_hint": "string",
+        "required": false,
+        "notes": ["E.g., 'assertion', 'pack', 'definition'"]
+      }
+    ],
+    "notes": [
+      "Fields are vocabulary only - not a schema",
+      "Required/optional are recommendations",
+      "Actual event structure defined by implementing systems",
+      "Type hints are conceptual, not enforced by this pack"
+    ]
+  },
+  "metadata": {
+    "created": "2025-12-31T00:00:00Z",
+    "author": "ENKI System"
+  },
+  "dependencies": ["audit_vocab.system", "identity.scopes"]
+}

@@ -1,0 +1,23 @@
+{
+  "id": "domain.legal",
+  "type": "domain_sense_preferences",
+  "version": "0.2.0",
+  "description": "Legal / sworn-testimony domain: preferred WordNet sense per ambiguous form. The disambiguation prior the collapse equation consults when a sentence is linked to this domain library. Sense addresses are content-derived from the WordNet pack (stable across pools) and VERIFIED bound to the form. v0.2.0 adds role-ambiguous deposition-discourse terms (answer/talk/work/leave/question/abuse) — kept here, NOT in the general pack, because their dominant sense is corpus-dependent (e.g. 'work' is a verb in testimony but a noun 'the work' in a research corpus), so they should only be pinned when the legal domain is active.",
+  "domain": "legal",
+  "preferences": {
+    "admit":   { "address": "12.1.5994b4c2a7cb1716", "gloss": "declare to be true; concede", "weight": 1.0 },
+    "confirm": { "address": "12.1.4248335431ada2c2", "gloss": "establish or strengthen with new evidence", "weight": 1.0 },
+    "state":   { "address": "12.1.d0aa547b491449a7", "gloss": "express in words", "weight": 1.0 },
+    "observe": { "address": "12.1.0c7466e97f4b60c3", "gloss": "discover/determine existence (perceive)", "weight": 1.0 },
+    "answer":  { "address": "12.1.e81fdb2a37b81e50", "gloss": "react verbally; reply", "weight": 1.0 },
+    "talk":    { "address": "12.1.be1998eb4defd905", "gloss": "exchange thoughts; converse", "weight": 1.0 },
+    "work":    { "address": "12.1.5de7f493801b37f3", "gloss": "be employed", "weight": 1.0 },
+    "leave":   { "address": "12.1.cd0fc95a64948170", "gloss": "go away from a place", "weight": 1.0 },
+    "question":{ "address": "12.0.d772e66c9dbef4b4", "gloss": "a sentence of inquiry asking for a reply", "weight": 1.0 },
+    "abuse":   { "address": "12.0.d0795950bcfdbf50", "gloss": "cruel or inhumane treatment", "weight": 1.0 },
+    "testify": { "gloss_match": "give testimony", "weight": 1.0 },
+    "witness": { "gloss_match": "testify|deposition|sworn", "weight": 1.0 },
+    "party":   { "gloss_match": "litigant|legal action", "weight": 1.0 },
+    "counsel": { "gloss_match": "lawyer|attorney|legal", "weight": 1.0 }
+  }
+}

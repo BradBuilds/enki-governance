@@ -1,0 +1,105 @@
+# Enki Governance — lean self-host stack (CPU-friendly).
+#   docker compose up -d      then      ./scripts/first-run.sh
+#
+# Runs on CPU out of the box. On a GPU host, uncomment the ollama `deploy`
+# block (needs nvidia-container-toolkit) for much faster inference.
+
+services:
+  postgres:
+    build:
+      context: ./docker/postgres
+      dockerfile: Dockerfile          # PostGIS + pgvector on PostgreSQL 16
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-enki}
+      POSTGRES_USER: ${POSTGRES_USER:-enki_db}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-enki_pass}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-enki_db} -d ${POSTGRES_DB:-enki}"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    environment:
+      - OLLAMA_KV_CACHE_TYPE=q8_0
+    # GPU (optional): uncomment on a host with nvidia-container-toolkit.
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]
+    healthcheck:
+      test: ["CMD-SHELL", "ollama list >/dev/null 2>&1 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    user: root            # dev self-host: write emulated key + reload cleanly
+    environment:
+      ENKI_PROFILE: dev
+      ENKI_ROOT_PASSWORD: ${ENKI_ROOT_PASSWORD:-dev-root-password-change-me}
+      ENKI_DB_DSN: postgresql://${POSTGRES_USER:-enki_db}:${POSTGRES_PASSWORD:-enki_pass}@postgres:5432/${POSTGRES_DB:-enki}
+      ENKI_DB_HOST: postgres
+      ENKI_DB_USER: ${POSTGRES_USER:-enki_db}
+      ENKI_DB_NAME: ${POSTGRES_DB:-enki}
+      PGPASSWORD: ${POSTGRES_PASSWORD:-enki_pass}
+      ENKI_USE_GDU_GATEWAY: "true"
+      OLLAMA_BASE_URL: http://ollama:11434
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-gemma4:e2b}
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./core:/app/core
+      - ./storage:/app/storage
+      - ./services:/app/services
+      - ./libraries:/app/libraries
+      - ./scripts:/app/scripts
+      - ./active_set_v6.json:/app/active_set_v6.json:ro
+    # First boot: ensure emulated root key, run migrations, then serve.
+    # Governance packs load on API boot.
+    command: >
+      sh -c "python /app/scripts/ensure-root-key.py &&
+      bash /app/scripts/enki-migrate.sh &&
+      exec uvicorn services.api.src.main_dev:app
+      --host 0.0.0.0 --port 8000
+      --reload --reload-dir /app/core --reload-dir /app/services"
+
+  ui:
+    image: node:20-alpine
+    working_dir: /app
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./ui:/app
+      - ui_node_modules:/app/node_modules
+    environment:
+      VITE_API_PROXY: http://api:8000
+      ENKI_PROFILE: dev
+      ORIGIN: ${ENKI_PUBLIC_URL:-http://localhost:5173}
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
+    restart: unless-stopped
+    depends_on:
+      - api
+
+volumes:
+  pgdata:
+  ui_node_modules:
+  ollama_data:

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 28" fill="currentColor">
+  <!-- E -->
+  <path d="M0,0 H16 V4 H4.5 V11.5 H13 V15.5 H4.5 V24 H16 V28 H0 Z"/>
+  <!-- N -->
+  <path d="M20,28 H20 V0 H24.5 L38,19 V0 H42.5 V28 H38 L24.5,9 V28 Z"/>
+  <!-- K -->
+  <path d="M47,0 H51.5 V11 L63,0 H68.5 L55.5,12.5 L69,28 H63.5 L51.5,15 V28 H47 Z"/>
+  <!-- I -->
+  <path d="M73,0 H77.5 V28 H73 Z"/>
+</svg>

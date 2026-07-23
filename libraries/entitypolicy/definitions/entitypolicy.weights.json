@@ -1,0 +1,11 @@
+{
+  "id": "entitypolicy.weights",
+  "type": "collapse_policy",
+  "version": "0.1.0",
+  "description": "Entity collapse: S(a|name,ids) = 10*id + 3*exact + 1.5*loose, veto identifier_conflict. theta=1 (need some positive evidence), delta=0.5 (a clear winner merges; a true tie between weak candidates parks -> create-new, never a blind merge). Reproduces the layered resolver: id-first (L0.5), exact name (L1), token-superset loose (L2.5), conflict veto.",
+  "content": {
+    "weights": { "id": 10.0, "exact": 3.0, "loose": 1.5 },
+    "vetoes":  { "identifier_conflict": true },
+    "thresholds": { "theta": 1.0, "delta": 0.5 }
+  }
+}

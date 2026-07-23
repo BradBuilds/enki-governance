@@ -1,0 +1,35 @@
+{
+  "pack_id": "gazetteerpack",
+  "version": "1.0.0",
+  "name": "ENKI Gazetteer Pack",
+  "description": "Place gazetteer: countries, maritime areas, named admin regions. Each entry carries canonical name, ISO codes (where applicable), Wikidata QID, centroid coordinates, and aliases. Promoted from core/gdu/llm_mapper.py:_KNOWN_COUNTRIES in Phase 2.2 of the collapse rebuild plan, plus the maritime/admin entries that previously failed to LDU-P.",
+  "definitions": [
+    {
+      "id": "gazetteerpack.countries",
+      "path": "definitions/gazetteerpack.countries.json",
+      "type": "custom"
+    },
+    {
+      "id": "gazetteerpack.maritime",
+      "path": "definitions/gazetteerpack.maritime.json",
+      "type": "custom"
+    },
+    {
+      "id": "gazetteerpack.admin",
+      "path": "definitions/gazetteerpack.admin.json",
+      "type": "custom"
+    }
+  ],
+  "dependencies": ["identity", "nodevocab"],
+  "namespaces_owned": [
+    "place.country",
+    "place.maritime_area",
+    "place.admin_region"
+  ],
+  "metadata": {
+    "created": "2026-05-04T00:00:00Z",
+    "author": "ENKI System",
+    "license": "AGPLv3",
+    "kill_switch_env": "ENKI_NO_GAZETTEER_PACK"
+  }
+}

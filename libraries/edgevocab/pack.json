@@ -1,0 +1,32 @@
+{
+  "pack_id": "edgevocab",
+  "version": "0.4.0",
+  "name": "ENKI Edge Type Vocabulary Pack",
+  "description": "Canonical relationship types between knowledge nodes. v0.2.0 (2026-05-11): adds 7 edge clusters \u2014 testimony (testified_against / accused_by / witnessed / denied / informed_on / alleged / named_as_associate), mention/document (mention_of / mention_in_document / has_mention / appears_in), statement (said_by / said_about / stated_in / corroborates / contradicts), beneficial-ownership (owns / owned_by / beneficial_owner_of / ultimate_owner_of / controls / shareholder_of / founded_by / trustee_of), family (spouse_of / parent_of_person / child_of / sibling_of), travel (flew_with / traveled_to / accompanied), and issue-anchor (candidate_merge_of / contradicts_in_doc / concerns_entity). Discipline: prefer fewer well-defined edges over ad-hoc ones; every edge in knowledge_edges must carry an edge_type from this vocabulary.",
+  "definitions": [
+    {
+      "id": "edge.vocab.system",
+      "path": "definitions/edgevocab.system.json",
+      "type": "system"
+    },
+    {
+      "id": "edge.vocab.edge_types",
+      "path": "definitions/edgevocab.edge_types.json",
+      "type": "custom"
+    }
+  ],
+  "dependencies": [
+    "identity",
+    "nodevocab"
+  ],
+  "namespaces_owned": [
+    "edge.vocab"
+  ],
+  "metadata": {
+    "created": "2026-04-10T00:00:00Z",
+    "author": "ENKI System",
+    "license": "AGPLv3",
+    "status": "LOCKED",
+    "change_control": "New edge types via Tier 1 vocabulary extension (Gate A). Removing or renaming requires full ceremony (Gate A+B+C) and migration plan."
+  }
+}

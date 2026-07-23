@@ -1,0 +1,74 @@
+{
+  "id": "relevance.vocab.factors",
+  "type": "custom",
+  "version": "0.1.0",
+  "description": "The factors and weights used to compute relevance score, which is then mapped to a tier. Factor weights are tunable via Tier 1 extension; the factor list itself is more stable.",
+  "content": {
+    "computation": {
+      "approach": "weighted_sum",
+      "score_to_tier": "score >= 0.75 → high; score >= 0.5 → medium; score >= 0.25 → low; score < 0.25 → none",
+      "default_when_uncertain": "medium"
+    },
+
+    "factors": {
+      "case_observable_match": {
+        "description": "Number of case_observable watchlist entries this signal matches",
+        "weight": 0.30,
+        "type": "binary_per_match",
+        "max_contribution": 0.30
+      },
+      "thread_filter_match": {
+        "description": "Number of active monitoring thread filters this signal matches",
+        "weight": 0.20,
+        "type": "binary_per_match",
+        "max_contribution": 0.20
+      },
+      "watched_entity_overlap": {
+        "description": "Fraction of extracted entities that are on a watchlist",
+        "weight": 0.15,
+        "type": "ratio",
+        "max_contribution": 0.15
+      },
+      "source_authority": {
+        "description": "Source reliability score (USGS official=1.0, mainstream news=0.7, blog=0.3, anonymous=0.1)",
+        "weight": 0.10,
+        "type": "scalar",
+        "max_contribution": 0.10
+      },
+      "domain_match_user_interests": {
+        "description": "Whether signal domain (politics, defense, weather...) matches user's declared interest areas",
+        "weight": 0.10,
+        "type": "binary",
+        "max_contribution": 0.10
+      },
+      "recency": {
+        "description": "Decay function over time since event_time",
+        "weight": 0.05,
+        "type": "decay",
+        "decay_half_life_hours": 168,
+        "max_contribution": 0.05
+      },
+      "event_time_precision": {
+        "description": "Bonus for high-precision event time (a signal with second-precision is more useful than year-precision)",
+        "weight": 0.05,
+        "type": "scalar",
+        "max_contribution": 0.05
+      },
+      "pattern_membership": {
+        "description": "Bonus if signal contributes to a known pattern node (v2 — currently always 0)",
+        "weight": 0.05,
+        "type": "binary",
+        "max_contribution": 0.05,
+        "_v1_status": "Defined but always 0 in v1; pattern detection workers come in v2"
+      }
+    },
+
+    "tunable": true,
+    "tunable_doc": "Factor weights are expected to be tuned over time as we learn what produces useful relevance scores. Tuning happens via Tier 1 extension (Gate A) — author a new version of this definition file, recompute the pack hash, bump active set. Historical scores remain queryable via LDU lineage."
+  },
+  "metadata": {
+    "created": "2026-04-10T00:00:00Z",
+    "author": "ENKI System"
+  },
+  "dependencies": []
+}

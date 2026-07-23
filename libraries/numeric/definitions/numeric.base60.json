@@ -1,0 +1,18 @@
+{
+  "id": "gdu.numeric.base60",
+  "type": "numeric_representation",
+  "version": "1.0.0",
+  "content": {
+    "name": "base60",
+    "base": 60,
+    "role": "representation_only",
+    "digit_range": { "min": 0, "max": 59 },
+    "zero_rule": "Zero MUST be explicit as a digit 0 (no omission).",
+    "place_order_rule": "Places are ordered left-to-right from highest place to lowest place.",
+    "no_collapse_rule": "Representations must not trim, collapse, or omit internal zero places.",
+    "rendering_separation": [
+      "No glyphs or symbols are part of base60 numeric representation.",
+      "Glyph rendering is defined in a separate pack that depends on this pack."
+    ]
+  }
+}
