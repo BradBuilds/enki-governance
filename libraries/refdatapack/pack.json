@@ -2,7 +2,7 @@
   "pack_id": "refdatapack",
   "version": "0.1.0",
   "name": "ENKI Reference Data Pack",
-  "description": "Manifest of locally-cached public datasets that the investigation pipeline can query without hitting the live network. Each entry in refdatapack.datasets.json describes one bulk-downloadable dataset: source URL, refresh cadence, parser, on-disk path, license, and trust class. The refdata sync worker reads this manifest to know what's available; source handlers consult the refdata_packs DB registry to decide whether a local-first lookup is current. The pack stops short of the dataset bodies themselves — those are downloaded and indexed per-operator opt-in.",
+  "description": "Manifest of locally-cached public datasets that the investigation pipeline can query without hitting the live network. Each entry in refdatapack.datasets.json describes one bulk-downloadable dataset: source URL, refresh cadence, parser, on-disk path, license, and trust class. The refdata sync worker reads this manifest to know what's available; source handlers consult the refdata_packs DB registry to decide whether a local-first lookup is current. The pack stops short of the dataset bodies themselves — those are downloaded and indexed per-operator opt-in. NAMESPACE FIX (2026-07-25): namespaces_owned was ['refdata.packs'], which did not own this pack's own definition ids; added the namespace actually used so the admission ceremony's ownership check passes.",
   "definitions": [
     {
       "id": "refdatapack.datasets",
@@ -12,7 +12,8 @@
   ],
   "dependencies": [],
   "namespaces_owned": [
-    "refdata.packs"
+    "refdata.packs",
+    "refdatapack"
   ],
   "metadata": {
     "created": "2026-05-11T00:00:00Z",

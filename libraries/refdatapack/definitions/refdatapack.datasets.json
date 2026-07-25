@@ -3,71 +3,90 @@
   "type": "custom",
   "version": "0.1.0",
   "description": "Catalog of public datasets the operator can sync to local cache. Each entry describes: pack_id (stable identifier used by source handlers), source URL (bulk download), parser module (core.refdata.packs.<pack_id>), refresh cadence, license, trust class for collapse policy, and a rough size estimate so operators can plan storage. The sync worker iterates this list on schedule; source handlers call refdata.manager.is_fresh(pack_id) to decide local-first vs live-fallback.",
-
-  "_principles": [
-    "Adjustable per server: operators opt in to each pack individually. Empty cache means live-only; populated cache means local-first.",
-    "Trust class flows downstream: pack's trust_class becomes the dataset_id's collapse policy default when admitted via the gateway.",
-    "Refresh cadence is a hint, not a contract — the touch-to-refresh layer can force a sync when a node is opened with a stale pack.",
-    "Static datasets (one-time release) get cadence='static' and are never auto-refreshed.",
-    "Sensitive corpora (review_required trust) require operator confirmation before first sync."
-  ],
-
-  "datasets": [
-    {
-      "pack_id": "ofac_sdn",
-      "name": "OFAC Specially Designated Nationals",
-      "description": "US Treasury Office of Foreign Assets Control consolidated SDN list. Every individual, entity, vessel, aircraft designated for sanctions under US programs (SDGT, IRAN, RUSSIA-EO14024, etc.). Updated daily. The DELIMITED form (sdn.csv + alt.csv + add.csv) is the operational format; bulk XML is also published. Parser uses CSV to keep dependencies minimal.",
-      "source_urls": {
-        "primary": "https://www.treasury.gov/ofac/downloads/sdn.csv",
-        "aliases": "https://www.treasury.gov/ofac/downloads/alt.csv",
-        "addresses": "https://www.treasury.gov/ofac/downloads/add.csv"
+  "content": {
+    "datasets": [
+      {
+        "pack_id": "ofac_sdn",
+        "name": "OFAC Specially Designated Nationals",
+        "description": "US Treasury Office of Foreign Assets Control consolidated SDN list. Every individual, entity, vessel, aircraft designated for sanctions under US programs (SDGT, IRAN, RUSSIA-EO14024, etc.). Updated daily. The DELIMITED form (sdn.csv + alt.csv + add.csv) is the operational format; bulk XML is also published. Parser uses CSV to keep dependencies minimal.",
+        "source_urls": {
+          "primary": "https://www.treasury.gov/ofac/downloads/sdn.csv",
+          "aliases": "https://www.treasury.gov/ofac/downloads/alt.csv",
+          "addresses": "https://www.treasury.gov/ofac/downloads/add.csv"
+        },
+        "parser_module": "core.refdata.packs.ofac",
+        "refresh_cadence": "daily",
+        "license": "Public Domain (US Government Work)",
+        "trust_class": "corroborating",
+        "size_estimate_mb": 25,
+        "record_estimate": 13000,
+        "covers_entity_types": [
+          "person",
+          "organization",
+          "vessel",
+          "aircraft"
+        ],
+        "served_sources": [
+          "ofac"
+        ],
+        "operator_opt_in_required": false,
+        "notes": "Replaces the per-call live CSV download in investigate_ofac. After first sync, every investigation hits PG instead of the Treasury server."
       },
-      "parser_module": "core.refdata.packs.ofac",
-      "refresh_cadence": "daily",
-      "license": "Public Domain (US Government Work)",
-      "trust_class": "corroborating",
-      "size_estimate_mb": 25,
-      "record_estimate": 13000,
-      "covers_entity_types": ["person", "organization", "vessel", "aircraft"],
-      "served_sources": ["ofac"],
-      "operator_opt_in_required": false,
-      "notes": "Replaces the per-call live CSV download in investigate_ofac. After first sync, every investigation hits PG instead of the Treasury server."
-    },
-    {
-      "pack_id": "un_consolidated",
-      "name": "UN Consolidated Sanctions List",
-      "description": "United Nations Security Council consolidated sanctions list. Aggregates designations across UN sanctions regimes (DRC, ISIL/Al-Qaida, Libya, Mali, Yemen, etc.). Published as XML. Catches designations OFAC alone might miss when the target isn't US-relevant.",
-      "source_urls": {
-        "primary": "https://scsanctions.un.org/resources/xml/en/consolidated.xml"
+      {
+        "pack_id": "un_consolidated",
+        "name": "UN Consolidated Sanctions List",
+        "description": "United Nations Security Council consolidated sanctions list. Aggregates designations across UN sanctions regimes (DRC, ISIL/Al-Qaida, Libya, Mali, Yemen, etc.). Published as XML. Catches designations OFAC alone might miss when the target isn't US-relevant.",
+        "source_urls": {
+          "primary": "https://scsanctions.un.org/resources/xml/en/consolidated.xml"
+        },
+        "parser_module": "core.refdata.packs.un_consolidated",
+        "refresh_cadence": "daily",
+        "license": "UN Open Data",
+        "trust_class": "corroborating",
+        "size_estimate_mb": 5,
+        "record_estimate": 1200,
+        "covers_entity_types": [
+          "person",
+          "organization"
+        ],
+        "served_sources": [
+          "un_sanctions"
+        ],
+        "operator_opt_in_required": false,
+        "notes": "Schedule sync after OFAC (same day). The two lists overlap but each has unique designations."
       },
-      "parser_module": "core.refdata.packs.un_consolidated",
-      "refresh_cadence": "daily",
-      "license": "UN Open Data",
-      "trust_class": "corroborating",
-      "size_estimate_mb": 5,
-      "record_estimate": 1200,
-      "covers_entity_types": ["person", "organization"],
-      "served_sources": ["un_sanctions"],
-      "operator_opt_in_required": false,
-      "notes": "Schedule sync after OFAC (same day). The two lists overlap but each has unique designations."
-    },
-    {
-      "pack_id": "opensanctions_default",
-      "name": "OpenSanctions Default Consolidated Dataset",
-      "description": "OpenSanctions aggregates sanctions, PEPs, watchlists, and crime data from 200+ public sources into a single normalized JSON-FtM stream. The 'default' dataset is the consolidated cross-source feed. Free bulk download under CC-BY 4.0; replaces the paid /match API for most uses.",
-      "source_urls": {
-        "primary": "https://data.opensanctions.org/datasets/latest/default/entities.ftm.json"
-      },
-      "parser_module": "core.refdata.packs.opensanctions",
-      "refresh_cadence": "weekly",
-      "license": "CC-BY 4.0",
-      "trust_class": "corroborating",
-      "size_estimate_mb": 500,
-      "record_estimate": 750000,
-      "covers_entity_types": ["person", "organization", "vessel", "aircraft"],
-      "served_sources": ["opensanctions"],
-      "operator_opt_in_required": true,
-      "notes": "Large download — operator confirms before first sync. Subsequent syncs are incremental (ETag-based). Replaces the paid API path for most lookups; the paid /match endpoint stays available for PEP-category and topic queries when OPENSANCTIONS_API_KEY is set."
-    }
-  ]
+      {
+        "pack_id": "opensanctions_default",
+        "name": "OpenSanctions Default Consolidated Dataset",
+        "description": "OpenSanctions aggregates sanctions, PEPs, watchlists, and crime data from 200+ public sources into a single normalized JSON-FtM stream. The 'default' dataset is the consolidated cross-source feed. Free bulk download under CC-BY 4.0; replaces the paid /match API for most uses.",
+        "source_urls": {
+          "primary": "https://data.opensanctions.org/datasets/latest/default/entities.ftm.json"
+        },
+        "parser_module": "core.refdata.packs.opensanctions",
+        "refresh_cadence": "weekly",
+        "license": "CC-BY 4.0",
+        "trust_class": "corroborating",
+        "size_estimate_mb": 500,
+        "record_estimate": 750000,
+        "covers_entity_types": [
+          "person",
+          "organization",
+          "vessel",
+          "aircraft"
+        ],
+        "served_sources": [
+          "opensanctions"
+        ],
+        "operator_opt_in_required": true,
+        "notes": "Large download — operator confirms before first sync. Subsequent syncs are incremental (ETag-based). Replaces the paid API path for most lookups; the paid /match endpoint stays available for PEP-category and topic queries when OPENSANCTIONS_API_KEY is set."
+      }
+    ],
+    "_principles": [
+      "Adjustable per server: operators opt in to each pack individually. Empty cache means live-only; populated cache means local-first.",
+      "Trust class flows downstream: pack's trust_class becomes the dataset_id's collapse policy default when admitted via the gateway.",
+      "Refresh cadence is a hint, not a contract — the touch-to-refresh layer can force a sync when a node is opened with a stale pack.",
+      "Static datasets (one-time release) get cadence='static' and are never auto-refreshed.",
+      "Sensitive corpora (review_required trust) require operator confirmation before first sync."
+    ]
+  }
 }

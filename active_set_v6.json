@@ -1,6 +1,6 @@
 {
   "$schema": "./schemas/active_set.schema.json",
-  "version": "6.4.0",
+  "version": "6.5.0",
   "packs": [
     {
       "pack_id": "identity",
@@ -96,10 +96,40 @@
       "pack_id": "researchpack",
       "version": "1.2.0",
       "content_hash": "sha256:1fcf23932c3c1a98a5fbacd3dc9899c3b0aa408806b7a618cf2fa46528ffd500"
+    },
+    {
+      "pack_id": "displayvocab",
+      "version": "0.1.0",
+      "content_hash": "sha256:4b12f730569f8e28b2c08062133e388544ccf996b43bc0bae8a9e8f5cbcfbd03"
+    },
+    {
+      "pack_id": "precisionvocab",
+      "version": "0.1.0",
+      "content_hash": "sha256:295cfb5b69c3ba6acb13842e4475956c794f2c6b5765e912f88f260f1695db43"
+    },
+    {
+      "pack_id": "propertyvocab",
+      "version": "0.1.0",
+      "content_hash": "sha256:257a8c8d1ce59af906777dcfc6983e487e58edf20608df09f71e59623536518a"
+    },
+    {
+      "pack_id": "topicvocab",
+      "version": "0.1.0",
+      "content_hash": "sha256:24e647a58e333e4864c87f0c336bc6839096f44e0164fb87f6e824ea5c3addf3"
+    },
+    {
+      "pack_id": "valuevocab",
+      "version": "0.1.0",
+      "content_hash": "sha256:4b41ee9108336ad1823f758cd4b6cba096ef5c1f96f6ab2bf91fbf9ced365ef3"
+    },
+    {
+      "pack_id": "refdatapack",
+      "version": "0.1.0",
+      "content_hash": "sha256:e0f3171f7e327fcac40024bd82060b0979ee477159d6611d2000233caf9a69c0"
     }
   ],
   "metadata": {
-    "name": "Active Set v6.4.0 - Governance re-sync + full pack declaration",
+    "name": "Active Set v6.5.0 - full spine-pack coverage",
     "description": "Adds entityvocab pack: canonical entity resolution rules, per-type identifier schemas, normalization rules, merge/split policy, LLM arbitration prompt template, and enrichment task definitions. Together with nodevocab (entity subtypes) and completenessvocab (dossier scoring), this enables the unified entity resolution pipeline where all entity creation \u2014 from signals, enrichment, and watch topics \u2014 passes through a single GDU-governed resolver.",
     "created": "2026-04-11T00:00:00Z",
     "author": "ENKI System",
@@ -114,6 +144,7 @@
       "6.2.0 (2026-05-05): collapse rebuild \u2014 nodevocab 0.2.0\u21920.3.0 (per-subtype collapse_key_rules), entityvocab 0.1.0\u21920.2.0 (top-level normalize_rules), adds canonicalpack 1.0.0 + gazetteerpack 1.0.0"
     ],
     "change_log_6_3_0": "2026-07-25 governance re-sync. Brings 7 drifted packs back under the active set. entityvocab 0.3.0->0.6.0 (4 reject patterns already live via filesystem fallback; 7 stub enrichment types dropped; entity_subtypes + alias_seeds now hashed). nodevocab 0.3.0->0.8.1 (ADDITIVE ONLY: +5 categories form/definition/library/issue/mention, +17 subtypes on document/topic/source; collapse_key_rules unchanged so existing base-60 addresses are stable; divisor_policy.json newly declared in manifest). language 0.1.0->0.2.0 (base-60 lexicon). researchpack 1.0.0->1.1.0 (OSINT source routing). gazetteerpack 1.0.0->1.0.1 (one alias: 'united states of america'). numeric + envelopevocab: hash-only, definition 'type' fields realigned to the schema enum (no semantic change). language.frozen_addresses payload moved under 'content' per definition.schema.json. Result: 16/16 packs load canonically.",
-    "change_log_6_4_0": "2026-07-25. Completes the library/pack layer: declares the last two definition files that shipped on disk but were never manifest-listed, so they were excluded from every pack content hash and thus unprotected by the spine. gazetteerpack 1.0.1->1.1.0 (+gazetteerpack.cities, 4,953 GeoNames entries; fixed doubled definition id 'gazetteerpack.gazetteerpack.cities'). language 0.2.0->0.3.0 (+language.exceptions, 4,416 oewn:2023 lemma exceptions; type 'morphology_exceptions'->custom and version 'oewn-2023'->1.0.0 to satisfy definition.schema.json, lexicon tag preserved as metadata.source_lexicon; scripts/build_morphology_pack.py updated to emit schema-valid values). Every definition file on disk is now manifest-declared and hash-covered. 16/16 packs canonical."
+    "change_log_6_4_0": "2026-07-25. Completes the library/pack layer: declares the last two definition files that shipped on disk but were never manifest-listed, so they were excluded from every pack content hash and thus unprotected by the spine. gazetteerpack 1.0.1->1.1.0 (+gazetteerpack.cities, 4,953 GeoNames entries; fixed doubled definition id 'gazetteerpack.gazetteerpack.cities'). language 0.2.0->0.3.0 (+language.exceptions, 4,416 oewn:2023 lemma exceptions; type 'morphology_exceptions'->custom and version 'oewn-2023'->1.0.0 to satisfy definition.schema.json, lexicon tag preserved as metadata.source_lexicon; scripts/build_morphology_pack.py updated to emit schema-valid values). Every definition file on disk is now manifest-declared and hash-covered. 16/16 packs canonical.",
+    "change_log_6_5_0": "2026-07-25. Brings every spine-format pack under the active set: adds displayvocab, precisionvocab, propertyvocab, topicvocab, valuevocab, refdatapack (19 -> 25 packs). These declare pack_id + definitions[] exactly like the packs already governed, and were simply never added, so their content was unpinned. refdatapack's payload moved under 'content' per definition.schema.json; displayvocab and refdatapack had namespaces_owned that did not own their own definition ids. NOT added, deliberately: 'example' (a template \u2014 documentation, not governing vocabulary; now schema-valid so copying it yields a pack that passes the ceremony) and the 16 library-format packs (id + manifest[], type lexical|policy \u2014 abbreviations, demonyms, glossaries, slang, idioms, function_words, domain_finance, the three *policy packs, wordnet). Those are a different artifact class: they are collapsed INTO the substrate by core/language/library_connect.py rather than governing collapse, and wordnet's data is generated and deliberately not committed."
   }
 }

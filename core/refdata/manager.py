@@ -81,7 +81,11 @@ def load_manifest(force: bool = False) -> dict:
         return _manifest_cache
     try:
         with _MANIFEST_PATH.open("r", encoding="utf-8") as f:
-            _manifest_cache = json.load(f)
+            _doc = json.load(f)
+        # Payload lives under "content" (definition.schema.json requires it now
+        # that this definition is manifest-declared and hash-covered). Older
+        # copies kept `datasets` at the top level.
+        _manifest_cache = _doc.get("content") or _doc
     except Exception as e:
         log.warning("Failed to load refdatapack manifest: %s", e)
         _manifest_cache = {"datasets": []}
