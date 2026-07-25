@@ -1,6 +1,6 @@
 {
   "$schema": "./schemas/active_set.schema.json",
-  "version": "6.2.0",
+  "version": "6.4.0",
   "packs": [
     {
       "pack_id": "identity",
@@ -24,13 +24,13 @@
     },
     {
       "pack_id": "language",
-      "version": "0.1.0",
-      "content_hash": "sha256:15c18eb7f2f511bd888ea1e49d19bf1743d6bbcfb42286eb0473c0bcb43fa9c2"
+      "version": "0.3.0",
+      "content_hash": "sha256:06174322175eb5b556e0d0694e7e2d5dfdad1b85ccb761c4236334c978b8a40d"
     },
     {
       "pack_id": "numeric",
       "version": "1.0.0",
-      "content_hash": "sha256:1567c8594237bbd7ace89f64e004b8bb51e62ffda6483a06873d38b41f8ec0d2"
+      "content_hash": "sha256:4997c81e09570c421cab99ca1ead8847e824c91d98756e604f728809cef06b99"
     },
     {
       "pack_id": "signalvocab",
@@ -50,17 +50,17 @@
     {
       "pack_id": "envelopevocab",
       "version": "0.1.0",
-      "content_hash": "sha256:009e1e5c42bd9fcc2304816a4b8317c160ef3d87d0846711a4645561cd5459be"
+      "content_hash": "sha256:9ee4ab44ee35bfa54c90702516bc62edc7549c19db97cd320378be8e715c302d"
     },
     {
       "pack_id": "nodevocab",
-      "version": "0.3.0",
-      "content_hash": "sha256:4db7cbbeb623fc461cc9165f91de813039e4d2d5a5941a5b393911ed9e0d1861"
+      "version": "0.8.1",
+      "content_hash": "sha256:e7a967c8fe6ec21e95749739204f7bbfd5032da9a2a6e04494b295e471ffee93"
     },
     {
       "pack_id": "edgevocab",
-      "version": "0.4.0",
-      "content_hash": "sha256:1e71d64e9933f389f229c85a31bffc2fdd4981440f2f1d534fa26a9166c93c3a"
+      "version": "0.5.0",
+      "content_hash": "sha256:d0c6295e6a80338c47a5e58b9e8fbcd72a6c90500199627015f1ce6eec897884"
     },
     {
       "pack_id": "completenessvocab",
@@ -79,27 +79,27 @@
     },
     {
       "pack_id": "entityvocab",
-      "version": "0.3.0",
-      "content_hash": "sha256:e7de0084ee2363a56804d38036953e639a10e381873f37da6402e6a7c4b66963"
+      "version": "0.7.0",
+      "content_hash": "sha256:d73081af33d7a4e9c03ef3d7b367db77d783b316e68aec5e1001eea95abd340e"
     },
     {
       "pack_id": "canonicalpack",
-      "version": "1.0.0",
-      "content_hash": "sha256:baa7f3dab5ea62319e21cd2a373630620775ec1797cd30a36cd542450aa9277a"
+      "version": "1.1.0",
+      "content_hash": "sha256:5c76dee5be2a442d66ae11cfd2255794626f8b1a9bd468e141a3e36ac9cf6b35"
     },
     {
       "pack_id": "gazetteerpack",
-      "version": "1.0.0",
-      "content_hash": "sha256:ff85446c772db21a078daef033c029bab7b2d372c5a71382857b4a1f29c5bb1b"
+      "version": "1.1.0",
+      "content_hash": "sha256:c76bf70cd3e179917d620f6c0d889cf40950ad9d078367dfc82d8878ec33514d"
     },
     {
       "pack_id": "researchpack",
-      "version": "1.0.0",
-      "content_hash": "sha256:b26641e3f08653c6060d7b7f559857c547a14f8cd0f356ece22ef6daed7b44c7"
+      "version": "1.2.0",
+      "content_hash": "sha256:1fcf23932c3c1a98a5fbacd3dc9899c3b0aa408806b7a618cf2fa46528ffd500"
     }
   ],
   "metadata": {
-    "name": "Active Set v6.0.0 - Entity Resolution Governance",
+    "name": "Active Set v6.4.0 - Governance re-sync + full pack declaration",
     "description": "Adds entityvocab pack: canonical entity resolution rules, per-type identifier schemas, normalization rules, merge/split policy, LLM arbitration prompt template, and enrichment task definitions. Together with nodevocab (entity subtypes) and completenessvocab (dossier scoring), this enables the unified entity resolution pipeline where all entity creation \u2014 from signals, enrichment, and watch topics \u2014 passes through a single GDU-governed resolver.",
     "created": "2026-04-11T00:00:00Z",
     "author": "ENKI System",
@@ -112,6 +112,8 @@
       "5.0.1 (2026-04-11): signalvocab 0.1.0 \u2192 0.1.1 \u2014 adds signal.environmental.weather_alert",
       "6.0.0 (2026-04-11): adds entityvocab 0.1.0 \u2014 entity resolution rules, enrichment types, governed arbitration prompt",
       "6.2.0 (2026-05-05): collapse rebuild \u2014 nodevocab 0.2.0\u21920.3.0 (per-subtype collapse_key_rules), entityvocab 0.1.0\u21920.2.0 (top-level normalize_rules), adds canonicalpack 1.0.0 + gazetteerpack 1.0.0"
-    ]
+    ],
+    "change_log_6_3_0": "2026-07-25 governance re-sync. Brings 7 drifted packs back under the active set. entityvocab 0.3.0->0.6.0 (4 reject patterns already live via filesystem fallback; 7 stub enrichment types dropped; entity_subtypes + alias_seeds now hashed). nodevocab 0.3.0->0.8.1 (ADDITIVE ONLY: +5 categories form/definition/library/issue/mention, +17 subtypes on document/topic/source; collapse_key_rules unchanged so existing base-60 addresses are stable; divisor_policy.json newly declared in manifest). language 0.1.0->0.2.0 (base-60 lexicon). researchpack 1.0.0->1.1.0 (OSINT source routing). gazetteerpack 1.0.0->1.0.1 (one alias: 'united states of america'). numeric + envelopevocab: hash-only, definition 'type' fields realigned to the schema enum (no semantic change). language.frozen_addresses payload moved under 'content' per definition.schema.json. Result: 16/16 packs load canonically.",
+    "change_log_6_4_0": "2026-07-25. Completes the library/pack layer: declares the last two definition files that shipped on disk but were never manifest-listed, so they were excluded from every pack content hash and thus unprotected by the spine. gazetteerpack 1.0.1->1.1.0 (+gazetteerpack.cities, 4,953 GeoNames entries; fixed doubled definition id 'gazetteerpack.gazetteerpack.cities'). language 0.2.0->0.3.0 (+language.exceptions, 4,416 oewn:2023 lemma exceptions; type 'morphology_exceptions'->custom and version 'oewn-2023'->1.0.0 to satisfy definition.schema.json, lexicon tag preserved as metadata.source_lexicon; scripts/build_morphology_pack.py updated to emit schema-valid values). Every definition file on disk is now manifest-declared and hash-covered. 16/16 packs canonical."
   }
 }

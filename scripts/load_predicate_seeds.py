@@ -36,7 +36,10 @@ def main() -> int:
     if not SEED_PATH.exists():
         log.error("seed file missing: %s", SEED_PATH)
         return 1
-    seeds = json.loads(SEED_PATH.read_text()).get("seeds") or []
+    _doc = json.loads(SEED_PATH.read_text())
+    # Payload moved under "content" (definition.schema.json requires it once the
+    # definition is manifest-declared). Fall back to the top level for older copies.
+    seeds = (_doc.get("content") or {}).get("seeds") or _doc.get("seeds") or []
     log.info("Loading %d predicate seeds", len(seeds))
 
     stats = {"inserted": 0, "updated": 0, "skipped_edge_missing": 0,

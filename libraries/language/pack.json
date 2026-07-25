@@ -1,9 +1,11 @@
 {
   "pack_id": "language",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "name": "ENKI Language Vocabulary",
-  "description": "Canonical vocabulary for writing systems, phonology, morphology, semantics, pragmatics, script glyph coverage markers, AND (v0.2.0, 2026-05-14) frozen base-60 addresses for closed-set vocabulary. Frozen addresses make cross-ENKI form-layer dictionaries mergeable by SQL union instead of name-reconciliation. See the internal base60 cyclical language model notes.",
-  "namespaces_owned": ["language"],
+  "description": "Canonical vocabulary for writing systems, phonology, morphology, semantics, pragmatics, script glyph coverage markers, AND (v0.2.0, 2026-05-14) frozen base-60 addresses for closed-set vocabulary. Frozen addresses make cross-ENKI form-layer dictionaries mergeable by SQL union instead of name-reconciliation. See the internal base60 cyclical language model notes. v0.3.0 (2026-07-25): declares language.exceptions (4,416 irregular inflection->base-lemma entries from oewn:2023, the data half of core/language/lemmatizer.py). Shipped on disk since May 2026 but never manifest-declared, so it sat outside pack governance. Its `type` was the non-schema value 'morphology_exceptions' and its `version` was the lexicon tag 'oewn-2023' (not semver); both are now schema-valid with the lexicon tag preserved as metadata.source_lexicon.",
+  "namespaces_owned": [
+    "language"
+  ],
   "definitions": [
     {
       "id": "language.system",
@@ -58,7 +60,12 @@
     {
       "id": "language.frozen_addresses",
       "path": "definitions/language.frozen_addresses.json",
-      "type": "frozen_addresses"
+      "type": "custom"
+    },
+    {
+      "id": "language.exceptions",
+      "path": "definitions/language.exceptions.json",
+      "type": "custom"
     }
   ],
   "metadata": {

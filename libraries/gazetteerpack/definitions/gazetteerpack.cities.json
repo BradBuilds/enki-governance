@@ -1,5 +1,5 @@
 {
-  "id": "gazetteerpack.gazetteerpack.cities",
+  "id": "gazetteerpack.cities",
   "type": "custom",
   "version": "0.1.0",
   "title": "GeoNames top-5000 cities by population",

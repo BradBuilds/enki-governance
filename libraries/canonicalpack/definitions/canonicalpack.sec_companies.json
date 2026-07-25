@@ -1,5 +1,5 @@
 {
-  "id": "canonicalpack.canonicalpack.sec_companies",
+  "id": "canonicalpack.sec_companies",
   "type": "custom",
   "version": "0.1.0",
   "title": "SEC EDGAR registered companies",

@@ -59,6 +59,56 @@ CC-BY-4.0). Enable sense-grounding (word-sense disambiguation) with:
 Heavy (downloads OEWN ~35 MB, builds ~120k senses) and needs network. Core collapse works
 without it. Via the `wn` library you can also pull other/multilingual wordnets for coverage.
 
+## Optional: sign your pack set
+
+Enki can prove its governance packs haven't been altered. Every pack is content-hashed,
+`active_set_v6.json` pins those hashes, and a signature commits to the active set plus the
+transcript of the admission ceremony that verified it. Change any pack byte and the
+signature stops verifying.
+
+You don't need this to run Enki — the default `node-local` profile doesn't ask for it. You
+do need it for the `node`, `node-public`, `evidentiary`, `cloud`, `hardware`, and
+`hardened` profiles, which refuse to boot without a valid signature.
+
+One command sets up the whole chain:
+
+```bash
+python scripts/governance/setup_governance.py
+```
+
+It creates a trust root and a signer key (both Ed25519, sealed with AES-256-GCM under a
+password you choose), runs the admission ceremony over all packs, signs the active set, and
+then verifies the result using the exact check the server runs at boot. It's safe to re-run
+— finished steps are skipped.
+
+**Re-run it after changing any pack.** Editing a pack changes its hash, which invalidates
+the signature by design:
+
+```bash
+python scripts/governance/setup_governance.py    # re-runs the ceremony and re-signs
+```
+
+What you end up with:
+
+| Path | What it is |
+|---|---|
+| `storage/keys/root_key.enc` | Tier-R root key, sealed |
+| `storage/keys/signer_key.enc` | Tier-K signer key, sealed |
+| `storage/grants/*.json` | the grant chain (root → signer) |
+| `/etc/enki/trusted_keys.signed` | the root pubkey the verifier trusts |
+| `active_set_v6.signed.json` | the signature itself |
+
+Only the last file is read at boot; the rest is what proves it. **Back up the sealed keys
+and the password.** Losing the signer means re-issuing one and re-signing; losing the root
+means rebuilding the trust root from scratch, and everything signed under the old root
+stops verifying.
+
+Hardware signing (a USB key that holds the private key and requires a physical button press
+per signature) is also supported for installs that want it — pass `--device /dev/ttyACM0` to
+`scripts/governance/sign_active_set.py` instead of `--signer-key`. A software key can be
+copied by anything that can read the file and the password; a hardware key can't. For a
+personal or team node the software key is the right trade, and it's the default.
+
 ## Configuration reference
 See `.env.example` — every setting is documented inline. Key groups: database, Ollama
 (local model), and API/UI ports.

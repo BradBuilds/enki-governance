@@ -86,6 +86,33 @@ pre-structured statements, or re-collapse and verify existing data, and get the 
 receipted, reproducible result every time — **without any LLM**. The model is an optional
 front-end for turning prose into structure; the governance underneath stands on its own.
 
+### Verify the packs — and sign them
+
+"Governed by versioned packs" is a checkable claim, not a promise. Every pack is content-hashed
+(SHA-256 over RFC-8785-canonical JSON), and `active_set_v6.json` pins each pack's version and
+hash. Recompute the whole set at any time:
+
+```bash
+python scripts/governance/run_admission_ceremony.py active_set_v6.json
+```
+
+It re-hashes every pack, validates namespaces, and fails loudly on any mismatch. Change one byte
+under `libraries/` and it stops verifying.
+
+You can also **sign** your pack set, so the server can prove at boot that nothing changed since
+you approved it:
+
+```bash
+python scripts/governance/setup_governance.py
+```
+
+One command: creates a trust root and signer key (Ed25519, sealed under a password you choose),
+runs the ceremony, signs the active set, and verifies the signature using the same check the
+server runs at boot. Re-run it after editing any pack. No hardware required — a USB hardware key
+is supported but optional. Details in **[SETUP.md](SETUP.md)**.
+
+Signing is optional for the default profile and required for the hardened ones.
+
 ## The LLM extraction — CPU vs GPU (important)
 
 Extraction is **included and runs fully offline** — no external API, no accounts, no data

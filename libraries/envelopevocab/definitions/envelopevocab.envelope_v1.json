@@ -1,6 +1,6 @@
 {
   "id": "envelope.vocab.envelope_v1",
-  "type": "schema",
+  "type": "custom",
   "version": "0.1.0",
   "description": "Canonical envelope v1 schema. Every node in Enki carries an envelope of this shape. Subtype-specific required slots are enforced by completenessvocab, not by this schema.",
   "content": {

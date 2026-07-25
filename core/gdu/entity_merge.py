@@ -296,15 +296,16 @@ def merge_entities(canonical_id: int, duplicate_id: int, reason: str = "manual")
     with get_connection() as conn:
         try:
             with conn.cursor() as cur:
-                # Record redirect first (so downstream lookups can follow it)
+                # Record redirect first (so downstream lookups can follow it).
+                # entity_redirects is append-only (no_mutate trigger), so we must NOT
+                # UPDATE on conflict — if the duplicate was already merged once, keep
+                # that first redirect; chain-walking resolves old -> ... -> canonical.
                 cur.execute(
                     """
                     INSERT INTO entity_redirects (old_entity_id, new_entity_id,
                                                   merged_by, merge_reason)
                     VALUES (%s, %s, 'entity_merge', %s)
-                    ON CONFLICT (old_entity_id) DO UPDATE
-                       SET new_entity_id = EXCLUDED.new_entity_id,
-                           merge_reason  = EXCLUDED.merge_reason
+                    ON CONFLICT (old_entity_id) DO NOTHING
                     """,
                     (duplicate_id, canonical_id, reason),
                 )

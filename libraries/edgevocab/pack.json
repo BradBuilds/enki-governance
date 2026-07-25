@@ -1,8 +1,8 @@
 {
   "pack_id": "edgevocab",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "name": "ENKI Edge Type Vocabulary Pack",
-  "description": "Canonical relationship types between knowledge nodes. v0.2.0 (2026-05-11): adds 7 edge clusters \u2014 testimony (testified_against / accused_by / witnessed / denied / informed_on / alleged / named_as_associate), mention/document (mention_of / mention_in_document / has_mention / appears_in), statement (said_by / said_about / stated_in / corroborates / contradicts), beneficial-ownership (owns / owned_by / beneficial_owner_of / ultimate_owner_of / controls / shareholder_of / founded_by / trustee_of), family (spouse_of / parent_of_person / child_of / sibling_of), travel (flew_with / traveled_to / accompanied), and issue-anchor (candidate_merge_of / contradicts_in_doc / concerns_entity). Discipline: prefer fewer well-defined edges over ad-hoc ones; every edge in knowledge_edges must carry an edge_type from this vocabulary.",
+  "description": "Canonical relationship types between knowledge nodes. v0.2.0 (2026-05-11): adds 7 edge clusters — testimony (testified_against / accused_by / witnessed / denied / informed_on / alleged / named_as_associate), mention/document (mention_of / mention_in_document / has_mention / appears_in), statement (said_by / said_about / stated_in / corroborates / contradicts), beneficial-ownership (owns / owned_by / beneficial_owner_of / ultimate_owner_of / controls / shareholder_of / founded_by / trustee_of), family (spouse_of / parent_of_person / child_of / sibling_of), travel (flew_with / traveled_to / accompanied), and issue-anchor (candidate_merge_of / contradicts_in_doc / concerns_entity). Discipline: prefer fewer well-defined edges over ad-hoc ones; every edge in knowledge_edges must carry an edge_type from this vocabulary. NAMESPACE FIX (2026-07-25): added 'edgevocab' — edgevocab.predicate_seeds is now manifest-declared and its id sits outside the 'edge.vocab' namespace. Ids and the pack_source provenance string are unchanged.",
   "definitions": [
     {
       "id": "edge.vocab.system",
@@ -13,6 +13,11 @@
       "id": "edge.vocab.edge_types",
       "path": "definitions/edgevocab.edge_types.json",
       "type": "custom"
+    },
+    {
+      "id": "edgevocab.predicate_seeds",
+      "path": "definitions/edgevocab.predicate_seeds.json",
+      "type": "custom"
     }
   ],
   "dependencies": [
@@ -20,7 +25,8 @@
     "nodevocab"
   ],
   "namespaces_owned": [
-    "edge.vocab"
+    "edge.vocab",
+    "edgevocab"
   ],
   "metadata": {
     "created": "2026-04-10T00:00:00Z",

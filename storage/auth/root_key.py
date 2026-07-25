@@ -62,3 +62,19 @@ def load_root_key(key_path: str, password: str) -> RootKey:
 
     return RootKey(private_key)
 
+
+
+# ── Tier-K software signer keys ────────────────────────────────────────────
+# A Tier-K signer key is the same artifact as the root key: an Ed25519 private
+# key sealed with AES-256-GCM under a password. The only thing that makes a key
+# "Tier R" or "Tier K" is the DeviceGrant issued for it, not the key material.
+# These aliases exist so callers issuing/usinga signer key don't have to
+# import something called "root_key" and wonder whether they're touching the
+# trust root.
+#
+# Hardware-backed Tier-K keys (the HWKEY path) expose the same .sign() /
+# .public_key_bytes_raw() surface via HardwareKeyAdapter, so both are
+# interchangeable wherever a signer is accepted.
+
+generate_signer_key = generate_root_key
+load_signer_key = load_root_key

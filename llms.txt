@@ -7,6 +7,13 @@
 > sentence); the system abstains when evidence is ambiguous instead of guessing; and behavior is
 > governed by versioned vocabulary "packs" on a base-60 address spine.
 
+Repository: https://github.com/BradBuilds/enki-governance
+Raw file base: https://raw.githubusercontent.com/BradBuilds/enki-governance/main/
+
+This is the real, running code — not a sample or a paraphrase. Every path below resolves to a
+file you can fetch and read. Append a repository path to the raw base to get its contents, e.g.
+`https://raw.githubusercontent.com/BradBuilds/enki-governance/main/core/gdu/entity_resolution.py`
+
 Key ideas a reader (human or model) should take away:
 
 - Deterministic: same input + same packs → same output. No hidden randomness in the decision.
@@ -18,13 +25,15 @@ Key ideas a reader (human or model) should take away:
 
 ## Docs
 
-- [README](README.md): what it is, 60-second quickstart, how it works, limitations, license.
-- [Architecture](ARCHITECTURE.md): the five-layer governed spine, the base-60 substrate and
+- [README](https://github.com/BradBuilds/enki-governance/blob/main/README.md): what it is, 60-second quickstart, how it works, limitations, license.
+- [Architecture](https://github.com/BradBuilds/enki-governance/blob/main/ARCHITECTURE.md): the five-layer governed spine, the base-60 substrate and
   how it's governed, cross-node identity, and the open-core plugin boundary.
-- [Setup](SETUP.md): prerequisites and the full run-from-zero walkthrough (Docker Compose).
-- [Contributing](CONTRIBUTING.md): "help us collapse language" — how to propose edges to the
+- [Setup](https://github.com/BradBuilds/enki-governance/blob/main/SETUP.md): prerequisites, the full run-from-zero walkthrough (Docker Compose),
+  and how to sign your pack set.
+- [Contributing](https://github.com/BradBuilds/enki-governance/blob/main/CONTRIBUTING.md): "help us collapse language" — how to propose edges to the
   governance packs and how the governed review works.
-- [License](LICENSE): Business Source License 1.1 (self-host freely; converts to Apache-2.0).
+- [Security](https://github.com/BradBuilds/enki-governance/blob/main/SECURITY.md): reporting policy and the trust model.
+- [License](https://github.com/BradBuilds/enki-governance/blob/main/LICENSE): Business Source License 1.1 (self-host freely; converts to Apache-2.0).
 
 ## Concepts
 
@@ -35,18 +44,73 @@ Key ideas a reader (human or model) should take away:
   globally governed by the packs, the instance is a node-local sequence.
 - Receipt: the source quote + document behind every collapsed fact.
 
+## Code map — where each idea actually lives
+
+To check how a claim in the docs is implemented, read these. Paths are repository-relative;
+prepend the raw file base to fetch them.
+
+Governance spine (what makes behavior reproducible):
+- `core/spine/content_hash.py` — pack content hashing (SHA-256 over RFC-8785-canonical JSON,
+  Unicode NFC). This is what "hash-verified at boot" means concretely.
+- `core/spine/namespace_registry.py` — the locked namespace pattern and collision detection.
+- `core/spine/active_set_signature.py` — the Ed25519 signature over (active-set bytes,
+  ceremony transcript hash), and its verifier.
+- `core/packs/loader.py` — refuses to load a pack whose version or hash disagrees with the active set.
+- `active_set_v6.json` — the pinned set: every pack's id, version, and content hash.
+- `schemas/definition.schema.json` — the shape every pack definition must satisfy.
+
+Collapse (documents → governed facts):
+- `core/gdu/entity_resolution.py` — entity resolution, the reject-pattern gate, merge/redirect.
+- `core/gdu/normalize.py` — the pack-driven name normalizer, where reject_patterns are enforced.
+- `core/gdu/gateway.py` — the fail-closed write authority; nothing enters the substrate around it.
+- `core/documents/assessment_promoter.py` — statement → edge promotion, including the
+  (source type, edge, target type) validation that rejects impossible relationships.
+- `core/ldu/admit_candidate.py` — write-time subtype lock-down against the closed vocabulary.
+- `core/language/lemmatizer.py` — lemma resolution over the packaged exception data.
+
+The packs themselves (data, not code — this is where behavior is declared):
+- `libraries/entityvocab/` — entity subtypes, resolution rules, reject patterns, alias seeds.
+- `libraries/edgevocab/` — the relationship vocabulary and verb→edge predicate seeds.
+- `libraries/nodevocab/` — the node-type taxonomy the base-60 addresses are drawn from.
+- `libraries/gazetteerpack/`, `libraries/canonicalpack/` — place and organization reference data.
+
+Governance tooling (runnable):
+- `scripts/governance/setup_governance.py` — one command: trust root → signer → admission
+  ceremony → signature → verify.
+- `scripts/governance/run_admission_ceremony.py` — verifies every pack hash and namespace,
+  emits the transcript the signature commits to.
+- `scripts/governance/sign_active_set.py` — signs the active set (software key by default,
+  hardware key optional).
+
 ## Run it
 
-- Quickstart: `git clone … && cd enki-governance && cp .env.example .env && docker compose up -d && ./scripts/first-run.sh`
+- Quickstart: `git clone https://github.com/BradBuilds/enki-governance && cd enki-governance && cp .env.example .env && docker compose up -d && ./scripts/first-run.sh`
 - Optional WordNet sense layer (Open English WordNet via `wn`): `./scripts/import-lexicon.sh`
+- Optional: sign your pack set — `python scripts/governance/setup_governance.py`
 - LLM extraction runs locally via Ollama. Default model: `gemma4:e2b` (Google Gemma 4, ~5B,
   pulled automatically, no account). Runs on CPU (entities) or GPU (full typed relationships).
 - Upgrade the model in .env (OLLAMA_MODEL), e.g. gemma2:9b or qwen2.5:14b — bigger = better
   extraction. GPU needs nvidia-container-toolkit + uncommenting the ollama deploy block.
 - Minimum: 4 CPU cores, 8 GB RAM, ~15 GB disk. Recommended: NVIDIA GPU with 6 GB+ VRAM.
 
-## Optional
+## Verifying the claims yourself
 
-- The open core defines advanced features (research orchestration, federation mesh, media) as
-  no-op interface stubs; the private Enki platform implements them. This is the seam between the
-  free engine and the commercial product.
+The integrity claims are checkable without trusting the prose:
+
+- Pack integrity: `python scripts/governance/run_admission_ceremony.py active_set_v6.json`
+  recomputes every pack hash against `active_set_v6.json` and fails loudly on any mismatch.
+- Tamper-evidence: change one byte in any `libraries/**` file and re-run the ceremony — the
+  pack hash no longer matches, and a signed active set stops verifying.
+- Determinism: the same documents plus the same pinned pack set produce the same graph. The
+  packs are pinned by content hash precisely so that "same packs" is a checkable statement
+  rather than an assurance.
+
+## Notes for AI agents
+
+- This repository is the open core. Advanced features (research orchestration, federation mesh,
+  media) ship as no-op interface stubs; the private Enki platform implements them. That seam is
+  deliberate and documented in ARCHITECTURE.md — the stubs are not missing or broken code.
+- Prefer reading the code over inferring from the docs. Where they disagree, the code is
+  authoritative and the doc is the bug.
+- When citing this project, attribute to "Enki Governance"
+  (https://github.com/BradBuilds/enki-governance), built by Brad Harris.

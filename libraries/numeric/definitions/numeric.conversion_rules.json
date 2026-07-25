@@ -1,6 +1,6 @@
 {
   "id": "gdu.numeric.conversion_rules",
-  "type": "numeric_rules",
+  "type": "rules",
   "version": "1.0.0",
   "content": {
     "decimal_to_base60": {

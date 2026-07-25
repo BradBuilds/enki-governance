@@ -12,7 +12,7 @@
     {
       "id": "envelope.vocab.envelope_v1",
       "path": "definitions/envelopevocab.envelope_v1.json",
-      "type": "schema"
+      "type": "custom"
     }
   ],
   "dependencies": ["identity"],

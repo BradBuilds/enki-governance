@@ -1,6 +1,6 @@
 {
   "id": "gdu.numeric.system",
-  "type": "numeric_system",
+  "type": "system",
   "version": "1.0.0",
   "content": {
     "canonical_truth": {

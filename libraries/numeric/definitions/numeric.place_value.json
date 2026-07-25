@@ -1,6 +1,6 @@
 {
   "id": "gdu.numeric.place_value",
-  "type": "numeric_structure",
+  "type": "rules",
   "version": "1.0.0",
   "content": {
     "structure": "places",

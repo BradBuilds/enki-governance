@@ -1,6 +1,6 @@
 {
   "id": "entityvocab.alias_seeds",
-  "type": "alias_seeds",
+  "type": "custom",
   "version": "0.2.0",
   "description": "Hand-curated synonym sets for high-prominence ENTITIES (only canonical_types that exist in the entity pack). Place-type and country/state seeds moved to a sibling pack (placevocab.alias_seeds) because countries/states/cities belong in the places table, not entities. Format: each seed has a canonical_name (display form), a canonical_type (MUST be in entity_subtypes), and surface_forms (normalized lower-case strings to merge under it).",
   "rationale": "v0.1.0 of this file declared seeds with canonical_type values like 'country', 'state', 'military_branch', 'military_facility' that are NOT in the GDU entity pack. Those seeds were a source of contamination — they baked invalid types into the entity resolution layer at startup. v0.2.0 fixes that: all seeds use canonical_types that exist in entity_subtypes.json, with surface_forms covering common LLM/NER drift.",

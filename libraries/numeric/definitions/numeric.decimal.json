@@ -1,6 +1,6 @@
 {
   "id": "gdu.numeric.decimal",
-  "type": "numeric_representation",
+  "type": "custom",
   "version": "1.0.0",
   "content": {
     "name": "decimal",

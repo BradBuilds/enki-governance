@@ -487,6 +487,59 @@ def merge_entities(
                       AND e2.entity_id = %s
                 """, (winner_id, winner_id, loser_id))
 
+                # Re-point document_mentions. Without this the loser's
+                # evidence is stranded on a tombstoned entity: the redirect
+                # exists but nothing on the READ path chases it (only the
+                # gateway write path calls resolve_redirect), so the merged
+                # mentions simply vanish from the winner's dossier.
+                cur.execute("""
+                    UPDATE document_mentions SET entity_id = %s WHERE entity_id = %s
+                """, (winner_id, loser_id))
+
+                # Re-point assessments. collapse_key is derived from
+                # (subj, edge, obj) and is UNIQUE, so a naive repoint either
+                # collides with the winner's equivalent edge or leaves a stale
+                # key that stops future collapses. Recompute per row: fold
+                # corroboration into the surviving edge on collision, drop
+                # self-loops the rewrite produces.
+                cur.execute("""
+                    SELECT assessment_id, subj_entity_id, predicate_edge_type,
+                           obj_entity_id, obj_value,
+                           corroborated_by_count, contradicted_by_count
+                      FROM assessments
+                     WHERE (subj_entity_id = %s OR obj_entity_id = %s)
+                       AND demoted_at IS NULL
+                """, (loser_id, loser_id))
+                for a_id, subj, edge, obj, oval, corr, contra in cur.fetchall():
+                    new_subj = winner_id if subj == loser_id else subj
+                    new_obj = winner_id if obj == loser_id else obj
+                    if new_subj == new_obj:
+                        cur.execute("DELETE FROM assessments WHERE assessment_id = %s", (a_id,))
+                        continue
+                    cur.execute("SELECT compute_assessment_collapse_key(%s,%s,%s,%s)",
+                                (new_subj, edge, new_obj, oval))
+                    new_key = cur.fetchone()[0]
+                    cur.execute("""SELECT assessment_id FROM assessments
+                                    WHERE collapse_key = %s AND assessment_id <> %s""",
+                                (new_key, a_id))
+                    clash = cur.fetchone()
+                    if clash:
+                        cur.execute("""
+                            UPDATE assessments
+                               SET corroborated_by_count = corroborated_by_count + %s,
+                                   contradicted_by_count = contradicted_by_count + %s,
+                                   last_seen = NOW()
+                             WHERE assessment_id = %s
+                        """, (corr or 0, contra or 0, clash[0]))
+                        cur.execute("DELETE FROM assessments WHERE assessment_id = %s", (a_id,))
+                    else:
+                        cur.execute("""
+                            UPDATE assessments
+                               SET subj_entity_id = %s, obj_entity_id = %s,
+                                   collapse_key = %s, last_seen = NOW()
+                             WHERE assessment_id = %s
+                        """, (new_subj, new_obj, new_key, a_id))
+
                 # Re-point knowledge_nodes
                 cur.execute("""
                     UPDATE knowledge_nodes SET master_entity_id = %s, updated_at = NOW()

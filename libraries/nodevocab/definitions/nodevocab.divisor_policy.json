@@ -1,5 +1,5 @@
 {
-  "id": "nodevocab.divisor_policy",
+  "id": "node.vocab.divisor_policy",
   "type": "custom",
   "version": "0.1.1",
   "description": "Per-subtype divisor declarations for the cyclical base-60 substrate. Each entry sets the divisor of 60 used when a subtype overflows its initial 60 slots, plus the human partition labels for each resulting group. All entries seed into the subtype_divisors table with state='provisional' during learning mode. GDU governance ratifies (or re-elects) after corpus observation. Subtypes without an entry here default to D=6 at first overflow. Mirroring is intentional — continents are shared across place.{country,city,admin_region}; theaters across event.strike + topic.{conflict,operation}. Companion doc: docs/DIVISOR_DECLARATIONS_DRAFT_2026-05-21.md.",

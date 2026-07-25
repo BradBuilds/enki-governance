@@ -18,6 +18,11 @@
       "id": "node.vocab.editorial_stance",
       "path": "definitions/nodevocab.editorial_stance.json",
       "type": "custom"
+    },
+    {
+      "id": "node.vocab.divisor_policy",
+      "path": "definitions/nodevocab.divisor_policy.json",
+      "type": "custom"
     }
   ],
   "dependencies": ["identity"],

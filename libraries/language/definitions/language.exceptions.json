@@ -1,8 +1,8 @@
 {
 "id": "language.exceptions",
-"type": "morphology_exceptions",
-"version": "oewn-2023",
-"description": "Irregular inflection\u2192base-lemma exceptions from oewn:2023 (noun/verb/adjective/adverb). 4416 entries. The data half of the lemmatizer; regular detachment rules live in core/language/lemmatizer.py.",
+"type": "custom",
+"version": "1.0.0",
+"description": "Irregular inflection→base-lemma exceptions from oewn:2023 (noun/verb/adjective/adverb). 4416 entries. The data half of the lemmatizer; regular detachment rules live in core/language/lemmatizer.py.",
 "content": {
 "exceptions": {
 "noun": {
@@ -13313,5 +13313,8 @@
 ]
 }
 }
+},
+"metadata": {
+"source_lexicon": "oewn:2023"
 }
 }
