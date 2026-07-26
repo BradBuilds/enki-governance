@@ -1,6 +1,6 @@
 {
   "pack_id": "entityvocab",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "name": "ENKI Entity Resolution Vocabulary Pack",
   "description": "Canonical entity resolution rules + closed entity subtype vocabulary for the Enki knowledge graph. v0.6 drops the 7 stub enrichment types (property_records, satellite_imagery, registration_lookup, flight_history, port_calls, social_profiles, news_mentions); enrichment is now operator-triggered per-type from the dossier UI. v0.5 added entity_subtypes.json (the source of truth for valid canonical_type values) and fixed alias_seeds.json to use only valid subtypes. The LDU consults entity_subtypes at write time (admit_candidate) and the trigger enforces it at the DB layer.",
   "definitions": [

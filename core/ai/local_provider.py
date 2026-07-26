@@ -65,6 +65,25 @@ class OllamaProvider(BaseLLMProvider):
             "num_predict": max_tokens,
             "temperature": self.temperature_override if self.temperature_override is not None else temperature,
         }
+        # Size the context window to the request.
+        #
+        # Ollama defaults num_ctx to 4096 regardless of what the model supports
+        # (gemma4:e2b supports 131072) and, when the prompt exceeds it, SILENTLY
+        # TRUNCATES the prompt rather than erroring. Measured on node-A: a ~6,680-token
+        # batch prompt reported prompt_eval_count=4096 and produced 79 output
+        # tokens; the same prompt at num_ctx=16384 evaluated all 4,980 tokens and
+        # produced 676. The model was answering a prompt cut off mid-paragraph,
+        # which is what returned malformed JSON and made whole extraction batches
+        # fail — in one measured corpus a 3,285-paragraph document yielded a
+        # single statement. num_predict=8000 was also unreachable in a 4096 window.
+        #
+        # Cost is small and stays on the GPU: 8k->7259 MiB, 16k->7327, 32k->7431,
+        # all at 100% GPU on an 8151 MiB card. Cap is env-tunable so a smaller card
+        # can lower it rather than silently spilling to CPU.
+        est_prompt_tokens = sum(len(m.content or "") for m in messages) // 3
+        cap = int(os.environ.get("ENKI_LLM_NUM_CTX_MAX", "16384"))
+        needed = est_prompt_tokens + max_tokens + 512      # headroom for the reply
+        options["num_ctx"] = max(4096, min(needed, cap))
         if self.seed is not None:
             options["seed"] = self.seed
         payload = {

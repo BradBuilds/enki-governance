@@ -25,6 +25,40 @@ from storage.postgres.db import get_connection
 
 log = logging.getLogger("enki.discovery.pdf_ingest_bridge")
 
+# The acquirer stages downloads here before ingest promotes them into the
+# content-addressed evidence store under /app/storage/evidence.
+_STAGING_ROOT = "/tmp/enki_acquired"
+
+
+def _release_staging_copy(file_path: Optional[str], reference_id: int) -> None:
+    """Delete the acquirer's staging copy after a successful ingest.
+
+    Deliberately narrow: only ever unlinks inside _STAGING_ROOT, so a reference
+    whose file_path already points at the durable evidence store (the normal
+    case for anything re-pointed after the 2026-07-26 cleanup) is left alone.
+    Failure is logged, never raised — losing a temp file must not fail an
+    otherwise-successful ingest.
+    """
+    if not file_path:
+        return
+    try:
+        from pathlib import Path
+        p = Path(file_path).resolve()
+        if not str(p).startswith(_STAGING_ROOT + "/"):
+            return
+        p.unlink(missing_ok=True)
+        # Prune the now-empty per-reference directory (and its per-library
+        # parent when it empties) so the tree does not accumulate inodes.
+        for parent in (p.parent, p.parent.parent):
+            try:
+                if str(parent).startswith(_STAGING_ROOT + "/") and not any(parent.iterdir()):
+                    parent.rmdir()
+            except OSError:
+                break
+    except Exception:
+        log.warning("could not release staging copy for ref %d at %s",
+                    reference_id, file_path, exc_info=True)
+
 
 def _attach_to_library(library_id: int, document_id: int, reference_id: int) -> None:
     with get_connection() as conn:
@@ -165,6 +199,19 @@ def ingest_acquired_reference(reference_id: int) -> dict:
                 (doc_id, reference_id),
             )
         conn.commit()
+
+    # Release the acquirer's staging copy now that ingest_pdf has written the
+    # bytes into the content-addressed evidence store.
+    #
+    # This is not housekeeping. /tmp/enki_acquired lives in the API container's
+    # WRITABLE LAYER (only /app/storage, /app/core, /app/scripts and friends are
+    # bind-mounted), so every download was retained twice and the container layer
+    # grew without bound. On 2026-07-26 it reached 278 GB, filled a 937 GB disk,
+    # and Postgres crash-looped on
+    #   PANIC: could not write to file "pg_logical/replorigin_checkpoint.tmp"
+    # A 300-file random sample confirmed 100% of the staged files were already
+    # present in the evidence store, so the staging copy is pure duplication.
+    _release_staging_copy(file_path, reference_id)
     if library_id and doc_id:
         _attach_to_library(library_id, doc_id, reference_id)
         # Pull in any entities/assessments/events already linked to
