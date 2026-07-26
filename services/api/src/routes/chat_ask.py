@@ -58,6 +58,15 @@ USER QUESTION:
 """
 
 
+
+def _looks_like_library(term: str):
+    """True when a phrase names a library rather than an entity."""
+    try:
+        from core.ai.chat_tools import _resolve_library
+        return _resolve_library(term)
+    except Exception:
+        return (None, None)
+
 def _rule_pick_tool(question: str) -> Optional[dict]:
     """Pre-LLM heuristic for common patterns. Saves an LLM round-trip
     for obvious cases and degrades gracefully when no LLM is available."""
@@ -90,6 +99,30 @@ def _rule_pick_tool(question: str) -> Optional[dict]:
         return {"tool": "library_progress", "args": {"library": m.group(1).strip()}}
     if qlow in ("progress", "how is it going", "hows it going", "how are we doing"):
         return {"tool": "library_progress", "args": {}}
+
+    # "timeline of X" / "X timeline" — chronological, dated, traceable to a doc.
+    m = re.match(r"(?:show me (?:the|a) |give me (?:the|a) )?timeline (?:of|for) (.+?)\??$", qlow) \
+        or re.match(r"(.+?)\s+timeline\??$", qlow)
+    if m:
+        subj = m.group(1).strip()
+        lib_id, _ = _looks_like_library(subj)
+        return {"tool": "topic_timeline",
+                "args": ({"library": subj} if lib_id else {"subject": subj})}
+
+    # "who is connected to X" / "connections for X" / "who did X know"
+    m = (re.match(r"who(?:'s| is| are)?\s+(?:connected|linked|related)\s+to\s+(.+?)\??$", qlow)
+         or re.match(r"(?:connections?|links?|network)\s+(?:for|of|to|around)\s+(.+?)\??$", qlow)
+         or re.match(r"who did\s+(.+?)\s+(?:know|work with|meet)\??$", qlow))
+    if m:
+        subj = m.group(1).strip()
+        lib = None
+        m2 = re.search(r"^(.*?)\s+in (?:the )?(.+)$", subj)
+        if m2:
+            subj, lib = m2.group(1).strip(), m2.group(2).strip()
+        args = {"subject": subj}
+        if lib:
+            args["library"] = lib
+        return {"tool": "entity_connections", "args": args}
 
     # "what do the files say about X (in Y)" — grounded, cited, abstains when empty.
     m = re.match(r"(?:what do (?:the )?(?:files|documents|docs) say about|"

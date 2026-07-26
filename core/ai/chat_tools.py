@@ -498,6 +498,133 @@ def corpus_answer(args: dict) -> dict:
     return {"text": text, "cards": cards}
 
 
+def topic_timeline(args: dict) -> dict:
+    """Dated events for a library or a subject, in chronological order.
+
+    Reads statements that carry an event_time, so every row is a claim that was
+    collapsed out of a document and can be traced back to it.
+    """
+    lib_id, lib_name = _resolve_library(args.get("library"))
+    subject = (args.get("subject") or "").strip()
+    limit = int(args.get("limit") or 20)
+    with get_connection() as conn:
+        with conn.cursor() as cur:
+            cur.execute(
+                """
+                WITH d AS (
+                  SELECT library_id, member_id AS document_id
+                    FROM library_members
+                   WHERE member_kind = 'document'
+                     AND (%(lib)s IS NULL OR library_id = %(lib)s)
+                )
+                SELECT s.event_time::date, se.canonical_name, s.predicate,
+                       COALESCE(oe.canonical_name, ''), left(s.raw_text, 190), s.document_id
+                  FROM statements s
+                  JOIN d ON d.document_id = s.document_id
+             LEFT JOIN entities se ON se.entity_id = s.speaker_entity_id
+             LEFT JOIN entities oe ON oe.entity_id = s.object_entity_id
+                 WHERE s.event_time IS NOT NULL
+                   AND (%(subj)s = '' OR se.canonical_name ILIKE %(pat)s
+                                      OR oe.canonical_name ILIKE %(pat)s
+                                      OR s.raw_text ILIKE %(pat)s)
+                 ORDER BY s.event_time ASC
+                 LIMIT %(lim)s
+                """,
+                {"lib": lib_id, "subj": subject, "pat": f"%{subject}%", "lim": limit},
+            )
+            rows = cur.fetchall()
+    if not rows:
+        where = f" in {lib_name.split('/')[-1]}" if lib_name else ""
+        who = f" for “{subject}”" if subject else ""
+        return {"text": f"No dated events{who}{where} yet. Events appear here once "
+                        f"statements carrying a date have been collapsed.", "cards": []}
+    head = f"**Timeline{(' — ' + lib_name.split('/')[-1]) if lib_name else ''}**"
+    if subject:
+        head += f" · {subject}"
+    lines = [head, ""]
+    for dt, subj, pred, obj, raw, doc in rows:
+        who = subj or "—"
+        what = " ".join(x for x in (pred, obj) if x).strip()
+        lines.append(f"**{dt}** — {who} {what}".rstrip())
+        if raw:
+            lines.append(f"    “{raw.strip()}” (doc {doc})")
+    return {"text": "\n".join(lines), "cards": [_card("TimelineCard", {"library_id": lib_id})]}
+
+
+def entity_connections(args: dict) -> dict:
+    """Who/what a subject is connected to, and on what evidence.
+
+    Prefers governed assessment edges. Falls back to paragraph co-occurrence,
+    which is weaker evidence — appearing in the same paragraph is not a claim —
+    so it is labelled as such rather than presented as a fact.
+    """
+    subject = (args.get("subject") or args.get("query") or "").strip()
+    if not subject:
+        return {"text": "Tell me who or what to look up connections for.", "cards": []}
+    lib_id, lib_name = _resolve_library(args.get("library"))
+    limit = int(args.get("limit") or 12)
+    with get_connection() as conn:
+        with conn.cursor() as cur:
+            cur.execute(
+                """SELECT entity_id, canonical_name FROM entities
+                    WHERE canonical_name ILIKE %s
+                      AND COALESCE(validation_status,'') <> 'rejected'
+                    ORDER BY (SELECT count(*) FROM document_mentions dm
+                               WHERE dm.entity_id = entities.entity_id) DESC
+                    LIMIT 1""", (f"%{subject}%",))
+            row = cur.fetchone()
+            if not row:
+                return {"text": f"I don't have an entity matching “{subject}”.", "cards": []}
+            eid, ename = int(row[0]), row[1]
+
+            cur.execute(
+                """SELECT CASE WHEN a.subj_entity_id=%(e)s THEN oe.canonical_name
+                               ELSE se.canonical_name END AS other,
+                          a.predicate_edge_type, a.corroborated_by_count
+                     FROM assessments a
+                LEFT JOIN entities se ON se.entity_id=a.subj_entity_id
+                LEFT JOIN entities oe ON oe.entity_id=a.obj_entity_id
+                    WHERE a.demoted_at IS NULL
+                      AND (a.subj_entity_id=%(e)s OR a.obj_entity_id=%(e)s)
+                    ORDER BY a.corroborated_by_count DESC NULLS LAST
+                    LIMIT %(lim)s""", {"e": eid, "lim": limit})
+            edges = [r for r in cur.fetchall() if r[0]]
+
+            # Co-occurrence fallback — same paragraph, scoped to the library.
+            cur.execute(
+                """WITH d AS (
+                     SELECT member_id AS document_id FROM library_members
+                      WHERE member_kind='document'
+                        AND (%(lib)s IS NULL OR library_id = %(lib)s))
+                   SELECT e.canonical_name, count(*) shared
+                     FROM document_mentions m1
+                     JOIN d ON d.document_id = m1.document_id
+                     JOIN document_mentions m2 ON m2.paragraph_id = m1.paragraph_id
+                                              AND m2.entity_id <> m1.entity_id
+                     JOIN entities e ON e.entity_id = m2.entity_id
+                    WHERE m1.entity_id = %(e)s
+                      AND COALESCE(e.validation_status,'') <> 'rejected'
+                    GROUP BY 1 ORDER BY 2 DESC LIMIT %(lim)s""",
+                {"e": eid, "lib": lib_id, "lim": limit})
+            cooc = cur.fetchall()
+
+    scope = f" in {lib_name.split('/')[-1]}" if lib_name else ""
+    out = [f"**{ename}**{scope}", ""]
+    if edges:
+        out.append("_Governed relationships (collapsed from documents):_")
+        for other, pred, corr in edges:
+            c = f" · {corr} source{'s' if (corr or 0) != 1 else ''}" if corr else ""
+            out.append(f"  • {pred} → **{other}**{c}")
+        out.append("")
+    if cooc:
+        out.append("_Appears alongside (same paragraph — co-occurrence, not a claim):_")
+        for other, shared in cooc:
+            out.append(f"  • {other} ({shared} shared paragraph{'s' if shared != 1 else ''})")
+    if not edges and not cooc:
+        out.append("No connections recorded yet.")
+    return {"text": "\n".join(out), "cards": [_card("EntityCard", {"entity_id": eid})]}
+
+
 # ─── Dispatch ─────────────────────────────────────────────────────────
 
 TOOL_FUNCTIONS = {
@@ -511,6 +638,8 @@ TOOL_FUNCTIONS = {
     "recent_facts":      recent_facts,
     "library_progress":  library_progress,
     "corpus_answer":     corpus_answer,
+    "topic_timeline":    topic_timeline,
+    "entity_connections": entity_connections,
 }
 
 
