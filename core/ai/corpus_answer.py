@@ -21,29 +21,57 @@ from storage.postgres.db import get_connection
 log = logging.getLogger("enki.ai.corpus_answer")
 
 
-def _resolve_entity(name: str, dsn: Optional[str] = None) -> Optional[tuple[int, str, int]]:
+def _resolve_entity(name: str, dsn: Optional[str] = None,
+                    library_id: Optional[int] = None) -> Optional[tuple[int, str, int]]:
     """Best entity match for a name = the candidate with the most mentions
     (so 'vale' → the real Dana Vale, not a fragment). Returns
-    (entity_id, canonical_name, mention_count)."""
-    with get_connection(dsn) as conn:
-        with conn.cursor() as cur:
-            cur.execute(
-                """
-                SELECT e.entity_id, e.canonical_name,
+    (entity_id, canonical_name, mention_count).
+
+    When `library_id` is given, both the ranking and the mention count are
+    restricted to documents in that library. Without it a topic-scoped assistant
+    silently answers from the whole corpus — ask a question about one topic and
+    the best-ranked name can come from a different investigation entirely.
+
+    NOTE the member_kind filter: library_members is keyed
+    (library_id, member_kind, member_id), so entity 366 and document 366 are
+    different objects that share an integer. Joining document_id against
+    library_members without member_kind='document' matches unrelated rows by
+    coincidence and invents cross-corpus links.
+    """
+    scoped = library_id is not None
+    mention_count_sql = """
                        (SELECT count(*) FROM document_mentions dm
-                         WHERE dm.entity_id = e.entity_id) AS c
+                         WHERE dm.entity_id = e.entity_id) AS c"""
+    if scoped:
+        mention_count_sql = """
+                       (SELECT count(*) FROM document_mentions dm
+                          JOIN library_members lm
+                            ON lm.member_id = dm.document_id
+                           AND lm.library_id = %(lib)s
+                           AND lm.member_kind = 'document'
+                         WHERE dm.entity_id = e.entity_id) AS c"""
+    sql = f"""
+                SELECT e.entity_id, e.canonical_name,
+                       {mention_count_sql}
                   FROM (
                     SELECT entity_id, canonical_name FROM entities
-                     WHERE canonical_name ILIKE %s
+                     WHERE canonical_name ILIKE %(pat)s
+                       AND COALESCE(validation_status, '') <> 'rejected'
                      ORDER BY char_length(canonical_name) ASC
                      LIMIT 30
                   ) e
                  ORDER BY c DESC
                  LIMIT 1
-                """,
-                (f"%{name}%",),
-            )
+    """
+    with get_connection(dsn) as conn:
+        with conn.cursor() as cur:
+            cur.execute(sql, {"pat": f"%{name}%", "lib": library_id})
             row = cur.fetchone()
+    # A name that exists globally but has zero mentions inside the library is
+    # not an answer for a topic-scoped question — abstain rather than reach out
+    # of scope.
+    if scoped and row and int(row[2] or 0) == 0:
+        return None
     if not row or not row[0]:
         return None
     return int(row[0]), row[1], int(row[2] or 0)
@@ -108,7 +136,7 @@ def _gather_evidence(entity_id: int, dsn: Optional[str] = None) -> dict:
 
 
 def answer_about(question: str, name: str, tenant_id: str = "default",
-                 dsn: Optional[str] = None) -> dict:
+                 dsn: Optional[str] = None, library_id: Optional[int] = None) -> dict:
     """Synthesize a grounded answer about `name` from the collapsed corpus.
 
     Returns {answer, entity_id, canonical_name, mention_count, sources, grounded}.
@@ -117,9 +145,10 @@ def answer_about(question: str, name: str, tenant_id: str = "default",
     if not name:
         return {"answer": "Tell me who or what to look into.", "sources": [], "grounded": False}
 
-    resolved = _resolve_entity(name, dsn)
+    resolved = _resolve_entity(name, dsn, library_id=library_id)
     if not resolved:
-        return {"answer": f"I don't have anything in the files about “{name}” yet.",
+        scope = f" in this library" if library_id is not None else ""
+        return {"answer": f"I don't have anything in the files about “{name}”{scope} yet.",
                 "sources": [], "grounded": False}
     entity_id, canonical_name, mention_count = resolved
 

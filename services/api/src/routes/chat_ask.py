@@ -78,6 +78,33 @@ def _rule_pick_tool(question: str) -> Optional[dict]:
     m = re.match(r"^libraries?$", qlow) or re.match(r"^all libraries?$", qlow)
     if m:
         return {"tool": "library_search", "args": {"query": "all"}}
+
+    # "how is X going" / "progress on X" / "how's the reading" — the daily check-in.
+    m = re.match(r"(?:how(?:'s| is| are)?|hows)\s+(?:the\s+)?(.+?)\s+(?:going|doing|coming along)\??$", qlow)
+    if m:
+        subj = m.group(1).strip()
+        generic = subj in ("it", "things", "reading", "everything", "we", "pipeline", "ingest")
+        return {"tool": "library_progress", "args": {} if generic else {"library": subj}}
+    m = re.match(r"(?:progress|status)\s+(?:on|for)\s+(.+?)\??$", qlow)
+    if m:
+        return {"tool": "library_progress", "args": {"library": m.group(1).strip()}}
+    if qlow in ("progress", "how is it going", "hows it going", "how are we doing"):
+        return {"tool": "library_progress", "args": {}}
+
+    # "what do the files say about X (in Y)" — grounded, cited, abstains when empty.
+    m = re.match(r"(?:what do (?:the )?(?:files|documents|docs) say about|"
+                 r"what does the corpus say about|tell me about|who is|what is)\s+(.+?)\??$", qlow)
+    if m:
+        subj = m.group(1).strip()
+        lib = None
+        m2 = re.search(r"^(.*?)\s+in (?:the )?(mkultra|mk-ultra|example_program|artichoke|bluebird|"
+                       r"parapsychology|psychological warfare|iran-contra|jfk|Acme|phoenix)\b", subj)
+        if m2:
+            subj, lib = m2.group(1).strip(), m2.group(2).strip()
+        args = {"subject": subj, "question": q}
+        if lib:
+            args["library"] = lib
+        return {"tool": "corpus_answer", "args": args}
     return None
 
 

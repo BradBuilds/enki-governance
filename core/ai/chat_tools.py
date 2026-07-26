@@ -405,6 +405,99 @@ def recent_facts(args: dict) -> dict:
     return {"text": text, "cards": cards}
 
 
+def _resolve_library(term):
+    """Map a loose name ('mkultra', 'example_program', 106) to a library_id."""
+    if term in (None, ""):
+        return None, None
+    s = str(term).strip()
+    with get_connection() as conn:
+        with conn.cursor() as cur:
+            if s.isdigit():
+                cur.execute("SELECT library_id, canonical_name FROM libraries WHERE library_id=%s", (int(s),))
+            else:
+                cur.execute(
+                    """SELECT library_id, canonical_name FROM libraries
+                        WHERE canonical_name ILIKE %s OR focal_term ILIKE %s
+                        ORDER BY (SELECT count(*) FROM library_members lm
+                                   WHERE lm.library_id = libraries.library_id
+                                     AND lm.member_kind='document') DESC
+                        LIMIT 1""", (f"%{s}%", f"%{s}%"))
+            row = cur.fetchone()
+    return (int(row[0]), row[1]) if row else (None, None)
+
+
+def library_progress(args: dict) -> dict:
+    """How is the reading going — per library, with growth since yesterday.
+
+    Every count filters member_kind='document'. library_members is keyed
+    (library_id, member_kind, member_id), so omitting it counts entity- and
+    assessment-member rows as if they were documents.
+    """
+    lib_id, lib_name = _resolve_library(args.get("library"))
+    with get_connection() as conn:
+        with conn.cursor() as cur:
+            cur.execute(
+                """
+                WITH d AS (
+                  SELECT library_id, member_id AS document_id
+                    FROM library_members
+                   WHERE member_kind = 'document'
+                     AND (%(lib)s IS NULL OR library_id = %(lib)s)
+                )
+                SELECT l.library_id, l.canonical_name,
+                       count(DISTINCT d.document_id) docs,
+                       (SELECT count(*) FROM document_mentions dm
+                          JOIN d d2 ON d2.document_id = dm.document_id
+                         WHERE d2.library_id = l.library_id) mentions,
+                       (SELECT count(*) FROM statements s
+                          JOIN d d2 ON d2.document_id = s.document_id
+                         WHERE d2.library_id = l.library_id) statements,
+                       (SELECT count(*) FROM bibliographic_references r
+                         WHERE r.library_id = l.library_id
+                           AND r.acquisition_status = 'pending') pending,
+                       (SELECT count(*) FROM documents doc
+                          JOIN d d2 ON d2.document_id = doc.document_id
+                         WHERE d2.library_id = l.library_id
+                           AND doc.created_at > now() - interval '24 hours') docs_24h
+                  FROM libraries l JOIN d ON d.library_id = l.library_id
+                 GROUP BY l.library_id, l.canonical_name
+                 HAVING count(DISTINCT d.document_id) > 0
+                 ORDER BY docs DESC LIMIT 12
+                """, {"lib": lib_id})
+            rows = cur.fetchall()
+    if not rows:
+        return {"text": f"No documents yet in {lib_name or 'any library'}.", "cards": []}
+    lines = []
+    for lid, name, docs, mentions, statements, pending, docs_24h in rows:
+        short = (name or "").split("/")[-1]
+        new = f", +{docs_24h} today" if docs_24h else ""
+        lines.append(f"**{short}** (lib {lid}) — {docs} docs{new} · {mentions:,} mentions · "
+                     f"{statements:,} statements · {pending} refs still to acquire")
+    return {"text": "\n".join(lines), "cards": [_card("PipelineCard", {})]}
+
+
+def corpus_answer(args: dict) -> dict:
+    """Grounded answer about a subject, optionally scoped to one library.
+
+    Reads what was actually collapsed and cites it. Never free recall — if the
+    corpus has nothing, it says so rather than filling the gap.
+    """
+    from core.ai.corpus_answer import answer_about
+    subject = (args.get("subject") or args.get("query") or "").strip()
+    question = (args.get("question") or subject).strip()
+    lib_id, lib_name = _resolve_library(args.get("library"))
+    if not subject:
+        return {"text": "Tell me who or what to look into.", "cards": []}
+    res = answer_about(question, subject, library_id=lib_id)
+    text = res.get("answer") or "Nothing found."
+    if lib_name and res.get("grounded"):
+        text = f"_Scoped to {lib_name.split('/')[-1]}._\n\n{text}"
+    cards = []
+    if res.get("entity_id"):
+        cards.append(_card("EntityCard", {"entity_id": res["entity_id"]}))
+    return {"text": text, "cards": cards}
+
+
 # ─── Dispatch ─────────────────────────────────────────────────────────
 
 TOOL_FUNCTIONS = {
@@ -416,6 +509,8 @@ TOOL_FUNCTIONS = {
     "address_resolve":   address_resolve,
     "pipeline_status":   pipeline_status,
     "recent_facts":      recent_facts,
+    "library_progress":  library_progress,
+    "corpus_answer":     corpus_answer,
 }
 
 
