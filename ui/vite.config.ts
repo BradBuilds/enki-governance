@@ -8,11 +8,19 @@ export default defineConfig({
 		sveltekit(),
 	],
 	optimizeDeps: {
-		// satellite.js v7 is clean ESM (no WASM / top-level await — the old
-		// exclusion was stale). Pre-bundle it so the propagator's dynamic
-		// import resolves reliably instead of being optimized on-demand, which
-		// is fragile behind a reverse proxy / tunnel.
-		include: ['satellite.js'],
+		// satellite.js v7 is NOT plain ESM: it ships a WASM/pthreads build
+		// (satellite.js/wasm-build/pthreads-release/index.js) that imports
+		// node:worker_threads. Pre-bundling it made `npm run build` fail in
+		// rollup — which is what broke the production UI build. The propagator
+		// loads it via a dynamic import at runtime, so leave it out of the
+		// dep optimizer and let the browser resolve it.
+		exclude: ['satellite.js'],
+	},
+	build: {
+		rollupOptions: {
+			// Never try to walk into the WASM/pthreads entry point.
+			external: [/satellite\.js\/wasm-build\//],
+		},
 	},
 	server: {
 		// Leading dot matches all subdomains — covers node1, alice, bob, etc.
