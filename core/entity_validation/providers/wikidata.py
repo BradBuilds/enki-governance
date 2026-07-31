@@ -127,7 +127,7 @@ def _lexical_overlap(
     The candidate's own name and the input surface form are typically
     substrings of both — circular matches that signal nothing about
     semantic fit. Pass the input raw_text via `exclude` to drop those
-    tokens before scoring (e.g. for input "Dana Vale", "vale" must
+    tokens before scoring (e.g. for input "Dana Vale", "Vale" must
     not count toward overlap because every Vale-descended Wikidata
     entry has "Vale" in its description).
     """

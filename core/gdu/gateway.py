@@ -671,7 +671,7 @@ class GDUGateway:
         """True if one name's word-tokens subset the other's — a base/expanded
         pair like 'Dana Vale' ⊆ 'Dana J. Vale'. The guard that lets a
         loose-form match merge real variants while refusing to fuse distinct
-        people who merely share a surname ('Dana J. Vale' vs 'Donald A.
+        people who merely share a surname ('Dana J. Vale' vs 'Dana A.
         Vale' — neither subsets the other)."""
         import re
         ta = frozenset(t for t in re.split(r"\s+", (a or "").lower().strip()) if t)
@@ -914,7 +914,7 @@ class GDUGateway:
                     return idrow[0], False
 
             # A PERSON and an ORGANIZATION that happen to share a name are
-            # DIFFERENT entities — a committee "CHRISTIANS FOR DONALD VALE" must
+            # DIFFERENT entities — a committee "CITIZENS FOR Dana Vale" must
             # never merge onto its treasurer, nor vice-versa. Guard the name-based
             # layers with a hard person↔org type check (identifier layers above
             # are already decisive and need no such guard).
@@ -988,7 +988,7 @@ class GDUGateway:
                 # Exactly one candidate shares this loose form. Merge ONLY when
                 # (a) no identifier conflict, AND (b) the names are token-superset
                 # related — so "Dana Vale" merges into "Dana J. Vale", but
-                # "Donald A. Vale" (different middle name) does NOT, and an
+                # "Dana A. Vale" (different middle name) does NOT, and an
                 # ambiguous bare form facing TWO loose-mates (len>1) never merges.
                 cand_id, cand_idents, cand_name = loose_rows[0]
                 if (not identifier_conflict(identifiers, cand_idents or {})
@@ -1037,10 +1037,10 @@ class GDUGateway:
             #
             # Aliases on create: only the raw user-input form if it differs
             # from the strict-normalized form (e.g. "Dana Vale" vs
-            # "dana vale"). We do NOT seed the loose form into aliases —
+            # "Dana Vale"). We do NOT seed the loose form into aliases —
             # the loose column owns variant-collision matching, and seeding
             # loose-as-alias would over-merge unrelated entities sharing a
-            # root name (Dana J. Vale ↔ Donald A. Vale).
+            # root name (Dana J. Vale ↔ Dana A. Vale).
             #
             # The loose column is ALWAYS stored, even when equal to the
             # strict form, so the L2.5 fallback can find this entity from

@@ -11,7 +11,7 @@ Two entry points:
     → walks every paragraph in a document, calls extract_from_paragraph
 
 The LLM is asked to return a JSON list of objects:
-  [{"surface_form": "Bill Marsh", "char_start": 412, "char_end": 424,
+  [{"surface_form": "Will Marsh", "char_start": 412, "char_end": 424,
     "suggested_type": "person", "confidence": 0.92}, ...]
 
 Each emitted mention is persisted via core.documents.mentions.persist_mention.

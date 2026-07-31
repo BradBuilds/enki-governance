@@ -141,8 +141,8 @@ def attach_relationships_to_envelope(envelope: dict, triples: list[dict]) -> Non
     core.extraction.edges.upsert_edges_from_envelope picks them up. The
     source of each edge is the subject entity's node_id, NOT the
     current envelope's node_id — that's how relationships like
-    (Putin)-[met_with]-(Xi) get written even though the envelope
-    represents an article, not Putin."""
+    (Petrov)-[met_with]-(Wei) get written even though the envelope
+    represents an article, not Petrov."""
     if not triples:
         return
     rels = envelope.setdefault("relationships", {})

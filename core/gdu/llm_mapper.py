@@ -179,7 +179,7 @@ class LLMMapper:
         # ── Canonical name normalization ──────────────────────────
         # Look up the raw name in the canonical names dictionary.
         # If found, override both name and type with the canonical
-        # version. This ensures "Bibi" and "Netanyahu" collapse to
+        # version. This ensures "Bibi" and "Stone" collapse to
         # the same node before they ever reach the gateway.
         try:
             from core.gdu.canonical_names import normalize_to_canonical

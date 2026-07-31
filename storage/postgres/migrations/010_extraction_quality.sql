@@ -15,7 +15,7 @@
 CREATE EXTENSION IF NOT EXISTS pg_trgm;
 
 -- Trigram similarity index on entity normalized_name for Phase 2b
--- soft dedup: "Vladimir Putin" finds existing "Putin" via similarity.
+-- soft dedup: "Ivan Petrov" finds existing "Petrov" via similarity.
 CREATE INDEX IF NOT EXISTS idx_entities_normalized_name_trgm
     ON entities USING gin (normalized_name gin_trgm_ops);
 
@@ -29,7 +29,7 @@ CREATE INDEX IF NOT EXISTS idx_entities_aliases_gin
 -- snippet, offset, confidence. This is the bridge between the
 -- canonical entity row (entities) and the specific article that
 -- mentioned it — the thing that lets us answer "in which 47 articles
--- was Putin the subject, and what did each say about him?"
+-- was Petrov the subject, and what did each say about him?"
 CREATE TABLE IF NOT EXISTS entity_mentions (
     mention_id          BIGSERIAL PRIMARY KEY,
     tenant_id           VARCHAR(255) NOT NULL DEFAULT 'default',
@@ -74,7 +74,7 @@ CREATE INDEX IF NOT EXISTS idx_entity_mentions_signal
 CREATE INDEX IF NOT EXISTS idx_entity_mentions_node
     ON entity_mentions (node_id);
 
--- Role filter index — "show me every article where Putin was SUBJECT"
+-- Role filter index — "show me every article where Petrov was SUBJECT"
 CREATE INDEX IF NOT EXISTS idx_entity_mentions_role
     ON entity_mentions (entity_id, role)
     WHERE role IN ('subject', 'target', 'actor', 'perpetrator', 'author');

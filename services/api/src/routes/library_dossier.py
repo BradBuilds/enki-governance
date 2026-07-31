@@ -204,7 +204,7 @@ def _facts(library_id: int, limit: int = 100) -> list[dict]:
     'subject [predicate] object', with corroboration counts and entity
     links. Pulls from the assessments table (clean structured triples)
     instead of raw statement text, so the Key Facts panel reads like a
-    fact sheet ("Virginia Roberts Vance met_with Alex Acme")
+    fact sheet ("Robin Vance met_with Alex Acme")
     rather than a search hit list.
     """
     with get_connection() as conn:
@@ -409,7 +409,7 @@ def _network(library_id: int, limit: int = 50) -> list[dict]:
     """Top co-occurring entities scored by mention volume × document spread.
 
     Joins through entity_mentions → entities so the panel shows canonical
-    names ("Dana Vale", "Virginia Roberts Vance") instead of raw
+    names ("Dana Vale", "Robin Vance") instead of raw
     surface-form fragments ("Acme", "Alex", "EWRORY"). Same-entity
     case variations and string fragments collapse into one row.
     """
@@ -419,7 +419,7 @@ def _network(library_id: int, limit: int = 50) -> list[dict]:
             # (in_docs), not raw mention volume. Mention count is dominated by
             # ledger/manifest docs — a single donation dump or flight log repeats
             # one name thousands of times — which floated an aircraft (Acme
-            # One) and a one-ledger name (Hillary Marsh) above the actual
+            # One) and a one-ledger name (Helen Marsh) above the actual
             # central figures. Ranking by document breadth mirrors the
             # corroboration metric used for edges. mentions kept as tiebreak.
             cur.execute(

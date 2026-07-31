@@ -24,7 +24,8 @@ log = logging.getLogger("enki.ai.corpus_answer")
 def _resolve_entity(name: str, dsn: Optional[str] = None,
                     library_id: Optional[int] = None) -> Optional[tuple[int, str, int]]:
     """Best entity match for a name = the candidate with the most mentions
-    (so 'vale' → the real Dana Vale, not a fragment). Returns
+    (so a bare surname resolves to the prominent figure, not a fragment
+    entity that happens to share it). Returns
     (entity_id, canonical_name, mention_count).
 
     When `library_id` is given, both the ranking and the mention count are
@@ -50,17 +51,25 @@ def _resolve_entity(name: str, dsn: Optional[str] = None,
                            AND lm.library_id = %(lib)s
                            AND lm.member_kind = 'document'
                          WHERE dm.entity_id = e.entity_id) AS c"""
+    # Rank the FULL match set by mentions. An earlier version pre-filtered to the
+    # 30 shortest canonical names before ranking, which silently defeated the
+    # mention ranking on any common surname: a widely-mentioned figure whose
+    # canonical name is longer than the 30th-shortest match never entered the
+    # pool, so the query resolved to a minor namesake instead. Length is now only
+    # a tiebreak between equally-mentioned candidates.
+    #
+    # Aliases are matched too: canonical names may be stored surname-first
+    # ("LAST, FIRST M."), so a natural-order query matches nothing on
+    # canonical_name alone — that form lives in aliases[].
     sql = f"""
                 SELECT e.entity_id, e.canonical_name,
                        {mention_count_sql}
-                  FROM (
-                    SELECT entity_id, canonical_name FROM entities
-                     WHERE canonical_name ILIKE %(pat)s
-                       AND COALESCE(validation_status, '') <> 'rejected'
-                     ORDER BY char_length(canonical_name) ASC
-                     LIMIT 30
-                  ) e
-                 ORDER BY c DESC
+                  FROM entities e
+                 WHERE (e.canonical_name ILIKE %(pat)s
+                        OR EXISTS (SELECT 1 FROM unnest(e.aliases) a
+                                    WHERE a ILIKE %(pat)s))
+                   AND COALESCE(e.validation_status, '') <> 'rejected'
+                 ORDER BY c DESC, char_length(e.canonical_name) ASC
                  LIMIT 1
     """
     with get_connection(dsn) as conn:
@@ -103,6 +112,8 @@ def _gather_evidence(entity_id: int, dsn: Optional[str] = None) -> dict:
                   LEFT JOIN documents d ON d.document_id = s.document_id
                  WHERE (s.object_entity_id = %s OR s.speaker_entity_id = %s)
                    AND COALESCE(s.summarized_text, s.raw_text) IS NOT NULL
+                   AND COALESCE(s.validation_status,'') <> 'rejected'
+                   AND COALESCE(d.relevance_status,'') <> 'quarantined'
                  ORDER BY s.confidence DESC NULLS LAST
                  LIMIT 20
                 """,
@@ -124,6 +135,11 @@ def _gather_evidence(entity_id: int, dsn: Optional[str] = None) -> dict:
                   JOIN documents d ON d.document_id = dm.document_id
                  WHERE dm.entity_id = %s
                    AND p.raw_text IS NOT NULL AND length(p.raw_text) > 40
+                   -- Quarantined documents stay on disk as evidence but must never
+                   -- be quoted back as "what the files say". A document removed from
+                   -- a corpus for being out of scope is still readable by an operator;
+                   -- it is not a source the assistant may cite.
+                   AND COALESCE(d.relevance_status,'') <> 'quarantined'
                  LIMIT 24
                 """,
                 (entity_id,),
@@ -182,7 +198,7 @@ def answer_about(question: str, name: str, tenant_id: str = "default",
     try:
         from core.ai.config import get_tenant_provider
         from core.ai.provider import LLMMessage
-        provider = get_tenant_provider(tenant_id)
+        provider = get_tenant_provider(tenant_id, role="chat")
         if provider:
             resp = provider.complete([LLMMessage(role="user", content=prompt)],
                                      max_tokens=1000, temperature=0.2)

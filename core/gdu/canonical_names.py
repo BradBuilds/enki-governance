@@ -1,7 +1,7 @@
 """
 Canonical Names Dictionary — name normalization and alias resolution.
 
-When the LLM extracts an alias like "Bibi" or "B. Netanyahu" they should
+When the LLM extracts an alias like "Bibi" or "B. Stone" they should
 all collapse to ONE canonical entity. This module provides the lookup.
 
 Phase 2.1: the alias and sanctions tables previously hardcoded here have

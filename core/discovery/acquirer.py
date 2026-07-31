@@ -93,9 +93,9 @@ def _attempt_archive_org(ref: dict, dest: Path) -> Optional[dict]:
     or we search by title — in which case we MUST verify the candidate's
     title overlaps the reference title before downloading. Without the
     overlap check, the first search hit was downloaded blindly even
-    when it was a totally different book (e.g. requesting "Howard
-    Whitcombe Acme Neighbor Tether" downloaded "Donald Barr — Space
-    Relations.pdf" because that was archive.org's first result for
+    when it was a totally different book (e.g. requesting "Harold
+    Whitcombe A Life in Finance" downloaded "An Unrelated
+    Novel.pdf" because that was archive.org's first result for
     those keywords)."""
     ident = (ref.get("identifiers") or {}).get("archive_id")
     if not ident:

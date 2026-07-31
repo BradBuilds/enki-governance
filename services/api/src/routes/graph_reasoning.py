@@ -18,7 +18,7 @@ typical 2-3 hop queries. Index on (source_node_id, relationship,
 strength) was added in migration 010.
 
 Multi-hop paths include evidence snippets from each edge so UI can
-render "Putin → met_with ("Shanghai summit") → Xi → funded
+render "Petrov → met_with ("Shanghai summit") → Wei → funded
 ("via state bank") → Rosneft".
 """
 from __future__ import annotations

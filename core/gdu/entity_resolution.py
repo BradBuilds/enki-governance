@@ -342,7 +342,7 @@ def resolve_entity(
         # Strict miss + loose hit means same root name but different middle
         # initials / variant tokens. We do NOT auto-merge: different initials
         # may indicate different people (John A. Smith ≠ John B. Smith) and
-        # may also indicate the same person under a different style (Donald
+        # may also indicate the same person under a different style (Dana
         # Vale vs Dana J. Vale). Decision deferred until verification —
         # we attach the loose match to the new mention as a candidate and
         # return action='review' so the caller can prompt for human or
@@ -630,7 +630,7 @@ def normalize_entity_name_loose(name: str, entity_type: str = "") -> str:
     """Looser normalization for variant collision detection.
 
     Same as normalize_entity_name plus:
-      - Strip standalone middle initials ("dana j. vale" → "dana vale")
+      - Strip standalone middle initials ("Dana j. Vale" → "Dana Vale")
       - Strip trailing standalone single letters ("vicki a" → "vicki")
 
     Used as the LAST-RESORT match before creating a new entity. If a strict
@@ -701,7 +701,7 @@ def _match_by_normalized_name(
 ) -> Optional[ResolutionResult]:
     with conn.cursor() as cur:
         # ORDER BY signal_count so when fragments coexist for the same
-        # name (two Dana Vales, two Pam Bondis from past resolver
+        # name (two Dana Vales, two Pat Nolans from past resolver
         # bugs), the canonical-by-corpus-signal wins. Dedup_sweep is
         # responsible for actually merging them, but until it does,
         # at least new mentions land on the strongest existing row.
@@ -1163,8 +1163,8 @@ def _apply_collapse_policy_gate(
 
     When deferred:
       1. A new entity row is created for THIS source's mention (so the
-         flight-log Bill Marsh exists as its own LDU entity, not silently
-         joined to the politician).
+         manifest Will Marsh exists as its own LDU entity, not silently
+         joined to a same-named public figure).
       2. A `collapse_candidates` row is recorded so the review UI can show
          the suggested merge with evidence.
 

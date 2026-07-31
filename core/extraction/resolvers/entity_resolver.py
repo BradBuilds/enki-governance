@@ -86,8 +86,8 @@ def _upsert_entity(
                     return entity_id
                 # Fall through to gateway INSERT — no existing match.
             else:
-                # Trigram alias-merge: catches "V. Putin" → existing
-                # "Vladimir Putin" without creating a duplicate row.
+                # Trigram alias-merge: catches "V. Petrov" → existing
+                # "Ivan Petrov" without creating a duplicate row.
                 # Only runs when there's no identifier_hash to lock on.
                 try:
                     cur.execute(

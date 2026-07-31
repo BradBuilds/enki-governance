@@ -702,7 +702,7 @@ def _resolve_provider(tenant_id: str, provider_id: str = None) -> Optional[dict]
             }
 
     # Fallback to legacy ai_config
-    provider = get_tenant_provider(tenant_id)
+    provider = get_tenant_provider(tenant_id, role="chat")
     if provider:
         return {
             "provider_id": None,

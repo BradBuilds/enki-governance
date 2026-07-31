@@ -9,7 +9,7 @@ Providers with unique APIs get their own class: Anthropic, Google Gemini, xAI Gr
 
 Usage:
   POST /ai/config {"provider": "openai", "model": "gpt-4o-mini", "api_key": "sk-..."}
-  POST /ai/config {"provider": "anthropic", "model": "claude-sonnet-4-20250514", "api_key": "sk-ant-..."}
+  POST /ai/config {"provider": "anthropic", "model": "claude-opus-5", "api_key": "sk-ant-..."}
   POST /ai/config {"provider": "gemini", "model": "gemini-2.0-flash", "api_key": "AIza..."}
   POST /ai/config {"provider": "grok", "model": "grok-3-mini", "api_key": "xai-..."}
   POST /ai/config {"provider": "groq", "model": "llama-3.3-70b-versatile", "api_key": "gsk_..."}
@@ -266,10 +266,43 @@ class GrokProvider(OpenAICompatibleProvider):
 class AnthropicProvider(BaseLLMProvider):
     provider_name = "anthropic"
     supports_web_search = True
+    default_model = "claude-opus-5"
+
+    # Models that accept the dynamic-filtering web-search tool; older ones only
+    # take the basic variant.
+    _MODERN_SEARCH_MODELS = (
+        "claude-opus-5", "claude-fable-5", "claude-mythos-5",
+        "claude-opus-4-8", "claude-opus-4-7", "claude-opus-4-6",
+        "claude-sonnet-5", "claude-sonnet-4-6",
+    )
+
+    # Thinking tokens count against max_tokens, so an answer-sized budget from
+    # the caller can be consumed entirely by reasoning and truncate the reply.
+    # Floor it to leave headroom.
+    min_max_tokens = 8000
 
     def __init__(self, config: dict):
         self.api_key = config.get("api_key", "")
-        self.model = config.get("model", "claude-sonnet-4-20250514")
+        self.model = config.get("model") or self.default_model
+        # Effort trades reasoning depth against latency. Chat is interactive, so
+        # default to medium rather than the API default of high.
+        self.effort = config.get("effort") or "medium"
+        self.timeout = int(config.get("timeout") or 300)
+
+    def _search_tool_type(self) -> str:
+        return ("web_search_20260209" if self.model in self._MODERN_SEARCH_MODELS
+                else "web_search_20250305")
+
+    def _text_blocks(self, data: dict) -> str:
+        """Join the text blocks of a Messages response.
+
+        Reasoning models put thinking blocks in `content` ahead of the answer,
+        so the text cannot be read positionally from content[0].
+        """
+        return "\n".join(
+            b["text"] for b in data.get("content", []) or []
+            if b.get("type") == "text" and b.get("text")
+        ).strip()
 
     def web_search(self, query: str, max_tokens: int = 2000) -> WebSearchResult:
         """Native web search via the Messages API `web_search` server tool.
@@ -281,7 +314,7 @@ class AnthropicProvider(BaseLLMProvider):
             "model": self.model,
             "max_tokens": max_tokens,
             "messages": [{"role": "user", "content": query}],
-            "tools": [{"type": "web_search_20250305", "name": "web_search", "max_uses": 5}],
+            "tools": [{"type": self._search_tool_type(), "name": "web_search", "max_uses": 5}],
         }
         headers = {
             "x-api-key": self.api_key,
@@ -289,7 +322,8 @@ class AnthropicProvider(BaseLLMProvider):
             "Content-Type": "application/json",
         }
         try:
-            data = _post_json("https://api.anthropic.com/v1/messages", payload, headers)
+            data = _post_json("https://api.anthropic.com/v1/messages", payload, headers,
+                              timeout=self.timeout)
         except Exception as e:
             return WebSearchResult(answer="", citations=[], model=self.model,
                                    provider="anthropic", error=str(e))
@@ -321,6 +355,9 @@ class AnthropicProvider(BaseLLMProvider):
         )
 
     def complete(self, messages, max_tokens=1000, temperature=0.1):
+        # `temperature` is accepted to satisfy the BaseLLMProvider interface but
+        # deliberately never sent: current Claude models reject sampling
+        # parameters (temperature/top_p/top_k) with a 400. Steer via the prompt.
         system_msg = ""
         conv = []
         for m in messages:
@@ -329,7 +366,12 @@ class AnthropicProvider(BaseLLMProvider):
             else:
                 conv.append({"role": m.role, "content": m.content})
 
-        payload = {"model": self.model, "max_tokens": max_tokens, "messages": conv}
+        payload = {
+            "model": self.model,
+            "max_tokens": max(max_tokens, self.min_max_tokens),
+            "messages": conv,
+            "output_config": {"effort": self.effort},
+        }
         if system_msg:
             payload["system"] = system_msg
 
@@ -344,15 +386,27 @@ class AnthropicProvider(BaseLLMProvider):
                 },
                 method="POST",
             )
-            with urlopen(req, timeout=60) as resp:
+            with urlopen(req, timeout=self.timeout) as resp:
                 data = json.loads(resp.read())
-            return LLMResponse(
-                content=data["content"][0]["text"],
-                model=self.model, provider="anthropic",
-                usage=data.get("usage", {}),
-            )
         except Exception as e:
             return LLMResponse(content="", model=self.model, provider="anthropic", error=str(e))
+
+        usage = data.get("usage", {})
+        model = data.get("model") or self.model
+
+        # A safety classifier can decline the request: HTTP 200, but `content` is
+        # empty or holds only a partial. Report it rather than returning "".
+        if data.get("stop_reason") == "refusal":
+            return LLMResponse(content="", model=model, provider="anthropic",
+                               usage=usage, error="declined by model safety classifier")
+
+        text = self._text_blocks(data)
+        if not text:
+            return LLMResponse(
+                content="", model=model, provider="anthropic", usage=usage,
+                error=f"no text in response (stop_reason={data.get('stop_reason')})",
+            )
+        return LLMResponse(content=text, model=model, provider="anthropic", usage=usage)
 
     def is_available(self):
         return bool(self.api_key)

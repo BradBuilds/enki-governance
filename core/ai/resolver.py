@@ -38,16 +38,18 @@ log = logging.getLogger("enki.ai.resolver")
 def get_effective_provider(
     tenant_id: str = "default",
     dsn: Optional[str] = None,
+    role: str = "default",
 ) -> Optional[BaseLLMProvider]:
     """Resolve the best-available LLM provider for this tenant.
 
     Tries modern ai_config first (any cloud provider), then the legacy
-    Ollama-only default. Returns None if nothing is configured or
-    everything is unreachable."""
+    Ollama-only default. Pass role="chat" for interactive surfaces so they
+    resolve independently of the bulk-extraction provider. Returns None if
+    nothing is configured or everything is unreachable."""
     # 1. Modern cloud config
     try:
         from core.ai.config import get_tenant_provider
-        prov = get_tenant_provider(tenant_id, dsn)
+        prov = get_tenant_provider(tenant_id, dsn, role=role)
         if prov and prov.is_available():
             return prov
     except Exception as e:

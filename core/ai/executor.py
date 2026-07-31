@@ -1075,7 +1075,7 @@ def _director_model_name(tenant_id: str = "default") -> str:
     """Name of the configured provider's model — labels the External badge."""
     try:
         from core.ai.config import get_tenant_provider
-        p = get_tenant_provider(tenant_id)
+        p = get_tenant_provider(tenant_id, role="chat")
         return (getattr(p, "model", "") or getattr(p, "provider_name", "")) if p else ""
     except Exception:
         return ""

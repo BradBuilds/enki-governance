@@ -192,7 +192,7 @@ async def chat(
 
     The frontend executes the actions and renders results as cards.
     """
-    provider = get_tenant_provider(auth.tenant_id)
+    provider = get_tenant_provider(auth.tenant_id, role="chat")
     if not provider:
         return JSONResponse(status_code=200, content={
             "response": "AI is not configured. Go to Settings → AI to set up a language model. "

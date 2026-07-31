@@ -146,7 +146,7 @@ def _llm_pick_tool(question: str, context: Optional[dict]) -> Optional[dict]:
     try:
         from core.ai.config import get_tenant_provider
         from core.ai.provider import LLMMessage
-        provider = get_tenant_provider("default")
+        provider = get_tenant_provider("default", role="chat")
         if not provider:
             return None
         prompt = (_SYSTEM_PROMPT_TEMPLATE

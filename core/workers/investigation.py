@@ -1200,8 +1200,8 @@ def _admit_discovered_entity(
         # people carry the org's id in `detail` only as CONTEXT — a treasurer's
         # `committee_id` names the committee they serve, a director's `cik` names
         # the company. Extracting it as the person's own id makes the person
-        # collapse INTO the org (a treasurer becomes "PAC TO DEFEAT DONALD J
-        # VALE"). Strip org-only ids from person admissions; a person's valid
+        # collapse INTO the org (a treasurer becomes "PAC TO DEFEAT Dana J
+        # Vale"). Strip org-only ids from person admissions; a person's valid
         # ids are qid / fec_id (candidate) / bioguide etc.
         _ORG_ONLY_IDS = ("committee_id", "cik", "ein", "uei", "cage", "duns",
                          "lei", "company_number", "ticker")

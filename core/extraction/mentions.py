@@ -12,7 +12,7 @@ has stamped entity:<id> node_ids onto envelope.entities[].
 
 Also extracts context_snippet automatically when a body text is
 available — takes the sentence surrounding the entity's first_offset,
-so the UI can show "…at the Shanghai summit, **Putin** told **Xi**
+so the UI can show "…at the Shanghai summit, **Petrov** told **Wei**
 that sanctions had failed…" as the justification for a mention edge.
 """
 from __future__ import annotations

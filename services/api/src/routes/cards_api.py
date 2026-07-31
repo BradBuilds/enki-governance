@@ -206,7 +206,7 @@ def library_facts(library_id: int, tier: Optional[str] = None, limit: int = 100)
 
     Source-scoped, not entity-scoped — an assessment is "in" a library iff
     its evidence came from a member doc or signal. This prevents
-    cross-contamination (e.g. a Vale-Netanyahu RSS news fact appearing in
+    cross-contamination (e.g. a Vale-Stone RSS news fact appearing in
     the Acme library just because Vale also shows up in some Acme
     document).
     """
@@ -577,7 +577,7 @@ def library_timeline(library_id: int, limit: int = 200, include_noise: bool = Fa
         # belongs in a library's timeline iff at least one of its source
         # statements originated in a document or signal that's a member of
         # this library. This is what prevents cross-library contamination
-        # (e.g. a Vale-Netanyahu fact from RSS news leaking into the
+        # (e.g. a Vale-Stone fact from RSS news leaking into the
         # Acme library just because Vale also appears in some Acme
         # document).
         doc_ids = _library_member_ids(conn, library_id, "document")
@@ -1503,7 +1503,7 @@ def _normalize_image_url(source: str, data: dict) -> str | None:
     if raw.startswith("/i/") and source == "duckduckgo":
         return "https://duckduckgo.com" + raw
     # Wikidata/Wikipedia: often returns a bare filename like
-    # "Example_Person_official_portrait.jpg". Resolve through Wikimedia
+    # "Dana_Vale_official_portrait.jpg". Resolve through Wikimedia
     # Commons' Special:FilePath which redirects to the actual image.
     if source in ("wikidata", "wikipedia") and not raw.startswith("/"):
         from urllib.parse import quote
@@ -2082,7 +2082,7 @@ def get_entity_personas(entity_id: int):
     # the clustering only split it because a context attribute (jurisdiction,
     # event_year) differed, and context is not evidence of a different referent
     # when the name matches the seed exactly and nothing contradicts it. Fold
-    # these into the anchor instead of parading N identical "VALE, DONALD J."
+    # these into the anchor instead of parading N identical "Vale, Dana J."
     # rows as separate referents. A generational suffix (Jr/Sr/III) or any
     # identifier makes a cluster genuinely distinct → NOT folded.
     import re as _re

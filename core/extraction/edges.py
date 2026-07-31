@@ -135,7 +135,7 @@ def upsert_edges_from_envelope(
     # A custom edge may specify `subject_id` to override the default
     # source (the envelope's own node_id). That's how we persist edges
     # BETWEEN two entities found in an article — the envelope is the
-    # article, but the edge is (Putin)→(Xi).
+    # article, but the edge is (Petrov)→(Wei).
     for e in (rels.get("custom") or []):
         if not isinstance(e, dict):
             stats["skipped"] += 1

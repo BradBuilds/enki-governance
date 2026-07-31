@@ -38,7 +38,7 @@ def _best_entity_match(speaker: str, entities: list[dict]) -> dict | None:
             if candidate and _normalize(candidate) == sp:
                 return e
 
-    # Pass 2 — substring (speaker "Putin" matches entity "Vladimir Putin")
+    # Pass 2 — substring (speaker "Petrov" matches entity "Ivan Petrov")
     for e in entities:
         if not isinstance(e, dict):
             continue
