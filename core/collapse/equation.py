@@ -84,6 +84,12 @@ class Context:
     contributor_weight: float = 0.5                                 # source trust [0,1]; open-contribution gate
 
 
+# Same file core.gdu.config.ACTIVE_SET_PATH names. Resolved here, not imported, so the
+# equation stays importable with the standard library alone (core.gdu pulls in the pack
+# loader and its dependencies). tests/test_collapse_equation.py keeps the two in step.
+ACTIVE_SET_PATH = Path(__file__).resolve().parents[2] / "active_set_v6.json"
+
+
 class PolicyIntegrityError(ValueError):
     """A policy pack's content does not match the hash pinned for it in the active set."""
 
@@ -95,7 +101,6 @@ def _verify_pinned_policy(root: Path) -> None:
     namespaces), so their hashes are pinned under `metadata.policy_packs`, which the
     active-set signature covers. A pack with no pin loads as before.
     """
-    from core.gdu.config import ACTIVE_SET_PATH
     from core.spine.content_hash import compute_pack_hash
 
     pack_json = root / "pack.json"

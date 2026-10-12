@@ -140,3 +140,14 @@ def test_an_unpinned_policy_pack_still_loads(tmp_path):
     (root / "pack.json").write_text(json.dumps({"id": "mypolicy", "version": "0.1.0", "type": "policy",
                                                 "manifest": ["definitions/mypolicy.weights.json"]}), encoding="utf-8")
     assert Policy.load(root).weights == {"exact": 3.0}
+
+
+def test_equation_reads_the_same_active_set_the_spine_does():
+    """The equation resolves the active set path itself to stay dependency-free; it must not drift."""
+    import re
+
+    from core.collapse import equation
+    config = (REPO_ROOT / "core" / "gdu" / "config.py").read_text(encoding="utf-8")
+    named = re.search(r'ACTIVE_SET_PATH\s*=\s*PROJECT_ROOT\s*/\s*"([^"]+)"', config).group(1)
+    assert equation.ACTIVE_SET_PATH == REPO_ROOT / named
+    assert equation.ACTIVE_SET_PATH.exists()
