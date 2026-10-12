@@ -113,6 +113,31 @@ def test_a_listed_definition_that_is_missing_is_an_error(pack):
         compute_pack_hash(str(pack))
 
 
+def _manifest_pack(root):
+    """A pack laid out the way policy packs are: files listed as plain paths under "manifest"."""
+    (root / "definitions").mkdir(parents=True)
+    (root / "definitions" / "p.weights.json").write_text(json.dumps({"content": {"weights": {"exact": 3.0}}}), encoding="utf-8")
+    (root / "pack.json").write_text(json.dumps({
+        "id": "samplepolicy", "version": "0.1.0", "type": "policy",
+        "manifest": ["definitions/p.weights.json"],
+    }), encoding="utf-8")
+    return root
+
+
+def test_files_listed_under_manifest_are_part_of_the_hash(tmp_path):
+    root = _manifest_pack(tmp_path / "samplepolicy")
+    before = compute_pack_hash(str(root))
+    (root / "definitions" / "p.weights.json").write_text(json.dumps({"content": {"weights": {"exact": 9.0}}}), encoding="utf-8")
+    assert compute_pack_hash(str(root)) != before
+
+
+def test_a_manifest_file_that_is_missing_is_an_error(tmp_path):
+    root = _manifest_pack(tmp_path / "samplepolicy")
+    (root / "definitions" / "p.weights.json").unlink()
+    with pytest.raises(FileNotFoundError):
+        compute_pack_hash(str(root))
+
+
 def test_missing_manifest_is_an_error(tmp_path):
     with pytest.raises(FileNotFoundError):
         compute_pack_hash(str(tmp_path))

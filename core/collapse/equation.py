@@ -84,6 +84,35 @@ class Context:
     contributor_weight: float = 0.5                                 # source trust [0,1]; open-contribution gate
 
 
+class PolicyIntegrityError(ValueError):
+    """A policy pack's content does not match the hash pinned for it in the active set."""
+
+
+def _verify_pinned_policy(root: Path) -> None:
+    """Fail closed if this policy pack is pinned in the active set and its content differs.
+
+    Policy packs are not in the active set's `packs` list (they do not declare
+    namespaces), so their hashes are pinned under `metadata.policy_packs`, which the
+    active-set signature covers. A pack with no pin loads as before.
+    """
+    from core.gdu.config import ACTIVE_SET_PATH
+    from core.spine.content_hash import compute_pack_hash
+
+    pack_json = root / "pack.json"
+    if not pack_json.exists() or not ACTIVE_SET_PATH.exists():
+        return
+    pack_id = json.loads(pack_json.read_text(encoding="utf-8")).get("id", root.name)
+    active_set = json.loads(ACTIVE_SET_PATH.read_text(encoding="utf-8"))
+    pin = (active_set.get("metadata") or {}).get("policy_packs", {}).get(pack_id)
+    if not pin:
+        return
+    actual = compute_pack_hash(str(root))
+    if actual != pin["content_hash"]:
+        raise PolicyIntegrityError(
+            f"policy pack '{pack_id}' does not match the active set: "
+            f"pinned {pin['content_hash']}, found {actual}")
+
+
 @dataclass
 class Policy:
     weights: dict
@@ -97,6 +126,7 @@ class Policy:
         (collapsepolicy, entitypolicy, …), no hardcoded filename. Falls back to the
         legacy fixed name if a pack.json/manifest isn't present."""
         root = Path(lib_root)
+        _verify_pinned_policy(root)
         weights_file = None
         pack_json = root / "pack.json"
         if pack_json.exists():

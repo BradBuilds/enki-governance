@@ -1,9 +1,12 @@
 import itertools
+import json
 import math
+import shutil
 
 import pytest
 
-from core.collapse.equation import EVIDENCE_FNS, Candidate, Context, Policy, collapse, score
+from core.collapse.equation import (EVIDENCE_FNS, Candidate, Context, Policy, PolicyIntegrityError,
+                                    collapse, score)
 from conftest import REPO_ROOT
 
 
@@ -109,3 +112,31 @@ def test_shipped_policy_pack_loads_and_names_only_registered_axes():
     assert policy.theta > 0 and policy.delta > 0
     assert set(policy.weights) <= set(EVIDENCE_FNS), "policy names an evidence axis the engine does not implement"
     assert all(w >= 0 for w in policy.weights.values())
+
+
+@pytest.mark.parametrize("pack_id", ["collapsepolicy", "entitypolicy", "aliaspolicy"])
+def test_every_shipped_policy_pack_loads(pack_id):
+    policy = Policy.load(REPO_ROOT / "libraries" / pack_id)
+    assert policy.weights and set(policy.weights) <= set(EVIDENCE_FNS)
+
+
+def test_a_pinned_policy_pack_with_edited_weights_is_refused(tmp_path):
+    copy = tmp_path / "collapsepolicy"
+    shutil.copytree(REPO_ROOT / "libraries" / "collapsepolicy", copy)
+    assert Policy.load(copy).theta > 0  # an untouched copy still loads
+    weights = copy / "definitions" / "collapsepolicy.weights.json"
+    data = json.loads(weights.read_text(encoding="utf-8"))
+    data["content"]["thresholds"]["theta"] = 0.0  # "collapse everything"
+    weights.write_text(json.dumps(data), encoding="utf-8")
+    with pytest.raises(PolicyIntegrityError):
+        Policy.load(copy)
+
+
+def test_an_unpinned_policy_pack_still_loads(tmp_path):
+    root = tmp_path / "mypolicy"
+    (root / "definitions").mkdir(parents=True)
+    (root / "definitions" / "mypolicy.weights.json").write_text(json.dumps({"content": {
+        "weights": {"exact": 3.0}, "vetoes": {}, "thresholds": {"theta": 1.0, "delta": 0.5}}}), encoding="utf-8")
+    (root / "pack.json").write_text(json.dumps({"id": "mypolicy", "version": "0.1.0", "type": "policy",
+                                                "manifest": ["definitions/mypolicy.weights.json"]}), encoding="utf-8")
+    assert Policy.load(root).weights == {"exact": 3.0}

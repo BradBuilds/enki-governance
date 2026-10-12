@@ -65,8 +65,18 @@ def compute_pack_hash(pack_path: str) -> str:
     for defn in definitions:
         if isinstance(defn, dict) and "path" in defn:
             file_paths.append(defn["path"])
-    
-    file_paths.sort()  # Lexicographic ordering
+
+    # Policy and lexical packs list their files under "manifest" (plain relative
+    # paths) instead of "definitions". Those files are content too: without this a
+    # policy pack's weights could change and its hash would not. Packs that only
+    # use "definitions" hash exactly as before.
+    for entry in manifest.get("manifest", []):
+        if isinstance(entry, str):
+            file_paths.append(entry)
+        elif isinstance(entry, dict) and "path" in entry:
+            file_paths.append(entry["path"])
+
+    file_paths = sorted(set(file_paths))  # Lexicographic ordering, each file once
     
     # Hash each definition file
     for rel_path in file_paths:

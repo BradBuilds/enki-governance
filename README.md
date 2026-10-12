@@ -97,9 +97,10 @@ python scripts/governance/run_admission_ceremony.py active_set_v6.json
 ```
 
 It re-hashes every pack, validates namespaces, and fails loudly on any mismatch. Change one byte
-in a definition file of any pinned pack and it stops verifying. Example files and READMEs inside a pack
-are not hashed, and the policy and glossary packs that list their files under `manifest` are not yet
-covered by the active set.
+in a definition file of any pinned pack and it stops verifying. The three policy packs (the
+collapse weights and thresholds) are pinned as well, and the engine refuses to load one that does not match.
+Not covered: example files and READMEs inside a pack, and the lexical packs (glossaries, slang, idioms),
+which are collapsed into the substrate rather than governing it.
 
 You can also **sign** your pack set, so the server can prove at boot that nothing changed since
 you approved it:
