@@ -1,6 +1,6 @@
 # Enki Governance
 
-> Enki Governance is an open-source, deterministic, FULLY OFFLINE intelligence-collapse engine.
+> Enki Governance is a source-available (BUSL-1.1), deterministic, FULLY OFFLINE intelligence-collapse engine.
 > It turns documents into a governed, sourced fact graph — entirely on your own hardware, with a
 > local LLM (Ollama), no external API, no accounts, no telemetry, and nothing leaving the machine
 > (runs air-gapped). Entities and typed relationships each carry a receipt (the exact source

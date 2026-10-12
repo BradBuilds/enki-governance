@@ -34,7 +34,7 @@ git clone https://github.com/BradBuilds/enki-governance.git
 cd enki-governance
 cp .env.example .env          # defaults work for local dev
 docker compose up -d          # postgres + ollama + api + ui
-./scripts/first-run.sh        # migrations → pull local model → import packs → seed
+./scripts/first-run.sh        # pull the local model and point the API at it (migrations and packs load when the API starts)
 ```
 
 Open the UI (default `http://localhost:5173`), drop in a PDF, and watch it collapse into a
@@ -89,7 +89,7 @@ front-end for turning prose into structure; the governance underneath stands on 
 ### Verify the packs — and sign them
 
 "Governed by versioned packs" is a checkable claim, not a promise. Every pack is content-hashed
-(SHA-256 over RFC-8785-canonical JSON), and `active_set_v6.json` pins each pack's version and
+(SHA-256 over canonical JSON: sorted keys, no whitespace, NFC-normalised, in the style of RFC 8785), and `active_set_v6.json` pins each pack's version and
 hash. Recompute the whole set at any time:
 
 ```bash
@@ -97,7 +97,9 @@ python scripts/governance/run_admission_ceremony.py active_set_v6.json
 ```
 
 It re-hashes every pack, validates namespaces, and fails loudly on any mismatch. Change one byte
-under `libraries/` and it stops verifying.
+in a definition file of any pinned pack and it stops verifying. Example files and READMEs inside a pack
+are not hashed, and the policy and glossary packs that list their files under `manifest` are not yet
+covered by the active set.
 
 You can also **sign** your pack set, so the server can prove at boot that nothing changed since
 you approved it:
@@ -115,8 +117,9 @@ Signing is optional for the default profile and required for the hardened ones.
 
 ## The LLM extraction — CPU vs GPU (important)
 
-Extraction is **included and runs fully offline** — no external API, no accounts, no data
-leaving the box (works air-gapped). A **local model** ([Ollama](https://ollama.com))
+Extraction is **included and, by default, runs fully offline** — no external API, no accounts, no data
+leaving the box (works air-gapped). Adapters for hosted model providers exist in `core/ai/cloud_provider.py`;
+they are off unless you configure one. A **local model** ([Ollama](https://ollama.com))
 *proposes* entity mentions and statements from each paragraph; the governed spine then decides
 what to admit. All of it ships here: `core/ai/` (providers),
 `core/documents/batched_extractor.py`, `core/extraction/`, `core/workers/collapse_worker.py`.
@@ -204,7 +207,7 @@ navigable here, every claim carrying its receipt. Default: `http://localhost:517
 
 ## Optional: the WordNet sense layer
 
-The core ships all **47 governance packs**. Two of them — the WordNet sense packs — hold
+The core ships **42 governance packs** (the default active set pins 25 of them). Two of them — the WordNet sense packs — hold
 large derived data that we build from an established open project rather than commit to git:
 **[Open English WordNet](https://github.com/globalwordnet/english-wordnet) (`oewn:2023`, CC-BY-4.0)**,
 via the [`wn`](https://github.com/goodmami/wn) library. Enable sense-grounding with:
@@ -243,8 +246,12 @@ real use.
 
 Stated plainly so nothing is oversold:
 
-- **Not** a surveillance/tracking product — no device tracking, ALPR, or TAK here.
-- **Single-node** self-host; multi-node federation is not part of this repo.
+- **Not a surveillance or tracking product**, and not maintained as one. This core was carved out of a
+  larger private platform, and some of that platform's surface is still in the tree: device, track,
+  geofence and camera API routes, a license-plate observable type, and a Cursor-on-Target XML parser.
+  They are unsupported here and nothing in the quickstart uses them. No ALPR engine ships.
+- **Single-node** self-host. Peer and fleet API routes are present, but the federation modules behind
+  them are stubs in this repo, so multi-node federation is not usable from the open core.
 - **Free/open connectors included** (RSS, JSON REST APIs, GDELT global news, folder-watch — see
   [docs/CONNECTORS.md](docs/CONNECTORS.md)); **paid/commercial and surveillance connectors are
   not** part of this repo. Bring your own sources.
