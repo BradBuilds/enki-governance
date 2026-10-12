@@ -22,7 +22,7 @@ governed graph of entities and typed, sourced relationships — all on your own 
 - **Composable** — behavior is governed by versioned **packs** (a base-60 vocabulary spine)
   you can run, author, or extend yourself.
 
-> This is the open, free core of the Enki platform. It is **not** a surveillance or
+> This is the source-available, free-to-self-host core of the Enki platform. It is **not** a surveillance or
 > tracking product — see [Limitations](#limitations).
 
 ---

@@ -30,8 +30,7 @@ returned for the surface form:
 
 Tier 3 (multi-hit disambiguation — "Egypt the country vs. Egypt, Texas")
 is OUT OF SCOPE here. That requires a disambiguation worker with article
-context analysis. See docs/TIER_3_DISAMBIGUATION_PROMPT.md for the
-research/build prompt.
+context analysis, which this module does not attempt.
 
 This module never raises. Errors are logged and the caller continues.
 """

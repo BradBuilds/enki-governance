@@ -65,7 +65,7 @@ commercial platform.
 
 ```
 core/            the engine: gdu (collapse), spine, ldu, substrate, documents, extraction, …
-libraries/       the 47 governance packs (the vocabulary spine)
+libraries/       the 42 governance packs (the vocabulary spine)
 services/api/    FastAPI service (routes + the governed pipeline)
 ui/              SvelteKit UI (entity/document/library/timeline/map/graph)
 storage/postgres/ schema + migrations

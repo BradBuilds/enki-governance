@@ -44,7 +44,7 @@ Open a PR adding to the relevant `libraries/*/definitions/*.json`. Example edge:
   "proposed_by": "your-handle"
 }
 ```
-CI runs **pack-lint** (schema + conflict + dedup). If it fails, the message tells you why.
+CI runs the pack hash tests and the leak audit. If one fails, the message tells you why.
 
 ## How to propose (analysts)
 When the engine hits a verb or edge it can't map, it **abstains** and surfaces a
@@ -56,7 +56,7 @@ proposal lands in the review queue. The engine's honesty is the invitation.
   it should be a verb mapping instead. New edges must name a concept nothing else covers.
 - Real evidence (an example sentence, ideally sourced).
 - No conflict with an existing edge/mapping (or an explicit, justified change).
-- Passes `pack-lint`.
+- Passes CI.
 - Prefer **abstain** over a guess: if a mapping is only sometimes right, say so.
 
 ## Ground rules

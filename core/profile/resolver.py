@@ -93,7 +93,7 @@ def resolve_profile(*, allow_dev_default: bool = False) -> tuple[Profile, Profil
         replacement = DEPRECATED_PROFILES[profile]
         log.warning(
             "ENKI_PROFILE=%s is deprecated. Use ENKI_PROFILE=%s for new "
-            "installs. See docs/PROFILES.md for the migration table.",
+            "installs. See SETUP.md.",
             profile.value, replacement.value,
         )
 

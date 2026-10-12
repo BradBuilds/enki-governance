@@ -9,7 +9,7 @@ def map_observability_to_audit(obs_event: dict, tenant_id: str) -> Tuple[Dict[st
     """
     Map ObservabilityEvent to AuditEvent structure.
     
-    Implements field mapping from docs/11-event-emission-spec.md Appendix A:
+    Implements field mapping from the event emission spec:
     - Direct field copies: event_id, event_type, timestamp, severity, scope
     - Special handling: sequence → metadata._enki_observability_sequence
     - Tenant defaulting: use ingestion tenant_id if not present

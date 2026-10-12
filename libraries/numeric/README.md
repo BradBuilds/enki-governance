@@ -165,7 +165,7 @@ Mixing appearance (glyphs) with truth (numbers) causes:
 
 ## Invariants
 
-See [gdu.numeric.core.invariants.md](../../docs/specs/gdu.numeric.core.invariants.md) for formal invariants.
+The invariants are enforced by this pack's schema and by the validators in `core/validation/`.
 
 Quick summary:
 - **INV-001**: Decimal is canonical truth
@@ -227,16 +227,6 @@ To extend this pack:
 | Version | Date | Changes |
 |---------|------|---------|
 | 1.0.0 | 2026-01-13 | Initial lock - unsigned integers, decimal canonical, base-60 representational |
-
----
-
-## Related Documentation
-
-- **Master Plan**: [GDU_MASTER_PLAN.md](../../docs/GDU_MASTER_PLAN.md)
-- **Governance**: [00-gdu-master-plan-supplement.md](../../docs/00-gdu-master-plan-supplement.md)
-- **Pack Index**: [GDU_PACK_INDEX.md](../../docs/GDU_PACK_INDEX.md)
-- **Test Matrix**: [GDU_TEST_MATRIX.md](../../docs/GDU_TEST_MATRIX.md)
-- **Invariants**: [gdu.numeric.core.invariants.md](../../docs/specs/gdu.numeric.core.invariants.md)
 
 ---
 

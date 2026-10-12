@@ -2,7 +2,7 @@
 ENKI Command Center — Unified API Server
 
 Single entry point for every profile. The active operating posture is
-controlled by ONE environment variable: ENKI_PROFILE. See docs/PROFILES.md
+controlled by ONE environment variable: ENKI_PROFILE. See SETUP.md
 and core/profile/spec.py for the canonical definitions.
 
 Profiles:
@@ -210,7 +210,7 @@ async def lifespan(app: FastAPI):
         trace_log.error(f"[{mode_label}] Profile {PROFILE.value} FAILED VALIDATION:")
         for _r in _e.results:
             trace_log.error(f"[{mode_label}]   {_r}")
-        trace_log.error(f"[{mode_label}] See docs/PROFILES.md for required setup.")
+        trace_log.error(f"[{mode_label}] See SETUP.md for required setup.")
         raise
 
     # 0b. Profile-specific credential warnings

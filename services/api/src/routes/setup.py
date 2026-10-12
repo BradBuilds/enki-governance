@@ -295,7 +295,7 @@ async def set_profile(body: dict):
 
     Body: { "profile": "dev" | "cloud" | "hardware" | "hardened" | "hub" }
 
-    Each profile has its own prerequisites — see docs/PROFILES.md.
+    Each profile has its own prerequisites — see SETUP.md.
     The profile validator runs at startup and refuses to boot if any
     requirement isn't met."""
     from core.profile import Profile, get_spec
@@ -319,7 +319,7 @@ async def set_profile(body: dict):
         f"#   hardware_key={spec.requires_hardware_key}",
         f"#   luks={spec.requires_luks}",
         f"#   signed_active_set={spec.requires_signed_active_set}",
-        f"# See docs/PROFILES.md.",
+        f"# See SETUP.md.",
     ]
 
     try:

@@ -48,7 +48,7 @@ You can also run these steps by hand — see the script; it's short and readable
 
 ## Optional: WordNet sense layer
 
-All 47 governance packs ship, but the two WordNet sense packs need their large data built
+All 42 governance packs ship, but the two WordNet sense packs need their large data built
 from [Open English WordNet](https://github.com/globalwordnet/english-wordnet) (`oewn:2023`,
 CC-BY-4.0). Enable sense-grounding (word-sense disambiguation) with:
 

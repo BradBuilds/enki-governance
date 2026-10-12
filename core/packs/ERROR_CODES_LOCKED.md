@@ -94,7 +94,7 @@ These error codes are part of the pack loading infrastructure but are **not spin
 
 To add a new **spine-level validation error code** (S1.0-S1.5 scope):
 
-1. **Create RFC** in `docs/spine/rfcs/RFC-XXXX-error-code-addition.md`
+1. **Open an issue** on this repository proposing the code (an RFC)
    - Justify need: What validation contract requires this code?
    - Impact analysis: What systems parse error codes?
    - Migration: How do existing logs/monitors handle new codes?
@@ -186,9 +186,6 @@ Any change to error codes that breaks these tests requires RFC approval.
 
 ## Related Documentation
 
-- [SPINE-00 v1.0.1 Specification](../docs/spine/SPINE-00-foundations.md) — Error ordering rules (§3.1)
-- [S1-GOVERNANCE-LOCK-COMPLETE.md](../docs/spine/S1-GOVERNANCE-LOCK-COMPLETE.md) — Full governance lock summary
-- [S1-GOVERNANCE-ARTIFACTS.md](../docs/spine/S1-GOVERNANCE-ARTIFACTS.md) — Registry of all locked artifacts
 - `core/packs/errors.py` — Canonical implementation
 
 ---

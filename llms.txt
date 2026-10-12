@@ -99,7 +99,7 @@ The integrity claims are checkable without trusting the prose:
 
 - Pack integrity: `python scripts/governance/run_admission_ceremony.py active_set_v6.json`
   recomputes every pack hash against `active_set_v6.json` and fails loudly on any mismatch.
-- Tamper-evidence: change one byte in any `libraries/**` file and re-run the ceremony — the
+- Tamper-evidence: change one byte in a definition file of any pinned pack and re-run the ceremony — the
   pack hash no longer matches, and a signed active set stops verifying.
 - Determinism: the same documents plus the same pinned pack set produce the same graph. The
   packs are pinned by content hash precisely so that "same packs" is a checkable statement

@@ -11,7 +11,7 @@ A profile is a complete operating posture. Choosing a profile determines:
 
 User authentication is **not** a per-profile axis — every non-hub profile
 uses self-hosted Logto OIDC. One auth flow, owned end-to-end. See
-docs/PROFILES.md for the canonical reference.
+SETUP.md for an overview.
 
 Canonical profiles (new model, the four that ship in public releases):
   - node          — default. Local-only Enki + Logto. The 95% case.

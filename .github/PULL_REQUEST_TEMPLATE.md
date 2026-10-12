@@ -9,5 +9,5 @@
 
 ## Checklist
 - [ ] No secrets, internal IPs/hostnames, or personal paths (the leak-audit CI must pass)
-- [ ] For pack proposals: real example evidence included; `pack-lint`-clean
+- [ ] For pack proposals: real example evidence included; CI green
 - [ ] Tested locally (`docker compose up` + relevant flow) where applicable
