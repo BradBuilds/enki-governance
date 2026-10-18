@@ -1,0 +1,49 @@
+{
+  "id": "language.glyphs.cyrillic",
+  "type": "glyphs",
+  "version": "0.1.0",
+  "description": "Cyrillic script glyph coverage markers and deterministic style labels (no executable rendering).",
+  "dependencies": ["base60.glyphs"],
+  "content": {
+    "script": "Cyrillic",
+    "extends_base": "base60.glyphs",
+    "principle": "Deterministic, stateless glyph style descriptors; coverage markers are explicit and hashed.",
+    "completeness": "partial",
+    "coverage": {
+      "scope": "v0.1.0",
+      "included_count": 288,
+      "expected_count": 288,
+      "notes": "complete_for_cyrillic_extended_in_v0.1.0"
+    },
+    "styles": {
+      "serif": {
+        "name": "Serif Style",
+        "deterministic": true,
+        "stateless": true,
+        "rendering": "font-based"
+      },
+      "sans_serif": {
+        "name": "Sans-Serif Style",
+        "deterministic": true,
+        "stateless": true,
+        "rendering": "font-based"
+      },
+      "print": {
+        "name": "Print Style",
+        "deterministic": true,
+        "stateless": true,
+        "rendering": "font-based"
+      }
+    },
+    "character_set": {
+      "type": "Cyrillic (v0.1.0 defined subset)",
+      "count": 288,
+      "unicode_range_hint": "See coverage.notes; the exact set is defined by the v0.1.0 deliverable counts."
+    }
+  },
+  "metadata": {
+    "created": "2026-01-13T00:00:00Z",
+    "author": "ENKI System",
+    "governance": "SPINE-S1.2"
+  }
+}

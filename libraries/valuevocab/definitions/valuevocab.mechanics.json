@@ -1,0 +1,56 @@
+{
+  "id": "value.vocab.mechanics",
+  "type": "custom",
+  "version": "0.1.0",
+  "description": "Lattice mechanics for the collapse and orthogonal operators. These rules are how the substrate algebra actually evaluates.",
+  "content": {
+    "collapse_operator": {
+      "symbol": "⊕",
+      "applies_when": "Two assertions a1, a2 share the same (node, property).",
+      "cases": {
+        "refinement": {
+          "condition": "values are in the same chain AND a2.depth > a1.depth",
+          "action": "Both kept. a2 is canonical (deeper); a1 becomes a supporting attestation with edge refined_by → a2.",
+          "example": "color=red (depth=1) ⊕ color=RGB(220,20,60) (depth=3) → canonical RGB(220,20,60); 'red' kept as attestation"
+        },
+        "subsumption": {
+          "condition": "values are in the same chain AND a1.depth > a2.depth",
+          "action": "Symmetric to refinement. a1 remains canonical.",
+          "example": "Pantone 199C ⊕ red → canonical Pantone 199C; 'red' kept as attestation"
+        },
+        "alternatives": {
+          "condition": "values are in the same property at the same depth in different branches",
+          "action": "Both stored. contradicted_by edge created between them. The dossier surfaces both with provenance.",
+          "example": "color=red (depth=1) ⊕ color=blue (depth=1) → both stored, marked contested"
+        },
+        "incompatible_property": {
+          "condition": "values have different cycles (different properties)",
+          "action": "TYPE ERROR. Cannot collapse — these aren't talking about the same dimension. Rejected by admission with reason type_mismatch.",
+          "example": "color=red ⊕ weight=10kg → rejected"
+        },
+        "enumerated_conflict": {
+          "condition": "both values are at precision_tier='enumerated' AND not equal",
+          "action": "Hard conflict. No refinement is possible since enumerated values are exact. contradicted_by edge created and the assertion is flagged as a hard contradiction (not a soft one resolvable by deeper data).",
+          "example": "language=en (enumerated) ⊕ language=fr (enumerated) → hard conflict"
+        }
+      }
+    },
+    "orthogonal_operator": {
+      "symbol": "⊗",
+      "applies_when": "Two assertions about the same node have different properties.",
+      "action": "No interaction. Both stored independently. The node's full description is the tensor product over all its property assertions.",
+      "example": "car.color=red ⊗ car.manufacturer=Ford ⊗ car.origin=Mexico → three independent property chains, all valid"
+    },
+    "refinement_rules": {
+      "monotonic_depth": "Within a chain, depth strictly increases as you descend. Cannot have a child at the same or shallower depth than its parent.",
+      "cycle_invariant": "Every value in a chain has the SAME cycle (the property's cycle). Values cannot change property by being refined.",
+      "parent_uniqueness": "Each value has exactly ONE parent (single inheritance). Two parents would force the substrate to pick which property the value belongs to.",
+      "root_per_property": "Each property has exactly ONE root value at depth=0, which IS the property concept node itself."
+    },
+    "value_normalization": {
+      "name_canonicalization": "Lowercase, trim, collapse whitespace. 'RED' → 'red', '  Red  ' → 'red'.",
+      "alias_resolution": "Common aliases ('crimson' → 'red' alias, not refinement) are stored as aliases on the canonical value, not as separate lattice nodes.",
+      "case_insensitive": "Value lookup by name is case-insensitive. Display preserves the original casing of the canonical form."
+    }
+  }
+}

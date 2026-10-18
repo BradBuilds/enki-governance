@@ -1,0 +1,12 @@
+{
+  "id": "topic.vocab.system",
+  "type": "system",
+  "version": "0.1.0",
+  "description": "Topic relation vocabulary system metadata.",
+  "content": {
+    "purpose": "Topics need to nest, peer, contradict, and reference each other. A flat list of topics gives you tagging — it doesn't give you a lattice. This vocab makes the lattice first-class: you can ask 'show me all narrower topics under Roswell Incident' and the substrate walks the edges to deliver. Federation: a node sharing its 'Roswell Incident' topic also exports its topic relations, so the receiving node knows what's a parent, what's a peer, what's an explanation.",
+    "scope_distinction": "edgevocab governs entity↔entity relations and node↔node general edges. topicvocab governs ONLY topic↔topic relations and adds topic-specific metadata fields (temporal_span, concept/instance kind). The two vocabularies don't overlap.",
+    "ldu_relationship": "Inferred topic relations (auto-cluster proposes 'topic A narrower_than topic B' from member-subset detection) land in LDU staging with confidence < 1.0 and a 'proposed_by' attribution. Promotion to GDU requires either (a) high-confidence auto-approval per relation type, or (b) user confirmation.",
+    "federation_relationship": "When two nodes' assertions about the same topic merge, their topic relations also merge via union. If node A says 'Roswell Incident narrower_than UFO Crash Retrievals' and node B doesn't have the parent topic, B receives the parent admission as part of the merge."
+  }
+}

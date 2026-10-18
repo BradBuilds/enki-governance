@@ -1,0 +1,20 @@
+{
+  "method": "POST",
+  "path": "/admin/enroll_device",
+  "headers": {
+    "X-Device-ID": "admin-yubikey-001",
+    "X-Challenge-ID": "<CHALLENGE_ID>",
+    "X-Tenant-ID": "practice-001",
+    "X-Body-SHA256": "computed-at-runtime",
+    "X-Signature": "computed-at-runtime"
+  },
+  "body": {
+    "device_id": "golden-test-device",
+    "public_key": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+    "public_key_algorithm": "Ed25519",
+    "tenant_scopes": ["practice-001"],
+    "explicit_tier": "W",
+    "expires_days": 365
+  },
+  "notes": "Headers X-Challenge-ID, X-Body-SHA256, X-Signature computed at runtime during test execution. Body hash covers canonical JSON bytes."
+}

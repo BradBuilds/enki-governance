@@ -1,0 +1,55 @@
+# Security event — IOCs, threat feeds, anomaly detections.
+#
+# Threat intelligence indicators (CISA KEV, AlienVault OTX), network
+# anomaly detection, malware signatures. Varied payload shapes; this
+# is a permissive catch-all that pulls common fields.
+
+signal_type: signal.security.threat_feed
+aliases:
+  - signal.security.network_anomaly
+  - signal.security.indicator_match
+  - signal.security.malware_detected
+
+node_type: event
+subtype: security
+description: Security event — IOC, threat feed entry, anomaly detection
+
+field_map:
+  payload.title:           identity.title_raw
+  payload.name:            identity.title_raw
+  payload.indicator:       _scratch.indicator
+  payload.type:            _scratch.indicator_type
+  payload.cve:             _scratch.cve
+  payload.cveID:           _scratch.cve
+  payload.severity:        _scratch.severity
+  payload.confidence:      evidence.confidence
+  payload.description:     summary.feed_summary
+  payload.shortDescription: summary.feed_summary_clean
+  payload.dateAdded:       temporal.event_time
+  payload.timestamp:       temporal.event_time
+  payload.published:       temporal.event_time
+  payload.url:             source.url
+  payload.references:      _scratch.refs
+  source.outlet:           source.outlet_name
+  source.slug:             _scratch.source_slug
+
+constants:
+  summary.domain_classification: intelligence
+  evidence.epistemic_type: claim
+  evidence.background_relevance: critical
+
+templates:
+  identity.title_display: "{identity.title_raw}"
+  summary.headline: "{identity.title_raw}"
+  summary.narrative: "{summary.feed_summary}"
+  source.node_id: "source:{_scratch.source_slug}"
+
+extractors:
+  - entities_cheap
+  - topics_cheap
+  - places_cheap
+
+governance:
+  author: hand_written
+  reviewed: true
+  version: 1

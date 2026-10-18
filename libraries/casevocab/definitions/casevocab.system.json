@@ -1,0 +1,13 @@
+{
+  "id": "case.vocab.system",
+  "type": "system",
+  "version": "0.1.0",
+  "description": "System definition for case vocabulary. Cases organize related data around a question, topic, or investigation.",
+  "content": {
+    "purpose": "Govern data organization. A case is a container that collects related signals, alerts, files, and notes. Observable watchlists on cases enable automatic correlation — when new data matches a watched identifier, it auto-links to the case.",
+    "conceptual_model": "status + priority + observables + timeline + resolution",
+    "note": "Observable types are defined in signalvocab (signal.vocab.observable_types). Cases REFERENCE those types when adding observables to watchlists."
+  },
+  "metadata": {"created": "2026-03-21T00:00:00Z", "author": "ENKI System"},
+  "dependencies": []
+}

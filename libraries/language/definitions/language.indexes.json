@@ -1,0 +1,35 @@
+{
+  "id": "language.indexes",
+  "type": "custom",
+  "version": "0.1.0",
+  "description": "Fast lookup indexes for language queries (static, deterministic reference mappings).",
+  "content": {
+    "script_by_code": {
+      "LATIN": "language.scripts (scripts.latin)",
+      "CYRILLIC": "language.scripts (scripts.cyrillic)",
+      "DEVANAGARI": "language.scripts (scripts.devanagari)"
+    },
+    "glyph_definitions": {
+      "language.glyphs.latin": "Latin script glyphs (v0.1.0 included_count=251)",
+      "language.glyphs.cyrillic": "Cyrillic script glyphs (v0.1.0 included_count=288)",
+      "language.glyphs.devanagari": "Devanagari script glyphs (v0.1.0 included_count=84)"
+    },
+    "phonology_index": {
+      "consonants": 42,
+      "vowels": 8,
+      "suprasegmentals": 4
+    },
+    "semantics_index": {
+      "relation_types": 7,
+      "indexed": true
+    },
+    "pragmatics_index": {
+      "speech_acts": 5,
+      "discourse_markers": true
+    }
+  },
+  "metadata": {
+    "created": "2026-01-13T00:00:00Z",
+    "author": "ENKI System"
+  }
+}

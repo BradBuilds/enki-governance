@@ -1,0 +1,42 @@
+{
+  "id": "identity.actors",
+  "type": "custom",
+  "version": "0.1.0",
+  "description": "Actor categories that can perform actions in ENKI systems",
+  "content": {
+    "category": "actors",
+    "purpose": "Defines the types of entities that can initiate actions or operations",
+    "actor_types": [
+      {
+        "name": "human",
+        "description": "Human user interacting with the system",
+        "capabilities": ["read", "write", "execute", "delegate"]
+      },
+      {
+        "name": "ai",
+        "description": "AI agent or autonomous system",
+        "capabilities": ["read", "write", "execute", "learn"]
+      },
+      {
+        "name": "service",
+        "description": "Automated service or background process",
+        "capabilities": ["read", "write", "execute", "monitor"]
+      },
+      {
+        "name": "node",
+        "description": "ENKI node identity for inter-node operations",
+        "capabilities": ["read", "write", "execute", "replicate", "validate"]
+      }
+    ],
+    "notes": [
+      "Actor types are vocabulary only",
+      "Permissions and authorization are defined elsewhere",
+      "Capabilities listed are conceptual, not enforced by this pack"
+    ]
+  },
+  "metadata": {
+    "created": "2025-12-31T00:00:00Z",
+    "author": "ENKI System"
+  },
+  "dependencies": ["identity.system"]
+}

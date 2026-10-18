@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://enki.system/schemas/assertion.schema.json",
+  "title": "ENKI Assertion",
+  "description": "Schema for ENKI assertion objects (future use)",
+  "type": "object",
+  "required": ["id", "claim", "evidence"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique assertion identifier"
+    },
+    "claim": {
+      "type": "string",
+      "description": "What is being asserted"
+    },
+    "evidence": {
+      "type": "object",
+      "description": "Evidence supporting the claim"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "verifiable": {
+      "type": "boolean",
+      "description": "Whether this assertion can be independently verified"
+    }
+  }
+}

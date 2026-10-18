@@ -1,0 +1,12 @@
+{
+  "id": "example.system",
+  "type": "system",
+  "version": "0.1.0",
+  "description": "Pack-level system definition. Replace with your domain description.",
+  "content": {
+    "system": {
+      "name": "Example Domain",
+      "description": "Replace this with your domain description"
+    }
+  }
+}

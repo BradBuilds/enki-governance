@@ -1,0 +1,64 @@
+{
+  "id": "completeness.vocab.tiers",
+  "type": "custom",
+  "version": "0.1.0",
+  "description": "The four canonical completeness tiers, with thresholds and display semantics.",
+  "content": {
+    "tiers": {
+      "stub": {
+        "label": "Stub",
+        "min_score": 0.0,
+        "max_score": 0.39,
+        "description": "Has identity, almost nothing else. Surfaced as a research prompt.",
+        "default_dashboard_visibility": "visible_with_warning",
+        "badge_color": "neutral",
+        "promotes_to": "partial"
+      },
+      "partial": {
+        "label": "Partial",
+        "min_score": 0.40,
+        "max_score": 0.69,
+        "description": "Usable but incomplete. Surfaced in research backlog.",
+        "default_dashboard_visibility": "visible",
+        "badge_color": "amber",
+        "promotes_to": "solid",
+        "demotes_to": "stub"
+      },
+      "solid": {
+        "label": "Solid",
+        "min_score": 0.70,
+        "max_score": 0.89,
+        "description": "Production-ready card. Default display tier.",
+        "default_dashboard_visibility": "visible",
+        "badge_color": "blue",
+        "promotes_to": "verified",
+        "demotes_to": "partial"
+      },
+      "verified": {
+        "label": "Verified",
+        "min_score": 0.90,
+        "max_score": 1.0,
+        "description": "Anchor node — well-sourced, corroborated, no open contradictions. Eligible for epistemic_type promotion to 'fact'.",
+        "default_dashboard_visibility": "highlighted",
+        "badge_color": "green",
+        "extra_requirements": {
+          "corroborations_min": 1,
+          "contradictions_max": 0,
+          "_doc": "A node with score ≥0.9 still does NOT promote to verified unless it has at least one corroboration and zero open contradictions"
+        },
+        "demotes_to": "solid"
+      }
+    },
+    "transition_rules": {
+      "promote_on_score_increase": "When score crosses upward through a tier boundary, promote",
+      "demote_on_score_decrease": "When score crosses downward through a tier boundary, demote",
+      "demote_on_contradiction": "When a new contradiction appears on a verified node, immediately demote to solid",
+      "audit_log": "Every promotion/demotion is logged in provenance.extraction_passes with stage='completeness' and the reason"
+    }
+  },
+  "metadata": {
+    "created": "2026-04-10T00:00:00Z",
+    "author": "ENKI System"
+  },
+  "dependencies": []
+}

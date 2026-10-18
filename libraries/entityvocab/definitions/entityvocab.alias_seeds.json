@@ -1,0 +1,89 @@
+{
+  "id": "entityvocab.alias_seeds",
+  "type": "custom",
+  "version": "0.2.0",
+  "description": "Hand-curated synonym sets for high-prominence ENTITIES (only canonical_types that exist in the entity pack). Place-type and country/state seeds moved to a sibling pack (placevocab.alias_seeds) because countries/states/cities belong in the places table, not entities. Format: each seed has a canonical_name (display form), a canonical_type (MUST be in entity_subtypes), and surface_forms (normalized lower-case strings to merge under it).",
+  "rationale": "v0.1.0 of this file declared seeds with canonical_type values like 'country', 'state', 'military_branch', 'military_facility' that are NOT in the GDU entity pack. Those seeds were a source of contamination — they baked invalid types into the entity resolution layer at startup. v0.2.0 fixes that: all seeds use canonical_types that exist in entity_subtypes.json, with surface_forms covering common LLM/NER drift.",
+  "content": {
+    "seeds": [
+      {
+        "canonical_name": "United States Air Force",
+        "canonical_type": "organization",
+        "surface_forms": ["united states air force", "usaf", "u.s. air force", "us air force", "u.s. air", "air force", "united states air"]
+      },
+      {
+        "canonical_name": "Walker Air Force Base",
+        "canonical_type": "facility",
+        "surface_forms": ["walker air force base", "walker afb", "walker", "roswell aaf", "roswell army air field", "roswell army airfield", "roswell army air"]
+      },
+      {
+        "canonical_name": "Holloman Air Force Base",
+        "canonical_type": "facility",
+        "surface_forms": ["holloman air force base", "holloman afb", "holloman", "holloman air", "holloman air development center", "alamogordo army airfield"]
+      },
+      {
+        "canonical_name": "Wright-Patterson Air Force Base",
+        "canonical_type": "facility",
+        "surface_forms": ["wright-patterson air force base", "wright-patterson afb", "wright patterson afb", "wright-patterson", "wright patterson", "wright field"]
+      },
+      {
+        "canonical_name": "White Sands Missile Range",
+        "canonical_type": "facility",
+        "surface_forms": ["white sands missile range", "white sands proving ground", "white sands proving grounds", "white sands proving", "white sands"]
+      },
+      {
+        "canonical_name": "National Archives and Records Administration",
+        "canonical_type": "government_agency",
+        "surface_forms": ["national archives and records administration", "national archives and records", "national archives and record", "national archives", "nara"]
+      },
+      {
+        "canonical_name": "National Personnel Records Center",
+        "canonical_type": "government_agency",
+        "surface_forms": ["national personnel records center", "national personnel records", "national personnel", "nprc"]
+      },
+      {
+        "canonical_name": "Federal Bureau of Investigation",
+        "canonical_type": "government_agency",
+        "surface_forms": ["federal bureau of investigation", "fbi", "f.b.i."]
+      },
+      {
+        "canonical_name": "Central Intelligence Agency",
+        "canonical_type": "government_agency",
+        "surface_forms": ["central intelligence agency", "cia", "c.i.a."]
+      },
+      {
+        "canonical_name": "Department of Defense",
+        "canonical_type": "government_agency",
+        "surface_forms": ["department of defense", "dod", "d.o.d.", "defense department", "us defense department"]
+      },
+      {
+        "canonical_name": "Office of the Director of National Intelligence",
+        "canonical_type": "government_agency",
+        "surface_forms": ["office of the director of national intelligence", "odni", "director of national intelligence"]
+      },
+      {
+        "canonical_name": "All-domain Anomaly Resolution Office",
+        "canonical_type": "government_agency",
+        "surface_forms": ["all-domain anomaly resolution office", "aaro", "all domain anomaly resolution office", "anomaly resolution office"]
+      },
+      {
+        "canonical_name": "United States Department of State",
+        "canonical_type": "government_agency",
+        "surface_forms": ["united states department of state", "us department of state", "state department", "dept of state", "department of state", "dos"]
+      },
+      {
+        "canonical_name": "Department of Energy",
+        "canonical_type": "government_agency",
+        "surface_forms": ["department of energy", "doe", "us department of energy", "energy department"]
+      }
+    ],
+    "migrated_to_place_table": {
+      "description": "These seeds were in v0.1.0 with canonical_type=country/state — they belong in the places table and have been removed from entity seeds.",
+      "seeds_removed": [
+        {"name": "United States", "old_type": "country"},
+        {"name": "Iran", "old_type": "country"},
+        {"name": "New Mexico", "old_type": "state"}
+      ]
+    }
+  }
+}

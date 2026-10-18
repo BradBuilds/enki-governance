@@ -1,0 +1,13 @@
+{
+  "id": "property.vocab.system",
+  "type": "system",
+  "version": "0.1.0",
+  "description": "Property vocabulary system metadata.",
+  "content": {
+    "purpose": "Define WHICH dimensions any node can be described along, and how those dimensions relate to the base60 address space. A 'property' is the abstract dimension (color, size, time…); values for that property live in valuevocab and refine each other in a lattice owned by precisionvocab.",
+    "node_relationship": "Each property may be applicable to a subset of nodevocab categories. 'color' applies to entity.vehicle, entity.vessel, entity.aircraft, entity.product (and others). 'manufacturer' applies to entity.product, entity.vehicle. The admission worker enforces type-compatibility — a 'color' assertion on a 'person' entity is rejected by GDU.",
+    "precision_relationship": "Each property declares which precisionvocab tiers it accepts. 'color' admits {named, qualified, formal, spectral}. 'language' admits {named, formal, enumerated} (no spectral). 'mmsi' admits only {enumerated}. The admission worker uses this to refuse off-tier assertions cleanly.",
+    "ldu_relationship": "When the extractor emits a property assertion before a property exists in this pack, the assertion lands in LDU staging with property_id=NULL. A periodic worker scans LDU for unmapped property names and proposes ceremony updates (new properties added in next minor version). The data flows; the type system catches up.",
+    "cycle_assignment_rule": "Each property is permanently bound to one base60 cycle. v0.1.0 uses cycles 7–36 (30 properties). cycles 37–59 are reserved for future propertyvocab versions. The cycle assignment is the property's GDU identity — never reassign."
+  }
+}

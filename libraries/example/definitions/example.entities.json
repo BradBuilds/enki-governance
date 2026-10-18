@@ -1,0 +1,20 @@
+{
+  "id": "example.entities",
+  "type": "custom",
+  "version": "0.1.0",
+  "description": "Sample domain terms. Replace with your own. `type` must be one of [system, rules, glyphs, digits, custom] and the payload must sit under `content` \u2014 see schemas/definition.schema.json.",
+  "content": {
+    "terms": [
+      {
+        "term": "widget",
+        "definition": "A sample governed entity",
+        "category": "entity"
+      },
+      {
+        "term": "component",
+        "definition": "A sub-unit of a widget",
+        "category": "entity"
+      }
+    ]
+  }
+}

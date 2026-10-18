@@ -1,0 +1,472 @@
+{
+  "id": "audit_vocab.event_types",
+  "type": "custom",
+  "version": "0.1.0",
+  "description": "Canonical audit event type vocabulary",
+  "content": {
+    "category": "event_types",
+    "purpose": "Defines the canonical types of audit events in ENKI systems",
+    "event_types": [
+      {
+        "event_type_id": "assertion.proposed",
+        "label": "Assertion Proposed",
+        "category": "assertion_lifecycle",
+        "description": "A new assertion has been proposed or submitted",
+        "typical_fields": [
+          "actor_id",
+          "assertion_id",
+          "timestamp",
+          "scope"
+        ],
+        "notes": [
+          "Marks the beginning of assertion lifecycle",
+          "Does not imply acceptance or validation"
+        ]
+      },
+      {
+        "event_type_id": "assertion.accepted",
+        "label": "Assertion Accepted",
+        "category": "assertion_lifecycle",
+        "description": "An assertion has been accepted into the system",
+        "typical_fields": [
+          "actor_id",
+          "assertion_id",
+          "timestamp",
+          "scope"
+        ],
+        "notes": [
+          "Assertion passed initial checks",
+          "May still require validation"
+        ]
+      },
+      {
+        "event_type_id": "assertion.rejected",
+        "label": "Assertion Rejected",
+        "category": "assertion_lifecycle",
+        "description": "An assertion has been rejected due to validation failure",
+        "typical_fields": [
+          "actor_id",
+          "assertion_id",
+          "timestamp",
+          "reason"
+        ],
+        "notes": [
+          "Assertion failed validation",
+          "Reason should indicate why"
+        ]
+      },
+      {
+        "event_type_id": "assertion.validated",
+        "label": "Assertion Validated",
+        "category": "assertion_lifecycle",
+        "description": "An assertion has been validated against vocabulary packs",
+        "typical_fields": [
+          "assertion_id",
+          "timestamp",
+          "validator"
+        ],
+        "notes": [
+          "Assertion passed all validation checks",
+          "Ready for use"
+        ]
+      },
+      {
+        "event_type_id": "assertion.invalidated",
+        "label": "Assertion Invalidated",
+        "category": "assertion_lifecycle",
+        "description": "A previously valid assertion has been marked invalid",
+        "typical_fields": [
+          "assertion_id",
+          "timestamp",
+          "reason"
+        ],
+        "notes": [
+          "Assertion no longer considered valid",
+          "May be due to vocabulary changes"
+        ]
+      },
+      {
+        "event_type_id": "pack.loaded",
+        "label": "Pack Loaded",
+        "category": "pack_operations",
+        "description": "A definition pack has been successfully loaded",
+        "typical_fields": [
+          "pack_id",
+          "version",
+          "timestamp",
+          "node_id"
+        ],
+        "notes": [
+          "Pack validation succeeded",
+          "Definitions are available"
+        ]
+      },
+      {
+        "event_type_id": "pack.validation_failed",
+        "label": "Pack Validation Failed",
+        "category": "pack_operations",
+        "description": "A definition pack failed validation",
+        "typical_fields": [
+          "pack_id",
+          "timestamp",
+          "errors",
+          "node_id"
+        ],
+        "notes": [
+          "Pack could not be loaded",
+          "Errors should be logged"
+        ]
+      },
+      {
+        "event_type_id": "pack.unloaded",
+        "label": "Pack Unloaded",
+        "category": "pack_operations",
+        "description": "A definition pack has been unloaded from memory",
+        "typical_fields": [
+          "pack_id",
+          "version",
+          "timestamp",
+          "node_id"
+        ],
+        "notes": [
+          "Pack definitions no longer available"
+        ]
+      },
+      {
+        "event_type_id": "node.started",
+        "label": "Node Started",
+        "category": "node_lifecycle",
+        "description": "An ENKI node has started up",
+        "typical_fields": [
+          "node_id",
+          "timestamp",
+          "version"
+        ],
+        "notes": [
+          "Initial startup event",
+          "Node is initializing"
+        ]
+      },
+      {
+        "event_type_id": "node.heartbeat",
+        "label": "Node Heartbeat",
+        "category": "node_lifecycle",
+        "description": "Periodic heartbeat indicating node is running",
+        "typical_fields": [
+          "node_id",
+          "timestamp",
+          "status"
+        ],
+        "notes": [
+          "Regular health check",
+          "Confirms node is active"
+        ]
+      },
+      {
+        "event_type_id": "node.stopped",
+        "label": "Node Stopped",
+        "category": "node_lifecycle",
+        "description": "An ENKI node has shut down",
+        "typical_fields": [
+          "node_id",
+          "timestamp",
+          "reason"
+        ],
+        "notes": [
+          "Graceful or unexpected shutdown"
+        ]
+      },
+      {
+        "event_type_id": "usage.meter_tick",
+        "label": "Usage Meter Tick",
+        "category": "usage_tracking",
+        "description": "Periodic usage metering event",
+        "typical_fields": [
+          "node_id",
+          "timestamp",
+          "metrics"
+        ],
+        "notes": [
+          "Resource usage tracking",
+          "For future billing/analytics"
+        ]
+      },
+      {
+        "event_type_id": "validation.started",
+        "label": "Validation Started",
+        "category": "validation_operations",
+        "description": "Validation process has begun",
+        "typical_fields": [
+          "target_id",
+          "target_type",
+          "timestamp"
+        ],
+        "notes": [
+          "Marks start of validation workflow"
+        ]
+      },
+      {
+        "event_type_id": "validation.completed",
+        "label": "Validation Completed",
+        "category": "validation_operations",
+        "description": "Validation process has completed successfully",
+        "typical_fields": [
+          "target_id",
+          "target_type",
+          "timestamp",
+          "result"
+        ],
+        "notes": [
+          "Validation finished without errors"
+        ]
+      },
+      {
+        "event_type_id": "validation.failed",
+        "label": "Validation Failed",
+        "category": "validation_operations",
+        "description": "Validation process encountered errors",
+        "typical_fields": [
+          "target_id",
+          "target_type",
+          "timestamp",
+          "errors"
+        ],
+        "notes": [
+          "Validation found issues",
+          "Errors should be detailed"
+        ]
+      },
+      {
+        "event_type_id": "signal.batch_ingested",
+        "label": "Signal Batch Ingested",
+        "category": "signal_operations",
+        "description": "Batch of signals stored in signal chain (cross-chain anchor)",
+        "typical_fields": [
+          "node_id",
+          "tenant_id",
+          "batch_size",
+          "signal_chain_hash"
+        ]
+      },
+      {
+        "event_type_id": "signal.rejected",
+        "label": "Signal Rejected",
+        "category": "signal_operations",
+        "description": "Signal failed validation and was not stored in LDU-W",
+        "typical_fields": [
+          "node_id",
+          "tenant_id",
+          "device_id",
+          "reason",
+          "ldu_t_id"
+        ]
+      },
+      {
+        "event_type_id": "signal.provisioned",
+        "label": "Signal Provisioned",
+        "category": "signal_operations",
+        "description": "Signal staged in LDU-P (unknown type, pending review)",
+        "typical_fields": [
+          "node_id",
+          "tenant_id",
+          "ldu_p_id",
+          "proposed_signal_type"
+        ]
+      },
+      {
+        "event_type_id": "signal.promoted",
+        "label": "Signal Promoted",
+        "category": "signal_operations",
+        "description": "Signal promoted from LDU-P to LDU-W after resolution",
+        "typical_fields": [
+          "node_id",
+          "ldu_p_id",
+          "signal_rid",
+          "resolution_path"
+        ]
+      },
+      {
+        "event_type_id": "alert.created",
+        "label": "Alert Created",
+        "category": "alert_operations",
+        "description": "Detection rule matched, new alert generated",
+        "typical_fields": [
+          "node_id",
+          "tenant_id",
+          "alert_id",
+          "rule_id",
+          "severity"
+        ]
+      },
+      {
+        "event_type_id": "alert.status_changed",
+        "label": "Alert Status Changed",
+        "category": "alert_operations",
+        "description": "Alert triaged, escalated, suppressed, or resolved",
+        "typical_fields": [
+          "alert_id",
+          "old_status",
+          "new_status",
+          "actor_id"
+        ]
+      },
+      {
+        "event_type_id": "case.created",
+        "label": "Case Created",
+        "category": "case_operations",
+        "description": "New case opened (from alert escalation or manually)",
+        "typical_fields": [
+          "node_id",
+          "tenant_id",
+          "case_id",
+          "title",
+          "actor_id"
+        ]
+      },
+      {
+        "event_type_id": "case.signal_linked",
+        "label": "Case Signal Linked",
+        "category": "case_operations",
+        "description": "Signal auto-linked to case via observable correlation",
+        "typical_fields": [
+          "case_id",
+          "signal_rid",
+          "observable_type",
+          "observable_value"
+        ]
+      },
+      {
+        "event_type_id": "case.status_changed",
+        "label": "Case Status Changed",
+        "category": "case_operations",
+        "description": "Case status transition (open, investigating, resolved, etc.)",
+        "typical_fields": [
+          "case_id",
+          "old_status",
+          "new_status",
+          "actor_id"
+        ]
+      },
+      {
+        "event_type_id": "correlation.match_found",
+        "label": "Correlation Match Found",
+        "category": "correlation_operations",
+        "description": "Observable in signal matched a case watchlist entry",
+        "typical_fields": [
+          "signal_rid",
+          "case_id",
+          "observable_type",
+          "observable_value"
+        ]
+      },
+      {
+        "event_type_id": "vocabulary.extended",
+        "label": "Vocabulary Extended",
+        "category": "vocabulary_operations",
+        "description": "New definition added to existing pack via Tier 1 extension",
+        "typical_fields": [
+          "pack_id",
+          "definition_id",
+          "old_version",
+          "new_version",
+          "approved_by"
+        ]
+      },
+      {
+        "event_type_id": "profile.created",
+        "label": "Device Profile Created",
+        "category": "profile_operations",
+        "description": "New device profile created (manual or auto-learned)",
+        "typical_fields": [
+          "device_id",
+          "profile_id",
+          "parser",
+          "payload_format"
+        ]
+      },
+      {
+        "event_type_id": "profile.updated",
+        "label": "Device Profile Updated",
+        "category": "profile_operations",
+        "description": "Device profile field mapping or parser changed",
+        "typical_fields": [
+          "device_id",
+          "profile_id",
+          "changed_fields"
+        ]
+      },
+      {
+        "event_type_id": "connector.fetched",
+        "label": "Connector Fetch Completed",
+        "category": "connector_operations",
+        "description": "Pull connector completed a fetch cycle",
+        "typical_fields": [
+          "connector_id",
+          "source_type",
+          "items_fetched",
+          "duration_ms"
+        ]
+      },
+      {
+        "event_type_id": "connector.error",
+        "label": "Connector Error",
+        "category": "connector_operations",
+        "description": "Connector encountered an error during fetch",
+        "typical_fields": [
+          "connector_id",
+          "source_type",
+          "error_message",
+          "error_count"
+        ]
+      },
+      {
+        "event_type_id": "consent.granted",
+        "label": "Consent Granted",
+        "category": "consent_operations",
+        "description": "Activity monitoring or signal sharing consent recorded",
+        "typical_fields": [
+          "identity_id",
+          "device_id",
+          "monitoring_tier",
+          "signal_types"
+        ]
+      },
+      {
+        "event_type_id": "consent.revoked",
+        "label": "Consent Revoked",
+        "category": "consent_operations",
+        "description": "Activity monitoring or signal sharing consent revoked",
+        "typical_fields": [
+          "identity_id",
+          "device_id",
+          "previous_tier",
+          "revoked_by"
+        ]
+      },
+      {
+        "event_type_id": "data.exported",
+        "label": "Data Exported",
+        "category": "security_operations",
+        "description": "Bulk data exported via enki-ctl (Tier 1, YubiKey required)",
+        "typical_fields": [
+          "actor_id",
+          "export_type",
+          "record_count",
+          "destination"
+        ]
+      }
+    ],
+    "notes": [
+      "Event types are vocabulary only - no processing logic",
+      "Typical fields are suggestions, not requirements",
+      "Future systems may extend with additional event types"
+    ]
+  },
+  "metadata": {
+    "created": "2025-12-31T00:00:00Z",
+    "author": "ENKI System"
+  },
+  "dependencies": [
+    "audit_vocab.system"
+  ]
+}

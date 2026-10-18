@@ -1,0 +1,10 @@
+{
+  "id": "abbreviations",
+  "name": "Abbreviations",
+  "version": "0.1.0",
+  "type": "lexical",
+  "description": "Common government, military, and intelligence initialisms. Curated seed; expandable from full sources.",
+  "manifest": [
+    "definitions/abbreviations.senses.json"
+  ]
+}

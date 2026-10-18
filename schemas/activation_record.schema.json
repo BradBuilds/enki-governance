@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://enki.foundation/schemas/activation_record.schema.json",
+  "title": "ENKI Activation Record",
+  "description": "Explicit activation declaration for validated definition packs (S1.5)",
+  "type": "object",
+  "required": ["version", "activation"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "description": "Activation record format version"
+    },
+    "activation": {
+      "type": "object",
+      "required": ["activation_id", "active_set_version", "transcript_hash", "activated_at", "activated_by"],
+      "properties": {
+        "activation_id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+          "description": "UUID v4 identifier"
+        },
+        "active_set_version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+          "description": "Active set version being activated"
+        },
+        "transcript_hash": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$",
+          "description": "SHA-256 hash of validation transcript"
+        },
+        "activated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 UTC timestamp of activation"
+        },
+        "activated_by": {
+          "type": "string",
+          "description": "Identifier of activator (user, device, or system)"
+        }
+      }
+    }
+  }
+}

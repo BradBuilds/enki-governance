@@ -1,0 +1,44 @@
+Enki Governance
+Copyright (c) 2026 Enki Systems
+
+This product is licensed under the Business Source License 1.1 (see LICENSE).
+
+It includes or builds upon the following third-party works:
+
+────────────────────────────────────────────────────────────────────────
+Google Gemma (default local model)
+    Used via Ollama as the default extraction model (gemma4:e2b).
+    Subject to the Gemma Terms of Use: https://ai.google.dev/gemma/terms
+    Gemma is a trademark of Google LLC.
+
+────────────────────────────────────────────────────────────────────────
+Open English WordNet (oewn:2023)
+    The optional WordNet sense-disambiguation packs are BUILT from Open
+    English WordNet via the `wn` library (not bundled in this repository).
+    Licensed under Creative Commons Attribution 4.0 (CC-BY-4.0):
+    https://github.com/globalwordnet/english-wordnet
+
+────────────────────────────────────────────────────────────────────────
+GeoNames — cities5000
+    libraries/gazetteerpack/definitions/gazetteerpack.cities.json is derived
+    from the GeoNames cities5000 dataset (cities with population >= 50,000).
+    "This work is based on data from GeoNames (https://www.geonames.org),
+    licensed under Creative Commons Attribution 4.0 (CC-BY-4.0)."
+
+────────────────────────────────────────────────────────────────────────
+U.S. SEC EDGAR — company tickers
+    libraries/canonicalpack/definitions/canonicalpack.sec_companies.json is
+    derived from SEC EDGAR company data (company_tickers.json). U.S.
+    Government public-domain work. Source: https://www.sec.gov
+
+────────────────────────────────────────────────────────────────────────
+Natural Earth
+    ui/static/geo/countries.geojson is from Natural Earth
+    (ne_110m_admin_0_countries), public domain. https://www.naturalearthdata.com
+
+────────────────────────────────────────────────────────────────────────
+Sanctions reference lists
+    Sanctions/OSINT seed data references public lists published by OFAC
+    (U.S. Treasury), the European Union, and the United Nations. Sources are
+    cited within the respective pack definition files.
+────────────────────────────────────────────────────────────────────────

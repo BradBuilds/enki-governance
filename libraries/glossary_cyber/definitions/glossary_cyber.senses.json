@@ -1,0 +1,130 @@
+{
+  "id": "glossary_cyber.senses",
+  "type": "lexical_senses",
+  "version": "0.1.0",
+  "description": "Cybersecurity terminology. (10 seed senses).",
+  "content": {
+    "senses": [
+      {
+        "sense_id": "glossary_cyber-cve",
+        "lemma": "CVE",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "cyber",
+        "gloss": "Common Vulnerabilities and Exposures identifier",
+        "forms": [
+          "CVE"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_cyber-zero-day",
+        "lemma": "zero-day",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "cyber",
+        "gloss": "a vulnerability unknown to the vendor",
+        "forms": [
+          "zero-day"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_cyber-ddos",
+        "lemma": "DDoS",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "cyber",
+        "gloss": "distributed denial-of-service attack",
+        "forms": [
+          "DDoS"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_cyber-phishing",
+        "lemma": "phishing",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "cyber",
+        "gloss": "fraudulent attempts to obtain credentials",
+        "forms": [
+          "phishing"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_cyber-ransomware",
+        "lemma": "ransomware",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "cyber",
+        "gloss": "malware that encrypts data and demands payment",
+        "forms": [
+          "ransomware"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_cyber-c2",
+        "lemma": "C2",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "cyber",
+        "gloss": "command-and-control infrastructure",
+        "forms": [
+          "C2"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_cyber-exfiltration",
+        "lemma": "exfiltration",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "cyber",
+        "gloss": "unauthorized transfer of data out of a network",
+        "forms": [
+          "exfiltration"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_cyber-apt",
+        "lemma": "APT",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "cyber",
+        "gloss": "advanced persistent threat",
+        "forms": [
+          "APT"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_cyber-lateral-movement",
+        "lemma": "lateral movement",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "cyber",
+        "gloss": "moving through a network after initial compromise",
+        "forms": [
+          "lateral movement"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_cyber-ttp",
+        "lemma": "TTP",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "cyber",
+        "gloss": "tactics, techniques, and procedures",
+        "forms": [
+          "TTP"
+        ],
+        "relations": []
+      }
+    ]
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "id": "node.vocab.editorial_stance",
+  "type": "custom",
+  "version": "0.1.0",
+  "description": "Canonical editorial stance enum for Source nodes. POV is a property of the Source, not of individual Documents. Documents inherit the stance from their producing Source.",
+  "content": {
+    "values": {
+      "independent": {
+        "label": "Independent",
+        "description": "Privately owned outlet with no declared state or party affiliation, typically professional journalism with editorial independence",
+        "examples": ["BBC World", "Reuters", "Associated Press", "Al Jazeera English"]
+      },
+      "state_media": {
+        "label": "State Media",
+        "description": "Owned, operated, or directly funded by a national government; editorial line tracks the funding state's foreign and domestic policy",
+        "examples": ["RT", "TASS", "Xinhua", "Press TV", "PressTV"]
+      },
+      "partisan": {
+        "label": "Partisan",
+        "description": "Privately owned but with explicit political alignment to a party or movement",
+        "examples": ["Breitbart", "Mother Jones", "The Daily Wire"]
+      },
+      "advocacy": {
+        "label": "Advocacy",
+        "description": "Issue-driven outlet whose mission is advancing a specific cause",
+        "examples": ["Greenpeace", "ACLU", "Heritage Foundation"]
+      },
+      "opinion": {
+        "label": "Opinion / Commentary",
+        "description": "Source dominated by op-eds, columns, and commentary rather than reporting",
+        "examples": ["Project Syndicate", "Substack newsletters"]
+      },
+      "satire": {
+        "label": "Satire",
+        "description": "Source explicitly labeled as satirical; not factual",
+        "examples": ["The Onion", "Babylon Bee"]
+      },
+      "official_government": {
+        "label": "Official Government",
+        "description": "Government agency publishing in its official capacity (alerts, datasets, statistics, press releases)",
+        "examples": ["USGS", "NWS", "Census Bureau", "DoD", "ministries"]
+      },
+      "user_generated": {
+        "label": "User-Generated",
+        "description": "Platform where individual users post content; the platform is the source but content varies by author",
+        "examples": ["Twitter/X accounts", "Telegram channels", "YouTube channels"]
+      },
+      "aggregator": {
+        "label": "Aggregator",
+        "description": "Platform that collects and ranks user-submitted links to other sources; not original reporting",
+        "examples": ["Hacker News", "Reddit", "Lobsters"]
+      }
+    },
+    "default": "independent",
+    "_doc": "When stance is unknown, default to 'independent' rather than null. The classifier should be deliberate about non-default classifications."
+  },
+  "metadata": {
+    "created": "2026-04-10T00:00:00Z",
+    "author": "ENKI System"
+  },
+  "dependencies": []
+}

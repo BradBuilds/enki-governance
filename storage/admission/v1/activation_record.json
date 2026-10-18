@@ -1,0 +1,10 @@
+{
+  "version": "1.0.0",
+  "activation": {
+    "activation_id": "84ae0cd1-7b6b-4a57-9d6c-b07a4709d196",
+    "active_set_version": "5.0.1",
+    "transcript_hash": "sha256:81ef620baf0c433646279f6b99ba082f53428f0e5dfe660c963fc2f4a8d5f4cf",
+    "activated_at": "2026-04-11T02:16:27.931850+00:00",
+    "activated_by": "admission_ceremony_script"
+  }
+}

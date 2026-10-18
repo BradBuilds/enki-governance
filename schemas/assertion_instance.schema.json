@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://enki.system/schemas/assertion_instance.schema.json",
+  "title": "ENKI Assertion Instance",
+  "description": "Schema for ENKI assertion instance objects",
+  "type": "object",
+  "required": ["assertion_id", "subject", "predicate", "object", "scope"],
+  "properties": {
+    "assertion_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]([a-z0-9._-]*[a-z0-9])?$",
+      "description": "Unique identifier for this assertion instance"
+    },
+    "subject": {
+      "type": "string",
+      "description": "Entity ID of the subject"
+    },
+    "predicate": {
+      "type": "string",
+      "description": "Predicate ID from assertion vocabulary (e.g., 'is_a', 'owns', 'has_name')"
+    },
+    "object": {
+      "type": "object",
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "description": "Object kind from assertion vocabulary (e.g., 'entity_ref', 'string', 'number', 'uri')"
+        },
+        "value": {
+          "description": "The actual value; type depends on kind"
+        }
+      },
+      "description": "Object value with kind specification"
+    },
+    "scope": {
+      "type": "string",
+      "enum": ["local", "shared", "global"],
+      "description": "Visibility scope from identity vocabulary"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of assertion creation or validity"
+    },
+    "source": {
+      "oneOf": [
+        {"type": "string"},
+        {"type": "object"}
+      ],
+      "description": "Source or provenance information (optional)"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional metadata (optional)"
+    }
+  }
+}

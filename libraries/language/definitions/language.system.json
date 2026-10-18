@@ -1,0 +1,18 @@
+{
+  "id": "language.system",
+  "type": "system",
+  "version": "0.1.0",
+  "description": "Core language system properties and metadata",
+  "content": {
+    "language_name": "Human Languages",
+    "scope": "Multi-script, multi-typological coverage",
+    "purpose": "Provide canonical vocabulary for linguistic annotation and analysis",
+    "base_concepts": ["script", "phonology", "morphology", "semantics", "pragmatics"],
+    "supported_scripts": ["Latin (v0.1.0 subset)", "Cyrillic (v0.1.0 subset)", "Devanagari (v0.1.0 subset)"],
+    "version_notes": "v0.1.0: Adds initial script coverage markers and linguistic vocabulary primitives (non-executable, deterministic)."
+  },
+  "metadata": {
+    "created": "2026-01-13T00:00:00Z",
+    "author": "ENKI System"
+  }
+}

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Rounded diamond (rotated square) -->
+  <rect x="26" y="26" width="48" height="48" rx="13" stroke-width="5.5" transform="rotate(45 50 50)"/>
+  <!-- Flat-top hexagon (vertices point left/right) -->
+  <polygon points="85,50 67,20 33,20 15,50 33,80 67,80" stroke-width="5.5"/>
+</svg>

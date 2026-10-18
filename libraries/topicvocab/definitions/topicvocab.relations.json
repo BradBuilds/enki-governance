@@ -1,0 +1,110 @@
+{
+  "id": "topic.vocab.relations",
+  "type": "custom",
+  "version": "0.1.0",
+  "description": "8 base topic-to-topic relation types. Each has an inverse (which may equal itself for symmetric relations). Auto-inference rules describe when the substrate is allowed to propose this relation without user confirmation.",
+  "content": {
+    "relations": {
+      "broader_than": {
+        "label": "Broader Than",
+        "description": "Source topic is a more general category that contains the target.",
+        "inverse": "narrower_than",
+        "transitive": true,
+        "symmetric": false,
+        "auto_inference_rule": "If topic A's member set is a SUPERSET of topic B's members (>= 90%), propose A broader_than B at confidence 0.85.",
+        "examples": ["'UFO Crash Retrievals' broader_than 'Roswell Incident 1947'"]
+      },
+      "narrower_than": {
+        "label": "Narrower Than",
+        "description": "Source topic is a more specific case of the target.",
+        "inverse": "broader_than",
+        "transitive": true,
+        "symmetric": false,
+        "auto_inference_rule": "Auto-inferred as inverse of broader_than. Direct inference: if B's members are a subset of A's, propose B narrower_than A.",
+        "examples": ["'Roswell Incident 1947' narrower_than 'UFO Crash Retrievals'"]
+      },
+      "peer_of": {
+        "label": "Peer Of",
+        "description": "Sibling topics at the same conceptual level — different instances of the same parent concept.",
+        "inverse": "peer_of",
+        "transitive": false,
+        "symmetric": true,
+        "auto_inference_rule": "If two topics share the same broader_than parent, propose peer_of at confidence 0.9.",
+        "examples": ["'Roswell Incident' peer_of 'Aztec 1949'", "'Kecksburg 1965' peer_of 'Roswell Incident'"]
+      },
+      "explains": {
+        "label": "Explains",
+        "description": "Source topic provides the explanation/cause for the target. Asymmetric.",
+        "inverse": "explained_by",
+        "transitive": false,
+        "symmetric": false,
+        "auto_inference_rule": "Not auto-inferred; requires LLM analysis or user assertion. Detected when two topics share members AND one carries assessments with predicates like 'caused', 'explains', 'resulted_from'.",
+        "examples": ["'Project Mogul' explains 'Roswell Incident 1947'"]
+      },
+      "explained_by": {
+        "label": "Explained By",
+        "description": "Inverse of explains.",
+        "inverse": "explains",
+        "transitive": false,
+        "symmetric": false,
+        "auto_inference_rule": "Auto-inferred as inverse of explains.",
+        "examples": ["'Roswell Incident 1947' explained_by 'Project Mogul'"]
+      },
+      "contradicts": {
+        "label": "Contradicts",
+        "description": "Topics with mutually incompatible claims about the same subject matter. Used for framing-level conflict detection that SPO collapse can't catch.",
+        "inverse": "contradicts",
+        "transitive": false,
+        "symmetric": true,
+        "auto_inference_rule": "If two topics share members AND their respective assessments have opposite polarity on the same edge type for the same node pair, propose contradicts at confidence 0.75.",
+        "examples": ["'Alien Craft Hypothesis' contradicts 'Mogul Balloon Hypothesis'"]
+      },
+      "follows": {
+        "label": "Follows",
+        "description": "Source topic's temporal_span starts after the target's ends (or overlaps later). Used for causal/temporal chains across topics.",
+        "inverse": "precedes",
+        "transitive": true,
+        "symmetric": false,
+        "auto_inference_rule": "Direct inference from temporal_span — if A.start_time > B.end_time, propose A follows B at confidence 1.0.",
+        "examples": ["'1994 USAF Mogul Report' follows 'Marcel 1978 Re-interview'"]
+      },
+      "precedes": {
+        "label": "Precedes",
+        "description": "Inverse of follows.",
+        "inverse": "follows",
+        "transitive": true,
+        "symmetric": false,
+        "auto_inference_rule": "Auto-inferred as inverse of follows.",
+        "examples": []
+      },
+      "references": {
+        "label": "References",
+        "description": "Source topic cites or quotes target without making a stronger claim. Cheapest topic-to-topic edge.",
+        "inverse": "referenced_by",
+        "transitive": false,
+        "symmetric": false,
+        "auto_inference_rule": "If a topic's member documents cite documents that belong to another topic, propose references at confidence 0.7.",
+        "examples": ["'Day After Roswell (book)' references 'Roswell Incident 1947'"]
+      },
+      "referenced_by": {
+        "label": "Referenced By",
+        "description": "Inverse of references.",
+        "inverse": "references",
+        "transitive": false,
+        "symmetric": false,
+        "auto_inference_rule": "Auto-inferred as inverse of references.",
+        "examples": []
+      },
+      "same_as": {
+        "label": "Same As (federation merge)",
+        "description": "Two topic nodes are the same real-world topic — used during federation to declare canonical equivalence. Different from peer_of which is conceptual sibling.",
+        "inverse": "same_as",
+        "transitive": true,
+        "symmetric": true,
+        "auto_inference_rule": "If two topics share >95% of members AND have the same temporal_span AND have very-similar labels (LLM-judged), propose same_as at confidence 0.95. User typically confirms before merge.",
+        "examples": ["Node A's 'Roswell Incident' same_as Node B's 'Roswell UFO Event'"]
+      }
+    },
+    "collapse_relationship": "Topic-relation collapse uses the same algebra as assertion collapse — if two sources independently claim A broader_than B, the relations merge (corroboration count++). If sources claim contradictory relations (A broader_than B vs A narrower_than B), a topic_relation_conflict is created."
+  }
+}

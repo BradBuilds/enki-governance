@@ -1,0 +1,27 @@
+{
+  "pack_id": "displayvocab",
+  "version": "0.1.0",
+  "name": "ENKI Display Field Routing Pack",
+  "description": "Per-entity-type list of structured-profile fields to surface in the entity dossier UI. Same algorithmic pattern as researchpack.source_routing: a single map from canonical_type → ordered field-priority list. The entity card pulls Wikidata/Wikipedia structured_profile data, then filters it through this pack to show only the fields that are *meaningful for this type*. Adding a new type (vessel, aircraft, person, country, organization) means updating this pack — never editing UI code. Field order in the list = display order on the card. NAMESPACE FIX (2026-07-25): namespaces_owned was ['display.profile'], which did not own this pack's own definition ids; added the namespace actually used so the admission ceremony's ownership check passes.",
+  "definitions": [
+    {
+      "id": "displayvocab.type_profiles",
+      "path": "definitions/displayvocab.type_profiles.json",
+      "type": "custom"
+    }
+  ],
+  "dependencies": [
+    "entityvocab"
+  ],
+  "namespaces_owned": [
+    "display.profile",
+    "displayvocab"
+  ],
+  "metadata": {
+    "created": "2026-05-20T00:00:00Z",
+    "author": "ENKI System",
+    "license": "AGPLv3",
+    "status": "DRAFT",
+    "change_control": "Adding a new entity type to type_profiles → no code change required. Adding a new FIELD to the universe of known fields → may need a corresponding entry in display_label_map + display_kind_map for nice rendering. Removing fields is safe (they just stop showing up on cards)."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "id": "entity.vocab.system",
+  "type": "system",
+  "version": "0.1.0",
+  "description": "System metadata for the entity resolution vocabulary pack.",
+  "content": {
+    "pack_id": "entityvocab",
+    "governance_layer": "S1.0",
+    "purpose": "Defines canonical rules for entity deduplication, resolution, merge/split, and enrichment. Every entity written to the entities table must pass through the resolver governed by this pack.",
+    "authority": "GDU Technical Build Plan v2.5.0 — Entity Resolution Pipeline"
+  }
+}

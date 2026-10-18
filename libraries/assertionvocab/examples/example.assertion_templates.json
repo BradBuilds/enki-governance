@@ -1,0 +1,197 @@
+{
+  "description": "Example assertion templates demonstrating Assertion Vocabulary Pack usage",
+  "note": "These are illustrative templates, not validated assertion instances",
+  "examples": [
+    {
+      "form": "entity_to_entity",
+      "description": "Person owns device",
+      "template": {
+        "subject": {
+          "entity_id": "person_001",
+          "entity_type": "person"
+        },
+        "predicate": "owns",
+        "object": {
+          "entity_id": "device_042",
+          "entity_type": "device"
+        }
+      },
+      "natural_language": "Person 001 owns Device 042"
+    },
+    {
+      "form": "entity_to_scalar",
+      "description": "Person has name",
+      "template": {
+        "subject": {
+          "entity_id": "person_001",
+          "entity_type": "person"
+        },
+        "predicate": "has_name",
+        "object": {
+          "kind": "string",
+          "value": "Alice"
+        }
+      },
+      "natural_language": "Person 001 has name 'Alice'"
+    },
+    {
+      "form": "entity_to_scalar",
+      "description": "Dataset created timestamp",
+      "template": {
+        "subject": {
+          "entity_id": "dataset_xyz",
+          "entity_type": "dataset"
+        },
+        "predicate": "created",
+        "object": {
+          "kind": "timestamp",
+          "value": "2025-12-31T00:00:00Z"
+        }
+      },
+      "natural_language": "Dataset XYZ was created on 2025-12-31T00:00:00Z"
+    },
+    {
+      "form": "entity_to_reference",
+      "description": "Dataset references URI",
+      "template": {
+        "subject": {
+          "entity_id": "dataset_xyz",
+          "entity_type": "dataset"
+        },
+        "predicate": "references",
+        "object": {
+          "kind": "uri",
+          "value": "https://example.com/source/data"
+        }
+      },
+      "natural_language": "Dataset XYZ references https://example.com/source/data"
+    },
+    {
+      "form": "entity_to_reference",
+      "description": "Definition pack derived from another pack",
+      "template": {
+        "subject": {
+          "entity_id": "assertion_vocab",
+          "entity_type": "definition_pack"
+        },
+        "predicate": "derived_from",
+        "object": {
+          "kind": "pack_ref",
+          "value": {
+            "pack_id": "identity",
+            "version": "0.1.0"
+          }
+        }
+      },
+      "natural_language": "Assertion Vocab Pack conceptually depends on Identity Pack v0.1.0"
+    },
+    {
+      "form": "entity_to_entity",
+      "description": "Organization created dataset",
+      "template": {
+        "subject": {
+          "entity_id": "org_enki",
+          "entity_type": "organization"
+        },
+        "predicate": "created",
+        "object": {
+          "entity_id": "dataset_xyz",
+          "entity_type": "dataset"
+        }
+      },
+      "natural_language": "Organization ENKI created Dataset XYZ"
+    },
+    {
+      "form": "entity_to_scalar",
+      "description": "Device status boolean",
+      "template": {
+        "subject": {
+          "entity_id": "device_042",
+          "entity_type": "device"
+        },
+        "predicate": "has_status",
+        "object": {
+          "kind": "boolean",
+          "value": true
+        }
+      },
+      "natural_language": "Device 042 has status: active (true)"
+    },
+    {
+      "form": "entity_to_entity",
+      "description": "Person located in organization",
+      "template": {
+        "subject": {
+          "entity_id": "person_001",
+          "entity_type": "person"
+        },
+        "predicate": "located_in",
+        "object": {
+          "entity_id": "org_enki",
+          "entity_type": "organization"
+        }
+      },
+      "natural_language": "Person 001 is located in Organization ENKI"
+    }
+  ],
+  "conflict_examples": [
+    {
+      "conflict_type": "exclusive",
+      "scenario": "Device cannot be in two locations simultaneously",
+      "assertions": [
+        {
+          "subject": {"entity_id": "device_042", "entity_type": "device"},
+          "predicate": "located_in",
+          "object": {"kind": "string", "value": "room_a"}
+        },
+        {
+          "subject": {"entity_id": "device_042", "entity_type": "device"},
+          "predicate": "located_in",
+          "object": {"kind": "string", "value": "room_b"}
+        }
+      ],
+      "note": "These assertions conflict if location is exclusive"
+    },
+    {
+      "conflict_type": "multi_valued",
+      "scenario": "Person can have multiple names",
+      "assertions": [
+        {
+          "subject": {"entity_id": "person_001", "entity_type": "person"},
+          "predicate": "has_name",
+          "object": {"kind": "string", "value": "Alice"}
+        },
+        {
+          "subject": {"entity_id": "person_001", "entity_type": "person"},
+          "predicate": "has_name",
+          "object": {"kind": "string", "value": "Alice Smith"}
+        }
+      ],
+      "note": "These assertions do not conflict - multiple names allowed"
+    },
+    {
+      "conflict_type": "temporal",
+      "scenario": "Device status changes over time",
+      "assertions": [
+        {
+          "subject": {"entity_id": "device_042", "entity_type": "device"},
+          "predicate": "has_status",
+          "object": {"kind": "boolean", "value": true},
+          "metadata": {"timestamp": "2025-12-30T00:00:00Z"}
+        },
+        {
+          "subject": {"entity_id": "device_042", "entity_type": "device"},
+          "predicate": "has_status",
+          "object": {"kind": "boolean", "value": false},
+          "metadata": {"timestamp": "2025-12-31T00:00:00Z"}
+        }
+      ],
+      "note": "These assertions are temporally ordered - both can be true at different times"
+    }
+  ],
+  "notes": [
+    "These examples demonstrate vocabulary usage only",
+    "Actual assertion storage would include additional metadata (provenance, timestamps, scope)",
+    "No validation or enforcement is performed by this pack"
+  ]
+}

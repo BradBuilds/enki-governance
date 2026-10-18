@@ -1,0 +1,7 @@
+{
+  "method": "GET",
+  "path": "/query/assertions",
+  "headers": {},
+  "body": null,
+  "notes": "Intentionally missing X-Device-ID, X-Challenge-ID, X-Tenant-ID, X-Signature"
+}

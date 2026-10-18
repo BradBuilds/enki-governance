@@ -1,0 +1,41 @@
+{
+  "pack_id": "canonicalpack",
+  "version": "1.1.0",
+  "name": "ENKI Canonical Names & Sanctions Pack",
+  "description": "Canonical alias and sanctions registry. Defines name normalization (Bibi -> Benjamin Stone) and sanctions metadata (OFAC/EU/UK/UN list membership). Promoted from core/gdu/canonical_names.py in Phase 2.1 of the collapse rebuild plan so that knowledge of canonical identities is versioned, signed, and lineage-stamped on every entity that consults it. NAMESPACE FIX (2026-07-25): namespaces_owned was ['canonical.alias','canonical.sanctions'], which owned none of the four definition ids (all 'canonicalpack.*') — a pre-existing ceremony failure. Corrected to the namespace actually used.",
+  "definitions": [
+    {
+      "id": "canonicalpack.aliases",
+      "path": "definitions/canonicalpack.aliases.json",
+      "type": "custom"
+    },
+    {
+      "id": "canonicalpack.sanctions",
+      "path": "definitions/canonicalpack.sanctions.json",
+      "type": "custom"
+    },
+    {
+      "id": "canonicalpack.osint_seed",
+      "path": "definitions/canonicalpack.osint_seed.json",
+      "type": "custom"
+    },
+    {
+      "id": "canonicalpack.sec_companies",
+      "path": "definitions/canonicalpack.sec_companies.json",
+      "type": "custom"
+    }
+  ],
+  "dependencies": [
+    "identity",
+    "entityvocab"
+  ],
+  "namespaces_owned": [
+    "canonicalpack"
+  ],
+  "metadata": {
+    "created": "2026-05-04T00:00:00Z",
+    "author": "ENKI System",
+    "license": "AGPLv3",
+    "kill_switch_env": "ENKI_NO_CANONICAL_PACK"
+  }
+}

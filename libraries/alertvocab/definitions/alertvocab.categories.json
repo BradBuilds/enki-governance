@@ -1,0 +1,30 @@
+{
+  "id": "alert.vocab.categories",
+  "type": "custom",
+  "version": "0.1.0",
+  "description": "Alert categories spanning all data domains.",
+  "content": {
+    "category": "alert_categories",
+    "categories": [
+      {"category_id": "geofence", "domain": "geospatial", "description": "Location boundary violation"},
+      {"category_id": "proximity", "domain": "geospatial", "description": "Unknown device or entity detected nearby"},
+      {"category_id": "connectivity", "domain": "device", "description": "Device went offline or unresponsive"},
+      {"category_id": "threshold", "domain": "infrastructure", "description": "Metric exceeded configured limit"},
+      {"category_id": "observable_match", "domain": "correlation", "description": "Watched identifier spotted in data stream"},
+      {"category_id": "pattern_match", "domain": "correlation", "description": "Behavioral pattern detected across signals"},
+      {"category_id": "initial_access", "domain": "security", "description": "Unauthorized entry attempt"},
+      {"category_id": "credential_access", "domain": "security", "description": "Credential theft or brute force"},
+      {"category_id": "exfiltration", "domain": "security", "description": "Data leaving the network"},
+      {"category_id": "malware", "domain": "security", "description": "Malicious software detected"},
+      {"category_id": "policy_violation", "domain": "security", "description": "Policy rule violated"},
+      {"category_id": "vital_alert", "domain": "medical", "description": "Patient vital signs abnormal"},
+      {"category_id": "financial_anomaly", "domain": "financial", "description": "Unusual financial activity"},
+      {"category_id": "content_match", "domain": "content", "description": "Content matched keyword or pattern"},
+      {"category_id": "environmental_threshold", "domain": "environmental", "description": "Environmental reading exceeded safe level"},
+      {"category_id": "sla_breach", "domain": "business", "description": "Service level agreement at risk"},
+      {"category_id": "custom", "domain": "custom", "description": "User-defined alert category"}
+    ]
+  },
+  "metadata": {"created": "2026-03-21T00:00:00Z", "author": "ENKI System"},
+  "dependencies": ["alert.vocab.system"]
+}

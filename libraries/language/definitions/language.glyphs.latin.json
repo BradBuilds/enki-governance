@@ -1,0 +1,49 @@
+{
+  "id": "language.glyphs.latin",
+  "type": "glyphs",
+  "version": "0.1.0",
+  "description": "Latin script glyph coverage markers and deterministic style labels (no executable rendering).",
+  "dependencies": ["base60.glyphs"],
+  "content": {
+    "script": "Latin",
+    "extends_base": "base60.glyphs",
+    "principle": "Deterministic, stateless glyph style descriptors; coverage markers are explicit and hashed.",
+    "completeness": "partial",
+    "coverage": {
+      "scope": "v0.1.0",
+      "included_count": 251,
+      "expected_count": 251,
+      "notes": "complete_for_latin_extended_a_in_v0.1.0"
+    },
+    "styles": {
+      "serif": {
+        "name": "Serif Style",
+        "deterministic": true,
+        "stateless": true,
+        "rendering": "font-based"
+      },
+      "sans_serif": {
+        "name": "Sans-Serif Style",
+        "deterministic": true,
+        "stateless": true,
+        "rendering": "font-based"
+      },
+      "print": {
+        "name": "Print Style",
+        "deterministic": true,
+        "stateless": true,
+        "rendering": "font-based"
+      }
+    },
+    "character_set": {
+      "type": "Latin (v0.1.0 defined subset)",
+      "count": 251,
+      "unicode_range_hint": "See coverage.notes; the exact set is defined by the v0.1.0 deliverable counts, not by an asserted Unicode block size."
+    }
+  },
+  "metadata": {
+    "created": "2026-01-13T00:00:00Z",
+    "author": "ENKI System",
+    "governance": "SPINE-S1.2"
+  }
+}

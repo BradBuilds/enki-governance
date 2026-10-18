@@ -1,0 +1,43 @@
+{
+  "pack_id": "casevocab",
+  "version": "0.1.0",
+  "name": "ENKI Case Vocabulary Pack",
+  "description": "Governs data organization into topics, investigations, and collections. A case is a container for related signals organized around a question or theme. Domain-agnostic — works for LE investigations, family topics, research collections, or business projects.",
+  "definitions": [
+    {
+      "id": "case.vocab.system",
+      "path": "definitions/casevocab.system.json",
+      "type": "system"
+    },
+    {
+      "id": "case.vocab.statuses",
+      "path": "definitions/casevocab.statuses.json",
+      "type": "custom"
+    },
+    {
+      "id": "case.vocab.priorities",
+      "path": "definitions/casevocab.priorities.json",
+      "type": "custom"
+    },
+    {
+      "id": "case.vocab.event_types",
+      "path": "definitions/casevocab.event_types.json",
+      "type": "custom"
+    },
+    {
+      "id": "case.vocab.resolution",
+      "path": "definitions/casevocab.resolution.json",
+      "type": "custom"
+    }
+  ],
+  "dependencies": ["signalvocab", "alertvocab"],
+  "namespaces_owned": [
+    "case.vocab"
+  ],
+  "metadata": {
+    "created": "2026-03-21T00:00:00Z",
+    "author": "ENKI System",
+    "license": "AGPLv3",
+    "status": "LOCKED"
+  }
+}

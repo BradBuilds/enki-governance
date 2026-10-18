@@ -1,0 +1,32 @@
+{
+  "pack_id": "researchpack",
+  "version": "1.2.0",
+  "name": "ENKI Research Source Routing Pack",
+  "description": "Per-entity-type source routing for the investigation worker. Stops the firehose pattern where every entity gets all sources (running SEC EDGAR on a person yields nothing useful, running FEC candidate-search on an organization is wasted). Each entity type maps to an ordered list of source identifiers — the investigation worker iterates only those when admit_entity triggers _maybe_queue_investigation. Promoted from a hardcoded list in core/workers/node_builder.py per Phase 7b of the research-validation plan, so the routing decision becomes versioned, signed, and lineage-stamped per investigation. NAMESPACE FIX (2026-07-25): namespaces_owned was ['research.routing'], which owned NEITHER definition id (researchpack.source_routing, research.credentials.catalog) — a pre-existing ceremony failure. Corrected to the namespaces actually used.",
+  "definitions": [
+    {
+      "id": "researchpack.source_routing",
+      "path": "definitions/researchpack.source_routing.json",
+      "type": "custom"
+    },
+    {
+      "id": "research.credentials.catalog",
+      "path": "definitions/researchpack.credentials.json",
+      "type": "custom"
+    }
+  ],
+  "dependencies": [
+    "entityvocab"
+  ],
+  "namespaces_owned": [
+    "researchpack",
+    "research.credentials"
+  ],
+  "metadata": {
+    "created": "2026-05-09T00:00:00Z",
+    "author": "ENKI System",
+    "license": "AGPLv3",
+    "status": "LOCKED",
+    "change_control": "Adding a new source identifier requires a corresponding handler entry in core/investigation/sources.py (or a research-side bridge). Removing a source from a type's routing requires a 24h soak so any in-flight investigations that referenced the old set complete cleanly."
+  }
+}

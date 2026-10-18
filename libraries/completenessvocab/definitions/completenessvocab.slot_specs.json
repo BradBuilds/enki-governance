@@ -1,0 +1,404 @@
+{
+  "id": "completeness.vocab.slot_specs",
+  "type": "custom",
+  "version": "0.1.1",
+  "description": "Per-node-type slot specifications. For each (node_type, subtype) pair, declares which envelope slots are required, optional, or not applicable. The scorer uses these to compute completeness.",
+  "content": {
+    "_doc": "Each spec lists required_slots (counted in denominator) and not_applicable_slots (excluded from denominator). Optional slots are neither required nor excluded — they bonus the score if present but don't penalize if missing.",
+
+    "specs": {
+      "document.article": {
+        "required_slots": [
+          "identity.title_display",
+          "summary.headline",
+          "summary.narrative",
+          "temporal.event_time",
+          "source.node_id",
+          "source.outlet_name",
+          "source.editorial_stance",
+          "source.language_displayed",
+          "evidence.epistemic_type",
+          "evidence.background_relevance",
+          "entities",
+          "topics",
+          "spatial.place_text"
+        ],
+        "optional_slots": [
+          "summary.key_facts",
+          "summary.quotes",
+          "media.thumbnail",
+          "identity.byline_raw",
+          "summary.body_original",
+          "summary.feed_summary"
+        ],
+        "not_applicable_slots": [
+          "spatial.coordinates"
+        ]
+      },
+
+      "document.social_post": {
+        "required_slots": [
+          "identity.title_display",
+          "summary.narrative",
+          "temporal.event_time",
+          "source.node_id",
+          "source.editorial_stance",
+          "evidence.background_relevance",
+          "entities"
+        ],
+        "optional_slots": [
+          "media.thumbnail",
+          "spatial.place_text",
+          "topics"
+        ],
+        "not_applicable_slots": [
+          "summary.body_original",
+          "summary.key_facts",
+          "spatial.coordinates"
+        ]
+      },
+
+      "event.earthquake": {
+        "required_slots": [
+          "identity.title_display",
+          "summary.headline",
+          "summary.narrative",
+          "summary.structured_fields",
+          "temporal.event_time",
+          "spatial.coordinates",
+          "spatial.place_text",
+          "source.node_id",
+          "evidence.epistemic_type",
+          "evidence.background_relevance"
+        ],
+        "optional_slots": [
+          "summary.key_facts",
+          "topics"
+        ],
+        "not_applicable_slots": [
+          "entities",
+          "media.thumbnail",
+          "summary.body_original",
+          "summary.quotes",
+          "identity.byline_raw"
+        ]
+      },
+
+      "event.weather": {
+        "required_slots": [
+          "identity.title_display",
+          "summary.headline",
+          "summary.narrative",
+          "summary.structured_fields",
+          "temporal.event_time",
+          "spatial.place_text",
+          "source.node_id",
+          "evidence.epistemic_type",
+          "evidence.background_relevance"
+        ],
+        "optional_slots": [
+          "spatial.coordinates",
+          "spatial.bbox",
+          "summary.key_facts"
+        ],
+        "not_applicable_slots": [
+          "entities",
+          "media.thumbnail",
+          "summary.body_original",
+          "summary.quotes"
+        ]
+      },
+
+      "event.strike": {
+        "required_slots": [
+          "identity.title_display",
+          "summary.headline",
+          "summary.narrative",
+          "temporal.event_time",
+          "spatial.place_text",
+          "spatial.resolved_places",
+          "entities",
+          "evidence.epistemic_type",
+          "evidence.confidence",
+          "evidence.background_relevance",
+          "source.node_id"
+        ],
+        "optional_slots": [
+          "spatial.coordinates",
+          "summary.key_facts",
+          "summary.quotes",
+          "media.thumbnail"
+        ]
+      },
+
+      "event.contract": {
+        "required_slots": [
+          "identity.title_display",
+          "summary.headline",
+          "summary.structured_fields",
+          "temporal.event_time",
+          "entities",
+          "evidence.epistemic_type",
+          "source.node_id"
+        ],
+        "optional_slots": [
+          "summary.key_facts",
+          "spatial.place_text",
+          "media.thumbnail"
+        ]
+      },
+
+      "entity.person": {
+        "required_slots": [
+          "identity.canonical_name",
+          "subtype",
+          "evidence.confidence",
+          "evidence.source_count"
+        ],
+        "optional_slots": [
+          "identity.aliases",
+          "spatial.place_text",
+          "media.thumbnail",
+          "summary.key_facts"
+        ],
+        "not_applicable_slots": [
+          "temporal.event_time",
+          "summary.body_original",
+          "summary.quotes",
+          "spatial.coordinates"
+        ]
+      },
+
+      "entity.organization": {
+        "required_slots": [
+          "identity.canonical_name",
+          "subtype",
+          "evidence.confidence",
+          "evidence.source_count"
+        ],
+        "optional_slots": [
+          "identity.aliases",
+          "spatial.place_text",
+          "media.thumbnail",
+          "summary.key_facts"
+        ],
+        "not_applicable_slots": [
+          "temporal.event_time",
+          "summary.body_original",
+          "summary.quotes"
+        ]
+      },
+
+      "entity.vessel": {
+        "required_slots": [
+          "identity.canonical_name",
+          "subtype",
+          "evidence.confidence"
+        ],
+        "optional_slots": [
+          "identity.aliases",
+          "spatial.coordinates",
+          "media.thumbnail"
+        ],
+        "not_applicable_slots": [
+          "summary.body_original",
+          "summary.quotes",
+          "summary.feed_summary"
+        ]
+      },
+
+      "place.country": {
+        "required_slots": [
+          "identity.canonical_name",
+          "subtype"
+        ],
+        "optional_slots": [
+          "spatial.bbox",
+          "spatial.coordinates"
+        ],
+        "not_applicable_slots": [
+          "summary.body_original",
+          "summary.feed_summary",
+          "entities",
+          "evidence.epistemic_type"
+        ]
+      },
+
+      "place.city": {
+        "required_slots": [
+          "identity.canonical_name",
+          "subtype",
+          "spatial.coordinates",
+          "relationships.part_of"
+        ],
+        "optional_slots": [
+          "identity.aliases",
+          "media.thumbnail"
+        ],
+        "not_applicable_slots": [
+          "summary.body_original",
+          "summary.feed_summary",
+          "evidence.epistemic_type"
+        ]
+      },
+
+      "topic.conflict": {
+        "required_slots": [
+          "identity.canonical_name",
+          "summary.narrative"
+        ],
+        "optional_slots": [
+          "identity.aliases",
+          "spatial.place_text",
+          "entities",
+          "summary.key_facts"
+        ],
+        "not_applicable_slots": [
+          "temporal.event_time",
+          "spatial.coordinates",
+          "summary.body_original",
+          "summary.quotes"
+        ]
+      },
+
+      "source.outlet": {
+        "required_slots": [
+          "identity.canonical_name",
+          "source.url",
+          "source.outlet_name",
+          "source.editorial_stance",
+          "source.language_declared"
+        ],
+        "optional_slots": [
+          "spatial.place_text",
+          "media.thumbnail"
+        ],
+        "not_applicable_slots": [
+          "temporal.event_time",
+          "summary.body_original",
+          "summary.feed_summary",
+          "evidence.epistemic_type"
+        ]
+      },
+
+      "chronicle.day": {
+        "required_slots": [
+          "identity.title_display",
+          "summary.headline",
+          "summary.narrative",
+          "summary.structured_fields",
+          "temporal.event_time",
+          "relationships.covers",
+          "evidence.background_relevance"
+        ],
+        "optional_slots": [
+          "relationships.follows",
+          "topics"
+        ],
+        "not_applicable_slots": [
+          "entities",
+          "spatial.coordinates",
+          "summary.body_original",
+          "media.thumbnail",
+          "source.discussion_url"
+        ]
+      },
+
+      "assessment.fact": {
+        "required_slots": [
+          "identity.title_display",
+          "summary.narrative",
+          "evidence.epistemic_type",
+          "evidence.confidence",
+          "evidence.source_count",
+          "evidence.corroborations",
+          "relationships.cites"
+        ],
+        "optional_slots": [
+          "entities",
+          "spatial.place_text",
+          "temporal.event_time"
+        ],
+        "not_applicable_slots": [
+          "media.thumbnail",
+          "summary.body_original",
+          "source.outlet_name"
+        ],
+        "extra_requirements": {
+          "evidence.source_count": ">=2",
+          "evidence.contradictions": "0"
+        }
+      },
+
+      "assessment.claim": {
+        "required_slots": [
+          "identity.title_display",
+          "summary.narrative",
+          "evidence.epistemic_type",
+          "evidence.confidence",
+          "evidence.source_count"
+        ],
+        "optional_slots": [
+          "evidence.corroborations",
+          "evidence.contradictions",
+          "entities",
+          "spatial.place_text"
+        ]
+      },
+
+      "assessment.question": {
+        "_doc": "A research inquiry — user highlighted a term and we investigated it. 'solid' when we have a classification + narrative + at least one resolved entity or reality-checked source. 'verified' adds Wikidata hit with confidence >= 0.7.",
+        "required_slots": [
+          "identity.title_display",
+          "summary.narrative",
+          "summary.structured_fields",
+          "evidence.epistemic_type",
+          "evidence.confidence"
+        ],
+        "optional_slots": [
+          "summary.key_facts",
+          "entities",
+          "topics",
+          "source.outlet_name"
+        ],
+        "not_applicable_slots": [
+          "media.thumbnail",
+          "summary.body_original",
+          "summary.quotes",
+          "spatial.coordinates"
+        ]
+      },
+
+      "assessment.observation": {
+        "required_slots": [
+          "identity.title_display",
+          "summary.narrative",
+          "evidence.epistemic_type",
+          "evidence.confidence"
+        ],
+        "optional_slots": [
+          "entities",
+          "source.url",
+          "source.outlet_name",
+          "temporal.event_time"
+        ]
+      }
+    },
+
+    "default_spec": {
+      "_doc": "Used when a (node_type, subtype) is not in the specs map. Conservative — requires only identity and source.",
+      "required_slots": [
+        "identity.title_display",
+        "source.node_id",
+        "evidence.epistemic_type",
+        "evidence.background_relevance"
+      ]
+    }
+  },
+  "metadata": {
+    "created": "2026-04-10T00:00:00Z",
+    "author": "ENKI System",
+    "_design_basis": "Slot specs derived from corpus pressure test in tests/scenarios/envelope_pressuretest/. The USGS earthquake spec correctly excludes entities (geological events have no actor entities); the news article spec correctly requires entities and topics."
+  },
+  "dependencies": []
+}

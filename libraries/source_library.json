@@ -1,0 +1,104 @@
+[
+  {"id": "quanta", "category": "Math & Science", "title": "Quanta Magazine", "url": "https://www.quantamagazine.org/feed/", "description": "Math, physics, CS — brilliant writing"},
+  {"id": "nature", "category": "Math & Science", "title": "Nature Journal", "url": "https://www.nature.com/nature.rss", "description": "Landmark scientific papers"},
+  {"id": "newscientist", "category": "Math & Science", "title": "New Scientist", "url": "https://www.newscientist.com/feed/home/", "description": "Accessible science journalism"},
+  {"id": "phys-org", "category": "Math & Science", "title": "Phys.org", "url": "https://phys.org/rss-feed/", "description": "Physics, astronomy, earth science"},
+  {"id": "mit-news", "category": "Math & Science", "title": "MIT News", "url": "https://news.mit.edu/rss/feed", "description": "Research from MIT labs"},
+  {"id": "scientific-american-mind", "category": "Math & Science", "title": "Scientific American", "url": "https://www.scientificamerican.com/feed/", "description": "Psychology, cognitive science, research"},
+  {"id": "aps-physics", "category": "Math & Science", "title": "APS Physics", "url": "https://physics.aps.org/rss", "description": "American Physical Society highlights"},
+
+  {"id": "smithsonian", "category": "Archaeology & History", "title": "Smithsonian Magazine", "url": "https://www.smithsonianmag.com/rss/latest_articles/", "description": "History, culture, archaeology"},
+  {"id": "archaeology-mag", "category": "Archaeology & History", "title": "Archaeology Magazine", "url": "https://www.archaeology.org/feed", "description": "Field reports and discoveries"},
+  {"id": "ancient-origins", "category": "Archaeology & History", "title": "Ancient Origins", "url": "https://www.ancient-origins.net/rss.xml", "description": "Ancient civilizations, mysteries"},
+  {"id": "history-today", "category": "Archaeology & History", "title": "History Today", "url": "https://www.historytoday.com/feed/rss.xml", "description": "Deep historical essays"},
+  {"id": "heritage-daily", "category": "Archaeology & History", "title": "Heritage Daily", "url": "https://www.heritagedaily.com/feed", "description": "Archaeology & heritage news"},
+
+  {"id": "atlas-obscura", "category": "Culture & Discovery", "title": "Atlas Obscura", "url": "https://www.atlasobscura.com/feeds/latest", "description": "Unusual places, quirky discoveries"},
+  {"id": "aeon", "category": "Culture & Discovery", "title": "Aeon Essays", "url": "https://aeon.co/feed.rss", "description": "Philosophy, science, culture essays"},
+  {"id": "paris-review", "category": "Culture & Discovery", "title": "The Paris Review", "url": "https://www.theparisreview.org/blog/feed/", "description": "Literary interviews and essays"},
+  {"id": "jstor-daily", "category": "Culture & Discovery", "title": "JSTOR Daily", "url": "https://daily.jstor.org/feed/", "description": "Scholarly context for current events"},
+  {"id": "longreads", "category": "Culture & Discovery", "title": "Longreads", "url": "https://longreads.com/feed/", "description": "Best longform journalism"},
+  {"id": "marginalian", "category": "Culture & Discovery", "title": "The Marginalian", "url": "https://www.themarginalian.org/feed/", "description": "Brain Pickings — philosophy, art, science"},
+  {"id": "lareviewofbooks", "category": "Culture & Discovery", "title": "LA Review of Books", "url": "https://lareviewofbooks.org/feed/", "description": "Literary and cultural criticism"},
+  {"id": "3qd", "category": "Culture & Discovery", "title": "3 Quarks Daily", "url": "https://3quarksdaily.com/feed", "description": "Curated intellectual links"},
+  {"id": "public-domain-review", "category": "Culture & Discovery", "title": "Public Domain Review", "url": "https://publicdomainreview.org/rss.xml", "description": "Forgotten works from the public domain"},
+
+  {"id": "nasa", "category": "Space & Astronomy", "title": "NASA Breaking News", "url": "https://www.nasa.gov/rss/dyn/breaking_news.rss", "description": "Official NASA announcements"},
+  {"id": "spacenews", "category": "Space & Astronomy", "title": "SpaceNews", "url": "https://spacenews.com/feed/", "description": "Space industry and policy"},
+  {"id": "space-com", "category": "Space & Astronomy", "title": "Space.com", "url": "https://www.space.com/feeds/all", "description": "Space exploration and astronomy"},
+  {"id": "universe-today", "category": "Space & Astronomy", "title": "Universe Today", "url": "https://www.universetoday.com/feed/", "description": "Astronomy and cosmology"},
+  {"id": "skynightly", "category": "Space & Astronomy", "title": "Sky & Telescope", "url": "https://skyandtelescope.org/astronomy-news/feed/", "description": "Amateur and professional astronomy"},
+
+  {"id": "nat-geo", "category": "Nature & Environment", "title": "National Geographic", "url": "https://www.nationalgeographic.com/feed", "description": "Wildlife, exploration, conservation"},
+  {"id": "orion", "category": "Nature & Environment", "title": "Orion Magazine", "url": "https://orionmagazine.org/feed/", "description": "Nature and culture"},
+  {"id": "e360", "category": "Nature & Environment", "title": "Yale e360", "url": "https://e360.yale.edu/feed.xml", "description": "Environmental journalism"},
+  {"id": "hakai", "category": "Nature & Environment", "title": "Hakai Magazine", "url": "https://hakaimagazine.com/feed/", "description": "Coastal science and society"},
+  {"id": "emergence", "category": "Nature & Environment", "title": "Emergence Magazine", "url": "https://emergencemagazine.org/feed/", "description": "Nature, storytelling, ecology"},
+  {"id": "mongabay", "category": "Nature & Environment", "title": "Mongabay", "url": "https://news.mongabay.com/feed/", "description": "Tropical forests and wildlife"},
+
+  {"id": "stat-news", "category": "Health & Medicine", "title": "STAT News", "url": "https://www.statnews.com/feed/", "description": "Health and pharma journalism"},
+  {"id": "who-outbreaks", "category": "Health & Medicine", "title": "WHO Disease Outbreaks", "url": "https://www.who.int/feeds/entity/csr/don/en/rss.xml", "description": "Global outbreak alerts"},
+  {"id": "nejm", "category": "Health & Medicine", "title": "NEJM", "url": "https://www.nejm.org/action/showFeed?jc=nejm&type=etoc&feed=rss", "description": "New England Journal of Medicine"},
+  {"id": "kff-health", "category": "Health & Medicine", "title": "KFF Health News", "url": "https://kffhealthnews.org/feed/", "description": "Health policy and systems"},
+
+  {"id": "hn-top", "category": "Tech & Programming", "title": "Hacker News", "url": "https://hnrss.org/frontpage", "description": "Tech community front page"},
+  {"id": "arstechnica", "category": "Tech & Programming", "title": "Ars Technica", "url": "https://feeds.arstechnica.com/arstechnica/index", "description": "Technology deep dives"},
+  {"id": "ieee-spectrum", "category": "Tech & Programming", "title": "IEEE Spectrum", "url": "https://spectrum.ieee.org/feeds/feed.rss", "description": "Engineering and tech"},
+  {"id": "stratechery", "category": "Tech & Programming", "title": "Stratechery", "url": "https://stratechery.com/feed/", "description": "Tech strategy analysis"},
+  {"id": "tech-review", "category": "Tech & Programming", "title": "MIT Technology Review", "url": "https://www.technologyreview.com/feed/", "description": "Emerging tech and AI"},
+  {"id": "hackaday", "category": "Tech & Programming", "title": "Hackaday", "url": "https://hackaday.com/feed/", "description": "Hardware hacks and projects"},
+  {"id": "godel-lost", "category": "Tech & Programming", "title": "Gödel's Lost Letter", "url": "https://rjlipton.wpcomstaging.com/feed/", "description": "Computational complexity blog"},
+
+  {"id": "krebs", "category": "Security", "title": "Krebs on Security", "url": "https://krebsonsecurity.com/feed/", "description": "Cybersecurity investigative reporting"},
+  {"id": "cisa", "category": "Security", "title": "CISA Advisories", "url": "https://www.cisa.gov/cybersecurity-advisories/all.xml", "description": "US Cybersecurity agency alerts"},
+  {"id": "schneier", "category": "Security", "title": "Schneier on Security", "url": "https://www.schneier.com/blog/atom.xml", "description": "Bruce Schneier's security blog"},
+  {"id": "darknet-diaries", "category": "Security", "title": "Darknet Diaries", "url": "https://feeds.megaphone.fm/darknetdiaries", "description": "True stories from the dark side"},
+
+  {"id": "bbc-business", "category": "Business & Economics", "title": "BBC Business", "url": "https://feeds.bbci.co.uk/news/business/rss.xml", "description": "Global business news"},
+  {"id": "economist-week", "category": "Business & Economics", "title": "The Economist — Week", "url": "https://www.economist.com/the-world-this-week/rss.xml", "description": "Weekly world summary"},
+  {"id": "planet-money", "category": "Business & Economics", "title": "Planet Money", "url": "https://feeds.npr.org/510289/podcast.xml", "description": "Economics storytelling"},
+  {"id": "markets-matters", "category": "Business & Economics", "title": "FT Alphaville", "url": "https://www.ft.com/alphaville?format=rss", "description": "Market commentary"},
+
+  {"id": "propublica", "category": "Investigative", "title": "ProPublica", "url": "https://www.propublica.org/feeds/propublica/main", "description": "Investigative journalism"},
+  {"id": "markup", "category": "Investigative", "title": "The Markup", "url": "https://themarkup.org/feeds/rss.xml", "description": "Tech accountability journalism"},
+  {"id": "reveal", "category": "Investigative", "title": "Reveal News", "url": "https://revealnews.org/feed/", "description": "Center for Investigative Reporting"},
+  {"id": "atavist", "category": "Investigative", "title": "The Atavist", "url": "https://magazine.atavist.com/feed/", "description": "Longform narrative journalism"},
+
+  {"id": "rest-of-world", "category": "Global Voices", "title": "Rest of World", "url": "https://restofworld.org/feed/", "description": "Tech outside the West"},
+  {"id": "global-voices", "category": "Global Voices", "title": "Global Voices", "url": "https://globalvoices.org/feed/", "description": "Citizen media worldwide"},
+  {"id": "africa-is-a-country", "category": "Global Voices", "title": "Africa Is a Country", "url": "https://africasacountry.com/feed", "description": "African perspectives"},
+  {"id": "caravan", "category": "Global Voices", "title": "The Caravan (India)", "url": "https://caravanmagazine.in/rss", "description": "Indian longform journalism"},
+
+  {"id": "improbable", "category": "Weird & Wonderful", "title": "Improbable Research", "url": "https://www.improbable.com/feed/", "description": "Ig Nobel & unusual science"},
+  {"id": "futility-closet", "category": "Weird & Wonderful", "title": "Futility Closet", "url": "https://www.futilitycloset.com/feed/", "description": "Curiosities and puzzles"},
+  {"id": "damn-interesting", "category": "Weird & Wonderful", "title": "Damn Interesting", "url": "https://www.damninteresting.com/feed/", "description": "Obscure historical stories"},
+  {"id": "messynessychic", "category": "Weird & Wonderful", "title": "Messy Nessy", "url": "https://www.messynessychic.com/feed/", "description": "Cultural oddities and discoveries"},
+  {"id": "cabinet", "category": "Weird & Wonderful", "title": "Cabinet Magazine", "url": "https://www.cabinetmagazine.org/rss/", "description": "Art, culture, politics — weird"},
+
+  {"id": "radiolab", "category": "Audio & Podcasts", "title": "Radiolab", "url": "https://feeds.simplecast.com/EmVW7VGp", "description": "Curiosity-driven audio stories"},
+  {"id": "99pi", "category": "Audio & Podcasts", "title": "99% Invisible", "url": "https://feeds.simplecast.com/BqbsxVfO", "description": "Design and unnoticed things"},
+  {"id": "hidden-brain", "category": "Audio & Podcasts", "title": "Hidden Brain", "url": "https://feeds.hiddenbrain.org/hiddenbrain", "description": "Social science stories"},
+  {"id": "daily-short", "category": "Audio & Podcasts", "title": "The Short Wave (NPR)", "url": "https://feeds.npr.org/510351/podcast.xml", "description": "Science quick-takes"},
+
+  {"id": "pudding", "category": "Data Journalism", "title": "The Pudding", "url": "https://pudding.cool/feed/index.xml", "description": "Visual data essays"},
+  {"id": "our-world-data", "category": "Data Journalism", "title": "Our World in Data", "url": "https://ourworldindata.org/atom.xml", "description": "Data-driven research"},
+  {"id": "fivethirtyeight", "category": "Data Journalism", "title": "FiveThirtyEight", "url": "https://fivethirtyeight.com/all/feed/", "description": "Stats, sports, politics data"},
+
+  {"id": "arxiv-cs", "category": "Academic & Papers", "title": "arXiv CS", "url": "https://rss.arxiv.org/rss/cs", "description": "Computer science preprints"},
+  {"id": "arxiv-physics", "category": "Academic & Papers", "title": "arXiv Physics", "url": "https://rss.arxiv.org/rss/physics", "description": "Physics preprints"},
+  {"id": "arxiv-math", "category": "Academic & Papers", "title": "arXiv Math", "url": "https://rss.arxiv.org/rss/math", "description": "Mathematics preprints"},
+  {"id": "ssrn-recent", "category": "Academic & Papers", "title": "SSRN Recent Papers", "url": "https://www.ssrn.com/index.cfm/en/rss/", "description": "Social science research"},
+
+  {"id": "design-observer", "category": "Design & Creative", "title": "Design Observer", "url": "https://designobserver.com/feed/", "description": "Design culture and criticism"},
+  {"id": "its-nice-that", "category": "Design & Creative", "title": "It's Nice That", "url": "https://www.itsnicethat.com/feed", "description": "Creative industry news"},
+  {"id": "working-not-working", "category": "Design & Creative", "title": "Kottke.org", "url": "https://feeds.kottke.org/main", "description": "Jason Kottke's curated links"},
+
+  {"id": "lithub", "category": "Books & Literature", "title": "Lit Hub", "url": "https://lithub.com/feed/", "description": "Literary news and essays"},
+  {"id": "electric-literature", "category": "Books & Literature", "title": "Electric Literature", "url": "https://electricliterature.com/feed/", "description": "Contemporary lit discussion"},
+  {"id": "book-riot", "category": "Books & Literature", "title": "Book Riot", "url": "https://bookriot.com/feed/", "description": "Wide-ranging book coverage"},
+
+  {"id": "flightradar-news", "category": "Niche Interests", "title": "Flightradar24 Blog", "url": "https://www.flightradar24.com/blog/feed/", "description": "Aviation tracking stories"},
+  {"id": "wired-science", "category": "Niche Interests", "title": "Wired Science", "url": "https://www.wired.com/feed/category/science/latest/rss", "description": "Science and weird tech"},
+  {"id": "bldg-blog", "category": "Niche Interests", "title": "BLDGBLOG", "url": "https://www.bldgblog.com/feed/", "description": "Architecture, infrastructure, weird spaces"},
+  {"id": "low-tech-mag", "category": "Niche Interests", "title": "Low-Tech Magazine", "url": "https://solar.lowtechmagazine.com/feeds/all-en.atom.xml", "description": "Low-energy technology solutions"}
+]

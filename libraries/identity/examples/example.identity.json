@@ -1,0 +1,54 @@
+{
+  "description": "Example demonstrating Identity Pack vocabulary usage",
+  "examples": [
+    {
+      "scenario": "Human actor with person entity",
+      "actor": {
+        "type": "human",
+        "entity": "person",
+        "scope": "local",
+        "description": "A human user identified as a person on this local node"
+      }
+    },
+    {
+      "scenario": "AI service with global scope",
+      "actor": {
+        "type": "ai",
+        "entity": "service",
+        "scope": "global",
+        "description": "An AI service accessible globally"
+      }
+    },
+    {
+      "scenario": "Node identity for inter-node operations",
+      "actor": {
+        "type": "node",
+        "entity": "device",
+        "scope": "shared",
+        "description": "A node device shared within a trust group"
+      }
+    },
+    {
+      "scenario": "Definition pack as an entity",
+      "entity": {
+        "type": "definition_pack",
+        "pack_id": "identity",
+        "scope": "global",
+        "description": "The Identity Pack itself as an identifiable entity"
+      }
+    },
+    {
+      "scenario": "Organization entity shared scope",
+      "entity": {
+        "type": "organization",
+        "scope": "shared",
+        "description": "An organization visible within a trust boundary"
+      }
+    }
+  ],
+  "notes": [
+    "These examples show conceptual vocabulary usage",
+    "Actual implementation requires additional systems (auth, storage, etc.)",
+    "Identity Pack provides vocabulary only, not enforcement"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "id": "property.vocab.cycle_map",
+  "type": "custom",
+  "version": "0.1.0",
+  "description": "Authoritative mapping of base60 cycle → property. Used by the address assigner so that all values of a given property share the same cycle prefix. Immutable: cycles assigned in v0.1.0 cannot be reassigned in any future version.",
+  "content": {
+    "assigned": {
+      "7":  "name",
+      "8":  "identifier",
+      "9":  "alias",
+      "10": "color",
+      "11": "material",
+      "12": "shape",
+      "13": "size",
+      "14": "weight",
+      "15": "length",
+      "16": "location",
+      "17": "origin",
+      "18": "destination",
+      "19": "residence",
+      "20": "time",
+      "21": "start_time",
+      "22": "end_time",
+      "23": "owned_by",
+      "24": "manufactured_by",
+      "25": "operated_by",
+      "26": "occupation",
+      "27": "rank",
+      "28": "affiliation",
+      "29": "status",
+      "30": "polarity",
+      "31": "certainty",
+      "32": "count",
+      "33": "currency_amount",
+      "34": "language",
+      "35": "source_kind",
+      "36": "category"
+    },
+    "reserved_for_future": {
+      "37": "future-propertyvocab v0.2.0+",
+      "38": "future-propertyvocab v0.2.0+",
+      "39": "future-propertyvocab v0.2.0+",
+      "40": "future-propertyvocab v0.2.0+",
+      "41-59": "additional propertyvocab versions"
+    },
+    "non_property_cycles": {
+      "0": "reserved / identity",
+      "1": "entity nodes",
+      "2": "event nodes",
+      "3": "topic nodes",
+      "4": "document / signal / source nodes",
+      "5": "assessment / assertion nodes",
+      "6": "reserved"
+    }
+  }
+}

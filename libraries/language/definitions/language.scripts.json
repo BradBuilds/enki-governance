@@ -1,0 +1,41 @@
+{
+  "id": "language.scripts",
+  "type": "rules",
+  "version": "0.1.0",
+  "description": "Writing system specifications for Latin, Cyrillic, and Devanagari (with explicit v0.1.0 coverage markers).",
+  "content": {
+    "scripts": {
+      "latin": {
+        "name": "Latin Alphabet",
+        "expected_glyphs": 1114,
+        "v0_1_0_included_glyphs": 251,
+        "unicode_block": "Latin family (scope defined by expected_glyphs; see coverage markers in language.glyphs.latin)",
+        "glyphs_defined_in": "language.glyphs.latin",
+        "completeness": "partial",
+        "notes": "v0.1.0 delivers 251 glyphs as defined in language.glyphs.latin; expected_glyphs reflects the broader Latin universe target for future versions."
+      },
+      "cyrillic": {
+        "name": "Cyrillic Script",
+        "expected_glyphs": 288,
+        "v0_1_0_included_glyphs": 288,
+        "unicode_block": "Cyrillic family (scope defined by expected_glyphs; see coverage markers in language.glyphs.cyrillic)",
+        "glyphs_defined_in": "language.glyphs.cyrillic",
+        "completeness": "partial",
+        "notes": "v0.1.0 delivers 288 glyphs as defined in language.glyphs.cyrillic; expected_glyphs reflects the broader target scope used by ENKI audits."
+      },
+      "devanagari": {
+        "name": "Devanagari Script",
+        "expected_glyphs": 128,
+        "v0_1_0_included_glyphs": 84,
+        "unicode_block": "Devanagari (scope defined by expected_glyphs; see coverage markers in language.glyphs.devanagari)",
+        "glyphs_defined_in": "language.glyphs.devanagari",
+        "completeness": "partial",
+        "notes": "v0.1.0 delivers 84 glyphs as defined in language.glyphs.devanagari; conjuncts / extended forms remain future work."
+      }
+    }
+  },
+  "metadata": {
+    "created": "2026-01-13T00:00:00Z",
+    "author": "ENKI System"
+  }
+}

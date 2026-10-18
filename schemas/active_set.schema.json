@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://enki.foundation/schemas/active_set.schema.json",
+  "title": "ENKI Active Definition Set",
+  "description": "Declares which definition packs are permitted to load. Empty set = spine-only mode (reject all domain packs). Minimal pin-style structure with exact versions.",
+  "type": "object",
+  "required": ["version", "packs"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "description": "Semantic version of this active set declaration"
+    },
+    "packs": {
+      "type": "array",
+      "description": "List of packs permitted to load. Empty array = spine-only mode (reject all domain packs).",
+      "items": {
+        "type": "object",
+        "required": ["pack_id", "version"],
+        "properties": {
+          "pack_id": {
+            "type": "string",
+            "description": "Pack identifier (e.g., 'base60', 'identity')"
+          },
+          "version": {
+            "type": "string",
+            "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+            "description": "Exact semantic version required (e.g., '1.2.0')"
+          },
+          "content_hash": {
+            "type": "string",
+            "pattern": "^sha256:[a-f0-9]{64}$",
+            "description": "Optional SHA-256 hash of pack content for verification (format: 'sha256:hex')"
+          }
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Optional metadata (author, description, created_at, etc.)",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}

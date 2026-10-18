@@ -1,0 +1,100 @@
+{
+  "id": "entity.vocab.enrichment_types",
+  "type": "custom",
+  "version": "0.2.0",
+  "description": "Enrichment task types per entity category. v0.2.0 drops the 7 stub handlers (property_records, satellite_imagery, registration_lookup, flight_history, port_calls, social_profiles, news_mentions). Enrichment is now operator-triggered per-type from the dossier UI rather than auto-queued.",
+  "content": {
+    "enrichment_types": {
+      "person": [
+        {
+          "type": "profile_search",
+          "description": "Search for biographical information, roles, affiliations",
+          "priority": 1,
+          "sources": ["news_archives", "wikipedia"]
+        },
+        {
+          "type": "court_records",
+          "description": "Search court records and legal filings",
+          "priority": 3,
+          "sources": ["courtlistener", "pacer"]
+        },
+        {
+          "type": "sanctions_check",
+          "description": "Check OFAC, EU, UN sanctions lists",
+          "priority": 2,
+          "sources": ["ofac_sdn", "eu_sanctions", "un_consolidated"]
+        }
+      ],
+      "organization": [
+        {
+          "type": "corporate_filings",
+          "description": "SEC, OpenCorporates, state registries",
+          "priority": 1,
+          "sources": ["sec_edgar", "opencorporates", "gleif"],
+          "recursive_entities": ["officers", "beneficial_owners", "subsidiaries"]
+        },
+        {
+          "type": "government_contracts",
+          "description": "USAspending, SAM.gov contract awards",
+          "priority": 2,
+          "sources": ["usaspending", "sam_gov"]
+        },
+        {
+          "type": "sanctions_check",
+          "description": "OFAC, EU, UN sanctions lists",
+          "priority": 2,
+          "sources": ["ofac_sdn", "eu_sanctions", "un_consolidated"]
+        },
+        {
+          "type": "legal_filings",
+          "description": "Court cases, regulatory actions",
+          "priority": 3,
+          "sources": ["courtlistener", "sec_enforcement"]
+        },
+        {
+          "type": "financial_data",
+          "description": "Revenue, assets, public financials",
+          "priority": 4,
+          "sources": ["sec_edgar", "finra"]
+        }
+      ],
+      "vessel": [
+        {
+          "type": "registry_lookup",
+          "description": "IMO/MMSI registry for owner, flag state, class",
+          "priority": 1,
+          "sources": ["imo_registry", "equasis"],
+          "recursive_entities": ["owner", "operator", "manager"]
+        },
+        {
+          "type": "sanctions_check",
+          "description": "Vessel-specific sanctions (OFAC blocked vessels)",
+          "priority": 1,
+          "sources": ["ofac_sdn", "eu_sanctions"]
+        }
+      ],
+      "aircraft": [
+        {
+          "type": "registry_lookup",
+          "description": "FAA/EASA registration for owner, operator, type",
+          "priority": 1,
+          "sources": ["faa_registry", "easa_registry", "icao"],
+          "recursive_entities": ["registered_owner", "operator"]
+        },
+        {
+          "type": "sanctions_check",
+          "description": "Aircraft-specific sanctions",
+          "priority": 1,
+          "sources": ["ofac_sdn"]
+        }
+      ]
+    },
+
+    "queue_defaults": {
+      "max_depth": 2,
+      "max_recursive_entities_per_level": 10,
+      "retry_backoff_seconds": [60, 300, 900],
+      "completeness_threshold_to_skip": 0.75
+    }
+  }
+}

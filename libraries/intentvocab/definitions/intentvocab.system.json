@@ -1,0 +1,17 @@
+{
+  "id": "intent.vocab.system",
+  "type": "system",
+  "version": "0.1.0",
+  "description": "System definition for watch intent modes. Declares the principle that tracking is intent-driven, not entity-type-driven.",
+  "content": {
+    "purpose": "Replace fixed entity-type staleness rules (vessel=6h, aircraft=2h, etc.) with intent-driven track segmentation. The same entity can have different watch intents in different cases, and the segmenter respects all active intents simultaneously.",
+    "principle": "Tracking is a function of WHY we care, not WHAT we are tracking. A flight number watched for one specific day has bounded segmentation. The same flight number watched indefinitely has persistent segmentation. The same flight number watched only when crossing a border has conditional segmentation. Same entity, three different track shapes.",
+    "scope": "Watch intents live on case_observables, watch_topics, and monitoring thread filters. They are never properties of the entity itself.",
+    "default_behavior": "When no watch intent references an entity, a default 'passive' track is maintained with a 24-hour idle gap. This exists so that if a watch is created later, history is available to backfill."
+  },
+  "metadata": {
+    "created": "2026-04-10T00:00:00Z",
+    "author": "ENKI System"
+  },
+  "dependencies": []
+}

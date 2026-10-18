@@ -1,0 +1,51 @@
+# Financial event — covers transactions, balance updates, market quotes.
+#
+# Same envelope shape works for: brokerage transactions, bank balance
+# updates, crypto market data, exchange ticker quotes. Differences in
+# semantics (deposit vs trade vs quote) are surfaced in subtype.
+
+signal_type: signal.financial.transaction
+aliases:
+  - signal.financial.balance_update
+  - signal.financial.payment
+  - signal.financial.invoice
+
+node_type: event
+subtype: financial
+description: Generic financial event — transaction, balance, quote, payment
+
+field_map:
+  payload.id:              _scratch.txn_id
+  payload.symbol:          identity.canonical_name
+  payload.ticker:          _scratch.ticker
+  payload.name:            identity.title_raw
+  payload.amount:          _scratch.amount
+  payload.current_price:   _scratch.amount
+  payload.balance:         _scratch.balance
+  payload.currency:        _scratch.currency
+  payload.market_cap:      _scratch.market_cap
+  payload.timestamp:       temporal.event_time
+  payload.last_updated:    temporal.event_time
+  payload.url:             source.url
+  source.outlet:           source.outlet_name
+  source.slug:             _scratch.source_slug
+
+constants:
+  summary.domain_classification: finance
+  evidence.epistemic_type: observation
+  evidence.confidence: 0.95
+  evidence.background_relevance: background
+
+templates:
+  identity.title_display: "{identity.title_raw}"
+  summary.headline: "{identity.title_raw}"
+  summary.narrative: "{identity.title_raw} — {_scratch.amount} {_scratch.currency}"
+  source.node_id: "source:{_scratch.source_slug}"
+
+extractors:
+  - topics_cheap
+
+governance:
+  author: hand_written
+  reviewed: true
+  version: 1

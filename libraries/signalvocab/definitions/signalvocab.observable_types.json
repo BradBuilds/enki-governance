@@ -1,0 +1,45 @@
+{
+  "id": "signal.vocab.observable_types",
+  "type": "custom",
+  "version": "0.1.0",
+  "description": "Types of identifiers that can be extracted from signals and correlated across data sources. Owned by signalvocab (casevocab references these).",
+  "content": {
+    "category": "observable_types",
+    "purpose": "Define what can be extracted, indexed, and correlated. Each observable type has a normalizer that produces canonical form for matching.",
+    "observable_types": [
+      {"type_id": "license_plate", "domain": "physical", "description": "Vehicle license plate", "normalization": "uppercase, strip spaces/dashes"},
+      {"type_id": "ip_address", "domain": "network", "description": "IPv4 or IPv6 address", "normalization": "canonical IP form"},
+      {"type_id": "mac_address", "domain": "network", "description": "Network MAC address", "normalization": "uppercase, colon-separated"},
+      {"type_id": "email_address", "domain": "identity", "description": "Email address", "normalization": "lowercase"},
+      {"type_id": "domain_name", "domain": "network", "description": "DNS domain name", "normalization": "lowercase, strip trailing dot"},
+      {"type_id": "url", "domain": "network", "description": "Full URL", "normalization": "lowercase scheme+host, preserve path"},
+      {"type_id": "file_hash_md5", "domain": "file", "description": "MD5 file hash", "normalization": "lowercase hex"},
+      {"type_id": "file_hash_sha1", "domain": "file", "description": "SHA-1 file hash", "normalization": "lowercase hex"},
+      {"type_id": "file_hash_sha256", "domain": "file", "description": "SHA-256 file hash", "normalization": "lowercase hex"},
+      {"type_id": "phone_number", "domain": "identity", "description": "Phone number", "normalization": "E.164 format"},
+      {"type_id": "coordinates", "domain": "geospatial", "description": "Latitude/longitude pair", "normalization": "decimal degrees, 6 places"},
+      {"type_id": "callsign", "domain": "operations", "description": "Radio/TAK callsign", "normalization": "uppercase"},
+      {"type_id": "name", "domain": "identity", "description": "Person or entity name", "normalization": "lowercase, trim whitespace"},
+      {"type_id": "username", "domain": "identity", "description": "Account username", "normalization": "lowercase"},
+      {"type_id": "hostname", "domain": "network", "description": "System hostname", "normalization": "lowercase"},
+      {"type_id": "process_name", "domain": "system", "description": "Running process name", "normalization": "lowercase"},
+      {"type_id": "imsi", "domain": "telecom", "description": "Mobile subscriber identity", "normalization": "digits only"},
+      {"type_id": "imei", "domain": "telecom", "description": "Mobile equipment identity", "normalization": "digits only"},
+      {"type_id": "mmsi", "domain": "maritime", "description": "Maritime mobile service identity", "normalization": "digits only"},
+      {"type_id": "tail_number", "domain": "aviation", "description": "Aircraft registration", "normalization": "uppercase, strip dashes"},
+      {"type_id": "transaction_id", "domain": "financial", "description": "Financial transaction identifier", "normalization": "as-is"},
+      {"type_id": "product_sku", "domain": "business", "description": "Product SKU/identifier", "normalization": "uppercase"},
+      {"type_id": "ticker_symbol", "domain": "financial", "description": "Stock/crypto ticker", "normalization": "uppercase"},
+      {"type_id": "hashtag", "domain": "social", "description": "Social media hashtag", "normalization": "lowercase, strip #"},
+      {"type_id": "mention", "domain": "social", "description": "Social media @mention", "normalization": "lowercase, strip @"},
+      {"type_id": "tracking_number", "domain": "logistics", "description": "Shipping/tracking number", "normalization": "uppercase, strip spaces"},
+      {"type_id": "case_number", "domain": "legal", "description": "Legal case or report number", "normalization": "as-is"},
+      {"type_id": "custom", "domain": "custom", "description": "Any key=value pair", "normalization": "as-is"}
+    ]
+  },
+  "metadata": {
+    "created": "2026-03-21T00:00:00Z",
+    "author": "ENKI System"
+  },
+  "dependencies": ["signal.vocab.system"]
+}

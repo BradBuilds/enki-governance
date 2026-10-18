@@ -1,0 +1,17 @@
+{
+  "id": "example.chinese",
+  "name": "Chinese Language Example",
+  "description": "Concrete example of Mandarin Chinese using language pack definitions",
+  "language": "Mandarin Chinese",
+  "script": "Chinese Characters (not included in language pack v0.1.0)",
+  "examples": {
+    "phonology": "Mandarin uses tone as a major suprasegmental distinction.",
+    "morphology": "Mandarin is largely isolating; compounding is common.",
+    "semantics": "Many morphemes combine into compounds with predictable semantic relations.",
+    "pragmatics": "你好 (nǐ hǎo) functions as a greeting; politeness varies by context."
+  },
+  "metadata": {
+    "created": "2026-01-13T00:00:00Z",
+    "author": "ENKI System"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "alert.vocab.severity",
+  "type": "custom",
+  "version": "0.1.0",
+  "description": "Alert severity levels. Alert severity can differ from signal severity.",
+  "content": {
+    "category": "alert_severity",
+    "levels": [
+      {"level_id": "critical", "rank": 5, "description": "Immediate action required"},
+      {"level_id": "high", "rank": 4, "description": "Prompt attention needed"},
+      {"level_id": "medium", "rank": 3, "description": "Review when possible"},
+      {"level_id": "low", "rank": 2, "description": "Informational with context"},
+      {"level_id": "informational", "rank": 1, "description": "Routine, no action needed"}
+    ]
+  },
+  "metadata": {"created": "2026-03-21T00:00:00Z", "author": "ENKI System"},
+  "dependencies": ["alert.vocab.system"]
+}

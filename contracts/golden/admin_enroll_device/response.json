@@ -1,0 +1,17 @@
+{
+  "status_code": 200,
+  "body_shape": {
+    "grant_id": "<uuid>",
+    "device_id": "golden-test-device",
+    "issued_at": "<ISO8601 timestamp>",
+    "expires_at": "<ISO8601 timestamp>",
+    "public_key": "<base64 string>",
+    "public_key_algorithm": "Ed25519",
+    "device_tier": "W",
+    "tenant_scopes": ["<string>"],
+    "revoked_at": null,
+    "revocation_reason": null,
+    "enki_signature": "<base64 string>"
+  },
+  "notes": "Grant record returned with root signature. Variable fields (grant_id, timestamps) validated by shape markers."
+}

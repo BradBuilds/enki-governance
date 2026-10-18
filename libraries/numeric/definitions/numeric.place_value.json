@@ -1,0 +1,20 @@
+{
+  "id": "gdu.numeric.place_value",
+  "type": "rules",
+  "version": "1.0.0",
+  "content": {
+    "structure": "places",
+    "definition": "A base-N representation is a sequence of place digits (each digit in [0..N-1]) representing a canonical integer.",
+    "base60_places": {
+      "digit_range": { "min": 0, "max": 59 },
+      "non_empty": true,
+      "examples": [
+        { "places": [0], "decimal": 0 },
+        { "places": [59], "decimal": 59 },
+        { "places": [1, 0], "decimal": 60 },
+        { "places": [1, 2, 3], "decimal": 3723 }
+      ]
+    },
+    "immutability_statement": "Place sequences are data; they must be preserved exactly as entered for representation fidelity."
+  }
+}

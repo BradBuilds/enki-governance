@@ -1,0 +1,47 @@
+{
+  "id": "identity.entities",
+  "type": "custom",
+  "version": "0.1.0",
+  "description": "Entity types that can be identified in ENKI systems",
+  "content": {
+    "category": "entities",
+    "purpose": "Defines the types of objects that can have identities",
+    "entity_types": [
+      {
+        "name": "person",
+        "description": "Individual human entity",
+        "attributes": ["unique_id", "name", "contact_info"]
+      },
+      {
+        "name": "organization",
+        "description": "Organizational entity (company, group, collective)",
+        "attributes": ["unique_id", "name", "type", "members"]
+      },
+      {
+        "name": "device",
+        "description": "Physical or virtual device",
+        "attributes": ["unique_id", "device_type", "owner", "capabilities"]
+      },
+      {
+        "name": "dataset",
+        "description": "Data collection or dataset",
+        "attributes": ["unique_id", "name", "schema", "source"]
+      },
+      {
+        "name": "definition_pack",
+        "description": "ENKI definition pack",
+        "attributes": ["pack_id", "version", "definitions"]
+      }
+    ],
+    "notes": [
+      "Entity types are vocabulary only",
+      "Actual entity data structures are defined elsewhere",
+      "Attributes listed are conceptual, not schema requirements"
+    ]
+  },
+  "metadata": {
+    "created": "2025-12-31T00:00:00Z",
+    "author": "ENKI System"
+  },
+  "dependencies": ["identity.system"]
+}

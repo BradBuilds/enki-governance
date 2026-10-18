@@ -1,0 +1,83 @@
+{
+  "id": "example_lexicon.senses",
+  "type": "lexical_senses",
+  "version": "0.1.0",
+  "description": "Senses for the example lexicon. Each sense_id is library-stable → seeds a deterministic base-60 address. Exercises polysemy (fire x3), register split (literal vs slang), idiom (multi-word), and relation/expansion edges (synonym/hypernym).",
+  "content": {
+    "senses": [
+      {
+        "sense_id": "fire-combustion",
+        "lemma": "fire", "pos": "noun", "register": "literal", "domain": null,
+        "gloss": "the rapid oxidation of a material producing heat and light",
+        "forms": ["fire", "fires"],
+        "relations": [
+          {"rel": "hypernym", "sense_id": "phenomenon-natural"},
+          {"rel": "synonym", "sense_id": "flame-combustion"}
+        ]
+      },
+      {
+        "sense_id": "fire-dismiss",
+        "lemma": "fire", "pos": "verb", "register": "literal", "domain": "employment",
+        "gloss": "to terminate the employment of a person",
+        "forms": ["fire", "fired", "firing"],
+        "relations": [{"rel": "synonym", "sense_id": "dismiss-employment"}]
+      },
+      {
+        "sense_id": "fire-excellent",
+        "lemma": "fire", "pos": "adjective", "register": "slang", "domain": null,
+        "gloss": "(slang) excellent; impressively good",
+        "forms": ["fire"],
+        "relations": [{"rel": "synonym", "sense_id": "excellent-quality"}]
+      },
+      {
+        "sense_id": "flame-combustion",
+        "lemma": "flame", "pos": "noun", "register": "literal", "domain": null,
+        "gloss": "the visible gaseous part of a fire",
+        "forms": ["flame", "flames"],
+        "relations": [{"rel": "synonym", "sense_id": "fire-combustion"}]
+      },
+      {
+        "sense_id": "phenomenon-natural",
+        "lemma": "phenomenon", "pos": "noun", "register": "literal", "domain": null,
+        "gloss": "an observable event or fact",
+        "forms": ["phenomenon", "phenomena"],
+        "relations": []
+      },
+      {
+        "sense_id": "dismiss-employment",
+        "lemma": "dismiss", "pos": "verb", "register": "literal", "domain": "employment",
+        "gloss": "to remove from a job or position",
+        "forms": ["dismiss", "dismissed"],
+        "relations": [{"rel": "synonym", "sense_id": "fire-dismiss"}]
+      },
+      {
+        "sense_id": "excellent-quality",
+        "lemma": "excellent", "pos": "adjective", "register": "literal", "domain": null,
+        "gloss": "extremely good; outstanding",
+        "forms": ["excellent"],
+        "relations": []
+      },
+      {
+        "sense_id": "kick-the-bucket",
+        "lemma": "kick the bucket", "pos": "phrase", "register": "idiom", "domain": null,
+        "gloss": "(idiom) to die",
+        "forms": ["kick the bucket"],
+        "relations": [{"rel": "synonym", "sense_id": "die-cease"}]
+      },
+      {
+        "sense_id": "die-cease",
+        "lemma": "die", "pos": "verb", "register": "literal", "domain": null,
+        "gloss": "to cease living",
+        "forms": ["die", "died", "dying"],
+        "relations": []
+      },
+      {
+        "sense_id": "lead-metal",
+        "lemma": "lead", "pos": "noun", "register": "technical", "domain": "chemistry",
+        "gloss": "a heavy soft metallic element, symbol Pb",
+        "forms": ["lead"],
+        "relations": [{"rel": "hypernym", "sense_id": "phenomenon-natural"}]
+      }
+    ]
+  }
+}

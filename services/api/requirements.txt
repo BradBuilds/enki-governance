@@ -1,0 +1,53 @@
+fastapi==0.115.0
+uvicorn[standard]==0.32.1
+python-multipart>=0.0.9
+pydantic==2.10.3
+jsonschema==4.23.0
+pytest==8.3.4
+httpx==0.28.1
+requests>=2.31.0
+
+# Phase 3 - Storage
+psycopg2-binary>=2.9.9
+canonicaljson>=2.0.0
+
+# Auth - Logto JWT validation
+pyjwt[crypto]>=2.8.0
+
+# Document parsing
+pdfplumber>=0.10.0
+python-docx>=1.1.0
+openpyxl>=3.1.0
+beautifulsoup4>=4.12.0
+charset-normalizer>=3.3.0
+
+# OCR pipeline (Phase 2.5): scanned-PDF page rendering + text extraction.
+# Tesseract is the primary engine (binary from apt: tesseract-ocr);
+# pytesseract is the Python wrapper. pdf2image renders pages for it.
+# LLM-vision fallback (low-confidence pages) runs through the existing
+# Ollama vision model, so no extra Python dep there.
+# (PaddleOCR was tried first but its 3.x init is broken under our slim
+#  non-root container — keeping it out for now; Tesseract is reliable.)
+pdf2image>=1.17.0
+pytesseract>=0.3.10
+
+# Image-analysis pipeline (Phase 3.2): face detection on document images.
+# MediaPipe is light (~50MB), CPU-only, no model download at runtime.
+mediapipe>=0.10.0
+
+# GEOINT - photo EXIF GPS extraction
+# Media library (Phase 4) - perceptual hashing for image-node collapse
+Pillow>=10.0.0
+imagehash>=4.3.1
+
+# Setup wizard - hardware detection
+psutil>=5.9.0
+bcrypt>=4.0.0
+cbor2>=5.5  # .enki file format binary encoding (phase 7 multi-hub)
+pywebpush>=2.0.0  # hub: Web Push (VAPID) to registrant browsers
+# cryptography is already a transitive dep of pyjwt[crypto], pywebpush uses it too
+
+# Hub install companion (short-lived chat between approval and first heartbeat).
+# Only used on the hub profile; node-side assistant uses local Ollama instead.
+# See the install-assistant design notes.
+anthropic>=0.40.0

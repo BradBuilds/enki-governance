@@ -1,0 +1,13320 @@
+{
+"id": "language.exceptions",
+"type": "custom",
+"version": "1.0.0",
+"description": "Irregular inflection→base-lemma exceptions from oewn:2023 (noun/verb/adjective/adverb). 4416 entries. The data half of the lemmatizer; regular detachment rules live in core/language/lemmatizer.py.",
+"content": {
+"exceptions": {
+"noun": {
+"lives": [
+"life"
+],
+"cathexes": [
+"cathexis"
+],
+"icosahedra": [
+"icosahedron"
+],
+"stemmata": [
+"stemma"
+],
+"striae": [
+"stria"
+],
+"bases": [
+"base",
+"basis"
+],
+"brachia": [
+"brachium"
+],
+"octahedra": [
+"octahedron"
+],
+"haloes": [
+"halo"
+],
+"helices": [
+"helix"
+],
+"tetrahedra": [
+"tetrahedron"
+],
+"tori": [
+"torus"
+],
+"trapezia": [
+"trapezium"
+],
+"trapezohedra": [
+"trapezohedron"
+],
+"radii": [
+"radius"
+],
+"rhombi": [
+"rhombus"
+],
+"pentahedra": [
+"pentahedron"
+],
+"polyhedra": [
+"polyhedron"
+],
+"annuli": [
+"annulus"
+],
+"unci": [
+"uncus"
+],
+"fossae": [
+"fossa"
+],
+"frusta": [
+"frustum"
+],
+"capita": [
+"caput"
+],
+"columellae": [
+"columella"
+],
+"vacua": [
+"vacuum"
+],
+"vortices": [
+"vortex"
+],
+"knives": [
+"knife"
+],
+"entases": [
+"entasis"
+],
+"equilibria": [
+"equilibrium"
+],
+"zeroes": [
+"zero"
+],
+"gas": [
+"gas"
+],
+"gasses": [
+"gas"
+],
+"gazeboes": [
+"gazebo"
+],
+"goes": [
+"go"
+],
+"graffiti": [
+"graffito"
+],
+"gymnasia": [
+"gymnasium"
+],
+"intagli": [
+"intaglio"
+],
+"irides": [
+"iris"
+],
+"sanitaria": [
+"sanitarium"
+],
+"sarcophagi": [
+"sarcophagus"
+],
+"scarves": [
+"scarf"
+],
+"scriptoria": [
+"scriptorium"
+],
+"scyphi": [
+"scyphus"
+],
+"sgraffiti": [
+"sgraffito"
+],
+"shakoes": [
+"shako"
+],
+"sheaves": [
+"sheaf"
+],
+"shelves": [
+"shelf"
+],
+"shofroth": [
+"shofar",
+"shophar"
+],
+"shophroth": [
+"shophar"
+],
+"simulacra": [
+"simulacrum"
+],
+"solaria": [
+"solarium"
+],
+"soles": [
+"sol",
+"sole"
+],
+"sordini": [
+"sordino"
+],
+"specula": [
+"speculum"
+],
+"sphinges": [
+"sphinx"
+],
+"stadia": [
+"stadium"
+],
+"stelae": [
+"stele"
+],
+"styli": [
+"stylus"
+],
+"sudatoria": [
+"sudatorium"
+],
+"syringes": [
+"syrinx"
+],
+"bains-marie": [
+"bain-marie"
+],
+"ballistae": [
+"ballista"
+],
+"bandeaux": [
+"bandeau"
+],
+"banjoes": [
+"banjo"
+],
+"bastinadoes": [
+"bastinado"
+],
+"bijoux": [
+"bijou"
+],
+"bongoes": [
+"bongo"
+],
+"bookshelves": [
+"bookshelf"
+],
+"brainchildren": [
+"brainchild"
+],
+"bullae": [
+"bulla"
+],
+"bureaux": [
+"bureau"
+],
+"busses": [
+"bus"
+],
+"oases": [
+"oasis"
+],
+"onagri": [
+"onager"
+],
+"ottomans": [
+"ottoman"
+],
+"ovoli": [
+"ovolo"
+],
+"halteres": [
+"halter",
+"haltere"
+],
+"hermae": [
+"herm"
+],
+"jacks-in-the-box": [
+"jack-in-the-box"
+],
+"jackknives": [
+"jackknife"
+],
+"jambeaux": [
+"jambeau"
+],
+"dadoes": [
+"dado"
+],
+"disci": [
+"discus"
+],
+"dogteeth": [
+"dogtooth"
+],
+"dominoes": [
+"domino"
+],
+"drawknives": [
+"drawknife"
+],
+"taeniae": [
+"taenia",
+"tenia"
+],
+"tallaisim": [
+"tallith"
+],
+"tallithes": [
+"tallith"
+],
+"tallitoth": [
+"tallith"
+],
+"taxies": [
+"taxi"
+],
+"telamones": [
+"telamon"
+],
+"teniae": [
+"tenia"
+],
+"termini": [
+"terminus"
+],
+"terraria": [
+"terrarium"
+],
+"tesserae": [
+"tessera"
+],
+"testudines": [
+"testudo"
+],
+"tetraskelia": [
+"tetraskelion"
+],
+"tobaccoes": [
+"tobacco"
+],
+"teeth": [
+"tooth"
+],
+"tornadoes": [
+"tornado"
+],
+"torpedoes": [
+"torpedo"
+],
+"triclinia": [
+"triclinium"
+],
+"triskelia": [
+"triskelion"
+],
+"trous-de-loup": [
+"trou-de-loup"
+],
+"trousseaux": [
+"trousseau"
+],
+"tubae": [
+"tuba"
+],
+"tympana": [
+"tympanum"
+],
+"rabatos": [
+"rabato",
+"rebato"
+],
+"reseaux": [
+"reseau"
+],
+"rilievi": [
+"rilievo"
+],
+"robes-de-chambre": [
+"robe-de-chambre"
+],
+"rostra": [
+"rostrum"
+],
+"rouleaux": [
+"rouleau"
+],
+"palestrae": [
+"palestra"
+],
+"pallia": [
+"pallium"
+],
+"paperknives": [
+"paperknife"
+],
+"patinae": [
+"patina"
+],
+"penknives": [
+"penknife"
+],
+"pentimenti": [
+"pentimento"
+],
+"pepla": [
+"peplum"
+],
+"pieds-a-terre": [
+"pied-a-terre"
+],
+"placeboes": [
+"placebo"
+],
+"planetaria": [
+"planetarium"
+],
+"plectra": [
+"plectron",
+"plectrum"
+],
+"plena": [
+"plenum"
+],
+"pocketknives": [
+"pocketknife"
+],
+"podia": [
+"podium"
+],
+"porticoes": [
+"portico"
+],
+"portmanteaux": [
+"portmanteau"
+],
+"proscenia": [
+"proscenium"
+],
+"prostheses": [
+"prosthesis"
+],
+"pyxides": [
+"pyxis"
+],
+"abaci": [
+"abacus"
+],
+"agorae": [
+"agora"
+],
+"amphorae": [
+"amphora"
+],
+"ampullae": [
+"ampulla"
+],
+"anamorphoses": [
+"anamorphosis"
+],
+"antefixa": [
+"antefix"
+],
+"antennae": [
+"antenna"
+],
+"apparatus": [
+"apparatus"
+],
+"apsides": [
+"apsis"
+],
+"aquaria": [
+"aquarium"
+],
+"arboreta": [
+"arboretum"
+],
+"arcs-boutants": [
+"arc-boutant"
+],
+"aspersoria": [
+"aspersorium"
+],
+"assegais": [
+"assagai",
+"assegai"
+],
+"atria": [
+"atrium"
+],
+"auditoria": [
+"auditorium"
+],
+"automata": [
+"automaton"
+],
+"axes": [
+"ax",
+"axis"
+],
+"fasciae": [
+"fascia"
+],
+"fenestellae": [
+"fenestella"
+],
+"fezzes": [
+"fez"
+],
+"flagella": [
+"flagellum"
+],
+"flagstaves": [
+"flagstaff"
+],
+"flambeaux": [
+"flambeau"
+],
+"fleurs-de-lis": [
+"fleur-de-lis"
+],
+"fleurs-de-lys": [
+"fleur-de-lys"
+],
+"feet": [
+"foot"
+],
+"forceps": [
+"forceps"
+],
+"fora": [
+"forum"
+],
+"frescoes": [
+"fresco"
+],
+"fulcra": [
+"fulcrum"
+],
+"lacunae": [
+"lacuna"
+],
+"lacunaria": [
+"lacunar"
+],
+"lamellae": [
+"lamella"
+],
+"lassoes": [
+"lasso"
+],
+"latices": [
+"latex"
+],
+"lavaboes": [
+"lavabo"
+],
+"leaves": [
+"leaf",
+"leave"
+],
+"loggie": [
+"loggia"
+],
+"lunulae": [
+"lunula"
+],
+"lures": [
+"lure"
+],
+"calicoes": [
+"calico"
+],
+"camerae": [
+"camera"
+],
+"candelabra": [
+"candelabrum"
+],
+"cargoes": [
+"cargo"
+],
+"carides": [
+"caryatid"
+],
+"cavetti": [
+"cavetto"
+],
+"cembali": [
+"cembalo"
+],
+"chapeaux": [
+"chapeau"
+],
+"chateaux": [
+"chateau"
+],
+"chevaux-de-frise": [
+"cheval-de-frise"
+],
+"chlamydes": [
+"chlamys"
+],
+"chlamyses": [
+"chlamys"
+],
+"cineraria": [
+"cinerarium"
+],
+"claroes": [
+"claro"
+],
+"clepsydrae": [
+"clepsydra"
+],
+"cloacae": [
+"cloaca"
+],
+"cloverleaves": [
+"cloverleaf"
+],
+"collyria": [
+"collyrium"
+],
+"columbaria": [
+"columbarium"
+],
+"coronae": [
+"corona"
+],
+"crematoria": [
+"crematorium"
+],
+"cylices": [
+"cylix"
+],
+"cylikes": [
+"cylix"
+],
+"cymae": [
+"cyma"
+],
+"cymatia": [
+"cymatium"
+],
+"vivaria": [
+"vivarium"
+],
+"quarterstaves": [
+"quarterstaff"
+],
+"wagons-lits": [
+"wagon-lit"
+],
+"wharves": [
+"wharf"
+],
+"natatoria": [
+"natatorium"
+],
+"naumachiae": [
+"naumachia"
+],
+"nautili": [
+"nautilus"
+],
+"kylikes": [
+"kylix"
+],
+"men": [
+"man"
+],
+"men-o'-war": [
+"man-of-war"
+],
+"men-of-war": [
+"man-of-war"
+],
+"matrices": [
+"matrix"
+],
+"mausolea": [
+"mausoleum"
+],
+"menisci": [
+"meniscus"
+],
+"mice": [
+"mouse"
+],
+"echini": [
+"echinus"
+],
+"emporia": [
+"emporium"
+],
+"imperia": [
+"imperium"
+],
+"indigoes": [
+"indigo"
+],
+"soprani": [
+"soprano"
+],
+"spectra": [
+"spectrum"
+],
+"stigmata": [
+"stigma"
+],
+"ocelli": [
+"ocellus"
+],
+"optima": [
+"optimum"
+],
+"differentiae": [
+"differentia"
+],
+"personae": [
+"persona"
+],
+"aquae": [
+"aqua"
+],
+"aurae": [
+"aura"
+],
+"fermate": [
+"fermata"
+],
+"foci": [
+"focus"
+],
+"lustra": [
+"lustre"
+],
+"crescendi": [
+"crescendo"
+],
+"verrucae": [
+"verruca"
+],
+"vetoes": [
+"veto"
+],
+"nebulae": [
+"nebula"
+],
+"nevi": [
+"nevus"
+],
+"nimbi": [
+"nimbus"
+],
+"masses": [
+"mass",
+"masse"
+],
+"maxima": [
+"maximum"
+],
+"minutiae": [
+"minutia"
+],
+"momenta": [
+"momentum"
+],
+"echoes": [
+"echo"
+],
+"emphases": [
+"emphasis"
+],
+"goings-over": [
+"going-over"
+],
+"grants-in-aid": [
+"grant-in-aid"
+],
+"intermezzi": [
+"intermezzo"
+],
+"salvoes": [
+"salvo"
+],
+"solfeggi": [
+"solfeggio"
+],
+"soli": [
+"solo"
+],
+"squashes": [
+"squash"
+],
+"strappadoes": [
+"strappado"
+],
+"haemodialyses": [
+"haemodialysis"
+],
+"hemodialyses": [
+"hemodialysis"
+],
+"diagnoses": [
+"diagnosis"
+],
+"dialyses": [
+"dialysis"
+],
+"taxes": [
+"tax",
+"taxis"
+],
+"referenda": [
+"referendum"
+],
+"parapraxes": [
+"parapraxis"
+],
+"peccadilloes": [
+"peccadillo"
+],
+"praxes": [
+"praxis"
+],
+"prognoses": [
+"prognosis"
+],
+"agones": [
+"agon"
+],
+"amniocenteses": [
+"amniocentesis"
+],
+"analyses": [
+"analysis"
+],
+"apotheoses": [
+"apotheosis"
+],
+"asceses": [
+"ascesis"
+],
+"autos-da-fe": [
+"auto-da-fe"
+],
+"urinalyses": [
+"urinalysis"
+],
+"feriae": [
+"feria"
+],
+"novenae": [
+"novena"
+],
+"media": [
+"medium"
+],
+"metamorphoses": [
+"metamorphosis"
+],
+"mioses": [
+"miosis"
+],
+"mitzvoth": [
+"mitzvah"
+],
+"myoses": [
+"myosis"
+],
+"eisteddfodau": [
+"eisteddfod"
+],
+"enemata": [
+"enema"
+],
+"grottoes": [
+"grotto"
+],
+"indumenta": [
+"indumentum"
+],
+"isthmi": [
+"isthmus"
+],
+"silvae": [
+"silva"
+],
+"strati": [
+"stratus"
+],
+"supernovae": [
+"supernova"
+],
+"desiderata": [
+"desideratum"
+],
+"tali": [
+"talus"
+],
+"tophi": [
+"tophus"
+],
+"turves": [
+"turf"
+],
+"pineta": [
+"pinetum"
+],
+"plateaux": [
+"plateau"
+],
+"aciculae": [
+"acicula"
+],
+"alluvia": [
+"alluvium"
+],
+"altocumuli": [
+"altocumulus"
+],
+"altostrati": [
+"altostratus"
+],
+"archipelagoes": [
+"archipelago"
+],
+"folia": [
+"folium"
+],
+"lepta": [
+"lepton"
+],
+"calculi": [
+"calculus"
+],
+"cirrocumuli": [
+"cirrocumulus"
+],
+"cirrostrati": [
+"cirrostratus"
+],
+"cirri": [
+"cirrus"
+],
+"comae": [
+"coma"
+],
+"cumulonimbi": [
+"cumulonimbus"
+],
+"cumuli": [
+"cumulus"
+],
+"volcanoes": [
+"volcano"
+],
+"nidi": [
+"nidus"
+],
+"novae": [
+"nova"
+],
+"nuclei": [
+"nucleus"
+],
+"maare": [
+"maar"
+],
+"dwarves": [
+"dwarf"
+],
+"phenomena": [
+"phenomenon"
+],
+"faunae": [
+"fauna"
+],
+"florae": [
+"flora"
+],
+"parhelia": [
+"parhelion"
+],
+"aurorae": [
+"aurora"
+],
+"faculae": [
+"facula"
+],
+"cycloses": [
+"cyclosis"
+],
+"maculae": [
+"macula"
+],
+"metempsychoses": [
+"metempsychosis"
+],
+"epiphenomena": [
+"epiphenomenon"
+],
+"yogin": [
+"yogi"
+],
+"genii": [
+"genius"
+],
+"gentlemen-at-arms": [
+"gentleman-at-arms"
+],
+"godchildren": [
+"godchild"
+],
+"geese": [
+"goose"
+],
+"goyim": [
+"goy"
+],
+"grandchildren": [
+"grandchild"
+],
+"incubi": [
+"incubus"
+],
+"salespeople": [
+"salesperson"
+],
+"schmoes": [
+"schmo"
+],
+"selves": [
+"self"
+],
+"seraphim": [
+"seraph"
+],
+"shmoes": [
+"shmo"
+],
+"signori": [
+"signior",
+"signore"
+],
+"signore": [
+"signora"
+],
+"signorine": [
+"signorina"
+],
+"sisters-in-law": [
+"sister-in-law"
+],
+"sons-in-law": [
+"son-in-law"
+],
+"staretsy": [
+"starets"
+],
+"startsy": [
+"starets"
+],
+"stepchildren": [
+"stepchild"
+],
+"succubi": [
+"succubus"
+],
+"supercargoes": [
+"supercargo"
+],
+"swamies": [
+"swami"
+],
+"bacchantes": [
+"bacchant",
+"bacchante"
+],
+"bambini": [
+"bambino"
+],
+"banditti": [
+"bandit"
+],
+"basileis": [
+"basileus"
+],
+"bassi": [
+"basso"
+],
+"beadsmen": [
+"beadsman",
+"bedesman"
+],
+"beaux": [
+"beau"
+],
+"bimboes": [
+"bimbo"
+],
+"bravoes": [
+"bravo"
+],
+"brethren": [
+"brother"
+],
+"brothers-in-law": [
+"brother-in-law"
+],
+"hangers-on": [
+"hanger-on"
+],
+"heirs-at-law": [
+"heir-at-law"
+],
+"heroes": [
+"hero"
+],
+"hoboes": [
+"hobo"
+],
+"homunculi": [
+"homunculus"
+],
+"housewives": [
+"housewife"
+],
+"hypostases": [
+"hypostasis"
+],
+"jingoes": [
+"jingo"
+],
+"jinn": [
+"jinni"
+],
+"dagoes": [
+"dago"
+],
+"daughters-in-law": [
+"daughter-in-law"
+],
+"desperadoes": [
+"desperado"
+],
+"dibbukkim": [
+"dibbuk"
+],
+"dilettanti": [
+"dilettante"
+],
+"dive": [
+"diva"
+],
+"djinn": [
+"djinni",
+"djinny"
+],
+"dodoes": [
+"dodo"
+],
+"dryades": [
+"dryad"
+],
+"dybbukkim": [
+"dybbuk"
+],
+"tenderfeet": [
+"tenderfoot"
+],
+"thieves": [
+"thief"
+],
+"tyros": [
+"tiro",
+"tyro"
+],
+"triumviri": [
+"triumvir"
+],
+"runners-up": [
+"runner-up"
+],
+"paparazzi": [
+"paparazzo"
+],
+"passers-by": [
+"passer-by"
+],
+"patresfamilias": [
+"paterfamilias"
+],
+"pinkoes": [
+"pinko"
+],
+"ploughmen": [
+"ploughman",
+"plowman"
+],
+"pontifices": [
+"pontifex"
+],
+"primigravidae": [
+"primigravida"
+],
+"primiparae": [
+"primipara"
+],
+"propositi": [
+"propositus"
+],
+"aides-de-camp": [
+"aide-de-camp"
+],
+"alumnae": [
+"alumna"
+],
+"alumni": [
+"alumnus"
+],
+"amanuenses": [
+"amanuensis"
+],
+"amoraim": [
+"amora"
+],
+"amphisbaenae": [
+"amphisbaena"
+],
+"antiheroes": [
+"antihero"
+],
+"auspices": [
+"auspex",
+"auspice"
+],
+"autochthones": [
+"autochthon"
+],
+"famuli": [
+"famulus"
+],
+"fathers-in-law": [
+"father-in-law"
+],
+"fatsoes": [
+"fatso"
+],
+"fellaheen": [
+"fellah"
+],
+"fellahin": [
+"fellah"
+],
+"fishwives": [
+"fishwife"
+],
+"flamines": [
+"flamen"
+],
+"flatfeet": [
+"flatfoot"
+],
+"ladies-in-waiting": [
+"lady-in-waiting"
+],
+"lamiae": [
+"lamia"
+],
+"loups-garous": [
+"loup-garou"
+],
+"lice": [
+"louse"
+],
+"castrati": [
+"castrato"
+],
+"chelae": [
+"chela"
+],
+"cherubim": [
+"cherub"
+],
+"children": [
+"child"
+],
+"choragi": [
+"choragus"
+],
+"ciceroni": [
+"cicerone"
+],
+"colossi": [
+"colossus"
+],
+"comics": [
+"comic"
+],
+"commandoes": [
+"commando"
+],
+"conquistadores": [
+"conquistador"
+],
+"contralti": [
+"contralto"
+],
+"viragoes": [
+"virago"
+],
+"virtuosi": [
+"virtuoso"
+],
+"werewolves": [
+"werewolf"
+],
+"whippers-in": [
+"whipper-in"
+],
+"wives": [
+"wife"
+],
+"wolves": [
+"wolf"
+],
+"naiades": [
+"naiad"
+],
+"nulliparae": [
+"nullipara"
+],
+"numina": [
+"numen"
+],
+"macaronies": [
+"macaroni"
+],
+"mesdames": [
+"madame"
+],
+"maestri": [
+"maestro"
+],
+"mafiosi": [
+"mafioso"
+],
+"magnificoes": [
+"magnifico"
+],
+"magi": [
+"magus"
+],
+"mammae": [
+"mamma"
+],
+"men-at-arms": [
+"man-at-arms"
+],
+"menservants": [
+"manservant"
+],
+"masters-at-arms": [
+"master-at-arms"
+],
+"mestizoes": [
+"mestizo"
+],
+"midwives": [
+"midwife"
+],
+"mothers-in-law": [
+"mother-in-law"
+],
+"mulattoes": [
+"mulatto"
+],
+"myrmidones": [
+"myrmidon"
+],
+"elves": [
+"elf"
+],
+"executrices": [
+"executrix"
+],
+"gateaux": [
+"gateau"
+],
+"sailfishes": [
+"sailfish"
+],
+"shellfishes": [
+"shellfish"
+],
+"stockfishes": [
+"stockfish"
+],
+"sunfishes": [
+"sunfish"
+],
+"swordfishes": [
+"swordfish"
+],
+"beeves": [
+"beef"
+],
+"blowfishes": [
+"blowfish"
+],
+"bluefishes": [
+"bluefish"
+],
+"bonitoes": [
+"bonito"
+],
+"buffaloes": [
+"buffalo"
+],
+"butterfishes": [
+"butterfish"
+],
+"octopi": [
+"octopus"
+],
+"challoth": [
+"hallah"
+],
+"hallot": [
+"hallah"
+],
+"halloth": [
+"hallah"
+],
+"tomatoes": [
+"tomato"
+],
+"redfishes": [
+"redfish"
+],
+"rockfishes": [
+"rockfish"
+],
+"rosefishes": [
+"rosefish"
+],
+"pease": [
+"pea"
+],
+"potatoes": [
+"potato"
+],
+"alewives": [
+"alewife"
+],
+"uglies": [
+"ugli"
+],
+"fishes": [
+"fish"
+],
+"flatfishes": [
+"flatfish"
+],
+"formulae": [
+"formula"
+],
+"fricandeaux": [
+"fricandeau"
+],
+"loaves": [
+"loaf"
+],
+"carbonadoes": [
+"carbonado"
+],
+"catfishes": [
+"catfish"
+],
+"chapaties": [
+"chapati"
+],
+"chapatties": [
+"chapatti"
+],
+"chillies": [
+"chilli"
+],
+"choux": [
+"chou"
+],
+"ciscoes": [
+"cisco"
+],
+"codfishes": [
+"codfish"
+],
+"crawfishes": [
+"crawfish"
+],
+"crayfishes": [
+"crayfish"
+],
+"weakfishes": [
+"weakfish"
+],
+"whitefishes": [
+"whitefish"
+],
+"kingfishes": [
+"kingfish"
+],
+"kohlrabies": [
+"kohlrabi"
+],
+"mangoes": [
+"mango"
+],
+"matzoth": [
+"matzo"
+],
+"monkfishes": [
+"monkfish"
+],
+"muskallunge": [
+"muskellunge"
+],
+"glissandi": [
+"glissando"
+],
+"iambi": [
+"iamb"
+],
+"indices": [
+"index"
+],
+"innuendoes": [
+"innuendo"
+],
+"interleaves": [
+"interleaf"
+],
+"scherzi": [
+"scherzo"
+],
+"scholia": [
+"scholium"
+],
+"secondi": [
+"secondo"
+],
+"segni": [
+"segno"
+],
+"separatrices": [
+"separatrix"
+],
+"solidi": [
+"solidus"
+],
+"substrata": [
+"substratum"
+],
+"substratums": [
+"substratum"
+],
+"superstrata": [
+"superstratum"
+],
+"syllabi": [
+"syllabus"
+],
+"syllepses": [
+"syllepsis"
+],
+"synopses": [
+"synopsis"
+],
+"syntagmata": [
+"syntagma"
+],
+"bani": [
+"ban"
+],
+"bravadoes": [
+"bravado"
+],
+"obligati": [
+"obligato"
+],
+"oxymora": [
+"oxymoron"
+],
+"hypotheses": [
+"hypothesis"
+],
+"diaereses": [
+"diaeresis"
+],
+"diaerses": [
+"diaeresis"
+],
+"dicta": [
+"dictum"
+],
+"diereses": [
+"dieresis"
+],
+"dieses": [
+"diesis"
+],
+"divertimenti": [
+"divertimento"
+],
+"dogmata": [
+"dogma"
+],
+"dui": [
+"duo"
+],
+"thesauri": [
+"thesaurus"
+],
+"theses": [
+"thesis"
+],
+"relata": [
+"relatum"
+],
+"rondeaux": [
+"rondeau"
+],
+"papyri": [
+"papyrus"
+],
+"paraleipses": [
+"paraleipsis",
+"paralipsis"
+],
+"parentheses": [
+"parenthesis"
+],
+"pastorali": [
+"pastorale"
+],
+"periphrases": [
+"periphrasis"
+],
+"praenomina": [
+"praenomen"
+],
+"primi": [
+"primo"
+],
+"prolegomena": [
+"prolegomenon"
+],
+"prolepses": [
+"prolepsis"
+],
+"prothalamia": [
+"prothalamion",
+"prothalamium"
+],
+"provisoes": [
+"proviso"
+],
+"acciaccature": [
+"acciaccatura"
+],
+"addenda": [
+"addendum"
+],
+"adieux": [
+"adieu"
+],
+"agnomina": [
+"agnomen"
+],
+"aides-memoire": [
+"aide-memoire"
+],
+"anacolutha": [
+"anacoluthon"
+],
+"anamneses": [
+"anamnesis"
+],
+"antitheses": [
+"antithesis"
+],
+"aposiopeses": [
+"aposiopesis"
+],
+"appendices": [
+"appendix"
+],
+"appoggiature": [
+"appoggiatura"
+],
+"arcana": [
+"arcanum"
+],
+"ariette": [
+"arietta"
+],
+"asyndeta": [
+"asyndeton"
+],
+"ultimata": [
+"ultimatum"
+],
+"festschriften": [
+"festschrift"
+],
+"florilegia": [
+"florilegium"
+],
+"flyleaves": [
+"flyleaf"
+],
+"lemmata": [
+"lemma"
+],
+"libretti": [
+"libretto"
+],
+"lieder": [
+"lied"
+],
+"lingoes": [
+"lingo"
+],
+"logia": [
+"logion"
+],
+"caducei": [
+"caduceus"
+],
+"caesurae": [
+"caesura"
+],
+"capricci": [
+"capriccio"
+],
+"chiasmi": [
+"chiasmus"
+],
+"codices": [
+"codex"
+],
+"cognomina": [
+"cognomen"
+],
+"colloquia": [
+"colloquium"
+],
+"cola": [
+"colon"
+],
+"colones": [
+"colon"
+],
+"concerti": [
+"concerto"
+],
+"copulae": [
+"copula"
+],
+"corrigenda": [
+"corrigendum"
+],
+"credenda": [
+"credendum"
+],
+"criteria": [
+"criterion"
+],
+"cruces": [
+"crux"
+],
+"crying": [
+"cry"
+],
+"cryings": [
+"cry"
+],
+"curricula": [
+"curriculum"
+],
+"voces": [
+"vox"
+],
+"quizzes": [
+"quiz"
+],
+"noes": [
+"no"
+],
+"novelle": [
+"novella"
+],
+"manifestoes": [
+"manifesto"
+],
+"megilloth": [
+"megillah"
+],
+"meioses": [
+"meiosis"
+],
+"memoranda": [
+"memorandum"
+],
+"mezuzoth": [
+"mezuzah"
+],
+"morceaux": [
+"morceau"
+],
+"mottoes": [
+"motto"
+],
+"eisegeses": [
+"eisegesis"
+],
+"embargoes": [
+"embargo"
+],
+"enchiridia": [
+"enchiridion"
+],
+"encomia": [
+"encomium"
+],
+"epentheses": [
+"epenthesis"
+],
+"ephemerides": [
+"ephemeris"
+],
+"epithalamia": [
+"epithalamium"
+],
+"errata": [
+"erratum"
+],
+"etyma": [
+"etymon"
+],
+"exegeses": [
+"exegesis"
+],
+"exordia": [
+"exordium"
+],
+"genera": [
+"genus"
+],
+"genus": [
+"genus"
+],
+"gestalten": [
+"gestalt"
+],
+"gnoses": [
+"gnosis"
+],
+"imagines": [
+"imago"
+],
+"imagoes": [
+"imago"
+],
+"schemata": [
+"schema"
+],
+"stimuli": [
+"stimulus"
+],
+"strata": [
+"stratum"
+],
+"succedanea": [
+"succedaneum"
+],
+"syntheses": [
+"synthesis"
+],
+"organa": [
+"organon"
+],
+"hadjes": [
+"hadj"
+],
+"hajjes": [
+"hajj"
+],
+"hydrae": [
+"hydra"
+],
+"data": [
+"datum"
+],
+"tableaux": [
+"tableau"
+],
+"topoi": [
+"topos"
+],
+"trivia": [
+"trivium"
+],
+"abscissae": [
+"abscissa"
+],
+"limina": [
+"limen"
+],
+"litai": [
+"lit",
+"litas"
+],
+"culti": [
+"cultus"
+],
+"vertices": [
+"vertex"
+],
+"quanta": [
+"quantum"
+],
+"noumena": [
+"noumenon"
+],
+"mementoes": [
+"memento"
+],
+"ganglia": [
+"ganglion"
+],
+"genua": [
+"genu"
+],
+"gingivae": [
+"gingiva"
+],
+"ginglymi": [
+"ginglymus"
+],
+"glabellae": [
+"glabella"
+],
+"gladioli": [
+"gladiolus"
+],
+"glandes": [
+"glans"
+],
+"glomeruli": [
+"glomerulus"
+],
+"glossae": [
+"glossa"
+],
+"glottides": [
+"glottis"
+],
+"glutei": [
+"gluteus"
+],
+"gonia": [
+"gonion"
+],
+"gyri": [
+"gyrus"
+],
+"ilia": [
+"ilium"
+],
+"incudes": [
+"incus"
+],
+"infundibula": [
+"infundibulum"
+],
+"intimae": [
+"intima"
+],
+"ischia": [
+"ischium"
+],
+"sacra": [
+"sacrum"
+],
+"salpinges": [
+"salpinx"
+],
+"sartorii": [
+"sartorius"
+],
+"scaleni": [
+"scalenus"
+],
+"scapulae": [
+"scapula"
+],
+"scrota": [
+"scrotum"
+],
+"septa": [
+"septum"
+],
+"sera": [
+"serum"
+],
+"sincipita": [
+"sinciput"
+],
+"somata": [
+"soma"
+],
+"spermatozoa": [
+"spermatozoon"
+],
+"spicula": [
+"spiculum"
+],
+"splayfeet": [
+"splayfoot"
+],
+"splenii": [
+"splenius"
+],
+"sputa": [
+"sputum"
+],
+"stapedes": [
+"stapes"
+],
+"sterna": [
+"sternum"
+],
+"stomata": [
+"stoma"
+],
+"stromata": [
+"stroma"
+],
+"submucosae": [
+"submucosa"
+],
+"sulci": [
+"sulcus"
+],
+"syncytia": [
+"syncytium"
+],
+"blastemata": [
+"blastema"
+],
+"bregmata": [
+"bregma"
+],
+"bronchi": [
+"bronchus"
+],
+"buckteeth": [
+"bucktooth"
+],
+"bursae": [
+"bursa"
+],
+"occipita": [
+"occiput"
+],
+"oculi": [
+"oculus"
+],
+"oesophagi": [
+"esophagus",
+"oesophagus"
+],
+"omenta": [
+"omentum"
+],
+"ommatidia": [
+"ommatidium"
+],
+"ora": [
+"os"
+],
+"osar": [
+"os"
+],
+"ossa": [
+"os"
+],
+"ovotestes": [
+"ovotestis"
+],
+"ova": [
+"ovum"
+],
+"halluces": [
+"hallux"
+],
+"hila": [
+"hilum"
+],
+"hili": [
+"hilus"
+],
+"hippocampi": [
+"hippocampus"
+],
+"humeri": [
+"humerus"
+],
+"hypochondria": [
+"hypochondrium"
+],
+"hypophyses": [
+"hypophysis"
+],
+"hypothalami": [
+"hypothalamus"
+],
+"deciduae": [
+"decidua"
+],
+"diaphyses": [
+"diaphysis"
+],
+"diarthroses": [
+"diarthrosis"
+],
+"diastemata": [
+"diastema"
+],
+"dorsa": [
+"dorsum"
+],
+"duonena": [
+"duodenum"
+],
+"duonenums": [
+"duodenum"
+],
+"tarsi": [
+"tarsus"
+],
+"testes": [
+"testis"
+],
+"thalami": [
+"thalamus"
+],
+"thoraces": [
+"thorax"
+],
+"thymi": [
+"thymus"
+],
+"tibiae": [
+"tibia"
+],
+"tomenta": [
+"tomentum"
+],
+"torsi": [
+"torso"
+],
+"trabeculae": [
+"trabecula"
+],
+"tracheae": [
+"trachea"
+],
+"tragi": [
+"tragus"
+],
+"rhachises": [
+"rachis"
+],
+"rami": [
+"ramus"
+],
+"raphae": [
+"raphe"
+],
+"recta": [
+"rectum"
+],
+"recti": [
+"rectus"
+],
+"retia": [
+"rete"
+],
+"reticula": [
+"reticulum"
+],
+"retinae": [
+"retina"
+],
+"rhinencephala": [
+"rhinencephalon"
+],
+"rimae": [
+"rima"
+],
+"rugae": [
+"ruga"
+],
+"papillae": [
+"papilla"
+],
+"parietes": [
+"paries"
+],
+"patellae": [
+"patella"
+],
+"pelves": [
+"pelvis"
+],
+"penes": [
+"penis"
+],
+"pericardia": [
+"pericardium"
+],
+"perinea": [
+"perineum"
+],
+"periostea": [
+"periosteum"
+],
+"peritonea": [
+"peritoneum"
+],
+"pedes": [
+"pes"
+],
+"phalanges": [
+"phalanx"
+],
+"phalli": [
+"phallus"
+],
+"pharynges": [
+"pharynx"
+],
+"pinnae": [
+"pinna"
+],
+"placentae": [
+"placenta"
+],
+"pleurae": [
+"pleura"
+],
+"plicae": [
+"plica"
+],
+"pollices": [
+"pollex"
+],
+"pontes": [
+"pons"
+],
+"primordia": [
+"primordium"
+],
+"proboscides": [
+"proboscis"
+],
+"pronuclei": [
+"pronucleus"
+],
+"prosencephala": [
+"prosencephalon"
+],
+"pterygia": [
+"pterygium"
+],
+"pubes": [
+"pubis"
+],
+"pudenda": [
+"pudendum"
+],
+"putamina": [
+"putamen"
+],
+"pylori": [
+"pylorus"
+],
+"acetabula": [
+"acetabulum"
+],
+"acini": [
+"acinus"
+],
+"acromia": [
+"acromion"
+],
+"alae": [
+"ala"
+],
+"alveoli": [
+"alveolus"
+],
+"amygdalae": [
+"amygdala"
+],
+"anastomoses": [
+"anastomosis"
+],
+"anlagen": [
+"anlage"
+],
+"antisera": [
+"antiserum"
+],
+"antra": [
+"antrum"
+],
+"anus": [
+"anus"
+],
+"aortae": [
+"aorta"
+],
+"aponeuroses": [
+"aponeurosis"
+],
+"apophyses": [
+"apophysis"
+],
+"areolae": [
+"areola"
+],
+"astragali": [
+"astragalus"
+],
+"atheromata": [
+"atheroma"
+],
+"auriculae": [
+"auricula"
+],
+"axillae": [
+"axilla"
+],
+"ulnae": [
+"ulna"
+],
+"umbilici": [
+"umbilicus"
+],
+"umbones": [
+"umbo"
+],
+"urethrae": [
+"urethra"
+],
+"uteri": [
+"uterus"
+],
+"utriculi": [
+"utriculus"
+],
+"uvulae": [
+"uvula"
+],
+"faciae": [
+"facia"
+],
+"fasciculi": [
+"fasciculus"
+],
+"femora": [
+"femur"
+],
+"fenestrae": [
+"fenestra"
+],
+"fibulae": [
+"fibula"
+],
+"fila": [
+"filum"
+],
+"fimbriae": [
+"fimbria"
+],
+"fistulae": [
+"fistula"
+],
+"foramina": [
+"foramen"
+],
+"fornices": [
+"fornix"
+],
+"foveae": [
+"fovea"
+],
+"fundi": [
+"fundus"
+],
+"funiculi": [
+"funiculus"
+],
+"labia": [
+"labium"
+],
+"laminae": [
+"lamina"
+],
+"larynges": [
+"larynx"
+],
+"lati": [
+"lat"
+],
+"latu": [
+"lat"
+],
+"lemnisci": [
+"lemniscus"
+],
+"lentigines": [
+"lentigo"
+],
+"limbi": [
+"limbus"
+],
+"linguae": [
+"lingua"
+],
+"loculi": [
+"loculus"
+],
+"lumina": [
+"lumen"
+],
+"caeca": [
+"caecum"
+],
+"calcanei": [
+"calcaneus"
+],
+"calves": [
+"calf"
+],
+"cambia": [
+"cambium"
+],
+"canaliculi": [
+"canaliculus"
+],
+"canthi": [
+"canthus"
+],
+"carinae": [
+"carina"
+],
+"carpi": [
+"carpus"
+],
+"ceca": [
+"cecum"
+],
+"centra": [
+"centrum"
+],
+"cerebella": [
+"cerebellum"
+],
+"cerebra": [
+"cerebrum"
+],
+"cervices": [
+"cervix"
+],
+"chiasmata": [
+"chiasma"
+],
+"cilia": [
+"cilium"
+],
+"cingula": [
+"cingulum"
+],
+"cisternae": [
+"cisterna"
+],
+"coagula": [
+"coagulum"
+],
+"coccyges": [
+"coccyx"
+],
+"cochleae": [
+"cochlea"
+],
+"comedones": [
+"comedo"
+],
+"conchae": [
+"concha"
+],
+"conjunctivae": [
+"conjunctiva"
+],
+"coria": [
+"corium"
+],
+"corneae": [
+"cornea"
+],
+"cornua": [
+"cornu"
+],
+"corpora": [
+"corpus"
+],
+"cortices": [
+"cortex"
+],
+"costae": [
+"costa"
+],
+"coxae": [
+"coxa"
+],
+"crania": [
+"cranium"
+],
+"crura": [
+"crus"
+],
+"cutes": [
+"cutis"
+],
+"vaginae": [
+"vagina"
+],
+"vagi": [
+"vagus"
+],
+"valleculae": [
+"vallecula"
+],
+"vasa": [
+"vas"
+],
+"vela": [
+"velum"
+],
+"venae": [
+"vena"
+],
+"vermes": [
+"vermis"
+],
+"vertebrae": [
+"vertebra"
+],
+"vesicae": [
+"vesica"
+],
+"vulvae": [
+"vulva"
+],
+"nares": [
+"naris"
+],
+"nasopharynges": [
+"nasopharynx"
+],
+"neurohypophyses": [
+"neurohypophysis"
+],
+"nuchae": [
+"nucha"
+],
+"nucleoli": [
+"nucleolus"
+],
+"mallei": [
+"malleus"
+],
+"mamillae": [
+"mamilla"
+],
+"mammillae": [
+"mammilla"
+],
+"manubria": [
+"manubrium"
+],
+"marsupia": [
+"marsupium"
+],
+"maxillae": [
+"maxilla"
+],
+"mediastina": [
+"mediastinum"
+],
+"medullae": [
+"medulla"
+],
+"metacarpi": [
+"metacarpus"
+],
+"metatarsi": [
+"metatarsus"
+],
+"metencephala": [
+"metencephalon"
+],
+"milia": [
+"milium"
+],
+"mitochondria": [
+"mitochondrion"
+],
+"modioli": [
+"modiolus"
+],
+"mucosae": [
+"mucosa"
+],
+"myelencephala": [
+"myelencephalon"
+],
+"myocardia": [
+"myocardium"
+],
+"myofibrillae": [
+"myofibrilla"
+],
+"enarthroses": [
+"enarthrosis"
+],
+"encephala": [
+"encephalon"
+],
+"endocardia": [
+"endocardium"
+],
+"endocrania": [
+"endocranium"
+],
+"endometria": [
+"endometrium"
+],
+"endostea": [
+"endosteum"
+],
+"endothelia": [
+"endothelium"
+],
+"entera": [
+"enteron"
+],
+"epicanthi": [
+"epicanthus"
+],
+"epicardia": [
+"epicardium"
+],
+"epididymides": [
+"epididymis"
+],
+"epigastria": [
+"epigastrium"
+],
+"epiglottides": [
+"epiglottis"
+],
+"epiphyses": [
+"epiphysis"
+],
+"epithelia": [
+"epithelium"
+],
+"esophagi": [
+"esophagus"
+],
+"eyeteeth": [
+"eyetooth"
+],
+"groszy": [
+"grosz"
+],
+"guilders": [
+"guilder"
+],
+"santimi": [
+"santims"
+],
+"senti": [
+"sent"
+],
+"lisente": [
+"sente"
+],
+"listente": [
+"sente"
+],
+"stotinki": [
+"stotinka"
+],
+"stotkini": [
+"stotinka"
+],
+"bolivares": [
+"bolivar"
+],
+"oboli": [
+"obolus"
+],
+"haleru": [
+"haler"
+],
+"halves": [
+"half"
+],
+"drachmae": [
+"drachma"
+],
+"terzetti": [
+"terzetto"
+],
+"radices": [
+"radix"
+],
+"reales": [
+"real"
+],
+"reis": [
+"real"
+],
+"artal": [
+"rotl"
+],
+"artel": [
+"rotl"
+],
+"paise": [
+"paisa"
+],
+"pennia": [
+"penni"
+],
+"pence": [
+"penny"
+],
+"pfennige": [
+"pfennig"
+],
+"puli": [
+"pul"
+],
+"acre-feet": [
+"acre-foot"
+],
+"lei": [
+"leu"
+],
+"leva": [
+"lev"
+],
+"makuta": [
+"likuta"
+],
+"lire": [
+"lira"
+],
+"litu": [
+"litas"
+],
+"maloti": [
+"loti"
+],
+"centesimi": [
+"centesimo"
+],
+"congii": [
+"congius"
+],
+"kronur": [
+"krona"
+],
+"kronen": [
+"krone"
+],
+"kroner": [
+"krone"
+],
+"krooni": [
+"kroon"
+],
+"markkaa": [
+"markka"
+],
+"minima": [
+"minimum"
+],
+"moduli": [
+"modulus"
+],
+"monades": [
+"monad",
+"monas"
+],
+"extrema": [
+"extremum"
+],
+"aurar": [
+"eyrir"
+],
+"inocula": [
+"inoculum"
+],
+"scoriae": [
+"scoria"
+],
+"stuccoes": [
+"stucco"
+],
+"boraces": [
+"borax"
+],
+"alkalies": [
+"alkali"
+],
+"ashes": [
+"ash"
+],
+"feculae": [
+"fecula"
+],
+"calces": [
+"calx"
+],
+"magmata": [
+"magma"
+],
+"menstrua": [
+"menstruum"
+],
+"effluvia": [
+"effluvium"
+],
+"ghettoes": [
+"ghetto"
+],
+"sancta": [
+"sanctum"
+],
+"penetralia": [
+"penetralium"
+],
+"perihelia": [
+"perihelion"
+],
+"apices": [
+"apex"
+],
+"aphelia": [
+"aphelion"
+],
+"loci": [
+"locus"
+],
+"necropoleis": [
+"necropolis"
+],
+"garfishes": [
+"garfish"
+],
+"gastrulae": [
+"gastrula"
+],
+"geckoes": [
+"gecko"
+],
+"gemboks": [
+"gemsbok"
+],
+"gembucks": [
+"gemsbuck"
+],
+"globefishes": [
+"globefish"
+],
+"globigerinae": [
+"globigerina"
+],
+"goatfishes": [
+"goatfish"
+],
+"goldfishes": [
+"goldfish"
+],
+"gonococci": [
+"gonococcus"
+],
+"goosefishes": [
+"goosefish"
+],
+"guitarfishes": [
+"guitarfish"
+],
+"gurnards": [
+"gurnard"
+],
+"ibices": [
+"ibex"
+],
+"ichthyosauruses": [
+"ichthyosaur",
+"ichthyosaurus"
+],
+"ichthyosauri": [
+"ichthyosaurus"
+],
+"salmonellae": [
+"salmonella"
+],
+"salpae": [
+"salpa"
+],
+"sawfishes": [
+"sawfish"
+],
+"scarabaei": [
+"scarabaeus"
+],
+"scyphozoa": [
+"scyphozoan"
+],
+"setae": [
+"seta"
+],
+"sheatfishes": [
+"sheatfish"
+],
+"shrewmice": [
+"shrewmouse"
+],
+"silverfishes": [
+"silverfish"
+],
+"snailfishes": [
+"snailfish"
+],
+"snipefishes": [
+"snipefish"
+],
+"spadefishes": [
+"spadefish"
+],
+"spearfishes": [
+"spearfish"
+],
+"spirilla": [
+"spirillum"
+],
+"sporozoa": [
+"sporozoan"
+],
+"squamae": [
+"squama"
+],
+"squillae": [
+"squilla"
+],
+"squirrelfishes": [
+"squirrelfish"
+],
+"staphylococci": [
+"staphylococcus"
+],
+"starfishes": [
+"starfish"
+],
+"stonefishes": [
+"stonefish"
+],
+"streptococci": [
+"streptococcus"
+],
+"suckerfishes": [
+"suckerfish"
+],
+"surgeonfishes": [
+"surgeonfish"
+],
+"bacilli": [
+"bacillus"
+],
+"barramundies": [
+"barramundi"
+],
+"batfishes": [
+"batfish"
+],
+"billfishes": [
+"billfish"
+],
+"blackfishes": [
+"blackfish"
+],
+"blastulae": [
+"blastula"
+],
+"boarfishes": [
+"boarfish"
+],
+"bonefishes": [
+"bonefish"
+],
+"booklice": [
+"booklouse"
+],
+"boxfishes": [
+"boxfish"
+],
+"branchiae": [
+"branchia"
+],
+"brants": [
+"brant",
+"brent"
+],
+"bryozoa": [
+"bryozoan"
+],
+"byssi": [
+"byssus"
+],
+"oarfishes": [
+"oarfish"
+],
+"oldwives": [
+"oldwife"
+],
+"omasa": [
+"omasum"
+],
+"opercula": [
+"operculum"
+],
+"orthoptera": [
+"orthopteron"
+],
+"oxen": [
+"ox"
+],
+"hagfishes": [
+"hagfish"
+],
+"heliozoa": [
+"heliozoan"
+],
+"hippopotami": [
+"hippopotamus"
+],
+"hogfishes": [
+"hogfish"
+],
+"hooves": [
+"hoof"
+],
+"hydrozoa": [
+"hydrozoan"
+],
+"hymenoptera": [
+"hymenopteran"
+],
+"hyraces": [
+"hyrax"
+],
+"jellyfishes": [
+"jellyfish"
+],
+"jewfishes": [
+"jewfish"
+],
+"damselfishes": [
+"damselfish"
+],
+"dealfishes": [
+"dealfish"
+],
+"devilfishes": [
+"devilfish"
+],
+"dingoes": [
+"dingo"
+],
+"diplococci": [
+"diplococcus"
+],
+"dogfishes": [
+"dogfish"
+],
+"dollarfishes": [
+"dollarfish"
+],
+"dormice": [
+"dormouse"
+],
+"drosophilae": [
+"drosophila"
+],
+"drumfishes": [
+"drumfish"
+],
+"tarantulae": [
+"tarantula"
+],
+"terata": [
+"teras"
+],
+"teredines": [
+"teredo"
+],
+"thecae": [
+"theca"
+],
+"tilefishes": [
+"tilefish"
+],
+"titmice": [
+"titmouse"
+],
+"toadfishes": [
+"toadfish"
+],
+"touracos": [
+"touraco",
+"turaco"
+],
+"treponemata": [
+"treponema"
+],
+"trichinae": [
+"trichina"
+],
+"triggerfishes": [
+"triggerfish"
+],
+"trunkfishes": [
+"trunkfish"
+],
+"rabbitfishes": [
+"rabbitfish"
+],
+"ribbonfishes": [
+"ribbonfish"
+],
+"rickettsiae": [
+"rickettsia"
+],
+"rumina": [
+"rumen"
+],
+"paddlefishes": [
+"paddlefish"
+],
+"paramecia": [
+"paramecium"
+],
+"parapodia": [
+"parapodium"
+],
+"parazoa": [
+"parazoan"
+],
+"parrotfishes": [
+"parrotfish"
+],
+"pigfishes": [
+"pigfish"
+],
+"pinfishes": [
+"pinfish"
+],
+"pipefishes": [
+"pipefish"
+],
+"planulae": [
+"planula"
+],
+"plasmodia": [
+"plasmodium"
+],
+"pneumococci": [
+"pneumococcus"
+],
+"polyzoa": [
+"polyzoan"
+],
+"prothoraces": [
+"prothorax"
+],
+"protozoa": [
+"protozoan"
+],
+"psalteria": [
+"psalterium"
+],
+"pseudopodia": [
+"pseudopodium"
+],
+"pupae": [
+"pupa"
+],
+"aardwolves": [
+"aardwolf"
+],
+"acari": [
+"acarus"
+],
+"actiniae": [
+"actinia"
+],
+"actinozoa": [
+"actinozoan"
+],
+"agouties": [
+"agouti"
+],
+"alulae": [
+"alula"
+],
+"ambulacra": [
+"ambulacrum"
+],
+"amebae": [
+"ameba"
+],
+"amnia": [
+"amnion"
+],
+"amoebae": [
+"amoeba"
+],
+"amphioxi": [
+"amphioxus"
+],
+"angelfishes": [
+"angelfish"
+],
+"animalcula": [
+"animalculum"
+],
+"anthozoa": [
+"anthozoan"
+],
+"archerfishes": [
+"archerfish"
+],
+"araglis": [
+"argali"
+],
+"argali": [
+"argali"
+],
+"aristae": [
+"arista"
+],
+"fieldmice": [
+"fieldmouse"
+],
+"filariiae": [
+"filaria"
+],
+"filefishes": [
+"filefish"
+],
+"flamingoes": [
+"flamingo"
+],
+"forefeet": [
+"forefoot"
+],
+"frogfishes": [
+"frogfish"
+],
+"fuci": [
+"fucus"
+],
+"furculae": [
+"furcula"
+],
+"lactobacilli": [
+"lactobacillus"
+],
+"larvae": [
+"larva"
+],
+"lepidoptera": [
+"lepidopteran"
+],
+"leptocephali": [
+"leptocephalus"
+],
+"leucocytozoa": [
+"leucocytozoan"
+],
+"lionfishes": [
+"lionfish"
+],
+"loricae": [
+"lorica"
+],
+"lumbi": [
+"lumbus"
+],
+"lumpfishes": [
+"lumpfish"
+],
+"lungfishes": [
+"lungfish"
+],
+"calami": [
+"calamus"
+],
+"cattaloes": [
+"cattalo"
+],
+"cercariae": [
+"cercaria"
+],
+"cercariiae": [
+"cercaria"
+],
+"chaetae": [
+"chaeta"
+],
+"chalazae": [
+"chalaza"
+],
+"chelicerae": [
+"chelicera"
+],
+"chrysalides": [
+"chrysalis"
+],
+"cicadae": [
+"cicada"
+],
+"cicale": [
+"cicala"
+],
+"clingfishes": [
+"clingfish"
+],
+"clostridia": [
+"clostridium"
+],
+"clypei": [
+"clypeus"
+],
+"cocci": [
+"coccus"
+],
+"coelentera": [
+"coelenteron"
+],
+"confervae": [
+"conferva"
+],
+"cowfishes": [
+"cowfish"
+],
+"ctenidia": [
+"ctenidium"
+],
+"cuticulae": [
+"cuticula"
+],
+"cuttlefishes": [
+"cuttlefish"
+],
+"cyclopes": [
+"cyclops"
+],
+"ventriculi": [
+"ventriculus"
+],
+"vibrissae": [
+"vibrissa"
+],
+"villi": [
+"villus"
+],
+"vitelli": [
+"vitellus"
+],
+"vorticellae": [
+"vorticella"
+],
+"wolffishes": [
+"wolffish"
+],
+"woodlice": [
+"woodlouse"
+],
+"wreckfishes": [
+"wreckfish"
+],
+"needlefishes": [
+"needlefish"
+],
+"neuroptera": [
+"neuropteron"
+],
+"nilgai": [
+"nilgai"
+],
+"noctilucae": [
+"noctiluca"
+],
+"numbfishes": [
+"numbfish"
+],
+"keeshonden": [
+"keeshond"
+],
+"killifishes": [
+"killifish"
+],
+"mesdemoiselles": [
+"mademoiselle"
+],
+"mantes": [
+"mantis"
+],
+"medusae": [
+"medusa"
+],
+"metazoa": [
+"metazoan"
+],
+"minae": [
+"mina"
+],
+"moonfishes": [
+"moonfish"
+],
+"morulae": [
+"morula"
+],
+"mosquitoes": [
+"mosquito"
+],
+"mycobacteria": [
+"mycobacterium"
+],
+"echidnae": [
+"echidna"
+],
+"echinococci": [
+"echinococcus"
+],
+"ectozoa": [
+"ectozoan"
+],
+"elytra": [
+"elytron"
+],
+"endamebae": [
+"endameba"
+],
+"endozoa": [
+"endozoan"
+],
+"entozoa": [
+"entozoan",
+"entozoon"
+],
+"ephemera": [
+"ephemeron"
+],
+"epizoa": [
+"epizoan",
+"epizoon"
+],
+"galeae": [
+"galea"
+],
+"gametangia": [
+"gametangium"
+],
+"gametoecia": [
+"gametoecium"
+],
+"gemmae": [
+"gemma"
+],
+"gingkoes": [
+"gingko"
+],
+"ginkgoes": [
+"ginkgo"
+],
+"glochidcia": [
+"glochidium"
+],
+"glochidia": [
+"glochidium"
+],
+"gynoecea": [
+"gynoecium"
+],
+"gynoecia": [
+"gynoecium"
+],
+"indusia": [
+"indusium"
+],
+"involucra": [
+"involucre"
+],
+"saguaros": [
+"saguaro",
+"sahuaro"
+],
+"sclerotia": [
+"sclerotium"
+],
+"shinleaves": [
+"shinleaf"
+],
+"shittim": [
+"shittah"
+],
+"siliquae": [
+"siliqua"
+],
+"sori": [
+"sorus"
+],
+"spadices": [
+"spadix"
+],
+"sporangia": [
+"sporangium"
+],
+"stamina": [
+"stamen"
+],
+"strobili": [
+"strobilus"
+],
+"stylopodia": [
+"stylopodium"
+],
+"syconia": [
+"syconium"
+],
+"basidia": [
+"basidium"
+],
+"haustoria": [
+"haustorium"
+],
+"hymenia": [
+"hymenium"
+],
+"hymeniums": [
+"hymenium"
+],
+"hypanthia": [
+"hypanthium"
+],
+"hyphae": [
+"hypha"
+],
+"delphinia": [
+"delphinium"
+],
+"domatia": [
+"domatium"
+],
+"testae": [
+"testa"
+],
+"thalli": [
+"thallus"
+],
+"therses": [
+"thyrse"
+],
+"thyrsi": [
+"thyrsus"
+],
+"palmettoes": [
+"palmetto"
+],
+"pappi": [
+"pappus"
+],
+"paraphyses": [
+"paraphysis"
+],
+"peridia": [
+"peridium"
+],
+"perigonia": [
+"perigonium"
+],
+"perithecia": [
+"perithecium"
+],
+"philodendra": [
+"philodendron"
+],
+"pilei": [
+"pileus"
+],
+"podetia": [
+"podetium"
+],
+"pollinia": [
+"pollinium"
+],
+"promycelia": [
+"promycelium"
+],
+"pycnidia": [
+"pycnidium"
+],
+"pyxidia": [
+"pyxidium"
+],
+"acanthi": [
+"acanthus"
+],
+"aecia": [
+"aecium"
+],
+"androecia": [
+"androecium"
+],
+"andtheridia": [
+"antheridium"
+],
+"antheridia": [
+"antheridium"
+],
+"apothecia": [
+"apothecium"
+],
+"archegonia": [
+"archegonium"
+],
+"archesporia": [
+"archesporium"
+],
+"asci": [
+"ascus"
+],
+"frijoles": [
+"frijol"
+],
+"fungi": [
+"fungus"
+],
+"cacti": [
+"cactus"
+],
+"calli": [
+"callus"
+],
+"calyces": [
+"calyx"
+],
+"capitula": [
+"capitulum"
+],
+"caryopses": [
+"caryopsis"
+],
+"caryopsides": [
+"caryopsis"
+],
+"caudices": [
+"caudex"
+],
+"conidia": [
+"conidium"
+],
+"convolvuli": [
+"convolvulus"
+],
+"cortinae": [
+"cortina"
+],
+"volvae": [
+"volva"
+],
+"narcissi": [
+"narcissus"
+],
+"nucelli": [
+"nucellus"
+],
+"macrosporangia": [
+"macrosporangium"
+],
+"madornos": [
+"madrono"
+],
+"megasporangia": [
+"megasporangium"
+],
+"microsporangia": [
+"microsporangium"
+],
+"mycelia": [
+"mycelium"
+],
+"eddoes": [
+"eddo"
+],
+"epicalyces": [
+"epicalyx"
+],
+"eringoes": [
+"eringo"
+],
+"eryngoes": [
+"eryngo"
+],
+"eucalypti": [
+"eucalyptus"
+],
+"interregna": [
+"interregnum"
+],
+"bicennaries": [
+"bicentenary",
+"bicentennial"
+],
+"decennia": [
+"decennium"
+],
+"tempi": [
+"tempo"
+],
+"continua": [
+"continuum"
+],
+"quadrennia": [
+"quadrennium"
+],
+"quinquennia": [
+"quinquennium"
+],
+"millennia": [
+"millennium"
+],
+"moratoria": [
+"moratorium"
+],
+"ephemerae": [
+"ephemera"
+],
+"residua": [
+"residuum"
+],
+"zoonoses": [
+"zoonosis"
+],
+"gliomata": [
+"glioma"
+],
+"granulomata": [
+"granuloma"
+],
+"gummata": [
+"gumma"
+],
+"scleroses": [
+"sclerosis"
+],
+"scotomata": [
+"scotoma"
+],
+"sequelae": [
+"sequela"
+],
+"stenoses": [
+"stenosis"
+],
+"strumae": [
+"struma"
+],
+"symphyses": [
+"symphysis"
+],
+"buboes": [
+"bubo"
+],
+"oedemata": [
+"edema",
+"oedema"
+],
+"osteomata": [
+"osteoma"
+],
+"haematomata": [
+"haematoma"
+],
+"haemoptyses": [
+"haemoptysis"
+],
+"hematomata": [
+"hematoma"
+],
+"hemoptyses": [
+"hemoptysis"
+],
+"herniae": [
+"hernia"
+],
+"hypnoses": [
+"hypnosis"
+],
+"dermatoses": [
+"dermatosis"
+],
+"diastases": [
+"diastasis"
+],
+"diathses": [
+"diathesis"
+],
+"diverticula": [
+"diverticulum"
+],
+"thrombi": [
+"thrombus"
+],
+"traumata": [
+"trauma"
+],
+"ranulae": [
+"ranula"
+],
+"rhabdomyomata": [
+"rhabdomyoma"
+],
+"papillomata": [
+"papilloma"
+],
+"paralyses": [
+"paralysis"
+],
+"penumbrae": [
+"penumbra"
+],
+"petechiae": [
+"petechia"
+],
+"polypi": [
+"polypus"
+],
+"psychoneuroses": [
+"psychoneurosis"
+],
+"psychoses": [
+"psychosis"
+],
+"ptoses": [
+"ptosis"
+],
+"adenocarcinomata": [
+"adenocarcinoma"
+],
+"adenomata": [
+"adenoma"
+],
+"amoebiases": [
+"amoebiasis"
+],
+"angiomata": [
+"angioma"
+],
+"anthraces": [
+"anthrax"
+],
+"arterioscleroses": [
+"arteriosclerosis"
+],
+"aspergilloses": [
+"aspergillosis"
+],
+"atheroscleroses": [
+"atherosclerosis"
+],
+"avitaminoses": [
+"avitaminosis"
+],
+"umbrae": [
+"umbra"
+],
+"fibromata": [
+"fibroma"
+],
+"lipomata": [
+"lipoma"
+],
+"lyings-in": [
+"lying-in"
+],
+"lymphangitides": [
+"lymphangitis"
+],
+"lymphomata": [
+"lymphoma"
+],
+"carcinomata": [
+"carcinoma"
+],
+"chondromata": [
+"chondroma"
+],
+"cicatrices": [
+"cicatrix"
+],
+"crises": [
+"crisis"
+],
+"varices": [
+"varix"
+],
+"vertigines": [
+"vertigo"
+],
+"vertigoes": [
+"vertigo"
+],
+"nemeses": [
+"nemesis"
+],
+"neuromata": [
+"neuroma"
+],
+"neuroses": [
+"neurosis"
+],
+"melanomata": [
+"melanoma"
+],
+"miasmata": [
+"miasma"
+],
+"milieux": [
+"milieu"
+],
+"myiases": [
+"myiasis"
+],
+"myomata": [
+"myoma"
+],
+"myxomata": [
+"myxoma"
+],
+"ecchymoses": [
+"ecchymosis"
+],
+"edemata": [
+"edema"
+],
+"emboli": [
+"embolus"
+],
+"encephalitides": [
+"encephalitis"
+],
+"enchondromata": [
+"enchondroma"
+],
+"epitheliomata": [
+"epithelioma"
+],
+"exanthemata": [
+"exanthema"
+],
+"exostoses": [
+"exostosis"
+],
+"geneses": [
+"genesis"
+],
+"rhonchi": [
+"rhonchus"
+],
+"amphimixes": [
+"amphimixis"
+],
+"fiascoes": [
+"fiasco"
+],
+"yeshivahs": [
+"yeshiva"
+],
+"yeshivoth": [
+"yeshiva"
+],
+"gentes": [
+"gens"
+],
+"subgenera": [
+"subgenus"
+],
+"subphyla": [
+"subphylum"
+],
+"symposia": [
+"symposium"
+],
+"bibliothecae": [
+"bibliotheca"
+],
+"herbaria": [
+"herbarium"
+],
+"taxa": [
+"taxon"
+],
+"phylae": [
+"phyle"
+],
+"phyla": [
+"phylum"
+],
+"armamentaria": [
+"armamentarium"
+],
+"farragoes": [
+"farrago"
+],
+"catenae": [
+"catena"
+],
+"consortia": [
+"consortium"
+],
+"kibbutzim": [
+"kibbutz"
+],
+"minyanim": [
+"minyan"
+],
+"moshavim": [
+"moshav"
+],
+"halfpence": [
+"halfpenny"
+],
+"honoraria": [
+"honorarium"
+],
+"synapses": [
+"synapsis"
+],
+"bacteriostases": [
+"bacteriostasis"
+],
+"haematolyses": [
+"haematolysis"
+],
+"haemolyses": [
+"haemolysis"
+],
+"hematolyses": [
+"hematolysis"
+],
+"hemolyses": [
+"hemolysis"
+],
+"palingeneses": [
+"palingenesis"
+],
+"peristalses": [
+"peristalsis"
+],
+"phylogeneses": [
+"phylogenesis"
+],
+"apomixes": [
+"apomixis"
+],
+"autocatalyses": [
+"autocatalysis"
+],
+"lymphopoieses": [
+"lymphopoiesis"
+],
+"lyses": [
+"lysis"
+],
+"catalyses": [
+"catalysis"
+],
+"metastases": [
+"metastasis"
+],
+"metatheses": [
+"metathesis"
+],
+"morphallaxes": [
+"morphallaxis"
+],
+"ecdyses": [
+"ecdysis"
+],
+"ellipses": [
+"ellipsis"
+]
+},
+"verb": {
+"zapped": [
+"zap"
+],
+"zapping": [
+"zap"
+],
+"zipped": [
+"zip"
+],
+"zipping": [
+"zip"
+],
+"gagged": [
+"gag"
+],
+"gagging": [
+"gag"
+],
+"gapped": [
+"gap"
+],
+"gapping": [
+"gap"
+],
+"getting": [
+"get"
+],
+"got": [
+"get"
+],
+"gotten": [
+"get"
+],
+"gan": [
+"gin"
+],
+"ginned": [
+"gin"
+],
+"ginning": [
+"gin"
+],
+"girt": [
+"gird"
+],
+"gave": [
+"give"
+],
+"given": [
+"give"
+],
+"gnawn": [
+"gnaw"
+],
+"gone": [
+"go"
+],
+"went": [
+"go"
+],
+"grabbed": [
+"grab"
+],
+"grabbing": [
+"grab"
+],
+"graven": [
+"grave"
+],
+"gravelled": [
+"gravel"
+],
+"gravelling": [
+"gravel"
+],
+"ground": [
+"grind"
+],
+"gripped": [
+"grip"
+],
+"gripping": [
+"grip"
+],
+"gript": [
+"grip"
+],
+"gritted": [
+"grit"
+],
+"gritting": [
+"grit"
+],
+"grubbed": [
+"grub"
+],
+"grubbing": [
+"grub"
+],
+"gummed": [
+"gum"
+],
+"gumming": [
+"gum"
+],
+"imbedded": [
+"imbed"
+],
+"imbedding": [
+"imbed"
+],
+"impelled": [
+"impel"
+],
+"impelling": [
+"impel"
+],
+"inspanned": [
+"inspan"
+],
+"inspanning": [
+"inspan"
+],
+"installed": [
+"instal",
+"install"
+],
+"installing": [
+"instal",
+"install"
+],
+"interbred": [
+"interbreed"
+],
+"interwove": [
+"interweave"
+],
+"interwoven": [
+"interweave"
+],
+"inwove": [
+"inweave"
+],
+"inwoven": [
+"inweave"
+],
+"sandbagged": [
+"sandbag"
+],
+"sandbagging": [
+"sandbag"
+],
+"sapped": [
+"sap"
+],
+"sapping": [
+"sap"
+],
+"sawn": [
+"saw"
+],
+"scanned": [
+"scan"
+],
+"scanning": [
+"scan"
+],
+"scarred": [
+"scar"
+],
+"scarring": [
+"scar"
+],
+"scarified": [
+"scarify"
+],
+"scragged": [
+"scrag"
+],
+"scragging": [
+"scrag"
+],
+"scrubbed": [
+"scrub"
+],
+"scrubbing": [
+"scrub"
+],
+"saw": [
+"see"
+],
+"seen": [
+"see"
+],
+"seed": [
+"seed"
+],
+"sought": [
+"seek"
+],
+"sent": [
+"send"
+],
+"setting": [
+"set"
+],
+"sewn": [
+"sew"
+],
+"shaven": [
+"shave"
+],
+"shed": [
+"shed"
+],
+"shedding": [
+"shed"
+],
+"shellacked": [
+"shellac"
+],
+"shellacking": [
+"shellac"
+],
+"shone": [
+"shine"
+],
+"shipped": [
+"ship"
+],
+"shipping": [
+"ship"
+],
+"shot": [
+"shoot"
+],
+"shovelled": [
+"shovel"
+],
+"shovelling": [
+"shovel"
+],
+"shredded": [
+"shred"
+],
+"shredding": [
+"shred"
+],
+"shutting": [
+"shut"
+],
+"shied": [
+"shy"
+],
+"sank": [
+"sink"
+],
+"sunk": [
+"sink"
+],
+"sunken": [
+"sink"
+],
+"sat": [
+"sit"
+],
+"sitting": [
+"sit"
+],
+"skimmed": [
+"skim"
+],
+"skimming": [
+"skim"
+],
+"skinned": [
+"skin"
+],
+"skinning": [
+"skin"
+],
+"skipped": [
+"skip"
+],
+"skipping": [
+"skip"
+],
+"slammed": [
+"slam"
+],
+"slamming": [
+"slam"
+],
+"slapped": [
+"slap"
+],
+"slapping": [
+"slap"
+],
+"slatted": [
+"slat"
+],
+"slatting": [
+"slat"
+],
+"slung": [
+"sling"
+],
+"slitting": [
+"slit"
+],
+"slogged": [
+"slog"
+],
+"slogging": [
+"slog"
+],
+"slopped": [
+"slop"
+],
+"slopping": [
+"slop"
+],
+"slugged": [
+"slug"
+],
+"slugging": [
+"slug"
+],
+"smit": [
+"smite"
+],
+"smitten": [
+"smite"
+],
+"smote": [
+"smite"
+],
+"snagged": [
+"snag"
+],
+"snagging": [
+"snag"
+],
+"snapped": [
+"snap"
+],
+"snapping": [
+"snap"
+],
+"snipped": [
+"snip"
+],
+"snipping": [
+"snip"
+],
+"snogged": [
+"snog"
+],
+"snogging": [
+"snog"
+],
+"sodded": [
+"sod"
+],
+"sodding": [
+"sod"
+],
+"sopped": [
+"sop"
+],
+"sopping": [
+"sop"
+],
+"sown": [
+"sow"
+],
+"sparred": [
+"spar"
+],
+"sparring": [
+"spar"
+],
+"spatted": [
+"spat"
+],
+"spatting": [
+"spat"
+],
+"spilt": [
+"spill"
+],
+"spinning": [
+"spin"
+],
+"spun": [
+"spin"
+],
+"spat": [
+"spit"
+],
+"spitted": [
+"spit"
+],
+"spitting": [
+"spit"
+],
+"splitting": [
+"split"
+],
+"spoilt": [
+"spoil"
+],
+"spotted": [
+"spot"
+],
+"spotting": [
+"spot"
+],
+"spudded": [
+"spud"
+],
+"spudding": [
+"spud"
+],
+"spurred": [
+"spur"
+],
+"spurring": [
+"spur"
+],
+"squatted": [
+"squat"
+],
+"squatting": [
+"squat"
+],
+"squilgee": [
+"squeegee"
+],
+"stabbed": [
+"stab"
+],
+"stabbing": [
+"stab"
+],
+"stood": [
+"stand"
+],
+"steadied": [
+"steady"
+],
+"stepped": [
+"step"
+],
+"stepping": [
+"step"
+],
+"stuck": [
+"stick"
+],
+"stung": [
+"sting"
+],
+"stirred": [
+"stir"
+],
+"stirring": [
+"stir"
+],
+"stopped": [
+"stop"
+],
+"stopping": [
+"stop"
+],
+"strapped": [
+"strap"
+],
+"strapping": [
+"strap"
+],
+"stratified": [
+"stratify"
+],
+"strewn": [
+"strew"
+],
+"struck": [
+"strike"
+],
+"strung": [
+"string"
+],
+"stripped": [
+"strip"
+],
+"stripping": [
+"strip"
+],
+"stropped": [
+"strop"
+],
+"stropping": [
+"strop"
+],
+"stubbed": [
+"stub"
+],
+"stubbing": [
+"stub"
+],
+"studded": [
+"stud"
+],
+"studding": [
+"stud"
+],
+"stunned": [
+"stun"
+],
+"stunning": [
+"stun"
+],
+"sullied": [
+"sully"
+],
+"swabbed": [
+"swab"
+],
+"swabbing": [
+"swab"
+],
+"swatted": [
+"swat"
+],
+"swatting": [
+"swat"
+],
+"swept": [
+"sweep"
+],
+"swigged": [
+"swig"
+],
+"swigging": [
+"swig"
+],
+"swung": [
+"swing"
+],
+"syllabified": [
+"syllabify"
+],
+"bagged": [
+"bag"
+],
+"bagging": [
+"bag"
+],
+"barred": [
+"bar"
+],
+"barring": [
+"bar"
+],
+"barrelled": [
+"barrel"
+],
+"barrelling": [
+"barrel"
+],
+"batted": [
+"bat"
+],
+"batting": [
+"bat"
+],
+"bayonetted": [
+"bayonet"
+],
+"bayonetting": [
+"bayonet"
+],
+"bore": [
+"bear"
+],
+"born": [
+"bear"
+],
+"borne": [
+"bear"
+],
+"beaten": [
+"beat"
+],
+"bed": [
+"bed"
+],
+"bedded": [
+"bed"
+],
+"bedding": [
+"bed"
+],
+"bent": [
+"bend"
+],
+"berried": [
+"berry"
+],
+"besetting": [
+"beset"
+],
+"bestrewn": [
+"bestrew"
+],
+"bevelled": [
+"bevel"
+],
+"bevelling": [
+"bevel"
+],
+"binned": [
+"bin"
+],
+"binning": [
+"bin"
+],
+"bound": [
+"bind"
+],
+"bit": [
+"bite"
+],
+"bitten": [
+"bite"
+],
+"blackberried": [
+"blackberry"
+],
+"blobbed": [
+"blob"
+],
+"blobbing": [
+"blob"
+],
+"blotted": [
+"blot"
+],
+"blotting": [
+"blot"
+],
+"blew": [
+"blow"
+],
+"blown": [
+"blow"
+],
+"blurred": [
+"blur"
+],
+"blurring": [
+"blur"
+],
+"bobbed": [
+"bob"
+],
+"bobbing": [
+"bob"
+],
+"bopped": [
+"bop"
+],
+"bopping": [
+"bop"
+],
+"broke": [
+"break"
+],
+"broken": [
+"break"
+],
+"bred": [
+"breed"
+],
+"brought": [
+"bring"
+],
+"buried": [
+"bury"
+],
+"outspanned": [
+"outspan"
+],
+"outspanning": [
+"outspan"
+],
+"overbore": [
+"overbear"
+],
+"overborne": [
+"overbear"
+],
+"overlaid": [
+"overlay"
+],
+"overlain": [
+"overlie"
+],
+"overlay": [
+"overlie"
+],
+"overlying": [
+"overlie"
+],
+"oversewn": [
+"oversew"
+],
+"hung": [
+"hang"
+],
+"hatchelled": [
+"hatchel"
+],
+"hatchelling": [
+"hatchel"
+],
+"had": [
+"have"
+],
+"has": [
+"have"
+],
+"hove": [
+"heave"
+],
+"hemmed": [
+"hem"
+],
+"hemming": [
+"hem"
+],
+"hewn": [
+"hew"
+],
+"hid": [
+"hide"
+],
+"hidden": [
+"hide"
+],
+"hitting": [
+"hit"
+],
+"hobbed": [
+"hob"
+],
+"hobbing": [
+"hob"
+],
+"held": [
+"hold"
+],
+"horsewhipped": [
+"horsewhip"
+],
+"horsewhipping": [
+"horsewhip"
+],
+"hugged": [
+"hug"
+],
+"hugging": [
+"hug"
+],
+"jabbed": [
+"jab"
+],
+"jabbing": [
+"jab"
+],
+"jagged": [
+"jag"
+],
+"jagging": [
+"jag"
+],
+"jammed": [
+"jam"
+],
+"jamming": [
+"jam"
+],
+"jarred": [
+"jar"
+],
+"jarring": [
+"jar"
+],
+"jetted": [
+"jet"
+],
+"jetting": [
+"jet"
+],
+"jimmied": [
+"jimmy"
+],
+"jogged": [
+"jog"
+],
+"jogging": [
+"jog"
+],
+"dabbed": [
+"dab"
+],
+"dabbing": [
+"dab"
+],
+"dammed": [
+"dam"
+],
+"damming": [
+"dam"
+],
+"dying": [
+"die"
+],
+"digging": [
+"dig"
+],
+"dug": [
+"dig"
+],
+"dipped": [
+"dip"
+],
+"dipping": [
+"dip"
+],
+"dirtied": [
+"dirty"
+],
+"disbudded": [
+"disbud"
+],
+"disbudding": [
+"disbud"
+],
+"dishevelled": [
+"dishevel"
+],
+"dishevelling": [
+"dishevel"
+],
+"dotted": [
+"dot"
+],
+"dotting": [
+"dot"
+],
+"dragged": [
+"drag"
+],
+"dragging": [
+"drag"
+],
+"drawn": [
+"draw"
+],
+"drew": [
+"draw"
+],
+"dripped": [
+"drip"
+],
+"dripping": [
+"drip"
+],
+"driven": [
+"drive"
+],
+"drove": [
+"drive"
+],
+"dropped": [
+"drop"
+],
+"dropping": [
+"drop"
+],
+"drubbed": [
+"drub"
+],
+"drubbing": [
+"drub"
+],
+"tagged": [
+"tag"
+],
+"tagging": [
+"tag"
+],
+"taken": [
+"take"
+],
+"took": [
+"take"
+],
+"tapped": [
+"tap"
+],
+"tapping": [
+"tap"
+],
+"tarred": [
+"tar"
+],
+"tarring": [
+"tar"
+],
+"tore": [
+"tear"
+],
+"torn": [
+"tear"
+],
+"threw": [
+"throw"
+],
+"thrown": [
+"throw"
+],
+"thudded": [
+"thud"
+],
+"thudding": [
+"thud"
+],
+"tying": [
+"tie"
+],
+"tinned": [
+"tin"
+],
+"tinning": [
+"tin"
+],
+"tinselled": [
+"tinsel"
+],
+"tinselling": [
+"tinsel"
+],
+"tipped": [
+"tip"
+],
+"tipping": [
+"tip"
+],
+"topped": [
+"top"
+],
+"topping": [
+"top"
+],
+"towelled": [
+"towel"
+],
+"towelling": [
+"towel"
+],
+"trameled": [
+"trammel"
+],
+"trameling": [
+"trammel"
+],
+"tramelled": [
+"trammel"
+],
+"tramelling": [
+"trammel"
+],
+"tramels": [
+"trammel"
+],
+"transferred": [
+"transfer"
+],
+"transferring": [
+"transfer"
+],
+"transfixt": [
+"transfix"
+],
+"transmitted": [
+"transmit"
+],
+"transmitting": [
+"transmit"
+],
+"trapped": [
+"trap"
+],
+"trapping": [
+"trap"
+],
+"trod": [
+"tread"
+],
+"trodden": [
+"tread"
+],
+"trepanned": [
+"trepan"
+],
+"trepanning": [
+"trepan"
+],
+"trimmed": [
+"trim"
+],
+"trimming": [
+"trim"
+],
+"trowelled": [
+"trowel"
+],
+"trowelling": [
+"trowel"
+],
+"tugged": [
+"tug"
+],
+"tugging": [
+"tug"
+],
+"tunnelled": [
+"tunnel"
+],
+"tunnelling": [
+"tunnel"
+],
+"twinned": [
+"twin"
+],
+"twinning": [
+"twin"
+],
+"rallied": [
+"rally"
+],
+"rammed": [
+"ram"
+],
+"ramming": [
+"ram"
+],
+"rapped": [
+"rap"
+],
+"rapping": [
+"rap"
+],
+"ratted": [
+"rat"
+],
+"ratting": [
+"rat"
+],
+"ravelled": [
+"ravel"
+],
+"ravelling": [
+"ravel"
+],
+"rove": [
+"reeve"
+],
+"rent": [
+"rend"
+],
+"repelled": [
+"repel"
+],
+"repelling": [
+"repel"
+],
+"repotted": [
+"repot"
+],
+"repotting": [
+"repot"
+],
+"resewn": [
+"resew"
+],
+"retaken": [
+"retake"
+],
+"retook": [
+"retake"
+],
+"retrofitted": [
+"retrofit"
+],
+"retrofitting": [
+"retrofit"
+],
+"revetted": [
+"revet"
+],
+"revetting": [
+"revet"
+],
+"rewound": [
+"rewind"
+],
+"ridden": [
+"ride"
+],
+"rode": [
+"ride"
+],
+"rigged": [
+"rig"
+],
+"rigging": [
+"rig"
+],
+"rang": [
+"ring"
+],
+"rung": [
+"ring"
+],
+"ripped": [
+"rip"
+],
+"ripping": [
+"rip"
+],
+"riven": [
+"rive"
+],
+"rough-hewn": [
+"rough-hew"
+],
+"rubbed": [
+"rub"
+],
+"rubbing": [
+"rub"
+],
+"ran": [
+"run"
+],
+"running": [
+"run"
+],
+"rutted": [
+"rut"
+],
+"rutting": [
+"rut"
+],
+"padded": [
+"pad"
+],
+"padding": [
+"pad"
+],
+"panned": [
+"pan"
+],
+"panning": [
+"pan"
+],
+"parcelled": [
+"parcel"
+],
+"parcelling": [
+"parcel"
+],
+"patted": [
+"pat"
+],
+"patting": [
+"pat"
+],
+"pegged": [
+"peg"
+],
+"pegging": [
+"peg"
+],
+"petted": [
+"pet"
+],
+"petting": [
+"pet"
+],
+"pinned": [
+"pin"
+],
+"pinning": [
+"pin"
+],
+"pistol-whipped": [
+"pistol-whip"
+],
+"pistol-whipping": [
+"pistol-whip"
+],
+"pitted": [
+"pit"
+],
+"pitting": [
+"pit"
+],
+"plopped": [
+"plop"
+],
+"plopping": [
+"plop"
+],
+"plugged": [
+"plug"
+],
+"plugging": [
+"plug"
+],
+"plied": [
+"ply"
+],
+"pommelled": [
+"pommel"
+],
+"pommelling": [
+"pommel"
+],
+"popped": [
+"pop"
+],
+"popping": [
+"pop"
+],
+"potted": [
+"pot"
+],
+"potting": [
+"pot"
+],
+"prodded": [
+"prod"
+],
+"prodding": [
+"prod"
+],
+"propped": [
+"prop"
+],
+"propping": [
+"prop"
+],
+"propelled": [
+"propel"
+],
+"propelling": [
+"propel"
+],
+"pried": [
+"pry"
+],
+"pummelled": [
+"pummel"
+],
+"pummelling": [
+"pummel"
+],
+"putting": [
+"put"
+],
+"puttied": [
+"putty"
+],
+"abutted": [
+"abut"
+],
+"abutting": [
+"abut"
+],
+"applied": [
+"apply"
+],
+"unbarred": [
+"unbar"
+],
+"unbarring": [
+"unbar"
+],
+"unbent": [
+"unbend"
+],
+"unbound": [
+"unbind"
+],
+"unclogged": [
+"unclog"
+],
+"unclogging": [
+"unclog"
+],
+"unclad": [
+"unclothe"
+],
+"undercutting": [
+"undercut"
+],
+"underlaid": [
+"underlay"
+],
+"underpinned": [
+"underpin"
+],
+"underpinning": [
+"underpin"
+],
+"undid": [
+"undo"
+],
+"undone": [
+"undo"
+],
+"unified": [
+"unify"
+],
+"unpinned": [
+"unpin"
+],
+"unpinning": [
+"unpin"
+],
+"unplugged": [
+"unplug"
+],
+"unplugging": [
+"unplug"
+],
+"unravelled": [
+"unravel"
+],
+"unravelling": [
+"unravel"
+],
+"unstrung": [
+"unstring"
+],
+"untying": [
+"untie"
+],
+"unwound": [
+"unwind"
+],
+"unwrapped": [
+"unwrap"
+],
+"unwrapping": [
+"unwrap"
+],
+"unzipped": [
+"unzip"
+],
+"unzipping": [
+"unzip"
+],
+"uphove": [
+"upheave"
+],
+"upsetting": [
+"upset"
+],
+"fallen": [
+"fall"
+],
+"fell": [
+"fall"
+],
+"fanned": [
+"fan"
+],
+"fanning": [
+"fan"
+],
+"felt": [
+"feel"
+],
+"flung": [
+"fling"
+],
+"flipped": [
+"flip"
+],
+"flipping": [
+"flip"
+],
+"flogged": [
+"flog"
+],
+"flogging": [
+"flog"
+],
+"flew": [
+"fly"
+],
+"flown": [
+"fly"
+],
+"fortified": [
+"fortify"
+],
+"frapped": [
+"frap"
+],
+"frapping": [
+"frap"
+],
+"fretted": [
+"fret"
+],
+"fretting": [
+"fret"
+],
+"frogged": [
+"frog"
+],
+"frogging": [
+"frog"
+],
+"funnelled": [
+"funnel"
+],
+"funnelling": [
+"funnel"
+],
+"labelled": [
+"label"
+],
+"labelling": [
+"label"
+],
+"laden": [
+"lade"
+],
+"lagged": [
+"lag"
+],
+"lagging": [
+"lag"
+],
+"lammed": [
+"lam"
+],
+"lamming": [
+"lam"
+],
+"lapped": [
+"lap"
+],
+"lapping": [
+"lap"
+],
+"laid": [
+"lay"
+],
+"leant": [
+"lean"
+],
+"levelled": [
+"level"
+],
+"levelling": [
+"level"
+],
+"lain": [
+"lie"
+],
+"lay": [
+"lie"
+],
+"lying": [
+"lie"
+],
+"lobbed": [
+"lob"
+],
+"lobbing": [
+"lob"
+],
+"logged": [
+"log"
+],
+"logging": [
+"log"
+],
+"lopped": [
+"lop"
+],
+"lopping": [
+"lop"
+],
+"lugged": [
+"lug"
+],
+"lugging": [
+"lug"
+],
+"cancelled": [
+"cancel"
+],
+"cancelling": [
+"cancel"
+],
+"canopied": [
+"canopy"
+],
+"carburetted": [
+"carburet"
+],
+"carburetting": [
+"carburet"
+],
+"carried": [
+"carry"
+],
+"catted": [
+"cat"
+],
+"catting": [
+"cat"
+],
+"caught": [
+"catch"
+],
+"channelled": [
+"channel"
+],
+"channelling": [
+"channel"
+],
+"chipped": [
+"chip"
+],
+"chipping": [
+"chip"
+],
+"chiselled": [
+"chisel"
+],
+"chiselling": [
+"chisel"
+],
+"chopped": [
+"chop"
+],
+"chopping": [
+"chop"
+],
+"clammed": [
+"clam"
+],
+"clamming": [
+"clam"
+],
+"clapped": [
+"clap"
+],
+"clapping": [
+"clap"
+],
+"cleft": [
+"cleave"
+],
+"clove": [
+"cleave"
+],
+"cloven": [
+"cleave"
+],
+"clung": [
+"cling"
+],
+"clipped": [
+"clip"
+],
+"clipping": [
+"clip"
+],
+"clogged": [
+"clog"
+],
+"clogging": [
+"clog"
+],
+"clad": [
+"clothe"
+],
+"clubbed": [
+"club"
+],
+"clubbing": [
+"club"
+],
+"cogged": [
+"cog"
+],
+"cogging": [
+"cog"
+],
+"coiffed": [
+"coif"
+],
+"coiffing": [
+"coif"
+],
+"collied": [
+"colly"
+],
+"controlled": [
+"control"
+],
+"controlling": [
+"control"
+],
+"copped": [
+"cop"
+],
+"copping": [
+"cop"
+],
+"corralled": [
+"corral"
+],
+"corralling": [
+"corral"
+],
+"countersank": [
+"countersink"
+],
+"countersunk": [
+"countersink"
+],
+"crammed": [
+"cram"
+],
+"cramming": [
+"cram"
+],
+"cribbed": [
+"crib"
+],
+"cribbing": [
+"crib"
+],
+"cropped": [
+"crop"
+],
+"cropping": [
+"crop"
+],
+"crossbred": [
+"crossbreed"
+],
+"crosscutting": [
+"crosscut"
+],
+"cudgelled": [
+"cudgel"
+],
+"cudgelling": [
+"cudgel"
+],
+"cutting": [
+"cut"
+],
+"wadded": [
+"wad"
+],
+"wadding": [
+"wad"
+],
+"wore": [
+"wear"
+],
+"worn": [
+"wear"
+],
+"wove": [
+"weave"
+],
+"woven": [
+"weave"
+],
+"whammed": [
+"wham"
+],
+"whamming": [
+"wham"
+],
+"whapped": [
+"whap"
+],
+"whapping": [
+"whap"
+],
+"whetted": [
+"whet"
+],
+"whetting": [
+"whet"
+],
+"whipped": [
+"whip"
+],
+"whipping": [
+"whip"
+],
+"whipsawn": [
+"whipsaw"
+],
+"whopped": [
+"whop"
+],
+"whopping": [
+"whop"
+],
+"wigwagged": [
+"wigwag"
+],
+"wigwagging": [
+"wigwag"
+],
+"wound": [
+"wind"
+],
+"withdrawn": [
+"withdraw"
+],
+"withdrew": [
+"withdraw"
+],
+"wrought": [
+"work"
+],
+"worried": [
+"worry"
+],
+"wrapped": [
+"wrap"
+],
+"wrapping": [
+"wrap"
+],
+"wrung": [
+"wring"
+],
+"nabbed": [
+"nab"
+],
+"nabbing": [
+"nab"
+],
+"netted": [
+"net"
+],
+"netting": [
+"net"
+],
+"nickelled": [
+"nickel"
+],
+"nickelling": [
+"nickel"
+],
+"nipped": [
+"nip"
+],
+"nipping": [
+"nip"
+],
+"nutted": [
+"nut"
+],
+"nutting": [
+"nut"
+],
+"kept": [
+"keep"
+],
+"kidnapped": [
+"kidnap"
+],
+"kidnapping": [
+"kidnap"
+],
+"knapped": [
+"knap"
+],
+"knapping": [
+"knap"
+],
+"knelt": [
+"kneel"
+],
+"knitted": [
+"knit"
+],
+"knitting": [
+"knit"
+],
+"knotted": [
+"knot"
+],
+"knotting": [
+"knot"
+],
+"knew": [
+"know"
+],
+"known": [
+"know"
+],
+"made": [
+"make"
+],
+"marshalled": [
+"marshal"
+],
+"marshalling": [
+"marshal"
+],
+"matted": [
+"mat"
+],
+"matting": [
+"mat"
+],
+"met": [
+"meet"
+],
+"metalled": [
+"metal"
+],
+"metalling": [
+"metal"
+],
+"mislaid": [
+"mislay"
+],
+"mopped": [
+"mop"
+],
+"mopping": [
+"mop"
+],
+"mown": [
+"mow"
+],
+"mudded": [
+"mud"
+],
+"mudding": [
+"mud"
+],
+"muddied": [
+"muddy"
+],
+"embedded": [
+"embed"
+],
+"embedding": [
+"embed"
+],
+"emptied": [
+"empty"
+],
+"entrapped": [
+"entrap"
+],
+"entrapping": [
+"entrap"
+],
+"enwrapped": [
+"enwrap"
+],
+"enwrapping": [
+"enwrap"
+],
+"grew": [
+"grow"
+],
+"grown": [
+"grow"
+],
+"implied": [
+"imply"
+],
+"incurred": [
+"incur"
+],
+"incurring": [
+"incur"
+],
+"indwelt": [
+"indwell"
+],
+"satisfied": [
+"satisfy"
+],
+"said": [
+"say"
+],
+"sold": [
+"sell"
+],
+"shillyshallied": [
+"shillyshally"
+],
+"slept": [
+"sleep"
+],
+"spanned": [
+"span"
+],
+"spanning": [
+"span"
+],
+"specified": [
+"specify"
+],
+"spent": [
+"spend"
+],
+"spiralled": [
+"spiral"
+],
+"spiralling": [
+"spiral"
+],
+"sprang": [
+"spring"
+],
+"sprung": [
+"spring"
+],
+"starred": [
+"star"
+],
+"starring": [
+"star"
+],
+"stemmed": [
+"stem"
+],
+"stemming": [
+"stem"
+],
+"stank": [
+"stink"
+],
+"stunk": [
+"stink"
+],
+"summed": [
+"sum"
+],
+"summing": [
+"sum"
+],
+"swollen": [
+"swell"
+],
+"swam": [
+"swim"
+],
+"swimming": [
+"swim"
+],
+"swum": [
+"swim"
+],
+"am": [
+"be"
+],
+"are": [
+"be"
+],
+"been": [
+"be"
+],
+"is": [
+"be"
+],
+"was": [
+"be"
+],
+"were": [
+"be"
+],
+"beautified": [
+"beautify"
+],
+"became": [
+"become"
+],
+"befitted": [
+"befit"
+],
+"befitting": [
+"befit"
+],
+"began": [
+"begin"
+],
+"beginning": [
+"begin"
+],
+"begun": [
+"begin"
+],
+"belying": [
+"belie"
+],
+"bivouacked": [
+"bivouac"
+],
+"bivouacking": [
+"bivouac"
+],
+"bodied": [
+"body"
+],
+"brimmed": [
+"brim"
+],
+"brimming": [
+"brim"
+],
+"bummed": [
+"bum"
+],
+"bumming": [
+"bum"
+],
+"bought": [
+"buy"
+],
+"occupied": [
+"occupy"
+],
+"occurred": [
+"occur"
+],
+"occurring": [
+"occur"
+],
+"offsetting": [
+"offset"
+],
+"outridden": [
+"outride"
+],
+"outrode": [
+"outride"
+],
+"outwore": [
+"outwear"
+],
+"outworn": [
+"outwear"
+],
+"overgrew": [
+"overgrow"
+],
+"overgrown": [
+"overgrow"
+],
+"overhung": [
+"overhang"
+],
+"overlapped": [
+"overlap"
+],
+"overlapping": [
+"overlap"
+],
+"overridden": [
+"override"
+],
+"overrode": [
+"override"
+],
+"overran": [
+"overrun"
+],
+"overrunning": [
+"overrun"
+],
+"overstepped": [
+"overstep"
+],
+"overstepping": [
+"overstep"
+],
+"overtopped": [
+"overtop"
+],
+"overtopping": [
+"overtop"
+],
+"hummed": [
+"hum"
+],
+"humming": [
+"hum"
+],
+"jutted": [
+"jut"
+],
+"jutting": [
+"jut"
+],
+"deferred": [
+"defer"
+],
+"deferring": [
+"defer"
+],
+"defied": [
+"defy"
+],
+"dilly-dallied": [
+"dilly-dally"
+],
+"did": [
+"do"
+],
+"done": [
+"do"
+],
+"dwelt": [
+"dwell"
+],
+"tallied": [
+"tally"
+],
+"tarried": [
+"tarry"
+],
+"totalled": [
+"total"
+],
+"totalling": [
+"total"
+],
+"typified": [
+"typify"
+],
+"referred": [
+"refer"
+],
+"referring": [
+"refer"
+],
+"remitted": [
+"remit"
+],
+"remitting": [
+"remit"
+],
+"rimmed": [
+"rim"
+],
+"rimming": [
+"rim"
+],
+"risen": [
+"rise"
+],
+"rose": [
+"rise"
+],
+"rivalled": [
+"rival"
+],
+"rivalling": [
+"rival"
+],
+"parallelled": [
+"parallel"
+],
+"parallelling": [
+"parallel"
+],
+"partaken": [
+"partake"
+],
+"partook": [
+"partake"
+],
+"paid": [
+"pay"
+],
+"personified": [
+"personify"
+],
+"pigged": [
+"pig"
+],
+"pigging": [
+"pig"
+],
+"proven": [
+"prove"
+],
+"abode": [
+"abide"
+],
+"accompanied": [
+"accompany"
+],
+"admitted": [
+"admit"
+],
+"admitting": [
+"admit"
+],
+"arisen": [
+"arise"
+],
+"arose": [
+"arise"
+],
+"underlain": [
+"underlie"
+],
+"underlay": [
+"underlie"
+],
+"underlying": [
+"underlie"
+],
+"upheld": [
+"uphold"
+],
+"uprisen": [
+"uprise"
+],
+"uprose": [
+"uprise"
+],
+"fitted": [
+"fit"
+],
+"fitting": [
+"fit"
+],
+"forbore": [
+"forbear"
+],
+"forborne": [
+"forbear"
+],
+"foregone": [
+"forego"
+],
+"forewent": [
+"forego"
+],
+"forgone": [
+"forgo"
+],
+"forwent": [
+"forgo"
+],
+"fried": [
+"fry"
+],
+"fulfilled": [
+"fulfil",
+"fulfill"
+],
+"fulfilling": [
+"fulfil",
+"fulfill"
+],
+"lallygagged": [
+"lallygag"
+],
+"lallygagging": [
+"lallygag"
+],
+"led": [
+"lead"
+],
+"left": [
+"leave"
+],
+"lent": [
+"lend"
+],
+"capped": [
+"cap"
+],
+"capping": [
+"cap"
+],
+"co-starred": [
+"co-star"
+],
+"co-starring": [
+"co-star"
+],
+"came": [
+"come"
+],
+"compelled": [
+"compel"
+],
+"compelling": [
+"compel"
+],
+"varied": [
+"vary"
+],
+"qualified": [
+"qualify"
+],
+"quitted": [
+"quit"
+],
+"quitting": [
+"quit"
+],
+"withstood": [
+"withstand"
+],
+"worshipped": [
+"worship"
+],
+"worshipping": [
+"worship"
+],
+"mapped": [
+"map"
+],
+"mapping": [
+"map"
+],
+"meant": [
+"mean"
+],
+"misspent": [
+"misspend"
+],
+"mummified": [
+"mummify"
+],
+"embodied": [
+"embody"
+],
+"equalled": [
+"equal"
+],
+"equalling": [
+"equal"
+],
+"excelled": [
+"excel"
+],
+"excelling": [
+"excel"
+],
+"exemplified": [
+"exemplify"
+],
+"zigzagged": [
+"zigzag"
+],
+"zigzagging": [
+"zigzag"
+],
+"gadded": [
+"gad"
+],
+"gadding": [
+"gad"
+],
+"gambolled": [
+"gambol"
+],
+"gambolling": [
+"gambol"
+],
+"grovelled": [
+"grovel"
+],
+"grovelling": [
+"grovel"
+],
+"sagged": [
+"sag"
+],
+"sagging": [
+"sag"
+],
+"scatted": [
+"scat"
+],
+"scatting": [
+"scat"
+],
+"scrammed": [
+"scram"
+],
+"scramming": [
+"scram"
+],
+"scudded": [
+"scud"
+],
+"scudding": [
+"scud"
+],
+"scurried": [
+"scurry"
+],
+"shagged": [
+"shag"
+],
+"shagging": [
+"shag"
+],
+"shaken": [
+"shake"
+],
+"shook": [
+"shake"
+],
+"shimmied": [
+"shimmy"
+],
+"shinned": [
+"shin"
+],
+"shinning": [
+"shin"
+],
+"shown": [
+"show"
+],
+"shrank": [
+"shrink"
+],
+"shrunk": [
+"shrink"
+],
+"shrunken": [
+"shrink"
+],
+"sightsaw": [
+"sightsee"
+],
+"sightseen": [
+"sightsee"
+],
+"ski'd": [
+"ski"
+],
+"skidded": [
+"skid"
+],
+"skidding": [
+"skid"
+],
+"skinny-dipped": [
+"skinny-dip"
+],
+"skinny-dipping": [
+"skinny-dip"
+],
+"skydove": [
+"skydive"
+],
+"sledding": [
+"sled"
+],
+"slid": [
+"slide"
+],
+"slidden": [
+"slide"
+],
+"slunk": [
+"slink"
+],
+"slipped": [
+"slip"
+],
+"slipping": [
+"slip"
+],
+"snuck": [
+"sneak"
+],
+"sped": [
+"speed"
+],
+"stole": [
+"steal"
+],
+"stolen": [
+"steal"
+],
+"stridden": [
+"stride"
+],
+"strode": [
+"stride"
+],
+"strutted": [
+"strut"
+],
+"strutting": [
+"strut"
+],
+"swagged": [
+"swag"
+],
+"swagging": [
+"swag"
+],
+"swapped": [
+"swap"
+],
+"swapping": [
+"swap"
+],
+"swopped": [
+"swap"
+],
+"swopping": [
+"swap"
+],
+"swops": [
+"swap"
+],
+"swivelled": [
+"swivel"
+],
+"swivelling": [
+"swivel"
+],
+"belly-flopped": [
+"belly-flop"
+],
+"belly-flopping": [
+"belly-flop"
+],
+"bestirred": [
+"bestir"
+],
+"bestirring": [
+"bestir"
+],
+"bestrid": [
+"bestride"
+],
+"bestridden": [
+"bestride"
+],
+"bestrode": [
+"bestride"
+],
+"bled": [
+"bleed"
+],
+"outran": [
+"outrun"
+],
+"outrunning": [
+"outrun"
+],
+"outstripped": [
+"outstrip"
+],
+"outstripping": [
+"outstrip"
+],
+"overflown": [
+"overflow",
+"overfly"
+],
+"overflew": [
+"overfly"
+],
+"overtaken": [
+"overtake"
+],
+"overtook": [
+"overtake"
+],
+"hedgehopped": [
+"hedgehop"
+],
+"hedgehopping": [
+"hedgehop"
+],
+"hopped": [
+"hop"
+],
+"hopping": [
+"hop"
+],
+"hurried": [
+"hurry"
+],
+"jibbed": [
+"jib"
+],
+"jibbing": [
+"jib"
+],
+"jigged": [
+"jig"
+],
+"jigging": [
+"jig"
+],
+"jitterbugged": [
+"jitterbug"
+],
+"jitterbugging": [
+"jitterbug"
+],
+"dallied": [
+"dally"
+],
+"dispelled": [
+"dispel"
+],
+"dispelling": [
+"dispel"
+],
+"dove": [
+"dive"
+],
+"dogged": [
+"dog"
+],
+"dogging": [
+"dog"
+],
+"taxying": [
+"taxi"
+],
+"throbbed": [
+"throb"
+],
+"throbbing": [
+"throb"
+],
+"tittupped": [
+"tittup"
+],
+"tittupping": [
+"tittup"
+],
+"trammed": [
+"tram"
+],
+"tramming": [
+"tram"
+],
+"tranship": [
+"transship"
+],
+"transshipped": [
+"transship"
+],
+"transshipping": [
+"transship"
+],
+"travelled": [
+"travel"
+],
+"travelling": [
+"travel"
+],
+"trekked": [
+"trek"
+],
+"trekking": [
+"trek"
+],
+"tripped": [
+"trip"
+],
+"tripping": [
+"trip"
+],
+"trotted": [
+"trot"
+],
+"trotting": [
+"trot"
+],
+"rappelled": [
+"rappel"
+],
+"rappelling": [
+"rappel"
+],
+"recommitted": [
+"recommit"
+],
+"recommitting": [
+"recommit"
+],
+"retransmitted": [
+"retransmit"
+],
+"retransmitting": [
+"retransmit"
+],
+"ricochetted": [
+"ricochet"
+],
+"ricochetting": [
+"ricochet"
+],
+"pedalled": [
+"pedal"
+],
+"pedalling": [
+"pedal"
+],
+"plodded": [
+"plod"
+],
+"plodding": [
+"plod"
+],
+"arcked": [
+"arc"
+],
+"arcking": [
+"arc"
+],
+"undershot": [
+"undershoot"
+],
+"fed": [
+"feed"
+],
+"feed": [
+"fee",
+"feed"
+],
+"ferried": [
+"ferry"
+],
+"finned": [
+"fin"
+],
+"finning": [
+"fin"
+],
+"found": [
+"find"
+],
+"flagged": [
+"flag"
+],
+"flagging": [
+"flag"
+],
+"flapped": [
+"flap"
+],
+"flapping": [
+"flap"
+],
+"fled": [
+"flee"
+],
+"flitted": [
+"flit"
+],
+"flitting": [
+"flit"
+],
+"flopped": [
+"flop"
+],
+"flopping": [
+"flop"
+],
+"flurried": [
+"flurry"
+],
+"footslogged": [
+"footslog"
+],
+"footslogging": [
+"footslog"
+],
+"foxtrotted": [
+"foxtrot"
+],
+"foxtrotting": [
+"foxtrot"
+],
+"froze": [
+"freeze"
+],
+"frozen": [
+"freeze"
+],
+"frolicked": [
+"frolic"
+],
+"frolicking": [
+"frolic"
+],
+"leapt": [
+"leap"
+],
+"leapfrogged": [
+"leapfrog"
+],
+"leapfrogging": [
+"leapfrog"
+],
+"lit": [
+"light"
+],
+"chinned": [
+"chin"
+],
+"chinning": [
+"chin"
+],
+"crabbed": [
+"crab"
+],
+"crabbing": [
+"crab"
+],
+"crept": [
+"creep"
+],
+"curtsied": [
+"curtsy"
+],
+"curvetted": [
+"curvet"
+],
+"curvetting": [
+"curvet"
+],
+"quickstepped": [
+"quickstep"
+],
+"quickstepping": [
+"quickstep"
+],
+"wagged": [
+"wag"
+],
+"wagging": [
+"wag"
+],
+"nodded": [
+"nod"
+],
+"nodding": [
+"nod"
+],
+"misled": [
+"mislead"
+],
+"mobbed": [
+"mob"
+],
+"mobbing": [
+"mob"
+],
+"eddied": [
+"eddy"
+],
+"identified": [
+"identify"
+],
+"impanelled": [
+"impanel"
+],
+"impanelling": [
+"impanel"
+],
+"inferred": [
+"infer"
+],
+"inferring": [
+"infer"
+],
+"savvied": [
+"savvy"
+],
+"scried": [
+"scry"
+],
+"shewn": [
+"shew"
+],
+"slotted": [
+"slot"
+],
+"slotting": [
+"slot"
+],
+"smelt": [
+"smell"
+],
+"studied": [
+"study"
+],
+"stupefied": [
+"stupefy"
+],
+"submitted": [
+"submit"
+],
+"submitting": [
+"submit"
+],
+"swore": [
+"swear"
+],
+"sworn": [
+"swear"
+],
+"swotted": [
+"swot"
+],
+"swotting": [
+"swot"
+],
+"bedevilled": [
+"bedevil"
+],
+"bedevilling": [
+"bedevil"
+],
+"betted": [
+"bet"
+],
+"betting": [
+"bet"
+],
+"bethought": [
+"bethink"
+],
+"biassed": [
+"bias"
+],
+"biassing": [
+"bias"
+],
+"built": [
+"build"
+],
+"omitted": [
+"omit"
+],
+"omitting": [
+"omit"
+],
+"overshot": [
+"overshoot"
+],
+"overthrew": [
+"overthrow"
+],
+"overthrown": [
+"overthrow"
+],
+"heard": [
+"hear"
+],
+"dealt": [
+"deal"
+],
+"deified": [
+"deify"
+],
+"dialled": [
+"dial"
+],
+"dialling": [
+"dial"
+],
+"dinned": [
+"din"
+],
+"dinning": [
+"din"
+],
+"drank": [
+"drink"
+],
+"drunk": [
+"drink"
+],
+"drummed": [
+"drum"
+],
+"drumming": [
+"drum"
+],
+"told": [
+"tell"
+],
+"thought": [
+"think"
+],
+"twigged": [
+"twig"
+],
+"twigging": [
+"twig"
+],
+"rebutted": [
+"rebut"
+],
+"rebutting": [
+"rebut"
+],
+"reclassified": [
+"reclassify"
+],
+"reified": [
+"reify"
+],
+"relied": [
+"rely"
+],
+"rethought": [
+"rethink"
+],
+"panelled": [
+"panel"
+],
+"panelling": [
+"panel"
+],
+"planned": [
+"plan"
+],
+"planning": [
+"plan"
+],
+"platted": [
+"plat"
+],
+"platting": [
+"plat"
+],
+"plotted": [
+"plot"
+],
+"plotting": [
+"plot"
+],
+"preferred": [
+"prefer"
+],
+"preferring": [
+"prefer"
+],
+"pretermitted": [
+"pretermit"
+],
+"pretermitting": [
+"pretermit"
+],
+"understood": [
+"understand"
+],
+"understudied": [
+"understudy"
+],
+"unlearnt": [
+"unlearn"
+],
+"falsified": [
+"falsify"
+],
+"foreknew": [
+"foreknow"
+],
+"foreknown": [
+"foreknow"
+],
+"foresaw": [
+"foresee"
+],
+"foreseen": [
+"foresee"
+],
+"forgetting": [
+"forget"
+],
+"forgot": [
+"forget"
+],
+"forgotten": [
+"forget"
+],
+"formatted": [
+"format"
+],
+"formatting": [
+"format"
+],
+"forsaken": [
+"forsake"
+],
+"forsook": [
+"forsake"
+],
+"learnt": [
+"learn"
+],
+"caballed": [
+"cabal"
+],
+"caballing": [
+"cabal"
+],
+"chose": [
+"choose"
+],
+"chosen": [
+"choose"
+],
+"classified": [
+"classify"
+],
+"complotted": [
+"complot"
+],
+"complotting": [
+"complot"
+],
+"conned": [
+"con"
+],
+"conning": [
+"con"
+],
+"counterplotted": [
+"counterplot"
+],
+"counterplotting": [
+"counterplot"
+],
+"verified": [
+"verify"
+],
+"nagged": [
+"nag"
+],
+"nagging": [
+"nag"
+],
+"nonplussed": [
+"nonplus"
+],
+"nonplusses": [
+"nonplus"
+],
+"nonplussing": [
+"nonplus"
+],
+"nullified": [
+"nullify"
+],
+"misgave": [
+"misgive"
+],
+"misgiven": [
+"misgive"
+],
+"mistaken": [
+"mistake"
+],
+"mistook": [
+"mistake"
+],
+"misunderstood": [
+"misunderstand"
+],
+"multiplied": [
+"multiply"
+],
+"mystified": [
+"mystify"
+],
+"empanelled": [
+"empanel"
+],
+"empanelling": [
+"empanel"
+],
+"gassed": [
+"gas"
+],
+"gasses": [
+"gas"
+],
+"gassing": [
+"gas"
+],
+"gunned": [
+"gun"
+],
+"gunning": [
+"gun"
+],
+"sicked": [
+"sic"
+],
+"sicking": [
+"sic"
+],
+"striven": [
+"strive"
+],
+"strove": [
+"strive"
+],
+"bandied": [
+"bandy"
+],
+"bulldogging": [
+"bulldog"
+],
+"outcried": [
+"outcry"
+],
+"outdid": [
+"outdo"
+],
+"outdone": [
+"outdo"
+],
+"outdrawn": [
+"outdraw"
+],
+"outdrew": [
+"outdraw"
+],
+"outfought": [
+"outfight"
+],
+"outgeneralled": [
+"outgeneral"
+],
+"outgeneralling": [
+"outgeneral"
+],
+"outgone": [
+"outgo"
+],
+"outwent": [
+"outgo"
+],
+"outgrew": [
+"outgrow"
+],
+"outgrown": [
+"outgrow"
+],
+"outsold": [
+"outsell"
+],
+"outshone": [
+"outshine"
+],
+"outwitted": [
+"outwit"
+],
+"outwitting": [
+"outwit"
+],
+"overcame": [
+"overcome"
+],
+"handicapped": [
+"handicap"
+],
+"handicapping": [
+"handicap"
+],
+"demobbed": [
+"demob"
+],
+"demobbing": [
+"demob"
+],
+"duelled": [
+"duel"
+],
+"duelling": [
+"duel"
+],
+"reran": [
+"rerun"
+],
+"rerunning": [
+"rerun"
+],
+"parried": [
+"parry"
+],
+"pipped": [
+"pip"
+],
+"pipping": [
+"pip"
+],
+"addrest": [
+"address"
+],
+"fought": [
+"fight"
+],
+"levied": [
+"levy"
+],
+"lost": [
+"lose"
+],
+"caddied": [
+"caddie",
+"caddy"
+],
+"caddies": [
+"caddie",
+"caddy"
+],
+"caddying": [
+"caddie",
+"caddy"
+],
+"combatted": [
+"combat"
+],
+"combatting": [
+"combat"
+],
+"vying": [
+"vie"
+],
+"warred": [
+"war"
+],
+"warring": [
+"war"
+],
+"waylaid": [
+"waylay"
+],
+"winning": [
+"win"
+],
+"won": [
+"win"
+],
+"kneecapped": [
+"kneecap"
+],
+"kneecapping": [
+"kneecap"
+],
+"manned": [
+"man"
+],
+"manning": [
+"man"
+],
+"expelled": [
+"expel"
+],
+"expelling": [
+"expel"
+],
+"gasified": [
+"gasify"
+],
+"gelled": [
+"gel"
+],
+"gelling": [
+"gel"
+],
+"glorified": [
+"glorify"
+],
+"insetting": [
+"inset"
+],
+"intensified": [
+"intensify"
+],
+"interstratified": [
+"interstratify"
+],
+"saccharified": [
+"saccharify"
+],
+"sanctified": [
+"sanctify"
+],
+"saponified": [
+"saponify"
+],
+"scrapped": [
+"scrap"
+],
+"scrapping": [
+"scrap"
+],
+"shrivelled": [
+"shrivel"
+],
+"shrivelling": [
+"shrivel"
+],
+"simplified": [
+"simplify"
+],
+"singing": [
+"sing",
+"singe"
+],
+"slagged": [
+"slag"
+],
+"slagging": [
+"slag"
+],
+"slurred": [
+"slur"
+],
+"slurring": [
+"slur"
+],
+"smutted": [
+"smut"
+],
+"smutting": [
+"smut"
+],
+"solidified": [
+"solidify"
+],
+"spelt": [
+"spell"
+],
+"spin-dried": [
+"spin-dry"
+],
+"spotlit": [
+"spotlight"
+],
+"stove": [
+"stave"
+],
+"stultified": [
+"stultify"
+],
+"backslid": [
+"backslide"
+],
+"backslidden": [
+"backslide"
+],
+"basified": [
+"basify"
+],
+"bedimmed": [
+"bedim"
+],
+"bedimming": [
+"bedim"
+],
+"befallen": [
+"befall"
+],
+"befell": [
+"befall"
+],
+"bellied": [
+"belly"
+],
+"bloodied": [
+"bloody"
+],
+"blue-pencilled": [
+"blue-pencil"
+],
+"blue-pencilling": [
+"blue-pencil"
+],
+"budded": [
+"bud"
+],
+"budding": [
+"bud"
+],
+"burred": [
+"bur"
+],
+"burring": [
+"bur"
+],
+"burnt": [
+"burn"
+],
+"bushelled": [
+"bushel"
+],
+"bushelling": [
+"bushel"
+],
+"objectified": [
+"objectify"
+],
+"ossified": [
+"ossify"
+],
+"outcropped": [
+"outcrop"
+],
+"outcropping": [
+"outcrop"
+],
+"harried": [
+"harry"
+],
+"humidified": [
+"humidify"
+],
+"jellified": [
+"jellify"
+],
+"jellied": [
+"jelly"
+],
+"jugged": [
+"jug"
+],
+"jugging": [
+"jug"
+],
+"justified": [
+"justify"
+],
+"debugged": [
+"debug"
+],
+"debugging": [
+"debug"
+],
+"decalcified": [
+"decalcify"
+],
+"deep-fried": [
+"deep-fry"
+],
+"degassed": [
+"degas"
+],
+"degasses": [
+"degas"
+],
+"degassing": [
+"degas"
+],
+"dehumidified": [
+"dehumidify"
+],
+"demulsified": [
+"demulsify"
+],
+"demystified": [
+"demystify"
+],
+"denazified": [
+"denazify"
+],
+"denitrified": [
+"denitrify"
+],
+"detoxified": [
+"detoxify"
+],
+"devitrified": [
+"devitrify"
+],
+"dignified": [
+"dignify"
+],
+"dimmed": [
+"dim"
+],
+"dimming": [
+"dim"
+],
+"disembowelled": [
+"disembowel"
+],
+"disembowelling": [
+"disembowel"
+],
+"disqualified": [
+"disqualify"
+],
+"distilled": [
+"distil",
+"distill"
+],
+"distilling": [
+"distil",
+"distill"
+],
+"diversified": [
+"diversify"
+],
+"dizzied": [
+"dizzy"
+],
+"dried": [
+"dry"
+],
+"dunned": [
+"dun"
+],
+"dunning": [
+"dun"
+],
+"tanned": [
+"tan"
+],
+"tanning": [
+"tan"
+],
+"taught": [
+"teach"
+],
+"thinned": [
+"thin"
+],
+"thinning": [
+"thin"
+],
+"thriven": [
+"thrive"
+],
+"throve": [
+"thrive"
+],
+"tidied": [
+"tidy"
+],
+"transmogrified": [
+"transmogrify"
+],
+"tried": [
+"try"
+],
+"tumefied": [
+"tumefy"
+],
+"ragged": [
+"rag"
+],
+"ragging": [
+"rag"
+],
+"ramified": [
+"ramify"
+],
+"rarefied": [
+"rarefy"
+],
+"rectified": [
+"rectify"
+],
+"recurred": [
+"recur"
+],
+"recurring": [
+"recur"
+],
+"redid": [
+"redo"
+],
+"redone": [
+"redo"
+],
+"resetting": [
+"reset"
+],
+"retted": [
+"ret"
+],
+"retting": [
+"ret"
+],
+"revved": [
+"rev"
+],
+"revving": [
+"rev"
+],
+"rigidified": [
+"rigidify"
+],
+"rotted": [
+"rot"
+],
+"rotting": [
+"rot"
+],
+"rough-dried": [
+"rough-dry"
+],
+"palsied": [
+"palsy"
+],
+"petrified": [
+"petrify"
+],
+"podded": [
+"pod"
+],
+"podding": [
+"pod"
+],
+"prettified": [
+"prettify"
+],
+"primmed": [
+"prim"
+],
+"primming": [
+"prim"
+],
+"purified": [
+"purify"
+],
+"putrefied": [
+"putrefy"
+],
+"acetified": [
+"acetify"
+],
+"acidified": [
+"acidify"
+],
+"aerified": [
+"aerify"
+],
+"alkalified": [
+"alkalify"
+],
+"ammonified": [
+"ammonify"
+],
+"amplified": [
+"amplify"
+],
+"uglified": [
+"uglify"
+],
+"undergirt": [
+"undergird"
+],
+"unfitted": [
+"unfit"
+],
+"unfitting": [
+"unfit"
+],
+"unfroze": [
+"unfreeze"
+],
+"unfrozen": [
+"unfreeze"
+],
+"upped": [
+"up"
+],
+"upping": [
+"up"
+],
+"flip-flopped": [
+"flip-flop"
+],
+"flip-flopping": [
+"flip-flop"
+],
+"floodlit": [
+"floodlight"
+],
+"freeze-dried": [
+"freeze-dry"
+],
+"fructified": [
+"fructify"
+],
+"lapidified": [
+"lapidify"
+],
+"letting": [
+"let"
+],
+"lignified": [
+"lignify"
+],
+"liquefied": [
+"liquefy"
+],
+"liquified": [
+"liquify"
+],
+"calcified": [
+"calcify"
+],
+"canned": [
+"can"
+],
+"canning": [
+"can"
+],
+"carnified": [
+"carnify"
+],
+"chapped": [
+"chap"
+],
+"chapping": [
+"chap"
+],
+"charred": [
+"char"
+],
+"charring": [
+"char"
+],
+"chondrified": [
+"chondrify"
+],
+"citified": [
+"citify"
+],
+"clarified": [
+"clarify"
+],
+"clotted": [
+"clot"
+],
+"clotting": [
+"clot"
+],
+"codified": [
+"codify"
+],
+"committed": [
+"commit"
+],
+"committing": [
+"commit"
+],
+"concurred": [
+"concur"
+],
+"concurring": [
+"concur"
+],
+"co-ordinate": [
+"coordinate"
+],
+"co-ordinated": [
+"coordinate"
+],
+"co-ordinates": [
+"coordinate"
+],
+"co-ordinating": [
+"coordinate"
+],
+"cupped": [
+"cup"
+],
+"cupping": [
+"cup"
+],
+"curried": [
+"curry"
+],
+"verbified": [
+"verbify"
+],
+"vitrified": [
+"vitrify"
+],
+"vivified": [
+"vivify"
+],
+"quantified": [
+"quantify"
+],
+"quick-froze": [
+"quick-freeze"
+],
+"quick-frozen": [
+"quick-freeze"
+],
+"weatherstripped": [
+"weatherstrip"
+],
+"weatherstripping": [
+"weatherstrip"
+],
+"weed": [
+"weed"
+],
+"wetted": [
+"wet"
+],
+"wetting": [
+"wet"
+],
+"nitrified": [
+"nitrify"
+],
+"magnified": [
+"magnify"
+],
+"marred": [
+"mar"
+],
+"marring": [
+"mar"
+],
+"molten": [
+"melt"
+],
+"metrified": [
+"metrify"
+],
+"minified": [
+"minify"
+],
+"modified": [
+"modify"
+],
+"mollified": [
+"mollify"
+],
+"ate": [
+"eat"
+],
+"eaten": [
+"eat"
+],
+"electrified": [
+"electrify"
+],
+"emulsified": [
+"emulsify"
+],
+"equipped": [
+"equip"
+],
+"equipping": [
+"equip"
+],
+"esterified": [
+"esterify"
+],
+"etherified": [
+"etherify"
+],
+"gipped": [
+"gip"
+],
+"gipping": [
+"gip"
+],
+"gypped": [
+"gyp"
+],
+"gypping": [
+"gyp"
+],
+"interred": [
+"inter"
+],
+"interring": [
+"inter"
+],
+"intermarried": [
+"intermarry"
+],
+"intromitted": [
+"intromit"
+],
+"intromitting": [
+"intromit"
+],
+"shopped": [
+"shop"
+],
+"shopping": [
+"shop"
+],
+"shunned": [
+"shun"
+],
+"shunning": [
+"shun"
+],
+"sinned": [
+"sin"
+],
+"sinning": [
+"sin"
+],
+"slain": [
+"slay"
+],
+"slew": [
+"slay"
+],
+"slummed": [
+"slum"
+],
+"slumming": [
+"slum"
+],
+"stetted": [
+"stet"
+],
+"stetting": [
+"stet"
+],
+"stymying": [
+"stymie"
+],
+"supplied": [
+"supply"
+],
+"babied": [
+"baby"
+],
+"baby-sat": [
+"baby-sit"
+],
+"baby-sitting": [
+"baby-sit"
+],
+"banned": [
+"ban"
+],
+"banning": [
+"ban"
+],
+"blacklegged": [
+"blackleg"
+],
+"blacklegging": [
+"blackleg"
+],
+"brevetted": [
+"brevet"
+],
+"brevetting": [
+"brevet"
+],
+"busied": [
+"busy"
+],
+"overdid": [
+"overdo"
+],
+"overdone": [
+"overdo"
+],
+"overdriven": [
+"overdrive"
+],
+"overdrove": [
+"overdrive"
+],
+"oversaw": [
+"oversee"
+],
+"overseen": [
+"oversee"
+],
+"oversimplified": [
+"oversimplify"
+],
+"hobnobbed": [
+"hobnob"
+],
+"hobnobbing": [
+"hobnob"
+],
+"humbugged": [
+"humbug"
+],
+"humbugging": [
+"humbug"
+],
+"jobbed": [
+"job"
+],
+"jobbing": [
+"job"
+],
+"jollified": [
+"jollify"
+],
+"debarred": [
+"debar"
+],
+"debarring": [
+"debar"
+],
+"declassified": [
+"declassify"
+],
+"decontrolled": [
+"decontrol"
+],
+"decontrolling": [
+"decontrol"
+],
+"disbarred": [
+"disbar"
+],
+"disbarring": [
+"disbar"
+],
+"disinterred": [
+"disinter"
+],
+"disinterring": [
+"disinter"
+],
+"dubbed": [
+"dub"
+],
+"dubbing": [
+"dub"
+],
+"ratified": [
+"ratify"
+],
+"rebelled": [
+"rebel"
+],
+"rebelling": [
+"rebel"
+],
+"reheard": [
+"rehear"
+],
+"remarried": [
+"remarry"
+],
+"retried": [
+"retry"
+],
+"reunified": [
+"reunify"
+],
+"revelled": [
+"revel"
+],
+"revelling": [
+"revel"
+],
+"palled": [
+"pal"
+],
+"palling": [
+"pal"
+],
+"patrolled": [
+"patrol"
+],
+"patrolling": [
+"patrol"
+],
+"permitted": [
+"permit"
+],
+"permitting": [
+"permit"
+],
+"pilloried": [
+"pillory"
+],
+"abetted": [
+"abet"
+],
+"abetting": [
+"abet"
+],
+"abought": [
+"aby"
+],
+"abye": [
+"aby"
+],
+"allied": [
+"ally"
+],
+"annulled": [
+"annul"
+],
+"annulling": [
+"annul"
+],
+"undertaken": [
+"undertake"
+],
+"undertook": [
+"undertake"
+],
+"fagged": [
+"fag"
+],
+"fagging": [
+"fag"
+],
+"featherbedded": [
+"featherbed"
+],
+"featherbedding": [
+"featherbed"
+],
+"flubbed": [
+"flub"
+],
+"flubbing": [
+"flub"
+],
+"fobbed": [
+"fob"
+],
+"fobbing": [
+"fob"
+],
+"forbad": [
+"forbid"
+],
+"forbade": [
+"forbid"
+],
+"forbidden": [
+"forbid"
+],
+"forbidding": [
+"forbid"
+],
+"forgave": [
+"forgive"
+],
+"forgiven": [
+"forgive"
+],
+"frivolled": [
+"frivol"
+],
+"frivolling": [
+"frivol"
+],
+"lobbied": [
+"lobby"
+],
+"lotted": [
+"lot"
+],
+"lotting": [
+"lot"
+],
+"certified": [
+"certify"
+],
+"complied": [
+"comply"
+],
+"court-martialled": [
+"court-martial"
+],
+"court-martialling": [
+"court-martial"
+],
+"crucified": [
+"crucify"
+],
+"vetted": [
+"vet"
+],
+"vetting": [
+"vet"
+],
+"wedded": [
+"wed"
+],
+"wedding": [
+"wed"
+],
+"kennelled": [
+"kennel"
+],
+"kennelling": [
+"kennel"
+],
+"manumitted": [
+"manumit"
+],
+"manumitting": [
+"manumit"
+],
+"married": [
+"marry"
+],
+"miscarried": [
+"miscarry"
+],
+"mutinied": [
+"mutiny"
+],
+"enrolled": [
+"enrol",
+"enroll"
+],
+"enrolling": [
+"enrol",
+"enroll"
+],
+"spoke": [
+"speak"
+],
+"spoken": [
+"speak"
+],
+"spied": [
+"spy"
+],
+"strummed": [
+"strum"
+],
+"strumming": [
+"strum"
+],
+"sunned": [
+"sun"
+],
+"sunning": [
+"sun"
+],
+"befogged": [
+"befog"
+],
+"befogging": [
+"befog"
+],
+"beheld": [
+"behold"
+],
+"beholden": [
+"behold"
+],
+"bugged": [
+"bug"
+],
+"bugging": [
+"bug"
+],
+"overheard": [
+"overhear"
+],
+"honied": [
+"honey"
+],
+"descried": [
+"descry"
+],
+"dreamt": [
+"dream"
+],
+"dulcified": [
+"dulcify"
+],
+"thrummed": [
+"thrum"
+],
+"thrumming": [
+"thrum"
+],
+"undergone": [
+"undergo"
+],
+"underwent": [
+"undergo"
+],
+"fogged": [
+"fog"
+],
+"fogging": [
+"fog"
+],
+"candied": [
+"candy"
+],
+"chugged": [
+"chug"
+],
+"chugging": [
+"chug"
+],
+"clopped": [
+"clop"
+],
+"clopping": [
+"clop"
+],
+"vitriolled": [
+"vitriol"
+],
+"vitriolling": [
+"vitriol"
+],
+"whirred": [
+"whir"
+],
+"whirring": [
+"whir"
+],
+"whizzed": [
+"whiz"
+],
+"whizzes": [
+"whiz"
+],
+"whizzing": [
+"whiz"
+],
+"modelled": [
+"model"
+],
+"modelling": [
+"model"
+],
+"mugged": [
+"mug"
+],
+"mugging": [
+"mug"
+],
+"eavesdropped": [
+"eavesdrop"
+],
+"eavesdropping": [
+"eavesdrop"
+],
+"espied": [
+"espy"
+],
+"ghostwritten": [
+"ghostwrite"
+],
+"ghostwrote": [
+"ghostwrite"
+],
+"gilt": [
+"gild"
+],
+"inlaid": [
+"inlay"
+],
+"shammed": [
+"sham"
+],
+"shamming": [
+"sham"
+],
+"sang": [
+"sing"
+],
+"sung": [
+"sing"
+],
+"stencilled": [
+"stencil"
+],
+"stencilling": [
+"stencil"
+],
+"bejewelled": [
+"bejewel"
+],
+"bejewelling": [
+"bejewel"
+],
+"bootlegged": [
+"bootleg"
+],
+"bootlegging": [
+"bootleg"
+],
+"outputted": [
+"output"
+],
+"outputting": [
+"output"
+],
+"overcropped": [
+"overcrop"
+],
+"overcropping": [
+"overcrop"
+],
+"hammed": [
+"ham"
+],
+"hamming": [
+"ham"
+],
+"japanned": [
+"japan"
+],
+"japanning": [
+"japan"
+],
+"jewelled": [
+"jewel"
+],
+"jewelling": [
+"jewel"
+],
+"devilled": [
+"devil"
+],
+"devilling": [
+"devil"
+],
+"diagrammed": [
+"diagram"
+],
+"diagramming": [
+"diagram"
+],
+"dummied": [
+"dummy"
+],
+"tatted": [
+"tat"
+],
+"tatting": [
+"tat"
+],
+"travestied": [
+"travesty"
+],
+"typesetting": [
+"typeset"
+],
+"rebuilt": [
+"rebuild"
+],
+"recopied": [
+"recopy"
+],
+"remade": [
+"remake"
+],
+"retold": [
+"retell"
+],
+"rewritten": [
+"rewrite"
+],
+"rewrote": [
+"rewrite"
+],
+"ribbed": [
+"rib"
+],
+"ribbing": [
+"rib"
+],
+"pacified": [
+"pacify"
+],
+"parodied": [
+"parody"
+],
+"penned": [
+"pen"
+],
+"penning": [
+"pen"
+],
+"pent": [
+"pen"
+],
+"pencilled": [
+"pencil"
+],
+"pencilling": [
+"pencil"
+],
+"photocopied": [
+"photocopy"
+],
+"programmed": [
+"program"
+],
+"programmes": [
+"program"
+],
+"programming": [
+"program"
+],
+"punned": [
+"pun"
+],
+"punning": [
+"pun"
+],
+"ad-libbed": [
+"ad-lib"
+],
+"ad-libbing": [
+"ad-lib"
+],
+"unmade": [
+"unmake"
+],
+"fancied": [
+"fancy"
+],
+"fantasied": [
+"fantasy"
+],
+"carolled": [
+"carol"
+],
+"carolling": [
+"carol"
+],
+"copied": [
+"copy"
+],
+"versified": [
+"versify"
+],
+"webbed": [
+"web"
+],
+"webbing": [
+"web"
+],
+"written": [
+"write"
+],
+"wrote": [
+"write"
+],
+"mimicked": [
+"mimic"
+],
+"mimicking": [
+"mimic"
+],
+"enamelled": [
+"enamel"
+],
+"enamelling": [
+"enamel"
+],
+"glommed": [
+"glom"
+],
+"glomming": [
+"glom"
+],
+"glutted": [
+"glut"
+],
+"glutting": [
+"glut"
+],
+"indemnified": [
+"indemnify"
+],
+"scummed": [
+"scum"
+],
+"scumming": [
+"scum"
+],
+"subbed": [
+"sub"
+],
+"subbing": [
+"sub"
+],
+"subletting": [
+"sublet"
+],
+"begged": [
+"beg"
+],
+"begging": [
+"beg"
+],
+"benefitted": [
+"benefit"
+],
+"benefitting": [
+"benefit"
+],
+"bade": [
+"bid"
+],
+"bidden": [
+"bid"
+],
+"bidding": [
+"bid"
+],
+"blest": [
+"bless"
+],
+"outbidden": [
+"outbid"
+],
+"outbidding": [
+"outbid"
+],
+"outfitted": [
+"outfit"
+],
+"outfitting": [
+"outfit"
+],
+"overbidden": [
+"overbid"
+],
+"overbidding": [
+"overbid"
+],
+"overdrawn": [
+"overdraw"
+],
+"overdrew": [
+"overdraw"
+],
+"overpaid": [
+"overpay"
+],
+"overspent": [
+"overspend"
+],
+"hatted": [
+"hat"
+],
+"hatting": [
+"hat"
+],
+"hogged": [
+"hog"
+],
+"hogging": [
+"hog"
+],
+"denied": [
+"deny"
+],
+"disembodied": [
+"disembody"
+],
+"trafficked": [
+"traffic"
+],
+"trafficking": [
+"traffic"
+],
+"reft": [
+"reave"
+],
+"refitted": [
+"refit"
+],
+"refitting": [
+"refit"
+],
+"refuelled": [
+"refuel"
+],
+"refuelling": [
+"refuel"
+],
+"repaid": [
+"repay"
+],
+"ridded": [
+"rid"
+],
+"ridding": [
+"rid"
+],
+"robbed": [
+"rob"
+],
+"robbing": [
+"rob"
+],
+"preoccupied": [
+"preoccupy"
+],
+"prepaid": [
+"prepay"
+],
+"allotted": [
+"allot"
+],
+"allotting": [
+"allot"
+],
+"underbidding": [
+"underbid"
+],
+"underpaid": [
+"underpay"
+],
+"undersold": [
+"undersell"
+],
+"fuelled": [
+"fuel"
+],
+"fuelling": [
+"fuel"
+],
+"canalled": [
+"canal"
+],
+"canalling": [
+"canal"
+],
+"conferred": [
+"confer"
+],
+"conferring": [
+"confer"
+],
+"victualled": [
+"victual"
+],
+"victualling": [
+"victual"
+],
+"window-shopped": [
+"window-shop"
+],
+"window-shopping": [
+"window-shop"
+],
+"withheld": [
+"withhold"
+],
+"misdealt": [
+"misdeal"
+],
+"yenned": [
+"yen"
+],
+"yenning": [
+"yen"
+],
+"gratified": [
+"gratify"
+],
+"spellbound": [
+"spellbind"
+],
+"ballyragged": [
+"ballyrag"
+],
+"ballyragging": [
+"ballyrag"
+],
+"beatified": [
+"beatify"
+],
+"browbeaten": [
+"browbeat"
+],
+"bullied": [
+"bully"
+],
+"bullyragged": [
+"bullyrag"
+],
+"bullyragging": [
+"bullyrag"
+],
+"hamstrung": [
+"hamstring"
+],
+"horrified": [
+"horrify"
+],
+"dissatisfied": [
+"dissatisfy"
+],
+"terrified": [
+"terrify"
+],
+"regretted": [
+"regret"
+],
+"regretting": [
+"regret"
+],
+"panicked": [
+"panic"
+],
+"panicking": [
+"panic"
+],
+"pitied": [
+"pity"
+],
+"abhorred": [
+"abhor"
+],
+"abhorring": [
+"abhor"
+],
+"appalled": [
+"appal",
+"appall"
+],
+"appalling": [
+"appal",
+"appall"
+],
+"unmanned": [
+"unman"
+],
+"unmanning": [
+"unman"
+],
+"chevied": [
+"chivy"
+],
+"chevies": [
+"chivy"
+],
+"chevying": [
+"chivy"
+],
+"chivied": [
+"chivy"
+],
+"chivvied": [
+"chivy"
+],
+"chivvies": [
+"chivy"
+],
+"chivvying": [
+"chivy"
+],
+"woke": [
+"wake"
+],
+"woken": [
+"wake"
+],
+"mortified": [
+"mortify"
+],
+"enthralled": [
+"enthral",
+"enthrall"
+],
+"enthralling": [
+"enthral",
+"enthrall"
+],
+"envied": [
+"envy"
+],
+"sipped": [
+"sip"
+],
+"sipping": [
+"sip"
+],
+"supped": [
+"sup"
+],
+"supping": [
+"sup"
+],
+"drugged": [
+"drug"
+],
+"drugging": [
+"drug"
+],
+"picnicked": [
+"picnic"
+],
+"picnicking": [
+"picnic"
+],
+"fatted": [
+"fat"
+],
+"fatting": [
+"fat"
+],
+"force-fed": [
+"force-feed"
+],
+"cried": [
+"cry"
+],
+"quarried": [
+"quarry"
+],
+"misapplied": [
+"misapply"
+],
+"englutted": [
+"englut"
+],
+"englutting": [
+"englut"
+],
+"gelt": [
+"geld"
+],
+"grinned": [
+"grin"
+],
+"grinning": [
+"grin"
+],
+"shat": [
+"shit"
+],
+"shitted": [
+"shit"
+],
+"shitting": [
+"shit"
+],
+"shod": [
+"shoe"
+],
+"shrugged": [
+"shrug"
+],
+"shrugging": [
+"shrug"
+],
+"snivelled": [
+"snivel"
+],
+"snivelling": [
+"snivel"
+],
+"sobbed": [
+"sob"
+],
+"sobbing": [
+"sob"
+],
+"begat": [
+"beget"
+],
+"begetting": [
+"beget"
+],
+"begot": [
+"beget"
+],
+"begotten": [
+"beget"
+],
+"blubbed": [
+"blub"
+],
+"blubbing": [
+"blub"
+],
+"overslept": [
+"oversleep"
+],
+"hiccupped": [
+"hiccup"
+],
+"hiccupping": [
+"hiccup"
+],
+"hypertrophied": [
+"hypertrophy"
+],
+"dandified": [
+"dandify"
+],
+"donned": [
+"don"
+],
+"donning": [
+"don"
+],
+"drivelled": [
+"drivel"
+],
+"drivelling": [
+"drivel"
+],
+"talcked": [
+"talc"
+],
+"talcking": [
+"talc"
+],
+"togged": [
+"tog"
+],
+"togging": [
+"tog"
+],
+"revivified": [
+"revivify"
+],
+"pupped": [
+"pup"
+],
+"pupping": [
+"pup"
+],
+"acquitted": [
+"acquit"
+],
+"acquitting": [
+"acquit"
+],
+"atrophied": [
+"atrophy"
+],
+"awoke": [
+"awake"
+],
+"awoken": [
+"awake"
+],
+"catnapped": [
+"catnap"
+],
+"catnapping": [
+"catnap"
+],
+"crapped": [
+"crap"
+],
+"crapping": [
+"crap"
+],
+"cubbed": [
+"cub"
+],
+"cubbing": [
+"cub"
+],
+"wanned": [
+"wan"
+],
+"wanning": [
+"wan"
+],
+"wearied": [
+"weary"
+],
+"wept": [
+"weep"
+],
+"napped": [
+"nap"
+],
+"napping": [
+"nap"
+],
+"kipped": [
+"kip"
+],
+"kipping": [
+"kip"
+],
+"marcelled": [
+"marcel"
+],
+"marcelling": [
+"marcel"
+],
+"emitted": [
+"emit"
+],
+"emitting": [
+"emit"
+],
+"yakked": [
+"yak"
+],
+"yakking": [
+"yak"
+],
+"yapped": [
+"yap"
+],
+"yapping": [
+"yap"
+],
+"yodelled": [
+"yodel"
+],
+"yodelling": [
+"yodel"
+],
+"gainsaid": [
+"gainsay"
+],
+"gloried": [
+"glory"
+],
+"initialled": [
+"initial"
+],
+"initialling": [
+"initial"
+],
+"intermitted": [
+"intermit"
+],
+"intermitting": [
+"intermit"
+],
+"shriven": [
+"shrive"
+],
+"shrove": [
+"shrive"
+],
+"sidestepped": [
+"sidestep"
+],
+"sidestepping": [
+"sidestep"
+],
+"signalled": [
+"signal"
+],
+"signalling": [
+"signal"
+],
+"signified": [
+"signify"
+],
+"snubbed": [
+"snub"
+],
+"snubbing": [
+"snub"
+],
+"soft-pedalled": [
+"soft-pedal"
+],
+"soft-pedalling": [
+"soft-pedal"
+],
+"speechified": [
+"speechify"
+],
+"backbit": [
+"backbite"
+],
+"backbitten": [
+"backbite"
+],
+"besought": [
+"beseech"
+],
+"bespoke": [
+"bespeak"
+],
+"bespoken": [
+"bespeak"
+],
+"blabbed": [
+"blab"
+],
+"blabbing": [
+"blab"
+],
+"blatted": [
+"blat"
+],
+"blatting": [
+"blat"
+],
+"bragged": [
+"brag"
+],
+"bragging": [
+"brag"
+],
+"bullshitted": [
+"bullshit"
+],
+"bullshitting": [
+"bullshit"
+],
+"bypast": [
+"bypass"
+],
+"overwritten": [
+"overwrite"
+],
+"overwrote": [
+"overwrite"
+],
+"jollied": [
+"jolly"
+],
+"jotted": [
+"jot"
+],
+"jotting": [
+"jot"
+],
+"decried": [
+"decry"
+],
+"demurred": [
+"demur"
+],
+"demurring": [
+"demur"
+],
+"deterred": [
+"deter"
+],
+"deterring": [
+"deter"
+],
+"testified": [
+"testify"
+],
+"toadied": [
+"toady"
+],
+"totted": [
+"tot"
+],
+"totting": [
+"tot"
+],
+"tut-tutted": [
+"tut-tut"
+],
+"tut-tutting": [
+"tut-tut"
+],
+"twitted": [
+"twit"
+],
+"twitting": [
+"twit"
+],
+"typewritten": [
+"typewrite"
+],
+"typewrote": [
+"typewrite"
+],
+"recapped": [
+"recap"
+],
+"recapping": [
+"recap"
+],
+"replied": [
+"reply"
+],
+"pettifogged": [
+"pettifog"
+],
+"pettifogging": [
+"pettifog"
+],
+"pled": [
+"plead"
+],
+"preachified": [
+"preachify"
+],
+"prophesied": [
+"prophesy"
+],
+"amnestied": [
+"amnesty"
+],
+"argufied": [
+"argufy"
+],
+"averred": [
+"aver"
+],
+"averring": [
+"aver"
+],
+"underwritten": [
+"underwrite"
+],
+"underwrote": [
+"underwrite"
+],
+"unsaid": [
+"unsay"
+],
+"untaught": [
+"unteach"
+],
+"fibbed": [
+"fib"
+],
+"fibbing": [
+"fib"
+],
+"foreshown": [
+"foreshow"
+],
+"foretold": [
+"foretell"
+],
+"forswore": [
+"forswear"
+],
+"forsworn": [
+"forswear"
+],
+"libelled": [
+"libel"
+],
+"libelling": [
+"libel"
+],
+"cavilled": [
+"cavil"
+],
+"cavilling": [
+"cavil"
+],
+"chatted": [
+"chat"
+],
+"chatting": [
+"chat"
+],
+"chid": [
+"chide"
+],
+"chidden": [
+"chide"
+],
+"chitchatted": [
+"chitchat"
+],
+"chitchatting": [
+"chitchat"
+],
+"codded": [
+"cod"
+],
+"codding": [
+"cod"
+],
+"confabbed": [
+"confab"
+],
+"confabbing": [
+"confab"
+],
+"coquetted": [
+"coquet"
+],
+"coquetting": [
+"coquet"
+],
+"counselled": [
+"counsel"
+],
+"counselling": [
+"counsel"
+],
+"curst": [
+"curse"
+],
+"vilified": [
+"vilify"
+],
+"quarrelled": [
+"quarrel"
+],
+"quarrelling": [
+"quarrel"
+],
+"queried": [
+"query"
+],
+"quipped": [
+"quip"
+],
+"quipping": [
+"quip"
+],
+"quizzed": [
+"quiz"
+],
+"quizzes": [
+"quiz"
+],
+"quizzing": [
+"quiz"
+],
+"whinnied": [
+"whinny"
+],
+"notified": [
+"notify"
+],
+"kidded": [
+"kid"
+],
+"kidding": [
+"kid"
+],
+"marvelled": [
+"marvel"
+],
+"marvelling": [
+"marvel"
+],
+"misspelt": [
+"misspell"
+],
+"edified": [
+"edify"
+],
+"extolled": [
+"extol"
+],
+"extolling": [
+"extol"
+]
+},
+"adjective": {
+"zanier": [
+"zany"
+],
+"zaniest": [
+"zany"
+],
+"zippier": [
+"zippy"
+],
+"zippiest": [
+"zippy"
+],
+"yeastier": [
+"yeasty"
+],
+"yeastiest": [
+"yeasty"
+],
+"younger": [
+"young"
+],
+"youngest": [
+"young"
+],
+"yummier": [
+"yummy"
+],
+"yummiest": [
+"yummy"
+],
+"gabbier": [
+"gabby"
+],
+"gabbiest": [
+"gabby"
+],
+"gammier": [
+"gammy"
+],
+"gammiest": [
+"gammy"
+],
+"gamier": [
+"gamy"
+],
+"gamiest": [
+"gamy"
+],
+"gassier": [
+"gassy"
+],
+"gassiest": [
+"gassy"
+],
+"gaudier": [
+"gaudy"
+],
+"gaudiest": [
+"gaudy"
+],
+"gauzier": [
+"gauzy"
+],
+"gauziest": [
+"gauzy"
+],
+"gawkier": [
+"gawky"
+],
+"gawkiest": [
+"gawky"
+],
+"ghastlier": [
+"ghastly"
+],
+"ghastliest": [
+"ghastly"
+],
+"ghostlier": [
+"ghostly"
+],
+"ghostliest": [
+"ghostly"
+],
+"giddier": [
+"giddy"
+],
+"giddiest": [
+"giddy"
+],
+"gladder": [
+"glad"
+],
+"gladdest": [
+"glad"
+],
+"glassier": [
+"glassy"
+],
+"glassiest": [
+"glassy"
+],
+"glibber": [
+"glib"
+],
+"glibbest": [
+"glib"
+],
+"gloomier": [
+"gloomy"
+],
+"gloomiest": [
+"gloomy"
+],
+"glossier": [
+"glossy"
+],
+"glossiest": [
+"glossy"
+],
+"glummer": [
+"glum"
+],
+"glummest": [
+"glum"
+],
+"godlier": [
+"godly"
+],
+"godliest": [
+"godly"
+],
+"best": [
+"good"
+],
+"better": [
+"good",
+"well"
+],
+"goodlier": [
+"goodly"
+],
+"goodliest": [
+"goodly"
+],
+"gooier": [
+"gooey"
+],
+"gooiest": [
+"gooey"
+],
+"goofier": [
+"goofy"
+],
+"goofiest": [
+"goofy"
+],
+"goosier": [
+"goosy"
+],
+"goosiest": [
+"goosy"
+],
+"gorier": [
+"gory"
+],
+"goriest": [
+"gory"
+],
+"grainier": [
+"grainy"
+],
+"grainiest": [
+"grainy"
+],
+"grassier": [
+"grassy"
+],
+"grassiest": [
+"grassy"
+],
+"greasier": [
+"greasy"
+],
+"greasiest": [
+"greasy"
+],
+"greedier": [
+"greedy"
+],
+"greediest": [
+"greedy"
+],
+"grimmer": [
+"grim"
+],
+"grimmest": [
+"grim"
+],
+"grislier": [
+"grisly"
+],
+"grisliest": [
+"grisly"
+],
+"grittier": [
+"gritty"
+],
+"grittiest": [
+"gritty"
+],
+"grizzlier": [
+"grizzly"
+],
+"grizzliest": [
+"grizzly"
+],
+"groggier": [
+"groggy"
+],
+"groggiest": [
+"groggy"
+],
+"groovier": [
+"groovy"
+],
+"grooviest": [
+"groovy"
+],
+"grottier": [
+"grotty"
+],
+"grottiest": [
+"grotty"
+],
+"grubbier": [
+"grubby"
+],
+"grubbiest": [
+"grubby"
+],
+"grumpier": [
+"grumpy"
+],
+"grumpiest": [
+"grumpy"
+],
+"guiltier": [
+"guilty"
+],
+"guiltiest": [
+"guilty"
+],
+"gummier": [
+"gummy"
+],
+"gummiest": [
+"gummy"
+],
+"gushier": [
+"gushy"
+],
+"gushiest": [
+"gushy"
+],
+"gustier": [
+"gusty"
+],
+"gustiest": [
+"gusty"
+],
+"gutsier": [
+"gutsy"
+],
+"gutsiest": [
+"gutsy"
+],
+"icier": [
+"icy"
+],
+"iciest": [
+"icy"
+],
+"inkier": [
+"inky"
+],
+"inkiest": [
+"inky"
+],
+"sadder": [
+"sad"
+],
+"saddest": [
+"sad"
+],
+"saltier": [
+"salty"
+],
+"saltiest": [
+"salty"
+],
+"sandier": [
+"sandy"
+],
+"sandiest": [
+"sandy"
+],
+"sappier": [
+"sappy"
+],
+"sappiest": [
+"sappy"
+],
+"sassier": [
+"sassy"
+],
+"sassiest": [
+"sassy"
+],
+"saucier": [
+"saucy"
+],
+"sauciest": [
+"saucy"
+],
+"scabbier": [
+"scabby"
+],
+"scabbiest": [
+"scabby"
+],
+"scalier": [
+"scaly"
+],
+"scaliest": [
+"scaly"
+],
+"scantier": [
+"scanty"
+],
+"scantiest": [
+"scanty"
+],
+"scarier": [
+"scary"
+],
+"scariest": [
+"scary"
+],
+"scragglier": [
+"scraggly"
+],
+"scraggliest": [
+"scraggly"
+],
+"scraggier": [
+"scraggy"
+],
+"scraggiest": [
+"scraggy"
+],
+"scrappier": [
+"scrappy"
+],
+"scrappiest": [
+"scrappy"
+],
+"scrawnier": [
+"scrawny"
+],
+"scrawniest": [
+"scrawny"
+],
+"screwier": [
+"screwy"
+],
+"screwiest": [
+"screwy"
+],
+"scrubbier": [
+"scrubby"
+],
+"scrubbiest": [
+"scrubby"
+],
+"scruffier": [
+"scruffy"
+],
+"scruffiest": [
+"scruffy"
+],
+"scurvier": [
+"scurvy"
+],
+"scurviest": [
+"scurvy"
+],
+"seamier": [
+"seamy"
+],
+"seamiest": [
+"seamy"
+],
+"seedier": [
+"seedy"
+],
+"seediest": [
+"seedy"
+],
+"seemlier": [
+"seemly"
+],
+"seemliest": [
+"seemly"
+],
+"sexier": [
+"sexy"
+],
+"sexiest": [
+"sexy"
+],
+"shabbier": [
+"shabby"
+],
+"shabbiest": [
+"shabby"
+],
+"shadier": [
+"shady"
+],
+"shadiest": [
+"shady"
+],
+"shaggier": [
+"shaggy"
+],
+"shaggiest": [
+"shaggy"
+],
+"shakier": [
+"shaky"
+],
+"shakiest": [
+"shaky"
+],
+"shapelier": [
+"shapely"
+],
+"shapeliest": [
+"shapely"
+],
+"shiftier": [
+"shifty"
+],
+"shiftiest": [
+"shifty"
+],
+"shinier": [
+"shiny"
+],
+"shiniest": [
+"shiny"
+],
+"shirtier": [
+"shirty"
+],
+"shirtiest": [
+"shirty"
+],
+"shoddier": [
+"shoddy"
+],
+"shoddiest": [
+"shoddy"
+],
+"showier": [
+"showy"
+],
+"showiest": [
+"showy"
+],
+"shier": [
+"shy"
+],
+"shiest": [
+"shy"
+],
+"shyer": [
+"shy"
+],
+"shyest": [
+"shy"
+],
+"sicklier": [
+"sickly"
+],
+"sickliest": [
+"sickly"
+],
+"sightlier": [
+"sightly"
+],
+"sightliest": [
+"sightly"
+],
+"silkier": [
+"silky"
+],
+"silkiest": [
+"silky"
+],
+"sillier": [
+"silly"
+],
+"silliest": [
+"silly"
+],
+"sketchier": [
+"sketchy"
+],
+"sketchiest": [
+"sketchy"
+],
+"skimpier": [
+"skimpy"
+],
+"skimpiest": [
+"skimpy"
+],
+"skinnier": [
+"skinny"
+],
+"skinniest": [
+"skinny"
+],
+"slaphappier": [
+"slaphappy"
+],
+"slaphappiest": [
+"slaphappy"
+],
+"slatier": [
+"slaty"
+],
+"slatiest": [
+"slaty"
+],
+"sleazier": [
+"sleazy"
+],
+"sleaziest": [
+"sleazy"
+],
+"sleepier": [
+"sleepy"
+],
+"sleepiest": [
+"sleepy"
+],
+"slimmer": [
+"slim"
+],
+"slimmest": [
+"slim"
+],
+"slimier": [
+"slimy"
+],
+"slimiest": [
+"slimy"
+],
+"slippier": [
+"slippy"
+],
+"slippiest": [
+"slippy"
+],
+"sloppier": [
+"sloppy"
+],
+"sloppiest": [
+"sloppy"
+],
+"slier": [
+"sly"
+],
+"sliest": [
+"sly"
+],
+"slyer": [
+"sly"
+],
+"slyest": [
+"sly"
+],
+"smarmier": [
+"smarmy"
+],
+"smarmiest": [
+"smarmy"
+],
+"smellier": [
+"smelly"
+],
+"smelliest": [
+"smelly"
+],
+"smokier": [
+"smoky"
+],
+"smokiest": [
+"smoky"
+],
+"smugger": [
+"smug"
+],
+"smuggest": [
+"smug"
+],
+"snakier": [
+"snaky"
+],
+"snakiest": [
+"snaky"
+],
+"snappier": [
+"snappy"
+],
+"snappiest": [
+"snappy"
+],
+"snazzier": [
+"snazzy"
+],
+"snazziest": [
+"snazzy"
+],
+"sniffier": [
+"sniffy"
+],
+"sniffiest": [
+"sniffy"
+],
+"snootier": [
+"snooty"
+],
+"snootiest": [
+"snooty"
+],
+"snottier": [
+"snotty"
+],
+"snottiest": [
+"snotty"
+],
+"snowier": [
+"snowy"
+],
+"snowiest": [
+"snowy"
+],
+"snugger": [
+"snug"
+],
+"snuggest": [
+"snug"
+],
+"soapier": [
+"soapy"
+],
+"soapiest": [
+"soapy"
+],
+"soggier": [
+"soggy"
+],
+"soggiest": [
+"soggy"
+],
+"sonsier": [
+"sonsy"
+],
+"sonsiest": [
+"sonsy"
+],
+"sootier": [
+"sooty"
+],
+"sootiest": [
+"sooty"
+],
+"soppier": [
+"soppy"
+],
+"soppiest": [
+"soppy"
+],
+"sorrier": [
+"sorry"
+],
+"sorriest": [
+"sorry"
+],
+"soupier": [
+"soupy"
+],
+"soupiest": [
+"soupy"
+],
+"speedier": [
+"speedy"
+],
+"speediest": [
+"speedy"
+],
+"spicier": [
+"spicy"
+],
+"spiciest": [
+"spicy"
+],
+"spiffier": [
+"spiffy"
+],
+"spiffiest": [
+"spiffy"
+],
+"spikier": [
+"spiky"
+],
+"spikiest": [
+"spiky"
+],
+"spindlier": [
+"spindly"
+],
+"spindliest": [
+"spindly"
+],
+"spinier": [
+"spiny"
+],
+"spiniest": [
+"spiny"
+],
+"splashier": [
+"splashy"
+],
+"splashiest": [
+"splashy"
+],
+"spongier": [
+"spongy"
+],
+"spongiest": [
+"spongy"
+],
+"spookier": [
+"spooky"
+],
+"spookiest": [
+"spooky"
+],
+"sportier": [
+"sporty"
+],
+"sportiest": [
+"sporty"
+],
+"spottier": [
+"spotty"
+],
+"spottiest": [
+"spotty"
+],
+"sprightlier": [
+"sprightly"
+],
+"sprightliest": [
+"sprightly"
+],
+"springier": [
+"springy"
+],
+"springiest": [
+"springy"
+],
+"sprier": [
+"spry"
+],
+"spriest": [
+"spry"
+],
+"squashier": [
+"squashy"
+],
+"squashiest": [
+"squashy"
+],
+"squatter": [
+"squat"
+],
+"squattest": [
+"squat"
+],
+"squattier": [
+"squatty"
+],
+"squattiest": [
+"squatty"
+],
+"squiffier": [
+"squiffy"
+],
+"squiffiest": [
+"squiffy"
+],
+"stagier": [
+"stagy"
+],
+"stagiest": [
+"stagy"
+],
+"starchier": [
+"starchy"
+],
+"starchiest": [
+"starchy"
+],
+"starrier": [
+"starry"
+],
+"starriest": [
+"starry"
+],
+"statelier": [
+"stately"
+],
+"stateliest": [
+"stately"
+],
+"steadier": [
+"steady"
+],
+"steadiest": [
+"steady"
+],
+"stealthier": [
+"stealthy"
+],
+"stealthiest": [
+"stealthy"
+],
+"steamier": [
+"steamy"
+],
+"steamiest": [
+"steamy"
+],
+"stingier": [
+"stingy"
+],
+"stingiest": [
+"stingy"
+],
+"stockier": [
+"stocky"
+],
+"stockiest": [
+"stocky"
+],
+"stodgier": [
+"stodgy"
+],
+"stodgiest": [
+"stodgy"
+],
+"stonier": [
+"stony"
+],
+"stoniest": [
+"stony"
+],
+"stormier": [
+"stormy"
+],
+"stormiest": [
+"stormy"
+],
+"streakier": [
+"streaky"
+],
+"streakiest": [
+"streaky"
+],
+"stretchier": [
+"stretchy"
+],
+"stretchiest": [
+"stretchy"
+],
+"stringier": [
+"stringy"
+],
+"stringiest": [
+"stringy"
+],
+"stripier": [
+"stripy"
+],
+"stripiest": [
+"stripy"
+],
+"stronger": [
+"strong"
+],
+"strongest": [
+"strong"
+],
+"stroppier": [
+"stroppy"
+],
+"stroppiest": [
+"stroppy"
+],
+"stuffier": [
+"stuffy"
+],
+"stuffiest": [
+"stuffy"
+],
+"stumpier": [
+"stumpy"
+],
+"stumpiest": [
+"stumpy"
+],
+"sturdier": [
+"sturdy"
+],
+"sturdiest": [
+"sturdy"
+],
+"sulkier": [
+"sulky"
+],
+"sulkiest": [
+"sulky"
+],
+"sultrier": [
+"sultry"
+],
+"sultriest": [
+"sultry"
+],
+"sunnier": [
+"sunny"
+],
+"sunniest": [
+"sunny"
+],
+"surlier": [
+"surly"
+],
+"surliest": [
+"surly"
+],
+"swagger": [
+"swagger"
+],
+"swankier": [
+"swanky"
+],
+"swankiest": [
+"swanky"
+],
+"swarthier": [
+"swarthy"
+],
+"swarthiest": [
+"swarthy"
+],
+"worse": [
+"bad"
+],
+"worst": [
+"bad"
+],
+"baggier": [
+"baggy"
+],
+"baggiest": [
+"baggy"
+],
+"balkier": [
+"balky"
+],
+"balkiest": [
+"balky"
+],
+"balmier": [
+"balmy"
+],
+"balmiest": [
+"balmy"
+],
+"bandier": [
+"bandy"
+],
+"bandiest": [
+"bandy"
+],
+"barmier": [
+"barmy"
+],
+"barmiest": [
+"barmy"
+],
+"battier": [
+"batty"
+],
+"battiest": [
+"batty"
+],
+"bawdier": [
+"bawdy"
+],
+"bawdiest": [
+"bawdy"
+],
+"beadier": [
+"beady"
+],
+"beadiest": [
+"beady"
+],
+"beastlier": [
+"beastly"
+],
+"beastliest": [
+"beastly"
+],
+"beefier": [
+"beefy"
+],
+"beefiest": [
+"beefy"
+],
+"beerier": [
+"beery"
+],
+"beeriest": [
+"beery"
+],
+"bigger": [
+"big"
+],
+"biggest": [
+"big"
+],
+"bitchier": [
+"bitchy"
+],
+"bitchiest": [
+"bitchy"
+],
+"bittier": [
+"bitty"
+],
+"bittiest": [
+"bitty"
+],
+"blearier": [
+"bleary"
+],
+"bleariest": [
+"bleary"
+],
+"bloodthirstier": [
+"bloodthirsty"
+],
+"bloodthirstiest": [
+"bloodthirsty"
+],
+"bloodier": [
+"bloody"
+],
+"bloodiest": [
+"bloody"
+],
+"blowsier": [
+"blowsy"
+],
+"blowsiest": [
+"blowsy"
+],
+"blowier": [
+"blowy"
+],
+"blowiest": [
+"blowy"
+],
+"blowzier": [
+"blowzy"
+],
+"blowziest": [
+"blowzy"
+],
+"bluer": [
+"blue"
+],
+"bluest": [
+"blue"
+],
+"bonnier": [
+"bonny"
+],
+"bonniest": [
+"bonny"
+],
+"bonier": [
+"bony"
+],
+"boniest": [
+"bony"
+],
+"boozier": [
+"boozy"
+],
+"booziest": [
+"boozy"
+],
+"boskier": [
+"bosky"
+],
+"boskiest": [
+"bosky"
+],
+"bossier": [
+"bossy"
+],
+"bossiest": [
+"bossy"
+],
+"botchier": [
+"botchy"
+],
+"botchiest": [
+"botchy"
+],
+"bouncier": [
+"bouncy"
+],
+"bounciest": [
+"bouncy"
+],
+"brainier": [
+"brainy"
+],
+"brainiest": [
+"brainy"
+],
+"brassier": [
+"brassy"
+],
+"brassiest": [
+"brassy"
+],
+"brawnier": [
+"brawny"
+],
+"brawniest": [
+"brawny"
+],
+"breezier": [
+"breezy"
+],
+"breeziest": [
+"breezy"
+],
+"brinier": [
+"briny"
+],
+"briniest": [
+"briny"
+],
+"broodier": [
+"broody"
+],
+"broodiest": [
+"broody"
+],
+"bubblier": [
+"bubbly"
+],
+"bubbliest": [
+"bubbly"
+],
+"buggier": [
+"buggy"
+],
+"buggiest": [
+"buggy"
+],
+"bulkier": [
+"bulky"
+],
+"bulkiest": [
+"bulky"
+],
+"bumpier": [
+"bumpy"
+],
+"bumpiest": [
+"bumpy"
+],
+"bunchier": [
+"bunchy"
+],
+"bunchiest": [
+"bunchy"
+],
+"burlier": [
+"burly"
+],
+"burliest": [
+"burly"
+],
+"burrier": [
+"burry"
+],
+"burriest": [
+"burry"
+],
+"bushier": [
+"bushy"
+],
+"bushiest": [
+"bushy"
+],
+"bustier": [
+"busty"
+],
+"bustiest": [
+"busty"
+],
+"busier": [
+"busy"
+],
+"busiest": [
+"busy"
+],
+"offer": [
+"off"
+],
+"oilier": [
+"oily"
+],
+"oiliest": [
+"oily"
+],
+"oozier": [
+"oozy"
+],
+"ooziest": [
+"oozy"
+],
+"hairier": [
+"hairy"
+],
+"hairiest": [
+"hairy"
+],
+"halfways": [
+"halfway"
+],
+"hammier": [
+"hammy"
+],
+"hammiest": [
+"hammy"
+],
+"handier": [
+"handy"
+],
+"handiest": [
+"handy"
+],
+"happier": [
+"happy"
+],
+"happiest": [
+"happy"
+],
+"hardier": [
+"hardy"
+],
+"hardiest": [
+"hardy"
+],
+"hastier": [
+"hasty"
+],
+"hastiest": [
+"hasty"
+],
+"haughtier": [
+"haughty"
+],
+"haughtiest": [
+"haughty"
+],
+"hazier": [
+"hazy"
+],
+"haziest": [
+"hazy"
+],
+"headier": [
+"heady"
+],
+"headiest": [
+"heady"
+],
+"healthier": [
+"healthy"
+],
+"healthiest": [
+"healthy"
+],
+"heartier": [
+"hearty"
+],
+"heartiest": [
+"hearty"
+],
+"heavier": [
+"heavy"
+],
+"heaviest": [
+"heavy"
+],
+"heftier": [
+"hefty"
+],
+"heftiest": [
+"hefty"
+],
+"hepper": [
+"hep"
+],
+"heppest": [
+"hep"
+],
+"hinder": [
+"hind"
+],
+"hipper": [
+"hip"
+],
+"hippest": [
+"hip"
+],
+"hoarier": [
+"hoary"
+],
+"hoariest": [
+"hoary"
+],
+"holier": [
+"holy"
+],
+"holiest": [
+"holy"
+],
+"homelier": [
+"homely"
+],
+"homeliest": [
+"homely"
+],
+"homier": [
+"homey"
+],
+"homiest": [
+"homey"
+],
+"hornier": [
+"horny"
+],
+"horniest": [
+"horny"
+],
+"hotter": [
+"hot"
+],
+"hottest": [
+"hot"
+],
+"hungrier": [
+"hungry"
+],
+"hungriest": [
+"hungry"
+],
+"huskier": [
+"husky"
+],
+"huskiest": [
+"husky"
+],
+"jaggier": [
+"jaggy"
+],
+"jaggiest": [
+"jaggy"
+],
+"jauntier": [
+"jaunty"
+],
+"jauntiest": [
+"jaunty"
+],
+"jazzier": [
+"jazzy"
+],
+"jazziest": [
+"jazzy"
+],
+"jerkier": [
+"jerky"
+],
+"jerkiest": [
+"jerky"
+],
+"jollier": [
+"jolly"
+],
+"jolliest": [
+"jolly"
+],
+"juicier": [
+"juicy"
+],
+"juiciest": [
+"juicy"
+],
+"jumpier": [
+"jumpy"
+],
+"jumpiest": [
+"jumpy"
+],
+"daintier": [
+"dainty"
+],
+"daintiest": [
+"dainty"
+],
+"dandier": [
+"dandy"
+],
+"dandiest": [
+"dandy"
+],
+"deadlier": [
+"deadly"
+],
+"deadliest": [
+"deadly"
+],
+"dewier": [
+"dewy"
+],
+"dewiest": [
+"dewy"
+],
+"dicier": [
+"dicey"
+],
+"diciest": [
+"dicey"
+],
+"dimmer": [
+"dim"
+],
+"dimmest": [
+"dim"
+],
+"dingier": [
+"dingy"
+],
+"dingiest": [
+"dingy"
+],
+"dinkier": [
+"dinky"
+],
+"dinkiest": [
+"dinky"
+],
+"dirtier": [
+"dirty"
+],
+"dirtiest": [
+"dirty"
+],
+"dishier": [
+"dishy"
+],
+"dishiest": [
+"dishy"
+],
+"dizzier": [
+"dizzy"
+],
+"dizziest": [
+"dizzy"
+],
+"dodgier": [
+"dodgy"
+],
+"dodgiest": [
+"dodgy"
+],
+"dopier": [
+"dopey"
+],
+"dopiest": [
+"dopey"
+],
+"dottier": [
+"dotty"
+],
+"dottiest": [
+"dotty"
+],
+"doughier": [
+"doughy"
+],
+"doughiest": [
+"doughy"
+],
+"dowdier": [
+"dowdy"
+],
+"dowdiest": [
+"dowdy"
+],
+"downier": [
+"downy"
+],
+"downiest": [
+"downy"
+],
+"dozier": [
+"dozy"
+],
+"doziest": [
+"dozy"
+],
+"drabber": [
+"drab"
+],
+"drabbest": [
+"drab"
+],
+"draftier": [
+"drafty"
+],
+"draftiest": [
+"drafty"
+],
+"draughtier": [
+"draughty"
+],
+"draughtiest": [
+"draughty"
+],
+"dreamier": [
+"dreamy"
+],
+"dreamiest": [
+"dreamy"
+],
+"drearier": [
+"dreary"
+],
+"dreariest": [
+"dreary"
+],
+"dressier": [
+"dressy"
+],
+"dressiest": [
+"dressy"
+],
+"drippier": [
+"drippy"
+],
+"drippiest": [
+"drippy"
+],
+"drowsier": [
+"drowsy"
+],
+"drowsiest": [
+"drowsy"
+],
+"drier": [
+"dry"
+],
+"driest": [
+"dry"
+],
+"dryer": [
+"dry"
+],
+"dryest": [
+"dry"
+],
+"dumpier": [
+"dumpy"
+],
+"dumpiest": [
+"dumpy"
+],
+"dunner": [
+"dun"
+],
+"dunnest": [
+"dun"
+],
+"duskier": [
+"dusky"
+],
+"duskiest": [
+"dusky"
+],
+"dustier": [
+"dusty"
+],
+"dustiest": [
+"dusty"
+],
+"tackier": [
+"tacky"
+],
+"tackiest": [
+"tacky"
+],
+"talkier": [
+"talky"
+],
+"talkiest": [
+"talky"
+],
+"tanner": [
+"tan"
+],
+"tannest": [
+"tan"
+],
+"tangier": [
+"tangy"
+],
+"tangiest": [
+"tangy"
+],
+"tardier": [
+"tardy"
+],
+"tardiest": [
+"tardy"
+],
+"tastier": [
+"tasty"
+],
+"tastiest": [
+"tasty"
+],
+"tattier": [
+"tatty"
+],
+"tattiest": [
+"tatty"
+],
+"tawdrier": [
+"tawdry"
+],
+"tawdriest": [
+"tawdry"
+],
+"techier": [
+"techy"
+],
+"techiest": [
+"techy"
+],
+"teenier": [
+"teeny"
+],
+"teeniest": [
+"teeny"
+],
+"testier": [
+"testy"
+],
+"testiest": [
+"testy"
+],
+"tetchier": [
+"tetchy"
+],
+"tetchiest": [
+"tetchy"
+],
+"thinner": [
+"thin"
+],
+"thinnest": [
+"thin"
+],
+"thirstier": [
+"thirsty"
+],
+"thirstiest": [
+"thirsty"
+],
+"thornier": [
+"thorny"
+],
+"thorniest": [
+"thorny"
+],
+"threadier": [
+"thready"
+],
+"threadiest": [
+"thready"
+],
+"thriftier": [
+"thrifty"
+],
+"thriftiest": [
+"thrifty"
+],
+"throatier": [
+"throaty"
+],
+"throatiest": [
+"throaty"
+],
+"tidier": [
+"tidy"
+],
+"tidiest": [
+"tidy"
+],
+"timelier": [
+"timely"
+],
+"timeliest": [
+"timely"
+],
+"tinnier": [
+"tinny"
+],
+"tinniest": [
+"tinny"
+],
+"tinier": [
+"tiny"
+],
+"tiniest": [
+"tiny"
+],
+"tipsier": [
+"tipsy"
+],
+"tipsiest": [
+"tipsy"
+],
+"toothier": [
+"toothy"
+],
+"toothiest": [
+"toothy"
+],
+"touchier": [
+"touchy"
+],
+"touchiest": [
+"touchy"
+],
+"trashier": [
+"trashy"
+],
+"trashiest": [
+"trashy"
+],
+"trendier": [
+"trendy"
+],
+"trendiest": [
+"trendy"
+],
+"tricksier": [
+"tricksy"
+],
+"tricksiest": [
+"tricksy"
+],
+"trickier": [
+"tricky"
+],
+"trickiest": [
+"tricky"
+],
+"trimmer": [
+"trim"
+],
+"trimmest": [
+"trim"
+],
+"truer": [
+"true"
+],
+"truest": [
+"true"
+],
+"trustier": [
+"trusty"
+],
+"trustiest": [
+"trusty"
+],
+"tubbier": [
+"tubby"
+],
+"tubbiest": [
+"tubby"
+],
+"tweedier": [
+"tweedy"
+],
+"tweediest": [
+"tweedy"
+],
+"twiggier": [
+"twiggy"
+],
+"twiggiest": [
+"twiggy"
+],
+"racier": [
+"racy"
+],
+"raciest": [
+"racy"
+],
+"rainier": [
+"rainy"
+],
+"rainiest": [
+"rainy"
+],
+"randier": [
+"randy"
+],
+"randiest": [
+"randy"
+],
+"rangier": [
+"rangy"
+],
+"rangiest": [
+"rangy"
+],
+"rattier": [
+"ratty"
+],
+"rattiest": [
+"ratty"
+],
+"raunchier": [
+"raunchy"
+],
+"raunchiest": [
+"raunchy"
+],
+"readier": [
+"ready"
+],
+"readiest": [
+"ready"
+],
+"redder": [
+"red"
+],
+"reddest": [
+"red"
+],
+"reedier": [
+"reedy"
+],
+"reediest": [
+"reedy"
+],
+"rimier": [
+"rimy"
+],
+"rimiest": [
+"rimy"
+],
+"riskier": [
+"risky"
+],
+"riskiest": [
+"risky"
+],
+"ritzier": [
+"ritzy"
+],
+"ritziest": [
+"ritzy"
+],
+"rockier": [
+"rocky"
+],
+"rockiest": [
+"rocky"
+],
+"roilier": [
+"roily"
+],
+"roiliest": [
+"roily"
+],
+"roomier": [
+"roomy"
+],
+"roomiest": [
+"roomy"
+],
+"ropier": [
+"ropy"
+],
+"ropiest": [
+"ropy"
+],
+"rosier": [
+"rosy"
+],
+"rosiest": [
+"rosy"
+],
+"rowdier": [
+"rowdy"
+],
+"rowdiest": [
+"rowdy"
+],
+"ruddier": [
+"ruddy"
+],
+"ruddiest": [
+"ruddy"
+],
+"runnier": [
+"runny"
+],
+"runniest": [
+"runny"
+],
+"rushier": [
+"rushy"
+],
+"rushiest": [
+"rushy"
+],
+"rustier": [
+"rusty"
+],
+"rustiest": [
+"rusty"
+],
+"ruttier": [
+"rutty"
+],
+"ruttiest": [
+"rutty"
+],
+"pallier": [
+"pally"
+],
+"palliest": [
+"pally"
+],
+"palmier": [
+"palmy"
+],
+"palmiest": [
+"palmy"
+],
+"paltrier": [
+"paltry"
+],
+"paltriest": [
+"paltry"
+],
+"parkier": [
+"parky"
+],
+"parkiest": [
+"parky"
+],
+"pastier": [
+"pasty"
+],
+"pastiest": [
+"pasty"
+],
+"patchier": [
+"patchy"
+],
+"patchiest": [
+"patchy"
+],
+"pawkier": [
+"pawky"
+],
+"pawkiest": [
+"pawky"
+],
+"peachier": [
+"peachy"
+],
+"peachiest": [
+"peachy"
+],
+"pearlier": [
+"pearly"
+],
+"pearliest": [
+"pearly"
+],
+"peppier": [
+"peppy"
+],
+"peppiest": [
+"peppy"
+],
+"perkier": [
+"perky"
+],
+"perkiest": [
+"perky"
+],
+"peskier": [
+"pesky"
+],
+"peskiest": [
+"pesky"
+],
+"pettier": [
+"petty"
+],
+"pettiest": [
+"petty"
+],
+"phonier": [
+"phony"
+],
+"phoniest": [
+"phony"
+],
+"pickier": [
+"picky"
+],
+"pickiest": [
+"picky"
+],
+"piggier": [
+"piggy"
+],
+"piggiest": [
+"piggy"
+],
+"pitchier": [
+"pitchy"
+],
+"pitchiest": [
+"pitchy"
+],
+"pithier": [
+"pithy"
+],
+"pithiest": [
+"pithy"
+],
+"pluckier": [
+"plucky"
+],
+"pluckiest": [
+"plucky"
+],
+"plummier": [
+"plummy"
+],
+"plummiest": [
+"plummy"
+],
+"plumier": [
+"plumy"
+],
+"plumiest": [
+"plumy"
+],
+"podgier": [
+"podgy"
+],
+"podgiest": [
+"podgy"
+],
+"pokier": [
+"poky"
+],
+"pokiest": [
+"poky"
+],
+"portlier": [
+"portly"
+],
+"portliest": [
+"portly"
+],
+"pottier": [
+"potty"
+],
+"pottiest": [
+"potty"
+],
+"preachier": [
+"preachy"
+],
+"preachiest": [
+"preachy"
+],
+"prettier": [
+"pretty"
+],
+"prettiest": [
+"pretty"
+],
+"pricklier": [
+"prickly"
+],
+"prickliest": [
+"prickly"
+],
+"pricier": [
+"pricy"
+],
+"priciest": [
+"pricy"
+],
+"priestlier": [
+"priestly"
+],
+"priestliest": [
+"priestly"
+],
+"primmer": [
+"prim"
+],
+"primmest": [
+"prim"
+],
+"princelier": [
+"princely"
+],
+"princeliest": [
+"princely"
+],
+"prissier": [
+"prissy"
+],
+"prissiest": [
+"prissy"
+],
+"privier": [
+"privy"
+],
+"priviest": [
+"privy"
+],
+"prosier": [
+"prosy"
+],
+"prosiest": [
+"prosy"
+],
+"pudgier": [
+"pudgy"
+],
+"pudgiest": [
+"pudgy"
+],
+"puffier": [
+"puffy"
+],
+"puffiest": [
+"puffy"
+],
+"pulpier": [
+"pulpy"
+],
+"pulpiest": [
+"pulpy"
+],
+"punier": [
+"puny"
+],
+"puniest": [
+"puny"
+],
+"pushier": [
+"pushy"
+],
+"pushiest": [
+"pushy"
+],
+"pussier": [
+"pussy"
+],
+"pussiest": [
+"pussy"
+],
+"after": [
+"after"
+],
+"airier": [
+"airy"
+],
+"airiest": [
+"airy"
+],
+"angrier": [
+"angry"
+],
+"angriest": [
+"angry"
+],
+"artier": [
+"arty"
+],
+"artiest": [
+"arty"
+],
+"ashier": [
+"ashy"
+],
+"ashiest": [
+"ashy"
+],
+"uglier": [
+"ugly"
+],
+"ugliest": [
+"ugly"
+],
+"unfriendlier": [
+"unfriendly"
+],
+"unfriendliest": [
+"unfriendly"
+],
+"ungainlier": [
+"ungainly"
+],
+"ungainliest": [
+"ungainly"
+],
+"ungodlier": [
+"ungodly"
+],
+"ungodliest": [
+"ungodly"
+],
+"unhappier": [
+"unhappy"
+],
+"unhappiest": [
+"unhappy"
+],
+"unhealthier": [
+"unhealthy"
+],
+"unhealthiest": [
+"unhealthy"
+],
+"unholier": [
+"unholy"
+],
+"unholiest": [
+"unholy"
+],
+"unrulier": [
+"unruly"
+],
+"unruliest": [
+"unruly"
+],
+"untidier": [
+"untidy"
+],
+"untidiest": [
+"untidy"
+],
+"fancier": [
+"fancy"
+],
+"fanciest": [
+"fancy"
+],
+"fatter": [
+"fat"
+],
+"fattest": [
+"fat"
+],
+"fattier": [
+"fatty"
+],
+"fattiest": [
+"fatty"
+],
+"faultier": [
+"faulty"
+],
+"faultiest": [
+"faulty"
+],
+"feistier": [
+"feisty"
+],
+"feistiest": [
+"feisty"
+],
+"filmier": [
+"filmy"
+],
+"filmiest": [
+"filmy"
+],
+"filthier": [
+"filthy"
+],
+"filthiest": [
+"filthy"
+],
+"fishier": [
+"fishy"
+],
+"fishiest": [
+"fishy"
+],
+"fitter": [
+"fit"
+],
+"fittest": [
+"fit"
+],
+"flabbier": [
+"flabby"
+],
+"flabbiest": [
+"flabby"
+],
+"flakier": [
+"flaky"
+],
+"flakiest": [
+"flaky"
+],
+"flashier": [
+"flashy"
+],
+"flashiest": [
+"flashy"
+],
+"flatter": [
+"flat"
+],
+"flattest": [
+"flat"
+],
+"flauntier": [
+"flaunty"
+],
+"flauntiest": [
+"flaunty"
+],
+"fleecier": [
+"fleecy"
+],
+"fleeciest": [
+"fleecy"
+],
+"fleshlier": [
+"fleshly"
+],
+"fleshliest": [
+"fleshly"
+],
+"fleshier": [
+"fleshy"
+],
+"fleshiest": [
+"fleshy"
+],
+"flightier": [
+"flighty"
+],
+"flightiest": [
+"flighty"
+],
+"flimsier": [
+"flimsy"
+],
+"flimsiest": [
+"flimsy"
+],
+"flintier": [
+"flinty"
+],
+"flintiest": [
+"flinty"
+],
+"floatier": [
+"floaty"
+],
+"floatiest": [
+"floaty"
+],
+"floppier": [
+"floppy"
+],
+"floppiest": [
+"floppy"
+],
+"flossier": [
+"flossy"
+],
+"flossiest": [
+"flossy"
+],
+"fluffier": [
+"fluffy"
+],
+"fluffiest": [
+"fluffy"
+],
+"flukier": [
+"fluky"
+],
+"flukiest": [
+"fluky"
+],
+"foamier": [
+"foamy"
+],
+"foamiest": [
+"foamy"
+],
+"foggier": [
+"foggy"
+],
+"foggiest": [
+"foggy"
+],
+"folksier": [
+"folksy"
+],
+"folksiest": [
+"folksy"
+],
+"foolhardier": [
+"foolhardy"
+],
+"foolhardiest": [
+"foolhardy"
+],
+"foxier": [
+"foxy"
+],
+"foxiest": [
+"foxy"
+],
+"freakier": [
+"freaky"
+],
+"freakiest": [
+"freaky"
+],
+"freer": [
+"free"
+],
+"freest": [
+"free"
+],
+"friendlier": [
+"friendly"
+],
+"friendliest": [
+"friendly"
+],
+"friskier": [
+"frisky"
+],
+"friskiest": [
+"frisky"
+],
+"frizzlier": [
+"frizzly"
+],
+"frizzliest": [
+"frizzly"
+],
+"frizzier": [
+"frizzy"
+],
+"frizziest": [
+"frizzy"
+],
+"frostier": [
+"frosty"
+],
+"frostiest": [
+"frosty"
+],
+"frowsier": [
+"frowsy"
+],
+"frowsiest": [
+"frowsy"
+],
+"frowzier": [
+"frowzy"
+],
+"frowziest": [
+"frowzy"
+],
+"fruitier": [
+"fruity"
+],
+"fruitiest": [
+"fruity"
+],
+"funkier": [
+"funky"
+],
+"funkiest": [
+"funky"
+],
+"funnier": [
+"funny"
+],
+"funniest": [
+"funny"
+],
+"furrier": [
+"furry"
+],
+"furriest": [
+"furry"
+],
+"fussier": [
+"fussy"
+],
+"fussiest": [
+"fussy"
+],
+"fustier": [
+"fusty"
+],
+"fustiest": [
+"fusty"
+],
+"fuzzier": [
+"fuzzy"
+],
+"fuzziest": [
+"fuzzy"
+],
+"lacier": [
+"lacy"
+],
+"laciest": [
+"lacy"
+],
+"lankier": [
+"lanky"
+],
+"lankiest": [
+"lanky"
+],
+"lazier": [
+"lazy"
+],
+"laziest": [
+"lazy"
+],
+"leafier": [
+"leafy"
+],
+"leafiest": [
+"leafy"
+],
+"leakier": [
+"leaky"
+],
+"leakiest": [
+"leaky"
+],
+"leerier": [
+"leery"
+],
+"leeriest": [
+"leery"
+],
+"leggier": [
+"leggy"
+],
+"leggiest": [
+"leggy"
+],
+"lengthier": [
+"lengthy"
+],
+"lengthiest": [
+"lengthy"
+],
+"livelier": [
+"lively"
+],
+"liveliest": [
+"lively"
+],
+"liver": [
+"liver"
+],
+"loftier": [
+"lofty"
+],
+"loftiest": [
+"lofty"
+],
+"logier": [
+"logy"
+],
+"logiest": [
+"logy"
+],
+"lonelier": [
+"lonely"
+],
+"loneliest": [
+"lonely"
+],
+"loonier": [
+"loony"
+],
+"looniest": [
+"loony"
+],
+"loopier": [
+"loopy"
+],
+"loopiest": [
+"loopy"
+],
+"lordlier": [
+"lordly"
+],
+"lordliest": [
+"lordly"
+],
+"lousier": [
+"lousy"
+],
+"lousiest": [
+"lousy"
+],
+"lovelier": [
+"lovely"
+],
+"loveliest": [
+"lovely"
+],
+"lowlier": [
+"lowly"
+],
+"lowliest": [
+"lowly"
+],
+"luckier": [
+"lucky"
+],
+"luckiest": [
+"lucky"
+],
+"lumpier": [
+"lumpy"
+],
+"lumpiest": [
+"lumpy"
+],
+"lustier": [
+"lusty"
+],
+"lustiest": [
+"lusty"
+],
+"cagier": [
+"cagey"
+],
+"cagiest": [
+"cagey"
+],
+"cannier": [
+"canny"
+],
+"canniest": [
+"canny"
+],
+"cantier": [
+"canty"
+],
+"cantiest": [
+"canty"
+],
+"catchier": [
+"catchy"
+],
+"catchiest": [
+"catchy"
+],
+"cattier": [
+"catty"
+],
+"cattiest": [
+"catty"
+],
+"chancier": [
+"chancy"
+],
+"chanciest": [
+"chancy"
+],
+"charier": [
+"chary"
+],
+"chariest": [
+"chary"
+],
+"chattier": [
+"chatty"
+],
+"chattiest": [
+"chatty"
+],
+"cheekier": [
+"cheeky"
+],
+"cheekiest": [
+"cheeky"
+],
+"cheerier": [
+"cheery"
+],
+"cheeriest": [
+"cheery"
+],
+"cheesier": [
+"cheesy"
+],
+"cheesiest": [
+"cheesy"
+],
+"chestier": [
+"chesty"
+],
+"chestiest": [
+"chesty"
+],
+"chewier": [
+"chewy"
+],
+"chewiest": [
+"chewy"
+],
+"chillier": [
+"chilly"
+],
+"chilliest": [
+"chilly"
+],
+"chintzier": [
+"chintzy"
+],
+"chintziest": [
+"chintzy"
+],
+"choosier": [
+"choosy"
+],
+"choosiest": [
+"choosy"
+],
+"choppier": [
+"choppy"
+],
+"choppiest": [
+"choppy"
+],
+"chubbier": [
+"chubby"
+],
+"chubbiest": [
+"chubby"
+],
+"chummier": [
+"chummy"
+],
+"chummiest": [
+"chummy"
+],
+"chunkier": [
+"chunky"
+],
+"chunkiest": [
+"chunky"
+],
+"clammier": [
+"clammy"
+],
+"clammiest": [
+"clammy"
+],
+"classier": [
+"classy"
+],
+"classiest": [
+"classy"
+],
+"cleanlier": [
+"cleanly"
+],
+"cleanliest": [
+"cleanly"
+],
+"cloudier": [
+"cloudy"
+],
+"cloudiest": [
+"cloudy"
+],
+"clubbier": [
+"clubby"
+],
+"clubbiest": [
+"clubby"
+],
+"clumsier": [
+"clumsy"
+],
+"clumsiest": [
+"clumsy"
+],
+"cockier": [
+"cocky"
+],
+"cockiest": [
+"cocky"
+],
+"comelier": [
+"comely"
+],
+"comeliest": [
+"comely"
+],
+"comfier": [
+"comfy"
+],
+"comfiest": [
+"comfy"
+],
+"cornier": [
+"corny"
+],
+"corniest": [
+"corny"
+],
+"costlier": [
+"costly"
+],
+"costliest": [
+"costly"
+],
+"cosier": [
+"cosy"
+],
+"cosiest": [
+"cosy"
+],
+"courtlier": [
+"courtly"
+],
+"courtliest": [
+"courtly"
+],
+"cozier": [
+"cozy"
+],
+"coziest": [
+"cozy"
+],
+"crabbier": [
+"crabby"
+],
+"crabbiest": [
+"crabby"
+],
+"craftier": [
+"crafty"
+],
+"craftiest": [
+"crafty"
+],
+"craggier": [
+"craggy"
+],
+"craggiest": [
+"craggy"
+],
+"crankier": [
+"cranky"
+],
+"crankiest": [
+"cranky"
+],
+"crazier": [
+"crazy"
+],
+"craziest": [
+"crazy"
+],
+"creamier": [
+"creamy"
+],
+"creamiest": [
+"creamy"
+],
+"creepier": [
+"creepy"
+],
+"creepiest": [
+"creepy"
+],
+"crispier": [
+"crispy"
+],
+"crispiest": [
+"crispy"
+],
+"crumblier": [
+"crumbly"
+],
+"crumbliest": [
+"crumbly"
+],
+"crummier": [
+"crummy"
+],
+"crummiest": [
+"crummy"
+],
+"crustier": [
+"crusty"
+],
+"crustiest": [
+"crusty"
+],
+"curlier": [
+"curly"
+],
+"curliest": [
+"curly"
+],
+"cuter": [
+"cute"
+],
+"quaggier": [
+"quaggy"
+],
+"quaggiest": [
+"quaggy"
+],
+"queasier": [
+"queasy"
+],
+"queasiest": [
+"queasy"
+],
+"queenlier": [
+"queenly"
+],
+"queenliest": [
+"queenly"
+],
+"wackier": [
+"wacky"
+],
+"wackiest": [
+"wacky"
+],
+"wanner": [
+"wan"
+],
+"wannest": [
+"wan"
+],
+"warier": [
+"wary"
+],
+"wariest": [
+"wary"
+],
+"washier": [
+"washy"
+],
+"washiest": [
+"washy"
+],
+"wavier": [
+"wavy"
+],
+"waviest": [
+"wavy"
+],
+"waxier": [
+"waxy"
+],
+"waxiest": [
+"waxy"
+],
+"weaklier": [
+"weakly"
+],
+"weakliest": [
+"weakly"
+],
+"wealthier": [
+"wealthy"
+],
+"wealthiest": [
+"wealthy"
+],
+"wearier": [
+"weary"
+],
+"weariest": [
+"weary"
+],
+"webbier": [
+"webby"
+],
+"webbiest": [
+"webby"
+],
+"weedier": [
+"weedy"
+],
+"weediest": [
+"weedy"
+],
+"weensier": [
+"weensy"
+],
+"weensiest": [
+"weensy"
+],
+"weenier": [
+"weeny"
+],
+"weeniest": [
+"weeny"
+],
+"weepier": [
+"weepy"
+],
+"weepiest": [
+"weepy"
+],
+"weightier": [
+"weighty"
+],
+"weightiest": [
+"weighty"
+],
+"wetter": [
+"wet"
+],
+"wettest": [
+"wet"
+],
+"whackier": [
+"whacky"
+],
+"whackiest": [
+"whacky"
+],
+"wieldier": [
+"wieldy"
+],
+"wieldiest": [
+"wieldy"
+],
+"wilier": [
+"wily"
+],
+"wiliest": [
+"wily"
+],
+"windier": [
+"windy"
+],
+"windiest": [
+"windy"
+],
+"winterier": [
+"wintery"
+],
+"winteriest": [
+"wintery"
+],
+"wintrier": [
+"wintry"
+],
+"wintriest": [
+"wintry"
+],
+"winier": [
+"winy"
+],
+"winiest": [
+"winy"
+],
+"wirier": [
+"wiry"
+],
+"wiriest": [
+"wiry"
+],
+"wispier": [
+"wispy"
+],
+"wispiest": [
+"wispy"
+],
+"wittier": [
+"witty"
+],
+"wittiest": [
+"witty"
+],
+"wonkier": [
+"wonky"
+],
+"wonkiest": [
+"wonky"
+],
+"woodsier": [
+"woodsy"
+],
+"woodsiest": [
+"woodsy"
+],
+"woodier": [
+"woody"
+],
+"woodiest": [
+"woody"
+],
+"woollier": [
+"woolly"
+],
+"woolliest": [
+"woolly"
+],
+"woozier": [
+"woozy"
+],
+"wooziest": [
+"woozy"
+],
+"wordier": [
+"wordy"
+],
+"wordiest": [
+"wordy"
+],
+"worldlier": [
+"worldly"
+],
+"worldliest": [
+"worldly"
+],
+"wormier": [
+"wormy"
+],
+"wormiest": [
+"wormy"
+],
+"worthier": [
+"worthy"
+],
+"worthiest": [
+"worthy"
+],
+"wrier": [
+"wry"
+],
+"wriest": [
+"wry"
+],
+"wryer": [
+"wry"
+],
+"wryest": [
+"wry"
+],
+"nappier": [
+"nappy"
+],
+"nappiest": [
+"nappy"
+],
+"nastier": [
+"nasty"
+],
+"nastiest": [
+"nasty"
+],
+"nattier": [
+"natty"
+],
+"nattiest": [
+"natty"
+],
+"naughtier": [
+"naughty"
+],
+"naughtiest": [
+"naughty"
+],
+"needier": [
+"needy"
+],
+"neediest": [
+"needy"
+],
+"nervier": [
+"nervy"
+],
+"nerviest": [
+"nervy"
+],
+"newsier": [
+"newsy"
+],
+"newsiest": [
+"newsy"
+],
+"niftier": [
+"nifty"
+],
+"niftiest": [
+"nifty"
+],
+"nippier": [
+"nippy"
+],
+"nippiest": [
+"nippy"
+],
+"noisier": [
+"noisy"
+],
+"noisiest": [
+"noisy"
+],
+"nosier": [
+"nosy"
+],
+"nosiest": [
+"nosy"
+],
+"nuttier": [
+"nutty"
+],
+"nuttiest": [
+"nutty"
+],
+"kindlier": [
+"kindly"
+],
+"kindliest": [
+"kindly"
+],
+"kinkier": [
+"kinky"
+],
+"kinkiest": [
+"kinky"
+],
+"knottier": [
+"knotty"
+],
+"knottiest": [
+"knotty"
+],
+"kookier": [
+"kooky"
+],
+"kookiest": [
+"kooky"
+],
+"madder": [
+"mad"
+],
+"maddest": [
+"mad"
+],
+"mangier": [
+"mangy"
+],
+"mangiest": [
+"mangy"
+],
+"mankier": [
+"manky"
+],
+"mankiest": [
+"manky"
+],
+"manlier": [
+"manly"
+],
+"manliest": [
+"manly"
+],
+"marshier": [
+"marshy"
+],
+"marshiest": [
+"marshy"
+],
+"mazier": [
+"mazy"
+],
+"maziest": [
+"mazy"
+],
+"mealier": [
+"mealy"
+],
+"mealiest": [
+"mealy"
+],
+"measlier": [
+"measly"
+],
+"measliest": [
+"measly"
+],
+"meatier": [
+"meaty"
+],
+"meatiest": [
+"meaty"
+],
+"merrier": [
+"merry"
+],
+"merriest": [
+"merry"
+],
+"messier": [
+"messy"
+],
+"messiest": [
+"messy"
+],
+"mightier": [
+"mighty"
+],
+"mightiest": [
+"mighty"
+],
+"milkier": [
+"milky"
+],
+"milkiest": [
+"milky"
+],
+"mingier": [
+"mingy"
+],
+"mingiest": [
+"mingy"
+],
+"mirkier": [
+"mirky"
+],
+"mirkiest": [
+"mirky"
+],
+"mistier": [
+"misty"
+],
+"mistiest": [
+"misty"
+],
+"modest": [
+"modest"
+],
+"moldier": [
+"moldy"
+],
+"moldiest": [
+"moldy"
+],
+"moodier": [
+"moody"
+],
+"moodiest": [
+"moody"
+],
+"moonier": [
+"moony"
+],
+"mooniest": [
+"moony"
+],
+"mothier": [
+"mothy"
+],
+"mothiest": [
+"mothy"
+],
+"mouldier": [
+"mouldy"
+],
+"mouldiest": [
+"mouldy"
+],
+"mousier": [
+"mousy"
+],
+"mousiest": [
+"mousy"
+],
+"muckier": [
+"mucky"
+],
+"muckiest": [
+"mucky"
+],
+"muddier": [
+"muddy"
+],
+"muddiest": [
+"muddy"
+],
+"muggier": [
+"muggy"
+],
+"muggiest": [
+"muggy"
+],
+"murkier": [
+"murky"
+],
+"murkiest": [
+"murky"
+],
+"mushier": [
+"mushy"
+],
+"mushiest": [
+"mushy"
+],
+"muskier": [
+"musky"
+],
+"muskiest": [
+"musky"
+],
+"mustier": [
+"musty"
+],
+"mustiest": [
+"musty"
+],
+"muzzier": [
+"muzzy"
+],
+"muzziest": [
+"muzzy"
+],
+"earlier": [
+"early"
+],
+"earliest": [
+"early"
+],
+"earthlier": [
+"earthly"
+],
+"earthliest": [
+"earthly"
+],
+"earthier": [
+"earthy"
+],
+"earthiest": [
+"earthy"
+],
+"easier": [
+"easy"
+],
+"easiest": [
+"easy"
+],
+"edgier": [
+"edgy"
+],
+"edgiest": [
+"edgy"
+],
+"eerier": [
+"eerie"
+],
+"eeriest": [
+"eerie"
+],
+"emptier": [
+"empty"
+],
+"emptiest": [
+"empty"
+],
+"shrubbier": [
+"shrubby"
+],
+"shrubbiest": [
+"shrubby"
+]
+},
+"adverb": {
+"harder": [
+"hard"
+],
+"hardest": [
+"hard"
+],
+"deeper": [
+"deeply"
+],
+"farther": [
+"far"
+],
+"further": [
+"far"
+],
+"best": [
+"well"
+],
+"better": [
+"well"
+]
+}
+}
+},
+"metadata": {
+"source_lexicon": "oewn:2023"
+}
+}

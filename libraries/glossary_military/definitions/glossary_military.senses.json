@@ -1,0 +1,208 @@
+{
+  "id": "glossary_military.senses",
+  "type": "lexical_senses",
+  "version": "0.1.0",
+  "description": "Military and ISR terminology. (15 seed senses).",
+  "content": {
+    "senses": [
+      {
+        "sense_id": "glossary_military-opsec",
+        "lemma": "OPSEC",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "military",
+        "gloss": "operations security",
+        "forms": [
+          "OPSEC"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_military-sigint",
+        "lemma": "SIGINT",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "military",
+        "gloss": "signals intelligence",
+        "forms": [
+          "SIGINT"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_military-humint",
+        "lemma": "HUMINT",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "military",
+        "gloss": "human intelligence",
+        "forms": [
+          "HUMINT"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_military-elint",
+        "lemma": "ELINT",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "military",
+        "gloss": "electronic intelligence",
+        "forms": [
+          "ELINT"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_military-geoint",
+        "lemma": "GEOINT",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "military",
+        "gloss": "geospatial intelligence",
+        "forms": [
+          "GEOINT"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_military-osint",
+        "lemma": "OSINT",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "military",
+        "gloss": "open-source intelligence",
+        "forms": [
+          "OSINT"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_military-isr",
+        "lemma": "ISR",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "military",
+        "gloss": "intelligence, surveillance, and reconnaissance",
+        "forms": [
+          "ISR"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_military-c2",
+        "lemma": "C2",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "military",
+        "gloss": "command and control",
+        "forms": [
+          "C2"
+        ],
+        "relations": [
+          {
+            "rel": "related",
+            "library": "glossary_cyber",
+            "sense_id": "glossary_cyber-c2"
+          }
+        ]
+      },
+      {
+        "sense_id": "glossary_military-ao",
+        "lemma": "AO",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "military",
+        "gloss": "area of operations",
+        "forms": [
+          "AO"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_military-ttp",
+        "lemma": "TTP",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "military",
+        "gloss": "tactics, techniques, and procedures",
+        "forms": [
+          "TTP"
+        ],
+        "relations": [
+          {
+            "rel": "synonym",
+            "library": "glossary_cyber",
+            "sense_id": "glossary_cyber-ttp"
+          }
+        ]
+      },
+      {
+        "sense_id": "glossary_military-roe",
+        "lemma": "RoE",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "military",
+        "gloss": "rules of engagement",
+        "forms": [
+          "RoE"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_military-qrf",
+        "lemma": "QRF",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "military",
+        "gloss": "quick reaction force",
+        "forms": [
+          "QRF"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_military-exfil",
+        "lemma": "exfil",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "military",
+        "gloss": "exfiltration; withdrawal from an area",
+        "forms": [
+          "exfil"
+        ],
+        "relations": [
+          {
+            "rel": "related",
+            "library": "glossary_intel",
+            "sense_id": "glossary_intel-exfiltrate"
+          }
+        ]
+      },
+      {
+        "sense_id": "glossary_military-infil",
+        "lemma": "infil",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "military",
+        "gloss": "infiltration; covert entry into an area",
+        "forms": [
+          "infil"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_military-sortie",
+        "lemma": "sortie",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "military",
+        "gloss": "a single mission by an aircraft",
+        "forms": [
+          "sortie"
+        ],
+        "relations": []
+      }
+    ]
+  }
+}

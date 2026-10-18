@@ -1,0 +1,45 @@
+{
+  "id": "domain.general",
+  "type": "domain_sense_preferences",
+  "version": "0.2.0",
+  "description": "General verb-sense preferences — precise WordNet sense per common predicate, domain-agnostic (admit means concede everywhere). Always loaded; domain packs (legal/biomed) override only domain-specific terms. Addresses content-derived from the WordNet pack AND VERIFIED bound to the form (not synonym-redirects to another form's address, which would be inert). Note: acknowledge shares admit's address (5994) = synonymy via shared concept; deny (7b88 'declare untrue') is the contradiction-polarity counterpart. v0.2.0 adds the deposition-discourse verbs that PARKED on noun/verb pos-collision (say/go/tell/know/think/see/meet/occur) — only unambiguously verb/adjective-dominant words belong here; role-ambiguous ones (work/leave/question/abuse) live in domain packs.",
+  "domain": "general",
+  "preferences": {
+    "admit":       { "address": "12.1.5994b4c2a7cb1716", "gloss": "declare to be true; concede", "weight": 1.0 },
+    "acknowledge": { "address": "12.1.5994b4c2a7cb1716", "gloss": "declare to be true; concede (= admit)", "weight": 1.0 },
+    "concede":     { "address": "12.1.c687c3d6f8ee8c2c", "gloss": "admit (to a wrongdoing)", "weight": 1.0 },
+    "confirm":     { "address": "12.1.4248335431ada2c2", "gloss": "establish or strengthen with new evidence", "weight": 1.0 },
+    "state":       { "address": "12.1.d0aa547b491449a7", "gloss": "express in words", "weight": 1.0 },
+    "allege":      { "address": "12.1.798039ec9e674451", "gloss": "report or maintain", "weight": 1.0 },
+    "testify":     { "address": "12.1.39117eb51adeeb7b", "gloss": "give testimony in a court of law", "weight": 1.0 },
+    "observe":     { "address": "12.1.0c7466e97f4b60c3", "gloss": "discover/determine existence (perceive)", "weight": 1.0 },
+    "recall":      { "address": "12.1.1f86bb18197fdd6e", "gloss": "recall knowledge from memory", "weight": 1.0 },
+
+    "deny":        { "address": "12.1.7b88f07bcd750e0c", "gloss": "declare untrue; contradict", "weight": 1.0 },
+    "refute":      { "address": "12.1.7b88f07bcd750e0c", "gloss": "declare untrue; contradict (= deny)", "weight": 1.0 },
+    "contradict":  { "address": "12.1.c6f98c691d8099b6", "gloss": "deny the truth of", "weight": 1.0 },
+    "refuse":      { "address": "12.1.ce8cfc727c1e184b", "gloss": "show unwillingness towards", "weight": 1.0 },
+
+    "give":        { "address": "12.1.5188f62778e0aa4a", "gloss": "transfer possession to someone", "weight": 1.0 },
+    "fund":        { "address": "12.1.5188f62778e0aa4a", "gloss": "transfer money to support (= give)", "weight": 1.0 },
+    "finance":     { "address": "12.1.5188f62778e0aa4a", "gloss": "transfer money to support (= give)", "weight": 1.0 },
+    "withhold":    { "address": "12.1.9a8051e463bb4bc3", "gloss": "hold back; refuse to hand over or share", "weight": 1.0 },
+    "circumvent":  { "address": "12.1.d6dc592cdd0db3d6", "gloss": "avoid fulfilling/answering/performing", "weight": 1.0 },
+    "suppress":    { "address": "12.1.7cee9d1798498a01", "gloss": "keep down by unjust use of authority", "weight": 1.0 },
+    "overrule":    { "address": "12.1.5035f8552c97459a", "gloss": "rule against", "weight": 1.0 },
+    "edit":        { "address": "12.1.807a42c780455000", "gloss": "prepare for publication by correcting", "weight": 1.0 },
+    "delete":      { "address": "12.1.d393e07a008238ca", "gloss": "wipe out recorded information", "weight": 1.0 },
+    "massage":     { "address": "12.1.777a889e4efa3c21", "gloss": "give a massage to", "weight": 1.0 },
+
+    "say":         { "address": "12.1.d0aa547b491449a7", "gloss": "express in words (= state)", "weight": 1.0 },
+    "go":          { "address": "12.1.17ac50e0c2365a29", "gloss": "change location; move, travel, proceed", "weight": 1.0 },
+    "tell":        { "address": "12.1.e284e806779fd7a8", "gloss": "let something be known", "weight": 1.0 },
+    "know":        { "address": "12.1.e690575131d0f933", "gloss": "be cognizant or aware of a fact", "weight": 1.0 },
+    "think":       { "address": "12.1.6d7b590031b1a1c7", "gloss": "expect, believe, or suppose", "weight": 1.0 },
+    "see":         { "address": "12.1.f863b4382a3cd299", "gloss": "perceive by sight", "weight": 1.0 },
+    "meet":        { "address": "12.1.0230169198abd156", "gloss": "come together", "weight": 1.0 },
+    "occur":       { "address": "12.1.e4ee7c7fd6ba8018", "gloss": "come to pass (= happen)", "weight": 1.0 },
+    "happen":      { "address": "12.1.e4ee7c7fd6ba8018", "gloss": "come to pass", "weight": 1.0 },
+    "young":       { "address": "12.2.699df930829a153b", "gloss": "in an early period of life", "weight": 1.0 }
+  }
+}

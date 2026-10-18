@@ -1,0 +1,76 @@
+{
+  "id": "audit_vocab.severity",
+  "type": "custom",
+  "version": "0.1.0",
+  "description": "Audit event severity level vocabulary",
+  "content": {
+    "category": "severity_levels",
+    "purpose": "Defines severity classification for audit events",
+    "severity_levels": [
+      {
+        "severity_id": "info",
+        "label": "Informational",
+        "description": "Normal informational events",
+        "typical_use_cases": [
+          "Successful operations",
+          "State changes",
+          "Regular heartbeats",
+          "Usage metrics"
+        ],
+        "notes": ["Lowest severity", "No action required", "For logging and analytics"]
+      },
+      {
+        "severity_id": "warning",
+        "label": "Warning",
+        "description": "Warning conditions that may require attention",
+        "typical_use_cases": [
+          "Deprecated feature usage",
+          "Non-critical validation warnings",
+          "Resource approaching limits",
+          "Retryable errors"
+        ],
+        "notes": ["Moderate severity", "May require review", "System continues operating"]
+      },
+      {
+        "severity_id": "error",
+        "label": "Error",
+        "description": "Error conditions indicating failures",
+        "typical_use_cases": [
+          "Validation failures",
+          "Failed operations",
+          "Pack loading errors",
+          "Assertion rejections"
+        ],
+        "notes": ["High severity", "Operation failed", "Requires investigation"]
+      },
+      {
+        "severity_id": "critical",
+        "label": "Critical",
+        "description": "Critical issues requiring immediate attention",
+        "typical_use_cases": [
+          "System failures",
+          "Data corruption detected",
+          "Security breaches",
+          "Node crashes"
+        ],
+        "notes": ["Highest severity", "Immediate action required", "May affect system availability"]
+      }
+    ],
+    "usage_guidance": {
+      "info": "Use for normal operations and status updates",
+      "warning": "Use when something unexpected occurred but system continues",
+      "error": "Use when an operation failed but system remains stable",
+      "critical": "Use when system integrity or availability is threatened"
+    },
+    "notes": [
+      "Severity is a classification, not enforcement",
+      "Future systems determine how to handle each severity",
+      "Multiple events of same type may have different severities based on context"
+    ]
+  },
+  "metadata": {
+    "created": "2025-12-31T00:00:00Z",
+    "author": "ENKI System"
+  },
+  "dependencies": ["audit_vocab.system"]
+}

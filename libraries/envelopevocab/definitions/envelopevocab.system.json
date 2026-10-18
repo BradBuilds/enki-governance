@@ -1,0 +1,42 @@
+{
+  "id": "envelope.vocab.system",
+  "type": "system",
+  "version": "0.1.0",
+  "description": "System definition for the canonical card envelope vocabulary. Declares the schema, blocks, slot semantics, and immutability rules.",
+  "content": {
+    "purpose": "Universal data carrier for all knowledge in Enki. Every node — entity, place, event, topic, source, document, chronicle, assessment, pattern — carries an envelope conforming to this schema. The card renderer reads the envelope; the LLM extraction passes write to it; the completeness scorer validates against subtype-specific slot specs in completenessvocab.",
+
+    "principle": "The envelope is the source of truth for what we know about a node. Storage is exhaustive (every slot can be filled or explicitly marked as a gap). Display is selective (the renderer chooses which slots to show at hover/expanded/dossier tiers). The envelope is data; rendering is policy.",
+
+    "blocks": [
+      {"name": "governance", "purpose": "GDU canonicality flag, active set version, pack version snapshot, LDU lineage pointers"},
+      {"name": "identity", "purpose": "Title, byline, canonical name and aliases — what to call this thing"},
+      {"name": "summary", "purpose": "Headline, narrative, key facts, quotes, body original/translated, structured fields, domain"},
+      {"name": "temporal", "purpose": "Event time, ingestion time, precision"},
+      {"name": "spatial", "purpose": "Coordinates, place text, resolved place nodes, extraction method"},
+      {"name": "entities", "purpose": "Array of entity references with role and confidence"},
+      {"name": "topics", "purpose": "Array of topic references with weight"},
+      {"name": "events_referenced", "purpose": "Array of event references with role"},
+      {"name": "source", "purpose": "Source node, URL, language, editorial stance"},
+      {"name": "media", "purpose": "Thumbnail and optional images/videos/audio/embeds"},
+      {"name": "evidence", "purpose": "Epistemic type, confidence, corroborations, contradictions, background relevance"},
+      {"name": "relationships", "purpose": "Mentions, cites, follows, supersedes, part_of"},
+      {"name": "completeness", "purpose": "Score, tier, filled/total slots, gap list"},
+      {"name": "provenance", "purpose": "Extraction passes log, human edits log"},
+      {"name": "card_actions", "purpose": "Permitted actions for the user on this card"}
+    ],
+
+    "immutability": "Once envelopevocab v0.1.0 is admitted under an active set, the v1 envelope shape is immutable. Additive changes require Tier 1 extension (Gate A). Breaking changes require publishing envelope_v2 as a new definition alongside v1; nodes admitted under v1 remain queryable forever via LDU lineage stamps. The renderer must support every historical envelope version.",
+
+    "ldu_relationship": "The envelope's governance block carries ldu_t_id and ldu_p_id pointers to the LDU lineage of the underlying signal. This is how downstream queries can answer 'which envelopes were admitted under active set v5 vs v6' — the LDU layer is the audit trail that lets the spine evolve without rewriting history.",
+
+    "renderer_contract": "The card renderer reads the envelope and produces three display tiers (hover, expanded, dossier) using the same data. Adding a new node type means populating the envelope correctly — never writing a new renderer component.",
+
+    "extensibility": "New node types and subtypes are added via nodevocab pack updates. New required slots per subtype are added via completenessvocab pack updates. The envelope shape itself does not need to change for these — they are policy applied to the same data carrier."
+  },
+  "metadata": {
+    "created": "2026-04-10T00:00:00Z",
+    "author": "ENKI System"
+  },
+  "dependencies": []
+}

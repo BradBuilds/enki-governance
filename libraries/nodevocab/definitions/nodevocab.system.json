@@ -1,0 +1,28 @@
+{
+  "id": "node.vocab.system",
+  "type": "system",
+  "version": "0.1.0",
+  "description": "System definition for the node type taxonomy. Declares the 9 categories and the discipline of reducing every fact in Enki to one of them.",
+  "content": {
+    "purpose": "Everything in Enki is a node. The 9 categories defined in this pack are the only legal node types. Every signal, every extraction, every chronicle, every assessment must reduce to one of these or it cannot be stored.",
+    "principle": "A small, stable taxonomy is more powerful than a large, growing one. New categories are added only through ceremony. Subtypes are added more freely (Tier 1 extension) but the 9 categories are sealed.",
+    "categories": [
+      {"id": "entity", "purpose": "Things that persist across time — people, organizations, vessels, aircraft, vehicles, facilities, accounts, devices, units"},
+      {"id": "place", "purpose": "Locations — countries, regions, cities, points of interest, named operation areas, coordinate clusters"},
+      {"id": "event", "purpose": "Discrete things that happened at a specific time — strikes, transactions, meetings, statements, sightings, earthquakes, weather alerts"},
+      {"id": "topic", "purpose": "Abstract subjects — conflicts, operations, treaties, technologies, ideologies — that signals are about but are neither actors nor places"},
+      {"id": "source", "purpose": "Producers of signals — outlets, feeds, accounts, sensors, connectors, datasets, leaks. POV lives here, not on documents."},
+      {"id": "document", "purpose": "Discrete pieces of evidence — articles, images, videos, PDFs, audio, dataset rows, leak documents"},
+      {"id": "chronicle", "purpose": "Temporal anchors — daily, weekly, monthly, named period summaries. The long-term graph spine."},
+      {"id": "assessment", "purpose": "Epistemic statements — facts, observations, claims, hypotheses, questions, recommendations. Where contradictions live."},
+      {"id": "pattern", "purpose": "Emergent shapes that only exist because multiple signals form them — patterns of life, recurring meetings, supply routes, shell company chains, communication clusters"}
+    ],
+    "ldu_relationship": "Every node, regardless of category, carries LDU lineage pointers (ldu_t_id, ldu_p_id) in its envelope governance block. This is how the system tracks which active set version a node was admitted under, enabling safe vocabulary evolution.",
+    "extensibility": "Subtypes within a category can be added via Tier 1 extension. New top-level categories are forbidden in v1 — if a fact doesn't fit one of the 9, the right answer is to refine the existing categories, not invent a 10th."
+  },
+  "metadata": {
+    "created": "2026-04-10T00:00:00Z",
+    "author": "ENKI System"
+  },
+  "dependencies": []
+}

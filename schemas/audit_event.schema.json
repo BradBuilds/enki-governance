@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://enki.system/schemas/audit_event.schema.json",
+  "title": "ENKI Audit Event",
+  "description": "Schema for ENKI audit event logging (future use)",
+  "type": "object",
+  "required": ["event_id", "timestamp", "event_type", "actor"],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "description": "Unique event identifier"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the event occurred"
+    },
+    "event_type": {
+      "type": "string",
+      "enum": ["definition.created", "definition.modified", "definition.deleted", "validation.passed", "validation.failed", "render.executed"],
+      "description": "Type of audit event"
+    },
+    "actor": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["system", "user", "ai", "automation"]
+        },
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "target": {
+      "type": "object",
+      "description": "What was acted upon",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "details": {
+      "type": "object",
+      "description": "Event-specific details"
+    },
+    "outcome": {
+      "type": "string",
+      "enum": ["success", "failure", "partial"],
+      "description": "Result of the event"
+    }
+  }
+}

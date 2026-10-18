@@ -1,0 +1,166 @@
+{
+  "$schema": "./schemas/active_set.schema.json",
+  "version": "6.7.0",
+  "packs": [
+    {
+      "pack_id": "identity",
+      "version": "0.2.0",
+      "content_hash": "sha256:b023e0406af4daf434fd97b4eae72436a29b422d0ea4d12b3d4509ea19dbb78a"
+    },
+    {
+      "pack_id": "assertionvocab",
+      "version": "0.2.0",
+      "content_hash": "sha256:483f5c57b682fa6d3314a8f627a4b9b1656dc792708126c8484f209e4be095f0"
+    },
+    {
+      "pack_id": "auditvocab",
+      "version": "0.2.1",
+      "content_hash": "sha256:24a777cc687de1aa6a4e954e912484b494d99bcb3b5f3671026fe3dfccb13f58"
+    },
+    {
+      "pack_id": "base60",
+      "version": "0.2.0",
+      "content_hash": "sha256:e742a368cf1fab5eac675fc674f1097ab58609acc715c47c3b05d0f3ea841374"
+    },
+    {
+      "pack_id": "language",
+      "version": "0.3.0",
+      "content_hash": "sha256:06174322175eb5b556e0d0694e7e2d5dfdad1b85ccb761c4236334c978b8a40d"
+    },
+    {
+      "pack_id": "numeric",
+      "version": "1.0.0",
+      "content_hash": "sha256:4997c81e09570c421cab99ca1ead8847e824c91d98756e604f728809cef06b99"
+    },
+    {
+      "pack_id": "signalvocab",
+      "version": "0.1.3",
+      "content_hash": "sha256:305590b1efbec2eb43ec925d38eb76be65a6c9681f1a4b3de325e271bdf92736"
+    },
+    {
+      "pack_id": "alertvocab",
+      "version": "0.1.0",
+      "content_hash": "sha256:d546d0de27df941de821dd78e93547e0161851e9513d7923bbfce78bb41501cd"
+    },
+    {
+      "pack_id": "casevocab",
+      "version": "0.1.0",
+      "content_hash": "sha256:f4f56ddfabe3aacc892e4a284d4f22c8b56b6e5c04f25976d49025165f59b2f0"
+    },
+    {
+      "pack_id": "envelopevocab",
+      "version": "0.1.0",
+      "content_hash": "sha256:9ee4ab44ee35bfa54c90702516bc62edc7549c19db97cd320378be8e715c302d"
+    },
+    {
+      "pack_id": "nodevocab",
+      "version": "0.8.1",
+      "content_hash": "sha256:e7a967c8fe6ec21e95749739204f7bbfd5032da9a2a6e04494b295e471ffee93"
+    },
+    {
+      "pack_id": "edgevocab",
+      "version": "0.5.0",
+      "content_hash": "sha256:d0c6295e6a80338c47a5e58b9e8fbcd72a6c90500199627015f1ce6eec897884"
+    },
+    {
+      "pack_id": "completenessvocab",
+      "version": "0.1.0",
+      "content_hash": "sha256:9b50212f29028daef0bdce3f7453d38d0a7c97b058fff1b7a0bd3a26e2fe8b14"
+    },
+    {
+      "pack_id": "intentvocab",
+      "version": "0.1.0",
+      "content_hash": "sha256:73f5808763548cde8b03ec949bc38256c7f22eb000939a9f93e3322a4bb6d610"
+    },
+    {
+      "pack_id": "relevancevocab",
+      "version": "0.1.0",
+      "content_hash": "sha256:5ada33d1101bbf039203bdce6983e7c605b7d2b941f6ee290aa45dfb387817b2"
+    },
+    {
+      "pack_id": "entityvocab",
+      "version": "0.8.0",
+      "content_hash": "sha256:62339f61a1169fe392fd1a3eda5a79dcc2dffaf32ae316b9cdf56dd833ab267b"
+    },
+    {
+      "pack_id": "canonicalpack",
+      "version": "1.1.0",
+      "content_hash": "sha256:24a3a6f2148a90730c9bcaed8d5618c2c6b08610dff311fad9e328d523367747"
+    },
+    {
+      "pack_id": "gazetteerpack",
+      "version": "1.1.0",
+      "content_hash": "sha256:c76bf70cd3e179917d620f6c0d889cf40950ad9d078367dfc82d8878ec33514d"
+    },
+    {
+      "pack_id": "researchpack",
+      "version": "1.2.0",
+      "content_hash": "sha256:1fcf23932c3c1a98a5fbacd3dc9899c3b0aa408806b7a618cf2fa46528ffd500"
+    },
+    {
+      "pack_id": "displayvocab",
+      "version": "0.1.0",
+      "content_hash": "sha256:4b12f730569f8e28b2c08062133e388544ccf996b43bc0bae8a9e8f5cbcfbd03"
+    },
+    {
+      "pack_id": "precisionvocab",
+      "version": "0.1.0",
+      "content_hash": "sha256:295cfb5b69c3ba6acb13842e4475956c794f2c6b5765e912f88f260f1695db43"
+    },
+    {
+      "pack_id": "propertyvocab",
+      "version": "0.1.0",
+      "content_hash": "sha256:257a8c8d1ce59af906777dcfc6983e487e58edf20608df09f71e59623536518a"
+    },
+    {
+      "pack_id": "topicvocab",
+      "version": "0.1.0",
+      "content_hash": "sha256:24e647a58e333e4864c87f0c336bc6839096f44e0164fb87f6e824ea5c3addf3"
+    },
+    {
+      "pack_id": "valuevocab",
+      "version": "0.1.0",
+      "content_hash": "sha256:4b41ee9108336ad1823f758cd4b6cba096ef5c1f96f6ab2bf91fbf9ced365ef3"
+    },
+    {
+      "pack_id": "refdatapack",
+      "version": "0.1.0",
+      "content_hash": "sha256:e0f3171f7e327fcac40024bd82060b0979ee477159d6611d2000233caf9a69c0"
+    }
+  ],
+  "metadata": {
+    "name": "Active Set v6.5.0 - full spine-pack coverage",
+    "description": "Adds entityvocab pack: canonical entity resolution rules, per-type identifier schemas, normalization rules, merge/split policy, LLM arbitration prompt template, and enrichment task definitions. Together with nodevocab (entity subtypes) and completenessvocab (dossier scoring), this enables the unified entity resolution pipeline where all entity creation \u2014 from signals, enrichment, and watch topics \u2014 passes through a single GDU-governed resolver.",
+    "created": "2026-04-11T00:00:00Z",
+    "author": "ENKI System",
+    "purpose": "Enable GDU-governed entity resolution: canonical dedup, merge/split with redirects, enrichment queue, and audit trail",
+    "design_basis": "Built against the three-layer entity problem: signal-ingest entities (entity_resolver.py), knowledge_nodes entities (knowledge/resolver.py), and watch_topic_entities (processor.py) were disconnected. entityvocab unifies them under one governed resolution path.",
+    "_activation_status": "DRAFT \u2014 content_hashes computed; HWKEY signing pending",
+    "_supersedes": "active_set_v6.1.0",
+    "_changelog": [
+      "5.0.0 (2026-04-10): initial v5 activation with knowledge graph rebuild vocabulary",
+      "5.0.1 (2026-04-11): signalvocab 0.1.0 \u2192 0.1.1 \u2014 adds signal.environmental.weather_alert",
+      "6.0.0 (2026-04-11): adds entityvocab 0.1.0 \u2014 entity resolution rules, enrichment types, governed arbitration prompt",
+      "6.2.0 (2026-05-05): collapse rebuild \u2014 nodevocab 0.2.0\u21920.3.0 (per-subtype collapse_key_rules), entityvocab 0.1.0\u21920.2.0 (top-level normalize_rules), adds canonicalpack 1.0.0 + gazetteerpack 1.0.0"
+    ],
+    "change_log_6_3_0": "2026-07-25 governance re-sync. Brings 7 drifted packs back under the active set. entityvocab 0.3.0->0.6.0 (4 reject patterns already live via filesystem fallback; 7 stub enrichment types dropped; entity_subtypes + alias_seeds now hashed). nodevocab 0.3.0->0.8.1 (ADDITIVE ONLY: +5 categories form/definition/library/issue/mention, +17 subtypes on document/topic/source; collapse_key_rules unchanged so existing base-60 addresses are stable; divisor_policy.json newly declared in manifest). language 0.1.0->0.2.0 (base-60 lexicon). researchpack 1.0.0->1.1.0 (OSINT source routing). gazetteerpack 1.0.0->1.0.1 (one alias: 'united states of america'). numeric + envelopevocab: hash-only, definition 'type' fields realigned to the schema enum (no semantic change). language.frozen_addresses payload moved under 'content' per definition.schema.json. Result: 16/16 packs load canonically.",
+    "change_log_6_4_0": "2026-07-25. Completes the library/pack layer: declares the last two definition files that shipped on disk but were never manifest-listed, so they were excluded from every pack content hash and thus unprotected by the spine. gazetteerpack 1.0.1->1.1.0 (+gazetteerpack.cities, 4,953 GeoNames entries; fixed doubled definition id 'gazetteerpack.gazetteerpack.cities'). language 0.2.0->0.3.0 (+language.exceptions, 4,416 oewn:2023 lemma exceptions; type 'morphology_exceptions'->custom and version 'oewn-2023'->1.0.0 to satisfy definition.schema.json, lexicon tag preserved as metadata.source_lexicon; scripts/build_morphology_pack.py updated to emit schema-valid values). Every definition file on disk is now manifest-declared and hash-covered. 16/16 packs canonical.",
+    "change_log_6_5_0": "2026-07-25. Brings every spine-format pack under the active set: adds displayvocab, precisionvocab, propertyvocab, topicvocab, valuevocab, refdatapack (19 -> 25 packs). These declare pack_id + definitions[] exactly like the packs already governed, and were simply never added, so their content was unpinned. refdatapack's payload moved under 'content' per definition.schema.json; displayvocab and refdatapack had namespaces_owned that did not own their own definition ids. NOT added, deliberately: 'example' (a template \u2014 documentation, not governing vocabulary; now schema-valid so copying it yields a pack that passes the ceremony) and the 16 library-format packs (id + manifest[], type lexical|policy \u2014 abbreviations, demonyms, glossaries, slang, idioms, function_words, domain_finance, the three *policy packs, wordnet). Those are a different artifact class: they are collapsed INTO the substrate by core/language/library_connect.py rather than governing collapse, and wordnet's data is generated and deliberately not committed.",
+    "change_log_6_6_0": "2026-07-26. entityvocab 0.7.0->0.8.0: adds generic_intelligence_noun reject_pattern. Declassified CIA material is dense with category nouns ('intelligence agency', 'military intelligence', 'the intelligence community') that the resolver was minting as persons and organisations and then hanging edges off. FP-tested against all 48,957 entities on node-A: 7 matches, 0 false positives. Named agencies are unaffected \u2014 they carry a proper name.",
+    "change_log_6_7_0": "2026-10-11. Policy packs pinned. collapsepolicy, entitypolicy and aliaspolicy hold the weights, vetoes and thresholds the collapse equation runs on, but they list their files under 'manifest', which the pack hash did not read, and none was pinned. compute_pack_hash now covers 'manifest' files (hashes of packs that use 'definitions' are unchanged), the three policy packs are pinned under metadata.policy_packs, and Policy.load refuses a pinned policy pack whose content does not match.",
+    "policy_packs": {
+      "aliaspolicy": {
+        "version": "0.1.0",
+        "content_hash": "sha256:209f2bc24d99aa07069cc5da304f19a276244d01f168e6434110d391928b6b80"
+      },
+      "collapsepolicy": {
+        "version": "0.1.0",
+        "content_hash": "sha256:4eb1ef61eddffcfc68ce16751423d2885e0c7bdc7851f280cfe5653f18c81c5f"
+      },
+      "entitypolicy": {
+        "version": "0.1.0",
+        "content_hash": "sha256:d15f0971c669296fbc16405a562af3b1d32574f090036f48dc285412e172318e"
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "edge.vocab.system",
+  "type": "system",
+  "version": "0.1.0",
+  "description": "System definition for the edge type vocabulary. Declares the discipline of using a small canonical edge palette.",
+  "content": {
+    "purpose": "Edges connect nodes. The Enki knowledge graph uses a small, stable set of edge types so traversal queries are predictable and so the graph stays legible to humans and machines alike.",
+    "principle": "A small palette of well-defined edges is more powerful than many ad-hoc ones. If a relationship doesn't fit, refine an existing type or add via ceremony — never invent inline.",
+    "directionality": "Edges are directed. Each edge has a source and target. Some edge types have inverse counterparts (cites/cited_by, supersedes/superseded_by). The edge writer is responsible for creating both sides where applicable.",
+    "evidence": "Each edge carries an evidence string and a strength (0.0–1.0). Edges created by AI extraction also carry an ai_generated flag. Human-confirmed edges override AI ones via supersedes."
+  },
+  "metadata": {
+    "created": "2026-04-10T00:00:00Z",
+    "author": "ENKI System"
+  },
+  "dependencies": []
+}

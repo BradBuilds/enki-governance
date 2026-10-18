@@ -1,0 +1,32 @@
+{
+  "pack_id": "precisionvocab",
+  "version": "0.1.0",
+  "name": "ENKI Precision Tier Vocabulary Pack",
+  "description": "Universal precision tiers shared across every property in the substrate. When a source asserts a value, the substrate records WHICH precision tier the assertion sits at — `named` ('red'), `qualified` ('candy red'), `formal` ('Pantone 199C'), `spectral` ('λ=620nm'). The collapse operator uses these tiers to merge assertions about the same property cleanly: deeper subsumes shallower, alternatives at the same depth flag as conflicts. Federation uses them to merge across nodes deterministically — the deepest assertion wins, the shallower ones become supporting attestations. Forward-compat: new tiers extend at the bottom of the lattice (higher depths) and never renumber existing ones. v0.1.0: 6 base tiers (concept, named, qualified, formal, spectral, enumerated).",
+  "definitions": [
+    {
+      "id": "precision.vocab.system",
+      "path": "definitions/precisionvocab.system.json",
+      "type": "system"
+    },
+    {
+      "id": "precision.vocab.tiers",
+      "path": "definitions/precisionvocab.tiers.json",
+      "type": "custom"
+    }
+  ],
+  "dependencies": ["identity"],
+  "namespaces_owned": [
+    "precision.vocab"
+  ],
+  "metadata": {
+    "created": "2026-05-19T00:00:00Z",
+    "author": "ENKI System",
+    "license": "AGPLv3",
+    "forward_compat_rules": [
+      "Existing tier depths are immutable. v0.2.0 cannot renumber 'named' from depth=1.",
+      "New tiers are added at the END of the depth scale (higher depths) OR as named extensions of existing tiers.",
+      "Tiers cannot be removed within a major version — only deprecated with a 'replaced_by' pointer."
+    ]
+  }
+}

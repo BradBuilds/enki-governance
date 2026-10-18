@@ -1,0 +1,11 @@
+{
+  "success": true,
+  "active_set_path": "active_set_v5.json",
+  "artifacts": {
+    "transcript": "storage/admission/v1/validation_transcript.json",
+    "activation": "storage/admission/v1/activation_record.json"
+  },
+  "transcript_hash": "sha256:81ef620baf0c433646279f6b99ba082f53428f0e5dfe660c963fc2f4a8d5f4cf",
+  "activation_id": "84ae0cd1-7b6b-4a57-9d6c-b07a4709d196",
+  "pack_count": 15
+}

@@ -1,0 +1,8 @@
+{
+  "id": "collapsepolicy",
+  "name": "Collapse Policy",
+  "version": "0.1.0",
+  "type": "policy",
+  "description": "The collapse equation's weights, vetoes, and thresholds — governed, content-hashed data, NOT code. Same policy on every node → the equation is deterministic and federatable. Tuning collapse means bumping this pack version, not editing the resolver.",
+  "manifest": ["definitions/collapsepolicy.weights.json"]
+}

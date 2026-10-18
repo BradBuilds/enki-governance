@@ -1,0 +1,537 @@
+{
+  "version": "1.0.0",
+  "entries": [
+    {
+      "step_type": "active_set_load",
+      "pack_id": "_system",
+      "outcome": "pass",
+      "sequence_number": 1,
+      "context": {
+        "version": "5.0.1",
+        "pack_count": 15
+      },
+      "timestamp": "2026-04-11T02:16:27.920187+00:00"
+    },
+    {
+      "step_type": "content_hash_verification",
+      "pack_id": "identity",
+      "outcome": "pass",
+      "sequence_number": 2,
+      "context": {
+        "declared_hash": "sha256:b023e0406af4daf434fd97b4eae72436a29b422d0ea4d12b3d4509ea19dbb78a",
+        "version": "0.2.0"
+      },
+      "timestamp": "2026-04-11T02:16:27.920728+00:00"
+    },
+    {
+      "step_type": "content_hash_verification",
+      "pack_id": "assertionvocab",
+      "outcome": "pass",
+      "sequence_number": 3,
+      "context": {
+        "declared_hash": "sha256:483f5c57b682fa6d3314a8f627a4b9b1656dc792708126c8484f209e4be095f0",
+        "version": "0.2.0"
+      },
+      "timestamp": "2026-04-11T02:16:27.921441+00:00"
+    },
+    {
+      "step_type": "content_hash_verification",
+      "pack_id": "auditvocab",
+      "outcome": "pass",
+      "sequence_number": 4,
+      "context": {
+        "declared_hash": "sha256:24a777cc687de1aa6a4e954e912484b494d99bcb3b5f3671026fe3dfccb13f58",
+        "version": "0.2.1"
+      },
+      "timestamp": "2026-04-11T02:16:27.922123+00:00"
+    },
+    {
+      "step_type": "content_hash_verification",
+      "pack_id": "base60",
+      "outcome": "pass",
+      "sequence_number": 5,
+      "context": {
+        "declared_hash": "sha256:e742a368cf1fab5eac675fc674f1097ab58609acc715c47c3b05d0f3ea841374",
+        "version": "0.2.0"
+      },
+      "timestamp": "2026-04-11T02:16:27.922938+00:00"
+    },
+    {
+      "step_type": "content_hash_verification",
+      "pack_id": "language",
+      "outcome": "pass",
+      "sequence_number": 6,
+      "context": {
+        "declared_hash": "sha256:f7786484ce7da1e1bc4ae8d2f5fde757d18ecf7ca6a7ae531dad3030b9d6278d",
+        "version": "0.1.0"
+      },
+      "timestamp": "2026-04-11T02:16:27.923885+00:00"
+    },
+    {
+      "step_type": "content_hash_verification",
+      "pack_id": "numeric",
+      "outcome": "pass",
+      "sequence_number": 7,
+      "context": {
+        "declared_hash": "sha256:7e5a2e46cd4d7f8536ca2d9bef3c2648df22f96e6297b0a993b390175db2e3a5",
+        "version": "1.0.0"
+      },
+      "timestamp": "2026-04-11T02:16:27.924375+00:00"
+    },
+    {
+      "step_type": "content_hash_verification",
+      "pack_id": "signalvocab",
+      "outcome": "pass",
+      "sequence_number": 8,
+      "context": {
+        "declared_hash": "sha256:5a94469c9bde878f13867adc8e270257ee850175c256f0f9fa7d40f7448ed26d",
+        "version": "0.1.1"
+      },
+      "timestamp": "2026-04-11T02:16:27.925413+00:00"
+    },
+    {
+      "step_type": "content_hash_verification",
+      "pack_id": "alertvocab",
+      "outcome": "pass",
+      "sequence_number": 9,
+      "context": {
+        "declared_hash": "sha256:d546d0de27df941de821dd78e93547e0161851e9513d7923bbfce78bb41501cd",
+        "version": "0.1.0"
+      },
+      "timestamp": "2026-04-11T02:16:27.925921+00:00"
+    },
+    {
+      "step_type": "content_hash_verification",
+      "pack_id": "casevocab",
+      "outcome": "pass",
+      "sequence_number": 10,
+      "context": {
+        "declared_hash": "sha256:f4f56ddfabe3aacc892e4a284d4f22c8b56b6e5c04f25976d49025165f59b2f0",
+        "version": "0.1.0"
+      },
+      "timestamp": "2026-04-11T02:16:27.926428+00:00"
+    },
+    {
+      "step_type": "content_hash_verification",
+      "pack_id": "envelopevocab",
+      "outcome": "pass",
+      "sequence_number": 11,
+      "context": {
+        "declared_hash": "sha256:009e1e5c42bd9fcc2304816a4b8317c160ef3d87d0846711a4645561cd5459be",
+        "version": "0.1.0"
+      },
+      "timestamp": "2026-04-11T02:16:27.926965+00:00"
+    },
+    {
+      "step_type": "content_hash_verification",
+      "pack_id": "nodevocab",
+      "outcome": "pass",
+      "sequence_number": 12,
+      "context": {
+        "declared_hash": "sha256:8dfe1e20685a4c3538e1c533c2ea920e4742ec41693373f8283c126aa5007b9a",
+        "version": "0.1.0"
+      },
+      "timestamp": "2026-04-11T02:16:27.927567+00:00"
+    },
+    {
+      "step_type": "content_hash_verification",
+      "pack_id": "edgevocab",
+      "outcome": "pass",
+      "sequence_number": 13,
+      "context": {
+        "declared_hash": "sha256:acbff69621076d37fbe67ed539bae96e77f4b7925ccb5d8efbe623ff4be081b8",
+        "version": "0.1.0"
+      },
+      "timestamp": "2026-04-11T02:16:27.927960+00:00"
+    },
+    {
+      "step_type": "content_hash_verification",
+      "pack_id": "completenessvocab",
+      "outcome": "pass",
+      "sequence_number": 14,
+      "context": {
+        "declared_hash": "sha256:2cc70364fb66a4037be8d9d674a009456a8caf9e69f75983abd230a6ab7dda02",
+        "version": "0.1.0"
+      },
+      "timestamp": "2026-04-11T02:16:27.928493+00:00"
+    },
+    {
+      "step_type": "content_hash_verification",
+      "pack_id": "intentvocab",
+      "outcome": "pass",
+      "sequence_number": 15,
+      "context": {
+        "declared_hash": "sha256:73f5808763548cde8b03ec949bc38256c7f22eb000939a9f93e3322a4bb6d610",
+        "version": "0.1.0"
+      },
+      "timestamp": "2026-04-11T02:16:27.928783+00:00"
+    },
+    {
+      "step_type": "content_hash_verification",
+      "pack_id": "relevancevocab",
+      "outcome": "pass",
+      "sequence_number": 16,
+      "context": {
+        "declared_hash": "sha256:5ada33d1101bbf039203bdce6983e7c605b7d2b941f6ee290aa45dfb387817b2",
+        "version": "0.1.0"
+      },
+      "timestamp": "2026-04-11T02:16:27.929231+00:00"
+    },
+    {
+      "step_type": "namespace_declaration_validation",
+      "pack_id": "identity",
+      "outcome": "pass",
+      "sequence_number": 17,
+      "context": {
+        "namespaces_owned": [
+          "identity"
+        ],
+        "definition_count": 4
+      },
+      "timestamp": "2026-04-11T02:16:27.929318+00:00"
+    },
+    {
+      "step_type": "namespace_declaration_validation",
+      "pack_id": "assertionvocab",
+      "outcome": "pass",
+      "sequence_number": 18,
+      "context": {
+        "namespaces_owned": [
+          "assertion.vocab"
+        ],
+        "definition_count": 5
+      },
+      "timestamp": "2026-04-11T02:16:27.929427+00:00"
+    },
+    {
+      "step_type": "namespace_declaration_validation",
+      "pack_id": "auditvocab",
+      "outcome": "pass",
+      "sequence_number": 19,
+      "context": {
+        "namespaces_owned": [
+          "audit.vocab"
+        ],
+        "definition_count": 4
+      },
+      "timestamp": "2026-04-11T02:16:27.929511+00:00"
+    },
+    {
+      "step_type": "namespace_declaration_validation",
+      "pack_id": "base60",
+      "outcome": "pass",
+      "sequence_number": 20,
+      "context": {
+        "namespaces_owned": [
+          "base60"
+        ],
+        "definition_count": 4
+      },
+      "timestamp": "2026-04-11T02:16:27.929583+00:00"
+    },
+    {
+      "step_type": "namespace_declaration_validation",
+      "pack_id": "language",
+      "outcome": "pass",
+      "sequence_number": 21,
+      "context": {
+        "namespaces_owned": [
+          "language"
+        ],
+        "definition_count": 10
+      },
+      "timestamp": "2026-04-11T02:16:27.929657+00:00"
+    },
+    {
+      "step_type": "namespace_declaration_validation",
+      "pack_id": "numeric",
+      "outcome": "pass",
+      "sequence_number": 22,
+      "context": {
+        "namespaces_owned": [
+          "numeric"
+        ],
+        "definition_count": 5
+      },
+      "timestamp": "2026-04-11T02:16:27.929728+00:00"
+    },
+    {
+      "step_type": "namespace_declaration_validation",
+      "pack_id": "signalvocab",
+      "outcome": "pass",
+      "sequence_number": 23,
+      "context": {
+        "namespaces_owned": [
+          "signal.vocab"
+        ],
+        "definition_count": 6
+      },
+      "timestamp": "2026-04-11T02:16:27.929796+00:00"
+    },
+    {
+      "step_type": "namespace_declaration_validation",
+      "pack_id": "alertvocab",
+      "outcome": "pass",
+      "sequence_number": 24,
+      "context": {
+        "namespaces_owned": [
+          "alert.vocab"
+        ],
+        "definition_count": 5
+      },
+      "timestamp": "2026-04-11T02:16:27.929919+00:00"
+    },
+    {
+      "step_type": "namespace_declaration_validation",
+      "pack_id": "casevocab",
+      "outcome": "pass",
+      "sequence_number": 25,
+      "context": {
+        "namespaces_owned": [
+          "case.vocab"
+        ],
+        "definition_count": 5
+      },
+      "timestamp": "2026-04-11T02:16:27.930002+00:00"
+    },
+    {
+      "step_type": "namespace_declaration_validation",
+      "pack_id": "envelopevocab",
+      "outcome": "pass",
+      "sequence_number": 26,
+      "context": {
+        "namespaces_owned": [
+          "envelope.vocab"
+        ],
+        "definition_count": 2
+      },
+      "timestamp": "2026-04-11T02:16:27.930072+00:00"
+    },
+    {
+      "step_type": "namespace_declaration_validation",
+      "pack_id": "nodevocab",
+      "outcome": "pass",
+      "sequence_number": 27,
+      "context": {
+        "namespaces_owned": [
+          "node.vocab"
+        ],
+        "definition_count": 3
+      },
+      "timestamp": "2026-04-11T02:16:27.930141+00:00"
+    },
+    {
+      "step_type": "namespace_declaration_validation",
+      "pack_id": "edgevocab",
+      "outcome": "pass",
+      "sequence_number": 28,
+      "context": {
+        "namespaces_owned": [
+          "edge.vocab"
+        ],
+        "definition_count": 2
+      },
+      "timestamp": "2026-04-11T02:16:27.930233+00:00"
+    },
+    {
+      "step_type": "namespace_declaration_validation",
+      "pack_id": "completenessvocab",
+      "outcome": "pass",
+      "sequence_number": 29,
+      "context": {
+        "namespaces_owned": [
+          "completeness.vocab"
+        ],
+        "definition_count": 3
+      },
+      "timestamp": "2026-04-11T02:16:27.930309+00:00"
+    },
+    {
+      "step_type": "namespace_declaration_validation",
+      "pack_id": "intentvocab",
+      "outcome": "pass",
+      "sequence_number": 30,
+      "context": {
+        "namespaces_owned": [
+          "intent.vocab"
+        ],
+        "definition_count": 2
+      },
+      "timestamp": "2026-04-11T02:16:27.930377+00:00"
+    },
+    {
+      "step_type": "namespace_declaration_validation",
+      "pack_id": "relevancevocab",
+      "outcome": "pass",
+      "sequence_number": 31,
+      "context": {
+        "namespaces_owned": [
+          "relevance.vocab"
+        ],
+        "definition_count": 3
+      },
+      "timestamp": "2026-04-11T02:16:27.930445+00:00"
+    },
+    {
+      "step_type": "namespace_collision_detection",
+      "pack_id": "_system",
+      "outcome": "pass",
+      "sequence_number": 32,
+      "context": {
+        "pack_count": 15
+      },
+      "timestamp": "2026-04-11T02:16:27.930503+00:00"
+    },
+    {
+      "step_type": "namespace_ownership_validation",
+      "pack_id": "identity",
+      "outcome": "pass",
+      "sequence_number": 33,
+      "context": {
+        "definition_count": 4
+      },
+      "timestamp": "2026-04-11T02:16:27.930514+00:00"
+    },
+    {
+      "step_type": "namespace_ownership_validation",
+      "pack_id": "assertionvocab",
+      "outcome": "pass",
+      "sequence_number": 34,
+      "context": {
+        "definition_count": 5
+      },
+      "timestamp": "2026-04-11T02:16:27.930521+00:00"
+    },
+    {
+      "step_type": "namespace_ownership_validation",
+      "pack_id": "auditvocab",
+      "outcome": "pass",
+      "sequence_number": 35,
+      "context": {
+        "definition_count": 4
+      },
+      "timestamp": "2026-04-11T02:16:27.930527+00:00"
+    },
+    {
+      "step_type": "namespace_ownership_validation",
+      "pack_id": "base60",
+      "outcome": "pass",
+      "sequence_number": 36,
+      "context": {
+        "definition_count": 4
+      },
+      "timestamp": "2026-04-11T02:16:27.930532+00:00"
+    },
+    {
+      "step_type": "namespace_ownership_validation",
+      "pack_id": "language",
+      "outcome": "pass",
+      "sequence_number": 37,
+      "context": {
+        "definition_count": 10
+      },
+      "timestamp": "2026-04-11T02:16:27.930537+00:00"
+    },
+    {
+      "step_type": "namespace_ownership_validation",
+      "pack_id": "numeric",
+      "outcome": "pass",
+      "sequence_number": 38,
+      "context": {
+        "definition_count": 5
+      },
+      "timestamp": "2026-04-11T02:16:27.930542+00:00"
+    },
+    {
+      "step_type": "namespace_ownership_validation",
+      "pack_id": "signalvocab",
+      "outcome": "pass",
+      "sequence_number": 39,
+      "context": {
+        "definition_count": 6
+      },
+      "timestamp": "2026-04-11T02:16:27.930548+00:00"
+    },
+    {
+      "step_type": "namespace_ownership_validation",
+      "pack_id": "alertvocab",
+      "outcome": "pass",
+      "sequence_number": 40,
+      "context": {
+        "definition_count": 5
+      },
+      "timestamp": "2026-04-11T02:16:27.930553+00:00"
+    },
+    {
+      "step_type": "namespace_ownership_validation",
+      "pack_id": "casevocab",
+      "outcome": "pass",
+      "sequence_number": 41,
+      "context": {
+        "definition_count": 5
+      },
+      "timestamp": "2026-04-11T02:16:27.930557+00:00"
+    },
+    {
+      "step_type": "namespace_ownership_validation",
+      "pack_id": "envelopevocab",
+      "outcome": "pass",
+      "sequence_number": 42,
+      "context": {
+        "definition_count": 2
+      },
+      "timestamp": "2026-04-11T02:16:27.930561+00:00"
+    },
+    {
+      "step_type": "namespace_ownership_validation",
+      "pack_id": "nodevocab",
+      "outcome": "pass",
+      "sequence_number": 43,
+      "context": {
+        "definition_count": 3
+      },
+      "timestamp": "2026-04-11T02:16:27.930565+00:00"
+    },
+    {
+      "step_type": "namespace_ownership_validation",
+      "pack_id": "edgevocab",
+      "outcome": "pass",
+      "sequence_number": 44,
+      "context": {
+        "definition_count": 2
+      },
+      "timestamp": "2026-04-11T02:16:27.930569+00:00"
+    },
+    {
+      "step_type": "namespace_ownership_validation",
+      "pack_id": "completenessvocab",
+      "outcome": "pass",
+      "sequence_number": 45,
+      "context": {
+        "definition_count": 3
+      },
+      "timestamp": "2026-04-11T02:16:27.930573+00:00"
+    },
+    {
+      "step_type": "namespace_ownership_validation",
+      "pack_id": "intentvocab",
+      "outcome": "pass",
+      "sequence_number": 46,
+      "context": {
+        "definition_count": 2
+      },
+      "timestamp": "2026-04-11T02:16:27.930581+00:00"
+    },
+    {
+      "step_type": "namespace_ownership_validation",
+      "pack_id": "relevancevocab",
+      "outcome": "pass",
+      "sequence_number": 47,
+      "context": {
+        "definition_count": 3
+      },
+      "timestamp": "2026-04-11T02:16:27.930586+00:00"
+    }
+  ],
+  "entry_count": 47
+}

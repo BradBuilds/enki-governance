@@ -1,0 +1,688 @@
+{
+  "id": "node.vocab.divisor_policy",
+  "type": "custom",
+  "version": "0.1.1",
+  "description": "Per-subtype divisor declarations for the cyclical base-60 substrate. Each entry sets the divisor of 60 used when a subtype overflows its initial 60 slots, plus the human partition labels for each resulting group. All entries seed into the subtype_divisors table with state='provisional' during learning mode. GDU governance ratifies (or re-elects) after corpus observation. Subtypes without an entry here default to D=6 at first overflow. Mirroring is intentional — continents are shared across place.{country,city,admin_region}; theaters across event.strike + topic.{conflict,operation}. Companion doc: docs/DIVISOR_DECLARATIONS_DRAFT_2026-05-21.md.",
+  "content": {
+    "policies": [
+      {
+        "subtype_path": "entity.person",
+        "divisor": 6,
+        "partition_labels": [
+          {
+            "index": 0,
+            "label": "political_leader"
+          },
+          {
+            "index": 1,
+            "label": "military_security"
+          },
+          {
+            "index": 2,
+            "label": "business"
+          },
+          {
+            "index": 3,
+            "label": "science_academic"
+          },
+          {
+            "index": 4,
+            "label": "media_culture"
+          },
+          {
+            "index": 5,
+            "label": "other_civilian"
+          }
+        ],
+        "reasoning": "Roles are the most stable axis for prominence-weighted people; aligns with canonicalpack's role field."
+      },
+      {
+        "subtype_path": "entity.organization",
+        "divisor": 6,
+        "partition_labels": [
+          {
+            "index": 0,
+            "label": "financial_services"
+          },
+          {
+            "index": 1,
+            "label": "tech_telecom"
+          },
+          {
+            "index": 2,
+            "label": "defense_aerospace"
+          },
+          {
+            "index": 3,
+            "label": "industrial_energy"
+          },
+          {
+            "index": 4,
+            "label": "health_consumer"
+          },
+          {
+            "index": 5,
+            "label": "media_services"
+          }
+        ],
+        "reasoning": "SEC SIC codes collapsed into 6 macro-sectors; matches journalism + investment segmentation."
+      },
+      {
+        "subtype_path": "entity.weapon_system",
+        "divisor": 6,
+        "partition_labels": [
+          {
+            "index": 0,
+            "label": "air"
+          },
+          {
+            "index": 1,
+            "label": "sea"
+          },
+          {
+            "index": 2,
+            "label": "land"
+          },
+          {
+            "index": 3,
+            "label": "missile"
+          },
+          {
+            "index": 4,
+            "label": "cyber"
+          },
+          {
+            "index": 5,
+            "label": "space"
+          }
+        ],
+        "reasoning": "DoD doctrinal domains; standard breakdown in defense reporting."
+      },
+      {
+        "subtype_path": "entity.unit",
+        "divisor": 6,
+        "partition_labels": [
+          {
+            "index": 0,
+            "label": "army"
+          },
+          {
+            "index": 1,
+            "label": "navy"
+          },
+          {
+            "index": 2,
+            "label": "air_force"
+          },
+          {
+            "index": 3,
+            "label": "marines"
+          },
+          {
+            "index": 4,
+            "label": "special_ops"
+          },
+          {
+            "index": 5,
+            "label": "intel_cyber"
+          }
+        ],
+        "reasoning": "NATO standard service-branch breakdown."
+      },
+      {
+        "subtype_path": "entity.facility",
+        "divisor": 6,
+        "partition_labels": [
+          {
+            "index": 0,
+            "label": "industrial"
+          },
+          {
+            "index": 1,
+            "label": "military"
+          },
+          {
+            "index": 2,
+            "label": "government"
+          },
+          {
+            "index": 3,
+            "label": "commercial"
+          },
+          {
+            "index": 4,
+            "label": "research"
+          },
+          {
+            "index": 5,
+            "label": "civilian_infrastructure"
+          }
+        ],
+        "reasoning": "Function is more stable than ownership."
+      },
+      {
+        "subtype_path": "entity.government_agency",
+        "divisor": 6,
+        "partition_labels": [
+          {
+            "index": 0,
+            "label": "executive"
+          },
+          {
+            "index": 1,
+            "label": "legislative"
+          },
+          {
+            "index": 2,
+            "label": "judicial"
+          },
+          {
+            "index": 3,
+            "label": "military"
+          },
+          {
+            "index": 4,
+            "label": "intelligence"
+          },
+          {
+            "index": 5,
+            "label": "regulatory"
+          }
+        ],
+        "reasoning": "Separation of powers + agency-type taxonomy."
+      },
+      {
+        "subtype_path": "entity.mass_media",
+        "divisor": 6,
+        "partition_labels": [
+          {
+            "index": 0,
+            "label": "newspaper"
+          },
+          {
+            "index": 1,
+            "label": "broadcast_tv"
+          },
+          {
+            "index": 2,
+            "label": "broadcast_radio"
+          },
+          {
+            "index": 3,
+            "label": "online_native"
+          },
+          {
+            "index": 4,
+            "label": "wire_service"
+          },
+          {
+            "index": 5,
+            "label": "magazine_periodical"
+          }
+        ],
+        "reasoning": "Medium drives trust class + reach."
+      },
+      {
+        "subtype_path": "entity.vessel",
+        "divisor": 6,
+        "partition_labels": [
+          {
+            "index": 0,
+            "label": "cargo"
+          },
+          {
+            "index": 1,
+            "label": "tanker"
+          },
+          {
+            "index": 2,
+            "label": "fishing"
+          },
+          {
+            "index": 3,
+            "label": "military"
+          },
+          {
+            "index": 4,
+            "label": "passenger"
+          },
+          {
+            "index": 5,
+            "label": "other_specialized"
+          }
+        ],
+        "reasoning": "IMO vessel-type classification, condensed."
+      },
+      {
+        "subtype_path": "entity.aircraft",
+        "divisor": 6,
+        "partition_labels": [
+          {
+            "index": 0,
+            "label": "commercial_passenger"
+          },
+          {
+            "index": 1,
+            "label": "cargo"
+          },
+          {
+            "index": 2,
+            "label": "military"
+          },
+          {
+            "index": 3,
+            "label": "general_aviation"
+          },
+          {
+            "index": 4,
+            "label": "helicopter"
+          },
+          {
+            "index": 5,
+            "label": "uav"
+          }
+        ],
+        "reasoning": "ICAO operation-type classification."
+      },
+      {
+        "subtype_path": "entity.country",
+        "divisor": 6,
+        "partition_labels": [
+          {
+            "index": 0,
+            "label": "africa"
+          },
+          {
+            "index": 1,
+            "label": "asia"
+          },
+          {
+            "index": 2,
+            "label": "europe"
+          },
+          {
+            "index": 3,
+            "label": "americas"
+          },
+          {
+            "index": 4,
+            "label": "oceania"
+          },
+          {
+            "index": 5,
+            "label": "antarctica_maritime"
+          }
+        ],
+        "reasoning": "UN regional groupings; ~196 sovereign states fit comfortably at depth 2."
+      },
+      {
+        "subtype_path": "entity.city",
+        "divisor": 6,
+        "partition_labels": [
+          {
+            "index": 0,
+            "label": "africa"
+          },
+          {
+            "index": 1,
+            "label": "asia"
+          },
+          {
+            "index": 2,
+            "label": "europe"
+          },
+          {
+            "index": 3,
+            "label": "americas"
+          },
+          {
+            "index": 4,
+            "label": "oceania"
+          },
+          {
+            "index": 5,
+            "label": "antarctica_maritime"
+          }
+        ],
+        "reasoning": "Mirrors country — prefix-proximity to enclosing country."
+      },
+      {
+        "subtype_path": "entity.admin_region",
+        "divisor": 6,
+        "partition_labels": [
+          {
+            "index": 0,
+            "label": "africa"
+          },
+          {
+            "index": 1,
+            "label": "asia"
+          },
+          {
+            "index": 2,
+            "label": "europe"
+          },
+          {
+            "index": 3,
+            "label": "americas"
+          },
+          {
+            "index": 4,
+            "label": "oceania"
+          },
+          {
+            "index": 5,
+            "label": "antarctica_maritime"
+          }
+        ],
+        "reasoning": "Mirrors country."
+      },
+      {
+        "subtype_path": "entity.maritime_area",
+        "divisor": 5,
+        "partition_labels": [
+          {
+            "index": 0,
+            "label": "atlantic"
+          },
+          {
+            "index": 1,
+            "label": "pacific"
+          },
+          {
+            "index": 2,
+            "label": "indian"
+          },
+          {
+            "index": 3,
+            "label": "arctic"
+          },
+          {
+            "index": 4,
+            "label": "southern"
+          }
+        ],
+        "reasoning": "Only 5 oceans; D=5 is a deliberate exception."
+      },
+      {
+        "subtype_path": "event.strike",
+        "divisor": 6,
+        "partition_labels": [
+          {
+            "index": 0,
+            "label": "middle_east"
+          },
+          {
+            "index": 1,
+            "label": "europe_russia"
+          },
+          {
+            "index": 2,
+            "label": "asia_pacific"
+          },
+          {
+            "index": 3,
+            "label": "americas"
+          },
+          {
+            "index": 4,
+            "label": "africa"
+          },
+          {
+            "index": 5,
+            "label": "multi_cyber"
+          }
+        ],
+        "reasoning": "Conflict reporting clusters by theater."
+      },
+      {
+        "subtype_path": "event.meeting",
+        "divisor": 6,
+        "partition_labels": [
+          {
+            "index": 0,
+            "label": "diplomatic"
+          },
+          {
+            "index": 1,
+            "label": "business"
+          },
+          {
+            "index": 2,
+            "label": "military"
+          },
+          {
+            "index": 3,
+            "label": "intelligence"
+          },
+          {
+            "index": 4,
+            "label": "political_party"
+          },
+          {
+            "index": 5,
+            "label": "ceremonial"
+          }
+        ],
+        "reasoning": "Purpose drives significance more than location."
+      },
+      {
+        "subtype_path": "event.statement",
+        "divisor": 6,
+        "partition_labels": [
+          {
+            "index": 0,
+            "label": "head_of_state"
+          },
+          {
+            "index": 1,
+            "label": "govt_official"
+          },
+          {
+            "index": 2,
+            "label": "expert_analyst"
+          },
+          {
+            "index": 3,
+            "label": "journalist"
+          },
+          {
+            "index": 4,
+            "label": "witness_source"
+          },
+          {
+            "index": 5,
+            "label": "corporate"
+          }
+        ],
+        "reasoning": "Speaker type drives weight."
+      },
+      {
+        "subtype_path": "event.appointment",
+        "divisor": 6,
+        "partition_labels": [
+          {
+            "index": 0,
+            "label": "head_of_state"
+          },
+          {
+            "index": 1,
+            "label": "cabinet_minister"
+          },
+          {
+            "index": 2,
+            "label": "military_command"
+          },
+          {
+            "index": 3,
+            "label": "judicial"
+          },
+          {
+            "index": 4,
+            "label": "ambassador"
+          },
+          {
+            "index": 5,
+            "label": "agency_head"
+          }
+        ],
+        "reasoning": "Role type taxonomy."
+      },
+      {
+        "subtype_path": "event.contract",
+        "divisor": 6,
+        "partition_labels": [
+          {
+            "index": 0,
+            "label": "defense"
+          },
+          {
+            "index": 1,
+            "label": "infrastructure"
+          },
+          {
+            "index": 2,
+            "label": "energy"
+          },
+          {
+            "index": 3,
+            "label": "services"
+          },
+          {
+            "index": 4,
+            "label": "tech"
+          },
+          {
+            "index": 5,
+            "label": "financial"
+          }
+        ],
+        "reasoning": "Sector is the primary news-significance axis."
+      },
+      {
+        "subtype_path": "topic.conflict",
+        "divisor": 6,
+        "partition_labels": [
+          {
+            "index": 0,
+            "label": "middle_east"
+          },
+          {
+            "index": 1,
+            "label": "europe_russia"
+          },
+          {
+            "index": 2,
+            "label": "asia_pacific"
+          },
+          {
+            "index": 3,
+            "label": "americas"
+          },
+          {
+            "index": 4,
+            "label": "africa"
+          },
+          {
+            "index": 5,
+            "label": "multi_cyber"
+          }
+        ],
+        "reasoning": "Shared theaters with event.strike enables prefix proximity."
+      },
+      {
+        "subtype_path": "topic.operation",
+        "divisor": 6,
+        "partition_labels": [
+          {
+            "index": 0,
+            "label": "middle_east"
+          },
+          {
+            "index": 1,
+            "label": "europe_russia"
+          },
+          {
+            "index": 2,
+            "label": "asia_pacific"
+          },
+          {
+            "index": 3,
+            "label": "americas"
+          },
+          {
+            "index": 4,
+            "label": "africa"
+          },
+          {
+            "index": 5,
+            "label": "multi_cyber"
+          }
+        ],
+        "reasoning": "Mirrors topic.conflict."
+      },
+      {
+        "subtype_path": "topic.technology",
+        "divisor": 6,
+        "partition_labels": [
+          {
+            "index": 0,
+            "label": "ai_software"
+          },
+          {
+            "index": 1,
+            "label": "bio_health"
+          },
+          {
+            "index": 2,
+            "label": "energy_climate"
+          },
+          {
+            "index": 3,
+            "label": "hardware_semiconductors"
+          },
+          {
+            "index": 4,
+            "label": "networks_cyber"
+          },
+          {
+            "index": 5,
+            "label": "space_aerospace_defense"
+          }
+        ],
+        "reasoning": "Macro-fields used by DARPA/NSF; finer subdivision at depth 3."
+      },
+      {
+        "subtype_path": "topic.program",
+        "divisor": 6,
+        "partition_labels": [
+          {
+            "index": 0,
+            "label": "defense_acquisition"
+          },
+          {
+            "index": 1,
+            "label": "intelligence_surveillance"
+          },
+          {
+            "index": 2,
+            "label": "infrastructure"
+          },
+          {
+            "index": 3,
+            "label": "social_health"
+          },
+          {
+            "index": 4,
+            "label": "science_research"
+          },
+          {
+            "index": 5,
+            "label": "foreign_aid_diplomacy"
+          }
+        ],
+        "reasoning": "GAO + CRS macro-categories."
+      }
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "case.vocab.statuses",
+  "type": "custom",
+  "version": "0.1.0",
+  "description": "Case lifecycle statuses.",
+  "content": {
+    "category": "case_statuses",
+    "statuses": [
+      {"status_id": "open", "description": "Case created, not yet assigned or actively worked"},
+      {"status_id": "investigating", "description": "Actively being worked on"},
+      {"status_id": "awaiting_input", "description": "Waiting for external information"},
+      {"status_id": "resolved", "description": "Investigation complete, findings documented"},
+      {"status_id": "closed", "description": "Post-review done, archived with full audit trail"},
+      {"status_id": "reopened", "description": "New evidence surfaced, back to investigating"}
+    ],
+    "initial_status": "open"
+  },
+  "metadata": {"created": "2026-03-21T00:00:00Z", "author": "ENKI System"},
+  "dependencies": ["case.vocab.system"]
+}

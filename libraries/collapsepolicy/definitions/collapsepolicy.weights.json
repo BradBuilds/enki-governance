@@ -1,0 +1,28 @@
+{
+  "id": "collapsepolicy.weights",
+  "type": "collapse_policy",
+  "version": "0.3.0",
+  "description": "Weights and thresholds for the collapse equation S(a|f,C) = Σ wₖ·eₖ − Σ vⱼ·gⱼ, then collapse if S(a*) ≥ θ and S(a*)−S(a₂) ≥ δ, else park. Identifier dominates (reproduces the proven entity collapse); register/domain/collocation drive sense disambiguation; frequency is the dominant-sense prior (1/sense_rank from WordNet's frequency ordering) — the most-frequent-sense default ABSENT other evidence; pin is the domain-conditional override a domain/curated pack asserts (weight above all soft evidence, below only id, so a curated sense beats the frequency default); prior is the cyclical feedback term (accumulated collapse_decisions); contributor_trust down-weights evidence from low-trust open contributors (anonymous / repeatedly-flagged), neutral 0.5 when unknown.",
+  "content": {
+    "weights": {
+      "id":     10.0,
+      "exact":   3.0,
+      "loose":   1.5,
+      "register": 1.0,
+      "domain":   1.0,
+      "collocation": 2.0,
+      "frequency": 2.0,
+      "pin":      6.0,
+      "prior":    1.0,
+      "contributor_trust": 1.0
+    },
+    "vetoes": {
+      "identifier_conflict": true,
+      "register_conflict":   false
+    },
+    "thresholds": {
+      "theta": 1.0,
+      "delta": 0.5
+    }
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "id": "glossary_intel.senses",
+  "type": "lexical_senses",
+  "version": "0.1.0",
+  "description": "Intelligence tradecraft terminology. (10 seed senses).",
+  "content": {
+    "senses": [
+      {
+        "sense_id": "glossary_intel-tradecraft",
+        "lemma": "tradecraft",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "intelligence",
+        "gloss": "the techniques and methods of espionage",
+        "forms": [
+          "tradecraft"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_intel-asset",
+        "lemma": "asset",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "intelligence",
+        "gloss": "a person providing intelligence",
+        "forms": [
+          "asset"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_intel-handler",
+        "lemma": "handler",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "intelligence",
+        "gloss": "an officer who manages an asset",
+        "forms": [
+          "handler"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_intel-cutout",
+        "lemma": "cutout",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "intelligence",
+        "gloss": "an intermediary used to compartment contact",
+        "forms": [
+          "cutout"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_intel-legend",
+        "lemma": "legend",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "intelligence",
+        "gloss": "a fabricated cover identity and backstory",
+        "forms": [
+          "legend"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_intel-tasking",
+        "lemma": "tasking",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "intelligence",
+        "gloss": "an assignment to collect specific intelligence",
+        "forms": [
+          "tasking"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_intel-compartment",
+        "lemma": "compartment",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "intelligence",
+        "gloss": "an information-access restriction",
+        "forms": [
+          "compartment"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_intel-burned",
+        "lemma": "burned",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "intelligence",
+        "gloss": "exposed; compromised as an intelligence operative",
+        "forms": [
+          "burned"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_intel-walk-in",
+        "lemma": "walk-in",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "intelligence",
+        "gloss": "a volunteer who offers intelligence unsolicited",
+        "forms": [
+          "walk-in"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "glossary_intel-exfiltrate",
+        "lemma": "exfiltrate",
+        "pos": "noun",
+        "register": "technical",
+        "domain": "intelligence",
+        "gloss": "to covertly remove a person or data",
+        "forms": [
+          "exfiltrate"
+        ],
+        "relations": [
+          {
+            "rel": "related",
+            "library": "glossary_cyber",
+            "sense_id": "glossary_cyber-exfiltration"
+          }
+        ]
+      }
+    ]
+  }
+}

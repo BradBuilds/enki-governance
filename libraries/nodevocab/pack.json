@@ -1,0 +1,39 @@
+{
+  "pack_id": "nodevocab",
+  "version": "0.8.1",
+  "name": "ENKI Node Type Vocabulary Pack",
+  "description": "Canonical node type taxonomy. v0.8.1 (2026-07-08): Tier-1 (Gate A) additive extension — general-aboutness `topic` subtypes (event, relationship, aspect, legal, reference, theme) so Wikipedia-style topics ('Death of X', 'Relationship of A and B') have a home alongside the intelligence-domain subtypes; appended after `investigation` so existing base-60 positions are unchanged. v0.8.0 (2026-05-14): adds the `library` category (topic-anchored addressable subgraphs that drive the OSINT discovery loop — discover references via bibliographic indices, acquire PDFs, ingest, extract facts, harvest citations) plus `document.bibliographic_reference` and `source.bibliographic_index` subtypes. v0.7.0 adds the `definition` category. v0.6.0 adds `lemma` subtype. v0.5.0 adds the `form` category. See the internal base60 cyclical language model notes.",
+  "definitions": [
+    {
+      "id": "node.vocab.system",
+      "path": "definitions/nodevocab.system.json",
+      "type": "system"
+    },
+    {
+      "id": "node.vocab.node_types",
+      "path": "definitions/nodevocab.node_types.json",
+      "type": "custom"
+    },
+    {
+      "id": "node.vocab.editorial_stance",
+      "path": "definitions/nodevocab.editorial_stance.json",
+      "type": "custom"
+    },
+    {
+      "id": "node.vocab.divisor_policy",
+      "path": "definitions/nodevocab.divisor_policy.json",
+      "type": "custom"
+    }
+  ],
+  "dependencies": ["identity"],
+  "namespaces_owned": [
+    "node.vocab"
+  ],
+  "metadata": {
+    "created": "2026-04-10T00:00:00Z",
+    "author": "ENKI System",
+    "license": "AGPLv3",
+    "status": "LOCKED",
+    "change_control": "New node types or subtypes via Tier 1 vocabulary extension (Gate A). Removing a type requires full ceremony (Gate A+B+C) and migration plan for existing nodes."
+  }
+}

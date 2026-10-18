@@ -1,0 +1,47 @@
+{
+  "id": "signal.vocab.signal_sources",
+  "type": "custom",
+  "version": "0.1.0",
+  "description": "Canonical source types for ingested data. Connectors declare their source type from this list.",
+  "content": {
+    "category": "signal_sources",
+    "sources": [
+      {"source_id": "phone_app", "description": "Enki mobile app (GPS, messages, SOS)"},
+      {"source_id": "tak_cot", "description": "TAK server CoT federation"},
+      {"source_id": "tak_atak", "description": "ATAK direct connection"},
+      {"source_id": "sensor_iot", "description": "IoT sensor device"},
+      {"source_id": "camera_alpr", "description": "ALPR camera"},
+      {"source_id": "camera_generic", "description": "Generic camera/video source"},
+      {"source_id": "syslog", "description": "Syslog/CEF feed"},
+      {"source_id": "wazuh", "description": "Wazuh security agent"},
+      {"source_id": "email_imap", "description": "IMAP email connector"},
+      {"source_id": "email_smtp", "description": "SMTP relay inbound"},
+      {"source_id": "rss_feed", "description": "RSS/Atom feed connector"},
+      {"source_id": "http_api", "description": "Generic HTTP/REST API connector"},
+      {"source_id": "graphql_api", "description": "GraphQL API connector"},
+      {"source_id": "file_drop", "description": "File system watcher"},
+      {"source_id": "browser_history", "description": "Browser history connector"},
+      {"source_id": "threat_feed", "description": "Threat intelligence feed (STIX/TAXII)"},
+      {"source_id": "medical_fhir", "description": "FHIR R4 medical device"},
+      {"source_id": "radio", "description": "Radio communications"},
+      {"source_id": "network_tap", "description": "Network traffic capture"},
+      {"source_id": "database_query", "description": "External database polling"},
+      {"source_id": "crm_api", "description": "CRM platform API (Salesforce, HubSpot)"},
+      {"source_id": "erp_api", "description": "ERP platform API"},
+      {"source_id": "social_api", "description": "Social media API"},
+      {"source_id": "weather_api", "description": "Weather data API"},
+      {"source_id": "financial_api", "description": "Financial data API/feed"},
+      {"source_id": "mqtt", "description": "MQTT topic subscription"},
+      {"source_id": "websocket_feed", "description": "External WebSocket data stream"},
+      {"source_id": "manual_entry", "description": "Human-entered data"},
+      {"source_id": "webhook", "description": "Inbound webhook POST"},
+      {"source_id": "federation", "description": "Inter-node federation"},
+      {"source_id": "unknown", "description": "Source not yet classified"}
+    ]
+  },
+  "metadata": {
+    "created": "2026-03-21T00:00:00Z",
+    "author": "ENKI System"
+  },
+  "dependencies": ["signal.vocab.system"]
+}

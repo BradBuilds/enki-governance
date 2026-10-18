@@ -1,0 +1,47 @@
+# Sensor reading — IoT / infrastructure metric.
+#
+# Generic device sensor reading. Distinct from environmental_reading
+# (which is for met stations and water gauges) in that infrastructure
+# sensors typically come from a known device with a known location
+# rather than a public observation network.
+
+signal_type: signal.infrastructure.sensor_reading
+aliases:
+  - signal.device.sensor_reading
+
+node_type: event
+subtype: sensor_reading
+description: Generic IoT / infrastructure sensor reading
+
+field_map:
+  payload.device_id:       identity.canonical_name
+  payload.device_name:     identity.title_raw
+  payload.sensor:          _scratch.sensor
+  payload.metric:          _scratch.metric
+  payload.value:           _scratch.value
+  payload.units:           _scratch.units
+  payload.lat:             _scratch.lat
+  payload.lon:             _scratch.lon
+  payload.timestamp:       temporal.event_time
+  payload.ts:              temporal.event_time
+  source.outlet:           source.outlet_name
+  source.slug:             _scratch.source_slug
+
+constants:
+  summary.domain_classification: other
+  evidence.epistemic_type: observation
+  evidence.confidence: 0.95
+  evidence.background_relevance: background
+
+templates:
+  identity.title_display: "{identity.title_raw}"
+  summary.headline: "{identity.title_raw}"
+  summary.narrative: "{_scratch.metric}: {_scratch.value} {_scratch.units}"
+  source.node_id: "source:{_scratch.source_slug}"
+
+extractors: []
+
+governance:
+  author: hand_written
+  reviewed: true
+  version: 1

@@ -1,0 +1,58 @@
+# Seismic event — USGS earthquakes arriving over the USGS Atom feed.
+#
+# The USGS feed format puts the magnitude + epicenter in the title
+# ("M 4.5 - south of the Fiji Islands"), the formatted Time/Location/
+# Depth in the summary, and pre-parsed lat/lon in payload.geo. The
+# full_text field is USGS application boilerplate and MUST be ignored
+# — including it as narrative produces garbage envelopes.
+#
+# NOTE: this mapping handles USGS events that arrive via the feed fetcher.
+# A future dedicated USGS GeoJSON connector would carry richer structured
+# fields (magnitude as a number, depth_km, place, etc.) and deserve its
+# own mapping. The learner will pick up that shape when it arrives.
+
+signal_type: signal.environmental.seismic
+aliases: []
+node_type: event
+subtype: earthquake
+description: Seismic event — earthquake from a USGS-shaped feed payload
+
+field_map:
+  payload.title:        identity.title_raw
+  payload.link:         source.url
+  payload.published:    temporal.event_time
+  payload.summary:      summary.feed_summary
+  source.outlet:        source.outlet_name
+  source.slug:          _scratch.source_slug
+  payload.geo.lat:      _scratch.lat
+  payload.geo.lon:      _scratch.lon
+
+constants:
+  summary.domain_classification: science
+  identity.title_source: feed
+  evidence.epistemic_type: observation
+  evidence.confidence: 0.95
+  evidence.background_relevance: background
+
+templates:
+  identity.title_display: "{identity.title_raw}"
+  summary.headline: "{identity.title_raw}"
+  summary.narrative: "Seismic event reported by {source.outlet_name}. {identity.title_raw}."
+  source.node_id: "source:{_scratch.source_slug}"
+
+extractors:
+  - places_cheap
+  - topics_cheap
+  # No entity_extractor, no quote_extractor — seismic events don't have
+  # quoted speakers or identifier-bearing entities in the feed payload.
+
+governance:
+  author: hand_written
+  reviewed: true
+  version: 1
+  notes: |
+    Coordinates from payload.geo are copied through the field_map into
+    _scratch but the final spatial.coordinates assignment is handled by
+    the engine when it detects _scratch.lat / _scratch.lon. TODO:
+    extend declarative engine to pair scratch.lat+scratch.lon into
+    spatial.coordinates automatically.

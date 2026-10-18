@@ -1,0 +1,14 @@
+{
+  "id": "domain_finance.senses",
+  "type": "lexical_senses",
+  "version": "0.1.0",
+  "description": "Finance senses. 'lead' (sales prospect) competes with the general 'lead' (metal); 'fire sale' is a finance idiom.",
+  "content": {
+    "senses": [
+      {"sense_id": "lead-sales", "lemma": "lead", "pos": "noun", "register": "technical", "domain": "finance",
+       "gloss": "a potential sales prospect or opportunity", "forms": ["lead", "leads"], "relations": []},
+      {"sense_id": "fire-sale", "lemma": "fire sale", "pos": "phrase", "register": "idiom", "domain": "finance",
+       "gloss": "a sale of assets at very low prices, often under financial distress", "forms": ["fire sale"], "relations": []}
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "glossary_finance",
+  "name": "Glossary Finance",
+  "version": "0.1.0",
+  "type": "lexical",
+  "description": "Finance, securities, and AML terminology. Curated seed; expandable from full sources.",
+  "manifest": [
+    "definitions/glossary_finance.senses.json"
+  ]
+}

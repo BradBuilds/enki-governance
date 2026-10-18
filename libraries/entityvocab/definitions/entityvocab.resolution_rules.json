@@ -1,0 +1,263 @@
+{
+  "id": "entity.vocab.resolution_rules",
+  "type": "custom",
+  "version": "0.6.0",
+  "description": "Canonical entity resolution rules: per-type identifier schemas, normalization, merge thresholds, and LLM arbitration prompt. Phase 2.4 adds a top-level normalize_rules block consumed by core/gdu/normalize.py — the pure, pack-driven name normalizer used by the gateway and resolver. Patch 0.2.1 (May 8 2026): adds python_list_literal/dict_literal/verb_phrase_fragment/generic_role_only reject_patterns, expands iso_code exceptions for known org acronyms. Minor 0.3.0 (May 9 2026, Phase 7a of research-validation plan): adds position_title_fragment / compound_title_with_prefix / qid_with_text / ordinal_role_fragment reject_patterns to stop wikidata position-as-entity bugs and news-headline title-prefix duplications. Catches the 'Member of the Regional Command of the Iraqi Regional Branch' class of garbage entity. Minor 0.4.0 (May 10 2026, Phase 8b.5 of synthesis plan): adds bare_stopword / of_the_continuation / demonym_standalone / generic_concept_noun reject_patterns to close the 'THE' (826 sig), 'of the Iran', 'Iranian'-as-country (314 sig), 'state'-as-person (213 sig) class of class-bleeding leak surfaced by the May 10 audit. Minor 0.5.0 (Jul 25 2026, governance re-sync): adds procedural_role_standalone reject_pattern for standalone courtroom/office roles (Plaintiff/President/Secretary/Attorney/Defendant class) that were being minted as persons and carrying edges to real people. FP-tested against all 48,892 node-A entities: 14 matches, 0 false positives. Minor 0.6.0 (Jul 26 2026): adds generic_intelligence_noun for the intelligence-category nouns that saturate declassified CIA material.",
+  "content": {
+    "resolution_strategies": [
+      {
+        "id": "canonical_identifier",
+        "order": 1,
+        "description": "Exact match on globally unique identifiers",
+        "confidence": 1.0,
+        "action": "merge",
+        "applicable_when": "entity has at least one canonical identifier with a value"
+      },
+      {
+        "id": "identifier_hash",
+        "order": 2,
+        "description": "SHA-256 hash of normalized identifiers matches existing entity",
+        "confidence": 1.0,
+        "action": "merge",
+        "applicable_when": "entity has structured identifiers that produce a hash"
+      },
+      {
+        "id": "normalized_name_exact",
+        "order": 3,
+        "description": "Case-insensitive, suffix-stripped, NFC-normalized name matches exactly",
+        "confidence": 0.95,
+        "action": "merge",
+        "applicable_when": "entity has a name and type"
+      },
+      {
+        "id": "alias_match",
+        "order": 4,
+        "description": "Candidate name matches an alias in the existing entity's aliases array",
+        "confidence": 0.90,
+        "action": "merge",
+        "applicable_when": "existing entity has populated aliases"
+      },
+      {
+        "id": "embedding_knn_llm",
+        "order": 5,
+        "description": "Embedding similarity (kNN top-5) + LLM arbitration using governed prompt",
+        "confidence_range": [0.5, 0.95],
+        "action_rules": {
+          "confidence_gte_0.9": "merge",
+          "confidence_gte_0.7": "review",
+          "confidence_lt_0.7": "create"
+        },
+        "applicable_when": "no strong/name match found and embedding infrastructure available"
+      },
+      {
+        "id": "name_plus_spatial",
+        "order": 6,
+        "description": "Fuzzy name similarity + spatial proximity (<50km)",
+        "confidence_range": [0.7, 0.9],
+        "action_rules": {
+          "confidence_gte_0.9": "merge",
+          "confidence_lt_0.9": "review"
+        },
+        "applicable_when": "entity has coordinates and a name"
+      }
+    ],
+
+    "identifier_schemas": {
+      "person": {
+        "canonical_identifiers": ["passport", "ssn", "drivers_license", "email"],
+        "soft_identifiers": ["full_name", "date_of_birth", "phone", "social_handle"],
+        "normalization": {
+          "name": "unicode_nfc_lowercase_strip_titles",
+          "title_prefixes_to_strip": ["president", "prime minister", "minister", "secretary", "general", "admiral", "senator", "governor", "mayor", "king", "queen", "prince", "pope", "ambassador", "ceo", "chairman", "director", "chief", "commander", "leader", "mr", "mrs", "ms", "dr", "prof"],
+          "email": "lowercase_strip"
+        }
+      },
+      "organization": {
+        "canonical_identifiers": ["ein", "lei", "duns", "ticker", "cik"],
+        "soft_identifiers": ["legal_name", "trade_name", "website"],
+        "normalization": {
+          "name": "unicode_nfc_lowercase_strip_org_suffixes",
+          "org_suffixes_to_strip": ["inc", "incorporated", "ltd", "limited", "llc", "corp", "corporation", "co", "company", "group", "holdings", "partners", "lp", "plc", "gmbh", "ag", "sa", "srl", "bv", "nv"]
+        }
+      },
+      "vessel": {
+        "canonical_identifiers": ["mmsi", "imo", "call_sign"],
+        "soft_identifiers": ["vessel_name", "flag_state"],
+        "normalization": {
+          "mmsi": "strip_leading_zeros_9digit",
+          "imo": "strip_prefix_imo_7digit"
+        }
+      },
+      "aircraft": {
+        "canonical_identifiers": ["icao24", "registration", "tail_number"],
+        "soft_identifiers": ["callsign", "aircraft_type", "operator"],
+        "normalization": {
+          "registration": "uppercase_strip_dashes",
+          "icao24": "lowercase_hex"
+        }
+      },
+      "vehicle": {
+        "canonical_identifiers": ["vin", "license_plate"],
+        "soft_identifiers": ["make", "model", "year", "color"],
+        "normalization": {
+          "vin": "uppercase_17char",
+          "license_plate": "uppercase_strip_spaces"
+        }
+      },
+      "facility": {
+        "canonical_identifiers": ["facility_name"],
+        "soft_identifiers": ["operator", "address", "coordinates"],
+        "normalization": {
+          "name": "unicode_nfc_lowercase"
+        }
+      },
+      "account": {
+        "canonical_identifiers": ["handle", "account_id", "url"],
+        "soft_identifiers": ["platform", "display_name"],
+        "normalization": {
+          "handle": "lowercase_strip_at_prefix",
+          "url": "lowercase_strip_trailing_slash"
+        }
+      },
+      "device": {
+        "canonical_identifiers": ["imei", "mac_address", "serial", "device_id"],
+        "soft_identifiers": ["manufacturer", "model"],
+        "normalization": {
+          "mac_address": "lowercase_strip_delimiters",
+          "imei": "digits_only_15char"
+        }
+      }
+    },
+
+    "merge_policy": {
+      "auto_merge_threshold": 0.90,
+      "review_threshold": 0.70,
+      "create_threshold": 0.70,
+      "max_auto_merges_per_batch": 50,
+      "require_same_type": true,
+      "fields_to_merge": {
+        "aliases": "union",
+        "identifiers": "merge_jsonb",
+        "embedding": "recompute",
+        "signal_count": "sum",
+        "first_seen": "min",
+        "last_seen": "max",
+        "completeness_score": "recompute"
+      },
+      "redirect_on_merge": true,
+      "audit_every_merge": true
+    },
+
+    "split_policy": {
+      "original_keeps_id": true,
+      "new_entity_gets_fresh_id": true,
+      "edge_reassignment": "manual",
+      "audit_every_split": true
+    },
+
+    "llm_arbitration_prompt": "You are an entity resolution system for an intelligence analysis platform.\n\nA new entity mention has been extracted. Your job is to determine if it refers to an EXISTING entity in our database, or if it is a NEW entity.\n\nNew mention:\n- Name: {{candidate_name}}\n- Type: {{candidate_type}}\n- Context: {{candidate_context}}\n- Identifiers: {{candidate_identifiers}}\n\nPotential matches from database (top {{match_count}} by embedding similarity):\n{{#matches}}\n{{index}}. {{canonical_name}} ({{canonical_type}})\n   - Aliases: {{aliases}}\n   - Identifiers: {{identifiers}}\n   - Last seen: {{last_seen}}\n   - Signal count: {{signal_count}}\n{{/matches}}\n\nFor each potential match, assess whether the new mention refers to the same real-world entity.\n\nReturn ONLY valid JSON:\n{\n  \"decision\": \"match\" | \"new\" | \"ambiguous\",\n  \"matched_index\": <1-based index of best match, or null>,\n  \"confidence\": <0.0-1.0>,\n  \"reasoning\": \"<one sentence explaining your decision>\"\n}\n\nRules:\n- Same person with different title/role = MATCH (e.g., titles before names should not block a merge)\n- Same org with different suffix = MATCH\n- Translated names = MATCH\n- Similar names but different entity types = NEW\n- If uncertain, choose 'ambiguous' — false merges are worse than duplicates",
+
+    "normalize_rules": {
+      "_description": "Single source of truth for entity-name normalization. core/gdu/normalize.py consumes this block; the gateway and resolver call into normalize.py rather than implementing their own logic. Phase 2.4: promoted from inline lower().strip() and per-type normalization keys above so all writers normalize identically.",
+      "case_fold": true,
+      "unicode_form": "NFC",
+      "trim": true,
+      "collapse_whitespace": true,
+      "strip_prefixes": [
+        "president", "vice president", "vp",
+        "prime minister", "pm",
+        "chancellor", "chairman", "chairwoman", "chair",
+        "minister", "secretary", "ambassador",
+        "sen", "senator", "rep", "representative", "congressman", "congresswoman",
+        "gov", "governor", "mayor",
+        "gen", "general", "lt gen", "maj gen",
+        "col", "colonel", "lt col",
+        "maj", "major", "capt", "captain", "lt", "lieutenant",
+        "adm", "admiral",
+        "king", "queen", "prince", "princess", "pope",
+        "ceo", "cto", "cfo", "coo", "founder", "co-founder",
+        "director", "deputy director", "chief", "commander", "leader",
+        "mr", "mrs", "ms", "miss", "mx",
+        "dr", "doctor", "prof", "professor"
+      ],
+      "strip_suffixes": [
+        "jr", "sr", "ii", "iii", "iv", "v",
+        "esq", "esquire", "phd", "ph.d", "md", "m.d", "do",
+        "dds", "edd", "jd", "lld", "rn"
+      ],
+      "strip_legal_suffixes": [
+        "inc", "incorporated",
+        "ltd", "limited",
+        "llc", "lp", "llp",
+        "corp", "corporation",
+        "co", "company",
+        "group", "holdings", "partners",
+        "plc", "gmbh", "ag", "sa", "srl", "bv", "nv",
+        "pllc", "pc", "pa"
+      ],
+      "reject_patterns": [
+        {"id": "wikidata_qid", "regex": "^q[0-9]+$",
+         "reason": "Wikidata QIDs are identifiers, not entity names"},
+        {"id": "iso_code", "regex": "^[a-z]{2,3}$",
+         "reason": "Bare 2-3 letter codes are ISO/country codes, not names",
+         "exceptions": ["un", "eu", "uk", "us", "fbi", "cia", "nsa", "dia",
+                        "pla", "mss", "irgc", "fsb", "gru", "svr", "sas", "ksk",
+                        "cdc", "fda", "nih", "epa", "doj", "dod", "dos",
+                        "imf", "wto", "imo", "icc", "uae", "ksa", "dprk", "rok",
+                        "g7", "g20", "ai",
+                        "idf", "shin bet", "mit", "nato", "asean", "opec",
+                        "brics", "afp", "bbc", "cnn", "ap", "rt", "wsj",
+                        "nyt", "fbi", "atf", "dea", "ice", "tsa", "fcc",
+                        "sec", "irs", "nasa", "noaa", "usgs"]
+        },
+        {"id": "url", "regex": "^https?://",
+         "reason": "URLs are not entity names"},
+        {"id": "hash", "regex": "^[a-f0-9]{32,64}$",
+         "reason": "Hex hashes are not entity names"},
+        {"id": "purely_numeric", "regex": "^[0-9]+$",
+         "reason": "All-digit strings are identifiers, not names"},
+        {"id": "python_list_literal", "regex": "^\\[.*\\]$",
+         "reason": "Bracket-wrapped name is a stringified list — upstream caller forgot to iterate (see core/research/governor.py _iter_claim)"},
+        {"id": "python_dict_literal", "regex": "^\\{.*\\}$",
+         "reason": "Brace-wrapped name is a stringified dict, not an entity name"},
+        {"id": "verb_phrase_fragment",
+         "regex": "^.*\\b(announced|said|told|reported|claimed|denied|spoke|stated|admitted|confirmed|warned|threatened)\\b",
+         "reason": "Name contains a reporting verb — this is a sentence fragment from extraction, not a person/org. Note: ^.* prefix because normalize.py uses re.match which is start-anchored."},
+        {"id": "generic_role_only",
+         "regex": "^(spokesperson|spokesman|spokeswoman|official|officials|representative|aide|aides|source|sources|witness|witnesses|expert|experts|analyst|analysts|reporter|reporters)$",
+         "reason": "Generic role noun without a proper name — extract the person, not the role"},
+        {"id": "position_title_fragment",
+         "regex": "^(member|members|head|heads|chief|chiefs|director|directors|officer|officers|executive|executives|chairman|chairwoman|chair|spokesperson|spokesman|aide|aides|deputy|deputies|secretary|minister|ambassador|advisor|adviser|leader|leaders|commander|commanders|governor|governors|mayor|mayors|representative|representatives|senator|senators|judge|judges|justice|justices) (of|for) (the )?.+$",
+         "reason": "Position/title fragment ('Member of X', 'Director for Y') — should be a relationship attribute on a real person, not a standalone entity. Phase 7a (research validation plan, May 9 2026)."},
+        {"id": "compound_title_with_prefix",
+         "regex": "^(us|u\\.s\\.|united states|uk|french|german|chinese|russian|israeli|iranian|north korean|south korean|saudi|iraqi|syrian|afghan) (president|prime minister|secretary of state|secretary of defense|chancellor|foreign minister|defense minister|interior minister|finance minister|ambassador|chief of staff|attorney general|chief justice) [a-z].*$",
+         "reason": "Compound 'nationality + title + person name' (e.g. 'us president john smith') — should normalize to just the person name. Bug source: news headlines repeat the title with the name on every mention. Phase 7a."},
+        {"id": "qid_with_text",
+         "regex": "^q[0-9]+ .+$",
+         "reason": "Wikidata QID accidentally prefixed onto a text name ('q0000000 john smith') — extraction or research bug. The QID is an identifier, not part of the name."},
+        {"id": "ordinal_role_fragment",
+         "regex": "^(first|second|third|fourth|fifth|former|previous|current|interim|acting|deputy|vice|assistant|associate) (president|prime minister|secretary|chancellor|minister|director|chairman|leader|governor|mayor|judge|justice|ambassador|chief|head|cabinet|administration|government|ministry|term|presidency|premiership)( of .+)?$",
+         "reason": "Ordinal+role fragment ('first cabinet of X', 'former president', 'acting director', 'second term of Y') — describes a position state, not a discrete entity."},
+        {"id": "bare_stopword",
+         "regex": "^(the|a|an|of|for|to|by|with|in|on|at|and|or|but|nor|yet|so|as|is|are|was|were|be|been|being|it|its)$",
+         "reason": "Bare stopword admitted as entity name — extraction noise. Catches the 'THE' entity (entity_id 5295, 826 signals on node-A May 10 2026) and equivalent leaks. Phase 8b.5 of synthesis plan."},
+        {"id": "of_the_continuation",
+         "regex": "^of\\s+the\\s+",
+         "reason": "Name starts with 'of the X' — sentence fragment, not a name. Catches 'of the Iran' (entity 217, 24 sig) that escaped Phase 7a's position_title_fragment because it lacked a leading title word. Phase 8b.5."},
+        {"id": "demonym_standalone",
+         "regex": "^(american|americans|russian|russians|chinese|iranian|iranians|israeli|israelis|palestinian|palestinians|ukrainian|ukrainians|british|english|french|german|germans|italian|italians|spanish|portuguese|japanese|korean|koreans|indian|indians|pakistani|pakistanis|arab|arabs|arabian|saudi|saudis|iraqi|iraqis|syrian|syrians|lebanese|egyptian|egyptians|turkish|turks|greek|greeks|polish|poles|czech|czechs|hungarian|hungarians|romanian|romanians|bulgarian|bulgarians|serbian|serbians|croatian|croatians|mexican|mexicans|brazilian|brazilians|argentine|argentines|argentinian|argentinians|cuban|cubans|venezuelan|venezuelans|colombian|colombians|chilean|chileans|peruvian|peruvians|canadian|canadians|australian|australians|african|africans|european|europeans|asian|asians|latin|latins|hispanic|hispanics|jewish|jews|muslim|muslims|christian|christians|catholic|catholics|protestant|protestants|hindu|hindus|buddhist|buddhists|sikh|sikhs|sunni|shia|shiite|shiites|kurdish|kurds|nigerian|nigerians|kenyan|kenyans|ethiopian|ethiopians|sudanese|libyan|libyans|moroccan|moroccans|tunisian|tunisians|algerian|algerians|afghan|afghans|yemeni|yemenis|jordanian|jordanians|qatari|qataris|emirati|emiratis|bahraini|bahrainis|kuwaiti|kuwaitis|omani|omanis|filipino|filipinos|indonesian|indonesians|malaysian|malaysians|thai|vietnamese|burmese|cambodian|cambodians|laotian|laotians|nepali|nepalese|sri lankan|sri lankans|bangladeshi|bangladeshis|mongolian|mongolians|kazakh|kazakhs|uzbek|uzbeks|tajik|tajiks|kyrgyz|turkmen|azerbaijani|azerbaijanis|armenian|armenians|georgian|georgians|moldovan|moldovans|belarusian|belarusians|estonian|estonians|latvian|latvians|lithuanian|lithuanians|finnish|finns|swedish|swedes|norwegian|norwegians|danish|danes|icelandic|icelanders|irish|scottish|scots|welsh|dutch|belgian|belgians|swiss|austrian|austrians|slovak|slovaks|slovenian|slovenians|albanian|albanians|macedonian|macedonians|bosnian|bosnians|montenegrin|montenegrins|kosovar|kosovars)$",
+         "reason": "Standalone demonym (nationality/religion adjective) — not an entity. Compound names with the demonym ('Saudi Arabia', 'Russian Federation', 'American Express') pass because they have additional words. Catches the 'Iranian' (entity 579, 314 sig as country) class of leak. Phase 8b.5."},
+        {"id": "generic_concept_noun",
+         "regex": "^(state|states|world|worlds|system|systems|government|governments|administration|administrations|people|peoples|public|nation|nations|country|countries|city|cities|town|towns|village|villages|region|regions|province|provinces|district|districts|county|counties|family|families|community|communities|society|societies|organization|organizations|company|companies|enterprise|enterprises|firm|firms|institution|institutions|association|associations|university|universities|college|colleges|school|schools|hospital|hospitals|church|churches|temple|temples|mosque|mosques|man|men|woman|women|boy|boys|girl|girls|child|children|kid|kids|adult|adults|person|persons|individual|individuals|user|users|customer|customers|client|clients|member|members|player|players|team|teams|group|groups|crew|crews|staff|workforce|employee|employees|worker|workers|owner|owners|founder|founders|leader|leaders|author|authors|editor|editors|writer|writers|journalist|journalists|driver|drivers|operator|operators|administrator|administrators|moderator|moderators|host|hosts|guest|guests|visitor|visitors|tourist|tourists|traveler|travelers|passenger|passengers|patient|patients|student|students|teacher|teachers|professor|professors|doctor|doctors|nurse|nurses|engineer|engineers|scientist|scientists|researcher|researchers|developer|developers|programmer|programmers|designer|designers|artist|artists|musician|musicians|actor|actors|director|directors|producer|producers|coach|coaches|athlete|athletes|soldier|soldiers|officer|officers|police|policeman|policewoman|firefighter|firefighters|farmer|farmers|fisher|fishers|miner|miners|builder|builders|driver|truck driver|pilot|pilots|sailor|sailors|captain|captains|chef|chefs|waiter|waiters|servant|servants|guard|guards|spy|spies|agent|agents|representative|representatives|ambassador|ambassadors)$",
+         "reason": "Generic concept noun without specifier — not a named entity. 'United States' is fine (compound), 'state' alone is noise. Catches 'state' (entity 2694, 213 sig as person), 'world' (entity 12511, 32 sig as country), 'Author' (1732), 'Driver' (2072) classes of leak. Phase 8b.5."},
+        {"id": "generic_intelligence_noun",
+         "regex": "^(intelligence agency|intelligence agencies|military intelligence|intelligence community|intelligence service|intelligence services|security service|security services|secret service|secret police|foreign intelligence|domestic intelligence|counterintelligence|human intelligence|signals intelligence|central intelligence)$",
+         "reason": "Generic intelligence/security noun with no specifier \u2014 a category of organisation, not a named one. Declassified CIA material is dense with these ('the intelligence community assessed...'), and the resolver was minting them as persons and organisations, then hanging edges off them. Named agencies pass because they carry a proper name ('Central Intelligence Agency', 'Defense Intelligence Agency', 'MI6'). Minor 0.6.0 (Jul 26 2026): validated against all 48,957 entities on node-A \u2014 7 matches, zero false positives (Intelligence agency 70 mentions, Intelligence community, Military intelligence, Signals intelligence, Secret service, Counterintelligence, and the truncated fragment 'Central Intelligence')."},
+        {"id": "procedural_role_standalone",
+         "regex": "^(plaintiff|plaintiffs|defendant|defendants|complainant|complainants|respondent|respondents|petitioner|petitioners|appellant|appellants|appellee|appellees|prosecutor|prosecutors|juror|jurors|deponent|deponents|affiant|affiants|president|vice president|secretary|treasurer|attorney|attorneys|counsel|co-counsel|witness|witnesses|victim|victims|claimant|claimants|intervenor|movant|declarant|notary)$",
+         "reason": "Standalone courtroom/office role — a procedural position, not a named party. Court filings say 'Plaintiff testified' the way prose says 'the witness testified'; the resolver was minting these as persons. Compound names pass ('President Lincoln', 'Attorney General Smith', 'Secretary of State') because they carry additional tokens. Deliberately EXCLUDES role words that are also common surnames (Dean, Judge, Marshal, Chancellor, Bishop, Priest, Abbott, Parson, Sexton, Provost, Rector) to avoid rejecting real people. Complements generic_concept_noun, which covers occupational nouns but not procedural ones. Minor 0.5.0 (Jul 25 2026): validated against all 48,892 entities on node-A — 14 matches, zero false positives (Plaintiff 400 mentions/11 edges, President 124/6, Secretary 45/2, Attorney 10/1, plus Plaintiffs, Defendant, Defendants, Intervenor, Victim, Victims, Attorneys, Prosecutors, Petitioners, Complainant)."}
+      ],
+      "min_length_after_normalize": 2
+    }
+  }
+}

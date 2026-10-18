@@ -1,0 +1,52 @@
+{
+  "id": "relevance.vocab.tiers",
+  "type": "custom",
+  "version": "0.1.0",
+  "description": "The four canonical background relevance tiers.",
+  "content": {
+    "tiers": {
+      "none": {
+        "label": "None",
+        "rank": 0,
+        "description": "Explicitly classified as not-relevant. Signals like sports tragedies, game projects, lifestyle pieces. Stored fully, never surfaced on the default dashboard.",
+        "default_dashboard_visibility": "hidden",
+        "visible_via": ["show_all_filter", "direct_link", "search", "audit"],
+        "examples": ["chess game project on HN", "horse racing tragedy on Spiegel", "celebrity gossip"]
+      },
+      "low": {
+        "label": "Low",
+        "rank": 1,
+        "description": "Stored, queryable, doesn't surface unprompted on the firehose. Visible inside topic or case context if it matches.",
+        "default_dashboard_visibility": "visible_in_context_only",
+        "examples": ["domain news that doesn't match any active case", "routine telemetry without anomalies"]
+      },
+      "medium": {
+        "label": "Medium",
+        "rank": 2,
+        "description": "Surfaces in topic and case context but not on the firehose. Default classification when uncertain.",
+        "default_dashboard_visibility": "visible_in_topic_and_case",
+        "is_uncertainty_default": true,
+        "examples": ["news from a relevant topic that doesn't yet match a specific case", "background context for ongoing investigation"]
+      },
+      "high": {
+        "label": "High",
+        "rank": 3,
+        "description": "Surfaces everywhere by default, drives chronicle inclusion, may fire alerts depending on case rules.",
+        "default_dashboard_visibility": "highlighted_top_of_feed",
+        "drives_chronicle_inclusion": true,
+        "can_fire_alerts": true,
+        "examples": ["PAC-3 contract when Patriot tracking case is active", "named target appearing in any source", "verified strike report in active conflict zone"]
+      }
+    },
+    "transition_rules": {
+      "promote_on_new_match": "Signal previously classified medium can be promoted to high when a new case observable matches its entities",
+      "demote_on_case_closure": "Signal classified high because of a specific case can demote to medium when that case closes",
+      "audit_log": "All transitions logged in provenance.extraction_passes with stage='relevance'"
+    }
+  },
+  "metadata": {
+    "created": "2026-04-10T00:00:00Z",
+    "author": "ENKI System"
+  },
+  "dependencies": []
+}

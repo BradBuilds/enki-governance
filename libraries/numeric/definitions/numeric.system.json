@@ -1,0 +1,33 @@
+{
+  "id": "gdu.numeric.system",
+  "type": "system",
+  "version": "1.0.0",
+  "content": {
+    "canonical_truth": {
+      "type": "integer",
+      "domain": "non_negative",
+      "canonical_base": 10,
+      "canonical_name": "decimal"
+    },
+    "representation_layers": [
+      {
+        "name": "base60",
+        "base": 60,
+        "role": "representation_only",
+        "must_be_lossless": true
+      }
+    ],
+    "hard_rules": [
+      "Numeric truth MUST be stored canonically in decimal.",
+      "Representation layers MUST be reversible to canonical truth.",
+      "Glyphs/symbols/rendering MUST NOT be part of numeric truth.",
+      "Any rendering system MUST take numeric truth as input, never modify it."
+    ],
+    "error_codes": [
+      "NUMERIC_INVALID_TYPE",
+      "NUMERIC_NEGATIVE_NOT_SUPPORTED",
+      "BASE60_DIGIT_RANGE",
+      "BASE60_EMPTY_PLACES"
+    ]
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "pack_id": "topicvocab",
+  "version": "0.1.0",
+  "name": "ENKI Topic Relation Vocabulary Pack",
+  "description": "The lattice between topics. While edgevocab governs how entities relate (officer_of, communicated_with), topicvocab governs how TOPICS relate to each other (broader_than, narrower_than, peer_of, explains, contradicts, follows, references, same_as). These are EPISTEMIC relations — they describe the structure of knowledge, not the structure of the world. Topics also carry temporal anchoring (temporal_span) and a concept/instance distinction borrowed from entityvocab. Forward-compat: new relation types extend the relation set; existing types are immutable; relation inverses are auto-defined.",
+  "definitions": [
+    {
+      "id": "topic.vocab.system",
+      "path": "definitions/topicvocab.system.json",
+      "type": "system"
+    },
+    {
+      "id": "topic.vocab.relations",
+      "path": "definitions/topicvocab.relations.json",
+      "type": "custom"
+    },
+    {
+      "id": "topic.vocab.composition",
+      "path": "definitions/topicvocab.composition.json",
+      "type": "custom"
+    }
+  ],
+  "dependencies": ["identity", "nodevocab", "edgevocab"],
+  "namespaces_owned": [
+    "topic.vocab"
+  ],
+  "metadata": {
+    "created": "2026-05-19T00:00:00Z",
+    "author": "ENKI System",
+    "license": "AGPLv3",
+    "forward_compat_rules": [
+      "Relation types in v0.1.0 are permanent. v0.2.0+ can ADD relation types but cannot remove or rename.",
+      "Each relation has an `inverse` field — adding a new relation requires defining its inverse.",
+      "Temporal anchoring fields (temporal_span, temporal_anchor) are part of the topics table, governed by valuevocab's time chain.",
+      "concept/instance distinction is single-tier (a topic is either a concept or an instance) — adding more kinds requires a major version bump."
+    ]
+  }
+}

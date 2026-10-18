@@ -1,0 +1,18 @@
+{
+  "id": "signal.vocab.system",
+  "type": "system",
+  "version": "0.1.0",
+  "description": "System definition for signal classification vocabulary. Declares the canonical taxonomy for all ingested data.",
+  "content": {
+    "purpose": "Universal data classification. Every piece of data entering Enki through the ingestion pipeline receives a signal_type from this vocabulary. The type determines how the data is parsed, what observables are extracted, and how it can be correlated.",
+    "conceptual_model": "signal_type + source + severity + confidence + observables",
+    "taxonomy_root": "signal",
+    "extensibility": "New signal types added via Tier 1 vocabulary extension (Gate A only). The LDU-P playground proposes new types when unrecognized data arrives.",
+    "governance": "Signal types are ceremony-governed vocabulary. No schema drift. No rogue definitions."
+  },
+  "metadata": {
+    "created": "2026-03-21T00:00:00Z",
+    "author": "ENKI System"
+  },
+  "dependencies": []
+}

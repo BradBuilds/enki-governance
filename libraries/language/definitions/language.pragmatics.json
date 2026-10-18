@@ -1,0 +1,26 @@
+{
+  "id": "language.pragmatics",
+  "type": "rules",
+  "version": "0.1.0",
+  "description": "Pragmatic phenomena: speech acts, discourse markers, politeness (deterministic vocabulary).",
+  "content": {
+    "speech_acts": {
+      "assertive": "committing speaker to truth",
+      "directive": "attempting to get addressee to do something",
+      "commissive": "committing speaker to future action",
+      "expressive": "expressing psychological state",
+      "declarative": "changing institutional reality"
+    },
+    "discourse_phenomena": {
+      "markers": ["however", "therefore", "moreover", "also"],
+      "turn_taking": ["well", "so", "now", "actually"],
+      "hedging": ["maybe", "sort of", "perhaps", "kind of"]
+    },
+    "politeness_strategies": ["positive_face", "negative_face", "off_record", "on_record"],
+    "scope": "v0.1.0 covers basic pragmatic phenomena as labels (no dialogue policy engine)."
+  },
+  "metadata": {
+    "created": "2026-01-13T00:00:00Z",
+    "author": "ENKI System"
+  }
+}

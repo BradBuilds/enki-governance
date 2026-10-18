@@ -1,0 +1,10 @@
+{
+  "status_code": 401,
+  "body_shape": {
+    "detail": {
+      "error_code": "AUTH.SIGNATURE_INVALID",
+      "detail": "<string>"
+    }
+  },
+  "notes": "Tampered signature returns 401 with AUTH.SIGNATURE_INVALID."
+}

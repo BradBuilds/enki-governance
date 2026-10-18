@@ -1,0 +1,10 @@
+{
+  "id": "example_lexicon",
+  "name": "Example Lexicon",
+  "version": "0.1.0",
+  "type": "lexical",
+  "description": "Tiny hand-authored lexical library proving the whole-lexicon collapse path: deterministic sense addressing, polysemy fan-out, register split (literal vs slang), and relation/expansion edges. Not real coverage — the end-to-end proof before WordNet.",
+  "manifest": [
+    "definitions/example_lexicon.senses.json"
+  ]
+}

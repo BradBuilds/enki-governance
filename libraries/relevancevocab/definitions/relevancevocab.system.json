@@ -1,0 +1,59 @@
+{
+  "id": "relevance.vocab.system",
+  "type": "system",
+  "version": "0.1.0",
+  "description": "System definition for the relevance vocabulary. Declares why relevance exists and the principle of bridging storage and attention.",
+  "content": {
+    "purpose": "Bridge storage and attention. Intelligence systems must store everything (you never know what becomes important), but humans can only attend to a tiny fraction. If storage and attention are the same mechanism, you either drop important data or drown in noise. Relevance is the lever that lets the same database serve exhaustive storage AND selective surfacing.",
+
+    "principle": "Never delete, always rank. A signal classified as 'none' relevance is still ingested, still hashed, still audit-logged, still queryable — it just doesn't appear on the dashboard by default. This is reversible: a future case can elevate previously-irrelevant signals.",
+
+    "seven_problems_solved": [
+      {
+        "problem": "Dashboard drowning",
+        "without_relevance": "Fiji earthquake jostles with PAC-3 contract jostles with horse racing tragedy. The eye gives up.",
+        "with_relevance": "PAC-3 surfaces first; horse racing is stored but doesn't compete for attention."
+      },
+      {
+        "problem": "Storage without surfacing",
+        "without_relevance": "Either drop low-relevance signals (loss) or render them as if they were intel (noise).",
+        "with_relevance": "Store fully, render selectively. Storage and display diverge cleanly."
+      },
+      {
+        "problem": "Cold start without active cases",
+        "without_relevance": "A user with zero cases sees no priorities — system feels random.",
+        "with_relevance": "Background relevance is the prior; active-case relevance is the posterior. Both contribute, both are useful even when one is empty."
+      },
+      {
+        "problem": "Chronicle selectivity",
+        "without_relevance": "Daily chronicle would summarize 500 nodes — unreadable.",
+        "with_relevance": "Chronicle narrative covers the high-relevance subset; the rest is queryable in the underlying data."
+      },
+      {
+        "problem": "Enrichment budget",
+        "without_relevance": "Background workers re-enrich everything equally; GPU wasted.",
+        "with_relevance": "High-relevance gaps get re-enriched first; compute follows attention."
+      },
+      {
+        "problem": "Filter without deletion",
+        "without_relevance": "To clean up the dashboard you must delete data.",
+        "with_relevance": "Filter by tier, hide irrelevant ones, never lose them. Reversible, debuggable."
+      },
+      {
+        "problem": "Adversarial volume",
+        "without_relevance": "A hostile flood of low-relevance content displaces real intel from view.",
+        "with_relevance": "Low-relevance classification absorbs the attack; data is still ingested and audited but doesn't displace high-relevance signals."
+      }
+    ],
+
+    "default_when_uncertain": "medium",
+    "default_doc": "Always err toward visibility. A misclassified 'medium' annoys the user for an hour; a misclassified 'none' hides intel forever. Asymmetric cost demands asymmetric default — always lean toward showing.",
+
+    "auditability": "Tier names and factor weights are GDU-governed. Changing the formula requires a pack version bump. Historical relevance scores remain queryable via LDU lineage so we can audit how a node was ranked at the time it was ingested vs. how it would be ranked under the current rules."
+  },
+  "metadata": {
+    "created": "2026-04-10T00:00:00Z",
+    "author": "ENKI System"
+  },
+  "dependencies": []
+}

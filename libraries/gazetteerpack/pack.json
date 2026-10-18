@@ -1,0 +1,41 @@
+{
+  "pack_id": "gazetteerpack",
+  "version": "1.1.0",
+  "name": "ENKI Gazetteer Pack",
+  "description": "Place gazetteer: countries, maritime areas, named admin regions. Each entry carries canonical name, ISO codes (where applicable), Wikidata QID, centroid coordinates, and aliases. Promoted from core/gdu/llm_mapper.py:_KNOWN_COUNTRIES in Phase 2.2 of the collapse rebuild plan, plus the maritime/admin entries that previously failed to LDU-P. v1.1.0 (2026-07-25): declares gazetteerpack.cities (4,953 GeoNames cities5000 entries with canonical name, subtype, parent_country, centroid, aliases). The file shipped on disk in May 2026 and has been consumed directly by core/gdu/gazetteer.py, but was never listed in the manifest, so it was outside pack governance and excluded from the content hash. NOTE: entries are GeoNames-ordered, so ambiguous names resolve to the first match (London -> CA/Ontario). Use the SUBTYPE for typing; do NOT trust parent_country for disambiguation. NAMESPACE FIX (2026-07-25): namespaces_owned was ['place.country','place.maritime_area','place.admin_region'] — two of which contain underscores and therefore fail the LOCKED spine namespace pattern (S1.2, SPINE-00 v1.0.1), so this pack had never passed the admission ceremony since entering the active set on 2026-05-05. It also claimed a 'place.*' namespace it does not use: every definition id in this pack is 'gazetteerpack.*'. Corrected to match the convention every well-formed pack follows (namespaces_owned == definition-id prefix). The 'place.country' / 'place.admin_region' strings in scripts/cascade_address_overflow.py are an independent hardcoded dispatch table and are unaffected.",
+  "definitions": [
+    {
+      "id": "gazetteerpack.countries",
+      "path": "definitions/gazetteerpack.countries.json",
+      "type": "custom"
+    },
+    {
+      "id": "gazetteerpack.maritime",
+      "path": "definitions/gazetteerpack.maritime.json",
+      "type": "custom"
+    },
+    {
+      "id": "gazetteerpack.admin",
+      "path": "definitions/gazetteerpack.admin.json",
+      "type": "custom"
+    },
+    {
+      "id": "gazetteerpack.cities",
+      "path": "definitions/gazetteerpack.cities.json",
+      "type": "custom"
+    }
+  ],
+  "dependencies": [
+    "identity",
+    "nodevocab"
+  ],
+  "namespaces_owned": [
+    "gazetteerpack"
+  ],
+  "metadata": {
+    "created": "2026-05-04T00:00:00Z",
+    "author": "ENKI System",
+    "license": "AGPLv3",
+    "kill_switch_env": "ENKI_NO_GAZETTEER_PACK"
+  }
+}

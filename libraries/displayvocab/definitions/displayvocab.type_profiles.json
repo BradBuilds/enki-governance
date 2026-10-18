@@ -1,0 +1,259 @@
+{
+  "id": "display.profile.type_profiles",
+  "type": "custom",
+  "version": "0.1.0",
+  "description": "Per-canonical-type list of structured-profile field keys to display in the entity dossier card. Field keys are matched against the keys present in a Wikidata structured_profile finding's data jsonb (and as a fallback, against the keys in a Wikipedia summary finding). The card renders the first N fields from this list that have non-empty values for the entity. Order = priority = display order.",
+
+  "_routing_principles": [
+    "Only show fields that mean something for this type. A 'capital' field on a person is noise; an 'occupation' field on a country is noise. The point of this pack is to keep that noise off the card.",
+    "Order the list by what a human glances at first. For a country: capital + population + currency before iso_3166. For a person: born/died + occupation + nationality before religion/awards. For an organization: founded + HQ + industry before stock_exchange.",
+    "Fields that DON'T appear in this list are still in the underlying data — the operator can drill into the raw research findings to see them. The card just doesn't surface them by default.",
+    "Subtypes (city vs country, vehicle vs aircraft) are handled via the most-specific match: lookup tries (canonical_type + subtype) first, falls back to canonical_type. Subtypes use dot notation: 'place.city', 'asset.aircraft'."
+  ],
+
+  "content": {
+    "type_profiles": {
+      "country": [
+        "capital",
+        "population",
+        "area_km2",
+        "currency",
+        "official_languages",
+        "continent",
+        "located_in",
+        "iso_3166",
+        "government",
+        "government_type",
+        "head_of_state",
+        "head_of_government",
+        "founding_date",
+        "demonym",
+        "calling_code",
+        "timezone",
+        "coordinates",
+        "anthem",
+        "motto"
+      ],
+
+      "person": [
+        "date_of_birth",
+        "place_of_birth",
+        "date_of_death",
+        "place_of_death",
+        "occupation",
+        "nationality",
+        "citizenship",
+        "position_held",
+        "employer",
+        "educated_at",
+        "spouse",
+        "child",
+        "parent",
+        "sibling",
+        "member_of_political_party",
+        "religion",
+        "languages_spoken",
+        "awards_received",
+        "gender",
+        "height",
+        "official_website"
+      ],
+
+      "organization": [
+        "inception",
+        "founding_date",
+        "headquarters_location",
+        "headquarters",
+        "industry",
+        "founder",
+        "ceo",
+        "chairperson",
+        "key_people",
+        "employees",
+        "parent_organization",
+        "subsidiary",
+        "country",
+        "stock_exchange",
+        "ticker_symbol",
+        "isin",
+        "cik",
+        "cage_code",
+        "duns",
+        "uei",
+        "ein",
+        "official_website",
+        "revenue",
+        "operating_income",
+        "net_income",
+        "products",
+        "services"
+      ],
+
+      "company": [
+        "inception",
+        "founding_date",
+        "headquarters_location",
+        "industry",
+        "founder",
+        "ceo",
+        "employees",
+        "parent_organization",
+        "subsidiary",
+        "country",
+        "stock_exchange",
+        "ticker_symbol",
+        "cik",
+        "official_website",
+        "revenue",
+        "products"
+      ],
+
+      "place.city": [
+        "population",
+        "area_km2",
+        "located_in",
+        "country",
+        "administrative_subdivision",
+        "elevation",
+        "coordinates",
+        "timezone",
+        "founded",
+        "mayor",
+        "demonym"
+      ],
+
+      "place": [
+        "located_in",
+        "country",
+        "coordinates",
+        "elevation",
+        "type",
+        "owned_by",
+        "operated_by",
+        "founded"
+      ],
+
+      "address": [
+        "street",
+        "city",
+        "region",
+        "postal_code",
+        "country",
+        "coordinates"
+      ],
+
+      "facility": [
+        "address",
+        "located_in",
+        "country",
+        "type",
+        "owned_by",
+        "operated_by",
+        "purpose",
+        "established"
+      ],
+
+      "asset.aircraft": [
+        "registration",
+        "icao_hex",
+        "model",
+        "manufacturer",
+        "owner",
+        "operator",
+        "year_built",
+        "engines",
+        "seating_capacity"
+      ],
+
+      "asset.vessel": [
+        "mmsi",
+        "imo",
+        "flag_state",
+        "type",
+        "owner",
+        "operator",
+        "year_built",
+        "tonnage",
+        "length_m"
+      ],
+
+      "asset.vehicle": [
+        "make",
+        "model",
+        "year",
+        "vin",
+        "plate",
+        "color",
+        "owner"
+      ],
+
+      "event": [
+        "start_time",
+        "end_time",
+        "location",
+        "country",
+        "organizer",
+        "participants",
+        "outcome",
+        "casualties"
+      ],
+
+      "_default": [
+        "description",
+        "founded",
+        "located_in",
+        "country",
+        "owner",
+        "type"
+      ]
+    },
+
+    "display_label_map": {
+      "iso_3166": "ISO 3166",
+      "area_km2": "Area (km²)",
+      "icao_hex": "ICAO Hex",
+      "mmsi": "MMSI",
+      "imo": "IMO",
+      "cik": "SEC CIK",
+      "ein": "EIN",
+      "uei": "UEI",
+      "duns": "DUNS",
+      "cage_code": "CAGE Code",
+      "date_of_birth": "Born",
+      "date_of_death": "Died",
+      "place_of_birth": "Birthplace",
+      "place_of_death": "Death place",
+      "official_website": "Website",
+      "headquarters_location": "Headquarters",
+      "parent_organization": "Parent org",
+      "stock_exchange": "Exchange",
+      "ticker_symbol": "Ticker",
+      "head_of_state": "Head of state",
+      "head_of_government": "Head of gov't",
+      "official_languages": "Official languages",
+      "founding_date": "Founded",
+      "member_of_political_party": "Party",
+      "administrative_subdivision": "Admin division"
+    },
+
+    "display_kind_map": {
+      "official_website": "url",
+      "coordinates": "coords",
+      "date_of_birth": "date",
+      "date_of_death": "date",
+      "founding_date": "date",
+      "inception": "date",
+      "founded": "date",
+      "year_built": "year",
+      "established": "date",
+      "start_time": "datetime",
+      "end_time": "datetime",
+      "population": "number",
+      "area_km2": "number",
+      "employees": "number",
+      "revenue": "money",
+      "operating_income": "money",
+      "net_income": "money"
+    }
+  }
+}

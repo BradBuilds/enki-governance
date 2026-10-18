@@ -1,0 +1,39 @@
+{
+  "pack_id": "valuevocab",
+  "version": "0.1.0",
+  "name": "ENKI Value Lattice Vocabulary Pack",
+  "description": "Defines how VALUES live in the substrate. A value is a first-class node (gets its own base60 address) that lives inside its property's lattice. Values refine other values via a partial order; depth comes from precisionvocab; cycle comes from propertyvocab. This pack carries the LATTICE MECHANICS (how refines/subsumes/conflicts work) and the BOOTSTRAP CHAINS (initial value seeds for high-traffic properties: location, time, language). New value chains can be admitted at runtime via the gateway — this pack only seeds what the substrate needs to function on day one. Forward-compat: bootstrap chains are immutable identifiers; future versions add more chains or extend existing chains downward (deeper) but never reorder.",
+  "definitions": [
+    {
+      "id": "value.vocab.system",
+      "path": "definitions/valuevocab.system.json",
+      "type": "system"
+    },
+    {
+      "id": "value.vocab.mechanics",
+      "path": "definitions/valuevocab.mechanics.json",
+      "type": "custom"
+    },
+    {
+      "id": "value.vocab.bootstrap_chains",
+      "path": "definitions/valuevocab.bootstrap_chains.json",
+      "type": "custom"
+    }
+  ],
+  "dependencies": ["identity", "nodevocab", "precisionvocab", "propertyvocab"],
+  "namespaces_owned": [
+    "value.vocab"
+  ],
+  "metadata": {
+    "created": "2026-05-19T00:00:00Z",
+    "author": "ENKI System",
+    "license": "AGPLv3",
+    "forward_compat_rules": [
+      "Bootstrap chain IDs are immutable. 'location.country.US' in v0.1.0 stays 'location.country.US' forever.",
+      "Chains can be extended downward (deeper) without a major bump — adding 'location.address.123_main_st' under 'location.city.springfield' is safe.",
+      "Chains cannot be reordered or have intermediate levels removed within a minor version.",
+      "Runtime admission of values is allowed and expected — the bootstrap chains are seeds, not exhaustive enumerations.",
+      "Value normalization rules (e.g. 'red' = 'RED' = 'Red') stay stable within minor versions."
+    ]
+  }
+}

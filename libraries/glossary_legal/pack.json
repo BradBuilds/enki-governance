@@ -1,0 +1,10 @@
+{
+  "id": "glossary_legal",
+  "name": "Glossary Legal",
+  "version": "0.1.0",
+  "type": "lexical",
+  "description": "Legal and court terminology. Curated seed; expandable from full sources.",
+  "manifest": [
+    "definitions/glossary_legal.senses.json"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "id": "alert.vocab.statuses",
+  "type": "custom",
+  "version": "0.1.0",
+  "description": "Alert lifecycle statuses.",
+  "content": {
+    "category": "alert_statuses",
+    "statuses": [
+      {"status_id": "new", "description": "Alert created, no human has seen it"},
+      {"status_id": "triaged", "description": "Reviewed, severity/owner assigned"},
+      {"status_id": "enriched", "description": "Context added (history, related data)"},
+      {"status_id": "escalated", "description": "Promoted to case/topic for investigation"},
+      {"status_id": "suppressed", "description": "Known benign, documented reason"},
+      {"status_id": "false_positive", "description": "Not a real condition, feeds rule tuning"},
+      {"status_id": "resolved", "description": "Addressed, no further action needed"}
+    ],
+    "initial_status": "new"
+  },
+  "metadata": {"created": "2026-03-21T00:00:00Z", "author": "ENKI System"},
+  "dependencies": ["alert.vocab.system"]
+}

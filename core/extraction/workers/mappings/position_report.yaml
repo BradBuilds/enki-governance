@@ -1,0 +1,84 @@
+# Position report — generic geospatial position update.
+#
+# Covers the canonical signal.geospatial.position_report type plus the
+# TAK-derived friendly/hostile/unknown ground/air variants and the
+# vessel/aircraft position aliases, which all share the same envelope
+# shape (entity identifier + lat/lon + timestamp + optional kinematics).
+#
+# Production payloads come from very different recipes — ADS-B aircraft,
+# AIS vessel, Traccar GPS, CoT TAK, METAR/PIREP weather observations.
+# Each uses a different field name for the entity identifier and the
+# coordinates. The field_map walks several alternative names; the
+# DeclarativeWorker writes the FIRST non-null value, so the order
+# matters: ADS-B callsign > tail > icao24 > AIS mmsi > PIREP icaoId >
+# station id (METAR/PIREP).
+
+signal_type: signal.geospatial.position_report
+aliases:
+  - signal.geospatial.friendly_ground
+  - signal.geospatial.friendly_air
+  - signal.geospatial.hostile_ground
+  - signal.geospatial.hostile_air
+  - signal.geospatial.unknown_ground
+  - signal.geospatial.neutral
+  - signal.geospatial.aircraft_position
+  - signal.geospatial.vessel_position
+
+node_type: event
+subtype: position_report
+description: Generic position report — ADS-B / AIS / Traccar / CoT / PIREP / METAR
+
+field_map:
+  # Identifier — first non-null wins
+  payload.callsign:        identity.title_raw
+  payload.flight:          identity.title_raw
+  payload.icaoId:          identity.title_raw     # PIREP / METAR uses airport ICAO
+  payload.station_id:      identity.title_raw
+  payload.tail_number:     _scratch.tail
+  payload.icao24:          _scratch.icao24        # ADS-B transponder
+  payload.mmsi:            _scratch.mmsi          # AIS vessel
+  payload.imo:             _scratch.imo
+  # Coordinates — both abbreviated and full forms
+  payload.lat:             _scratch.lat
+  payload.lon:             _scratch.lon
+  payload.latitude:        _scratch.lat
+  payload.longitude:       _scratch.lon
+  # Kinematics
+  payload.alt_baro:        _scratch.altitude
+  payload.altitude:        _scratch.altitude
+  payload.elev:            _scratch.altitude
+  payload.fltLvl:          _scratch.altitude
+  payload.hae:             _scratch.altitude
+  payload.speed:           _scratch.speed
+  payload.gs:              _scratch.speed
+  payload.heading:         _scratch.heading
+  payload.track:           _scratch.heading
+  payload.course:          _scratch.heading
+  # Time — multiple shapes from different APIs
+  payload.timestamp:       temporal.event_time
+  payload.last_position:   temporal.event_time
+  payload.reportTime:      temporal.event_time
+  payload.observationTime: temporal.event_time
+  payload.source_url:      source.url
+  source.outlet:           source.outlet_name
+  source.slug:             _scratch.source_slug
+
+constants:
+  summary.domain_classification: geo
+  evidence.epistemic_type: observation
+  evidence.confidence: 0.95
+  evidence.background_relevance: background
+
+templates:
+  identity.title_display: "{identity.title_raw}"
+  summary.headline: "Position — {identity.title_raw}"
+  summary.narrative: "{identity.title_raw} at {_scratch.lat},{_scratch.lon}"
+  source.node_id: "source:{_scratch.source_slug}"
+
+extractors: []
+
+governance:
+  author: hand_written
+  reviewed: true
+  version: 2
+  notes: "Merged track_position.yaml + position_report.yaml. Handles TAK, ADSB, AIS, Traccar, CoT, PIREP, METAR shapes via first-non-null field-map ordering."

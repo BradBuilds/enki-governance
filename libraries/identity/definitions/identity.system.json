@@ -1,0 +1,34 @@
+{
+  "id": "identity.system",
+  "type": "system",
+  "version": "0.1.0",
+  "description": "Core Identity Pack system properties and metadata",
+  "content": {
+    "pack_name": "ENKI Identity Pack",
+    "purpose": "Canonical vocabulary for identity primitives used throughout ENKI systems",
+    "scope": "vocabulary_only",
+    "id_formatting": {
+      "pattern": "^[a-z0-9]([a-z0-9._-]*[a-z0-9])?$",
+      "description": "Identity IDs follow standard ENKI definition ID format",
+      "examples": [
+        "identity.system",
+        "identity.actors",
+        "identity.entities",
+        "identity.scopes"
+      ]
+    },
+    "version_scheme": "semantic",
+    "non_goals": [
+      "authentication",
+      "authorization",
+      "licensing",
+      "audit_logging",
+      "networking"
+    ]
+  },
+  "metadata": {
+    "created": "2025-12-31T00:00:00Z",
+    "author": "ENKI System"
+  },
+  "dependencies": []
+}

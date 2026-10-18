@@ -1,0 +1,10 @@
+{
+  "id": "slang",
+  "name": "Slang",
+  "version": "0.1.0",
+  "type": "lexical",
+  "description": "Common contemporary English slang senses. Curated seed; expandable from full sources.",
+  "manifest": [
+    "definitions/slang.senses.json"
+  ]
+}

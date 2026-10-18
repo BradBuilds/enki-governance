@@ -1,0 +1,130 @@
+{
+  "id": "idioms.senses",
+  "type": "lexical_senses",
+  "version": "0.1.0",
+  "description": "English idioms and fixed phrases. (10 seed senses).",
+  "content": {
+    "senses": [
+      {
+        "sense_id": "idioms-kick-the-bucket",
+        "lemma": "kick the bucket",
+        "pos": "phrase",
+        "register": "idiom",
+        "domain": null,
+        "gloss": "to die",
+        "forms": [
+          "kick the bucket"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "idioms-spill-the-beans",
+        "lemma": "spill the beans",
+        "pos": "phrase",
+        "register": "idiom",
+        "domain": null,
+        "gloss": "to reveal a secret",
+        "forms": [
+          "spill the beans"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "idioms-fire-sale",
+        "lemma": "fire sale",
+        "pos": "phrase",
+        "register": "idiom",
+        "domain": null,
+        "gloss": "a sale of assets at very low prices",
+        "forms": [
+          "fire sale"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "idioms-smoking-gun",
+        "lemma": "smoking gun",
+        "pos": "phrase",
+        "register": "idiom",
+        "domain": null,
+        "gloss": "conclusive evidence",
+        "forms": [
+          "smoking gun"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "idioms-red-flag",
+        "lemma": "red flag",
+        "pos": "phrase",
+        "register": "idiom",
+        "domain": null,
+        "gloss": "a warning sign of a problem",
+        "forms": [
+          "red flag"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "idioms-paper-trail",
+        "lemma": "paper trail",
+        "pos": "phrase",
+        "register": "idiom",
+        "domain": null,
+        "gloss": "documentary evidence of activity",
+        "forms": [
+          "paper trail"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "idioms-follow-the-money",
+        "lemma": "follow the money",
+        "pos": "phrase",
+        "register": "idiom",
+        "domain": null,
+        "gloss": "to trace financial flows to find wrongdoing",
+        "forms": [
+          "follow the money"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "idioms-boots-on-the-ground",
+        "lemma": "boots on the ground",
+        "pos": "phrase",
+        "register": "idiom",
+        "domain": null,
+        "gloss": "deployed military personnel",
+        "forms": [
+          "boots on the ground"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "idioms-false-flag",
+        "lemma": "false flag",
+        "pos": "phrase",
+        "register": "idiom",
+        "domain": null,
+        "gloss": "a covert operation made to appear as another actor",
+        "forms": [
+          "false flag"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "idioms-dead-drop",
+        "lemma": "dead drop",
+        "pos": "phrase",
+        "register": "idiom",
+        "domain": null,
+        "gloss": "a covert location for exchanging items without meeting",
+        "forms": [
+          "dead drop"
+        ],
+        "relations": []
+      }
+    ]
+  }
+}

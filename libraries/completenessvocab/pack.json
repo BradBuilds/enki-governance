@@ -1,0 +1,34 @@
+{
+  "pack_id": "completenessvocab",
+  "version": "0.1.0",
+  "name": "ENKI Completeness Vocabulary Pack",
+  "description": "Defines the four card completeness tiers (stub, partial, solid, verified) and the per-node-type slot specifications that determine how completeness is computed. Every card carries a completeness score and tier; this pack defines what those scores mean and which slots each subtype requires.",
+  "definitions": [
+    {
+      "id": "completeness.vocab.system",
+      "path": "definitions/completenessvocab.system.json",
+      "type": "system"
+    },
+    {
+      "id": "completeness.vocab.tiers",
+      "path": "definitions/completenessvocab.tiers.json",
+      "type": "custom"
+    },
+    {
+      "id": "completeness.vocab.slot_specs",
+      "path": "definitions/completenessvocab.slot_specs.json",
+      "type": "custom"
+    }
+  ],
+  "dependencies": ["identity", "nodevocab", "envelopevocab"],
+  "namespaces_owned": [
+    "completeness.vocab"
+  ],
+  "metadata": {
+    "created": "2026-04-10T00:00:00Z",
+    "author": "ENKI System",
+    "license": "AGPLv3",
+    "status": "LOCKED",
+    "change_control": "Tier thresholds and slot specs adjustable via Tier 1 vocabulary extension. Adding a new tier requires full ceremony."
+  }
+}

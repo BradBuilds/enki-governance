@@ -1,0 +1,43 @@
+{
+  "pack_id": "alertvocab",
+  "version": "0.1.0",
+  "name": "ENKI Alert Vocabulary Pack",
+  "description": "Governs the attention lifecycle. When any data stream triggers a condition that needs human review, an alert is created with vocabulary from this pack.",
+  "definitions": [
+    {
+      "id": "alert.vocab.system",
+      "path": "definitions/alertvocab.system.json",
+      "type": "system"
+    },
+    {
+      "id": "alert.vocab.statuses",
+      "path": "definitions/alertvocab.statuses.json",
+      "type": "custom"
+    },
+    {
+      "id": "alert.vocab.categories",
+      "path": "definitions/alertvocab.categories.json",
+      "type": "custom"
+    },
+    {
+      "id": "alert.vocab.severity",
+      "path": "definitions/alertvocab.severity.json",
+      "type": "custom"
+    },
+    {
+      "id": "alert.vocab.resolution",
+      "path": "definitions/alertvocab.resolution.json",
+      "type": "custom"
+    }
+  ],
+  "dependencies": ["signalvocab"],
+  "namespaces_owned": [
+    "alert.vocab"
+  ],
+  "metadata": {
+    "created": "2026-03-21T00:00:00Z",
+    "author": "ENKI System",
+    "license": "AGPLv3",
+    "status": "LOCKED"
+  }
+}

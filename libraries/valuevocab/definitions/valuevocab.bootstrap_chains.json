@@ -1,0 +1,63 @@
+{
+  "id": "value.vocab.bootstrap_chains",
+  "type": "custom",
+  "version": "0.1.0",
+  "description": "Seed value lattices that the substrate needs on day one to function. Each chain shows the depth hierarchy and the precision tier for each level. The substrate admits these on first boot. Additional values are added at runtime via the gateway; this file is only the seed.",
+  "content": {
+    "chains": {
+      "location": {
+        "property": "location",
+        "cycle": 16,
+        "description": "Place hierarchy modeled on GeoNames admin levels. Future v0.2.0 will import the full GeoNames hierarchy programmatically.",
+        "levels": [
+          {"depth": 1, "tier": "named", "label": "Region (continent/cardinal)", "examples": ["North America", "the Pacific", "Southwest US"]},
+          {"depth": 2, "tier": "qualified", "label": "Country", "examples": ["United States", "Mexico", "Russia"]},
+          {"depth": 3, "tier": "formal", "label": "Subdivision (state/province)", "examples": ["New Mexico", "Texas (TX)", "British Columbia"]},
+          {"depth": 4, "tier": "formal", "label": "City / Locality", "examples": ["Roswell, NM", "Fort Worth, TX"]},
+          {"depth": 5, "tier": "formal", "label": "Place / Address", "examples": ["Roswell Army Air Field", "Brazel Ranch"]},
+          {"depth": 6, "tier": "spectral", "label": "Coordinates", "examples": ["33.6406°N, -104.5°W", "GeoNames id 5483999"]}
+        ]
+      },
+      "time": {
+        "property": "time",
+        "cycle": 20,
+        "description": "Time precision tiers modeled on ISO 8601. Future v0.2.0 will add interval algebra (Allen's relations) via temporalvocab.",
+        "levels": [
+          {"depth": 1, "tier": "named", "label": "Era / Period", "examples": ["the 1940s", "WWII era", "summer"]},
+          {"depth": 2, "tier": "qualified", "label": "Year-only or Month-only", "examples": ["1947", "July 1947"]},
+          {"depth": 3, "tier": "formal", "label": "Date (day-level)", "examples": ["1947-07-08"]},
+          {"depth": 4, "tier": "formal", "label": "Date+Hour", "examples": ["1947-07-08T21:00"]},
+          {"depth": 5, "tier": "spectral", "label": "Instant (sub-second)", "examples": ["1947-07-08T21:31:42.143Z"]}
+        ]
+      },
+      "language": {
+        "property": "language",
+        "cycle": 34,
+        "description": "Natural language identifiers using ISO 639 codes. 'enumerated' tier because language codes are exact.",
+        "levels": [
+          {"depth": 1, "tier": "named", "label": "Common name", "examples": ["English", "Spanish", "Mandarin"]},
+          {"depth": 3, "tier": "formal", "label": "ISO 639-1 / ISO 639-2 / BCP 47", "examples": ["en", "es", "zh", "en-US", "pt-BR"]},
+          {"depth": 999, "tier": "enumerated", "label": "Closed list — no further refinement", "examples": ["en-US-x-x509"]}
+        ]
+      },
+      "polarity": {
+        "property": "polarity",
+        "cycle": 30,
+        "description": "Affirmative vs negative polarity. Closed enumeration — no in-between values.",
+        "levels": [
+          {"depth": 999, "tier": "enumerated", "label": "Polarity values", "examples": ["affirmative", "negative", "questioned", "denied"]}
+        ]
+      },
+      "status": {
+        "property": "status",
+        "cycle": 29,
+        "description": "Generic status values. The 'named' tier allows free-form; 'enumerated' provides a closed list for cases where status must be exact (e.g. case lifecycle states).",
+        "levels": [
+          {"depth": 1, "tier": "named", "label": "Free-form descriptive status", "examples": ["active", "dormant", "alive", "deceased", "open"]},
+          {"depth": 999, "tier": "enumerated", "label": "Domain-specific closed lists (case status, validation status, etc.)", "examples": ["pending", "complete", "canceled", "rejected"]}
+        ]
+      }
+    },
+    "note_for_other_properties": "Properties without a bootstrap chain (color, material, weight, manufacturer, etc.) admit their values at runtime via the gateway. The first extraction that produces a value for color creates the corresponding value node under the color root. The lattice grows as data arrives."
+  }
+}

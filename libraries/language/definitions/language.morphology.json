@@ -1,0 +1,32 @@
+{
+  "id": "language.morphology",
+  "type": "rules",
+  "version": "0.1.0",
+  "description": "Morphological processes: inflection, derivation, compounding (as a deterministic vocabulary).",
+  "content": {
+    "processes": {
+      "inflection": {
+        "verb": ["tense", "aspect", "mood", "person", "number"],
+        "noun": ["case", "number", "gender"],
+        "adjective": ["case", "number", "gender", "degree"]
+      },
+      "derivation": {
+        "prefixation": true,
+        "suffixation": true,
+        "infixation": false,
+        "suprafixation": true
+      },
+      "compounding": {
+        "noun_noun": true,
+        "adj_noun": true,
+        "verb_noun": true
+      }
+    },
+    "word_formation_types": 8,
+    "scope": "v0.1.0 covers isolating, agglutinative, and fusional systems at a vocabulary level (no executable morphology engine)."
+  },
+  "metadata": {
+    "created": "2026-01-13T00:00:00Z",
+    "author": "ENKI System"
+  }
+}

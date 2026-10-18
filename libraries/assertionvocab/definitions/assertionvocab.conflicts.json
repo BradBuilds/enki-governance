@@ -1,0 +1,98 @@
+{
+  "id": "assertion_vocab.conflicts",
+  "type": "custom",
+  "version": "0.1.0",
+  "description": "Conflict classification labels for assertions",
+  "content": {
+    "category": "conflict_labels",
+    "purpose": "Defines labels for classifying assertion conflicts (resolution logic not included)",
+    "conflict_types": [
+      {
+        "conflict_id": "exclusive",
+        "label": "Exclusive Conflict",
+        "description": "Assertions that cannot both be true simultaneously",
+        "characteristics": [
+          "Mutually exclusive predicates",
+          "Same subject and predicate with different objects",
+          "Only one assertion can be valid"
+        ],
+        "examples": [
+          "person has_status 'active' vs person has_status 'inactive'",
+          "device located_in 'room_a' vs device located_in 'room_b' (if exclusive)"
+        ],
+        "notes": ["Detection only - no resolution strategy defined"]
+      },
+      {
+        "conflict_id": "multi_valued",
+        "label": "Multi-Valued Allowed",
+        "description": "Multiple assertions with same subject/predicate are valid",
+        "characteristics": [
+          "Predicate allows multiple values",
+          "All assertions may be true",
+          "No inherent conflict"
+        ],
+        "examples": [
+          "person has_name 'Alice' AND person has_name 'Alice Smith' (multiple names)",
+          "organization references uri_1 AND organization references uri_2"
+        ],
+        "notes": ["Indicates no conflict when multiple values present"]
+      },
+      {
+        "conflict_id": "temporal",
+        "label": "Temporal Conflict",
+        "description": "Assertions valid at different times",
+        "characteristics": [
+          "Time-dependent truth",
+          "Assertions valid in different temporal windows",
+          "Resolution requires timestamp comparison"
+        ],
+        "examples": [
+          "person located_in 'city_a' @ t1 vs person located_in 'city_b' @ t2",
+          "device has_status 'active' @ t1 vs device has_status 'inactive' @ t2"
+        ],
+        "notes": ["Requires temporal metadata for resolution"]
+      },
+      {
+        "conflict_id": "scoped",
+        "label": "Scoped Conflict",
+        "description": "Assertions true in different scopes",
+        "characteristics": [
+          "Scope-dependent truth",
+          "Valid within different visibility boundaries",
+          "Resolution requires scope context"
+        ],
+        "examples": [
+          "dataset has_status 'public' (global scope) vs dataset has_status 'private' (local scope)",
+          "person has_name 'Alice' (local) vs person has_name 'Dr. Smith' (global)"
+        ],
+        "notes": ["Requires scope metadata from Identity Pack"]
+      },
+      {
+        "conflict_id": "source_ranked",
+        "label": "Source-Ranked Conflict",
+        "description": "Assertions from sources with different authority levels",
+        "characteristics": [
+          "Source authority determines precedence",
+          "Multiple sources making conflicting claims",
+          "Resolution requires source ranking"
+        ],
+        "examples": [
+          "dataset created 'date_a' (user claim) vs dataset created 'date_b' (system record)",
+          "person has_name 'X' (external source) vs person has_name 'Y' (authoritative source)"
+        ],
+        "notes": ["Requires provenance/source metadata not defined in this pack"]
+      }
+    ],
+    "notes": [
+      "Conflict labels are vocabulary only",
+      "No resolution algorithms included",
+      "Future systems implement resolution strategies",
+      "Detection and classification only - not enforcement"
+    ]
+  },
+  "metadata": {
+    "created": "2025-12-31T00:00:00Z",
+    "author": "ENKI System"
+  },
+  "dependencies": ["assertion_vocab.system", "assertion_vocab.predicates"]
+}

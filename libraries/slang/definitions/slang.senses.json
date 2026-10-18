@@ -1,0 +1,178 @@
+{
+  "id": "slang.senses",
+  "type": "lexical_senses",
+  "version": "0.1.0",
+  "description": "Common contemporary English slang senses. (14 seed senses).",
+  "content": {
+    "senses": [
+      {
+        "sense_id": "slang-lit",
+        "lemma": "lit",
+        "pos": "adjective",
+        "register": "slang",
+        "domain": null,
+        "gloss": "excellent; exciting",
+        "forms": [
+          "lit"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "slang-fire",
+        "lemma": "fire",
+        "pos": "adjective",
+        "register": "slang",
+        "domain": null,
+        "gloss": "excellent; impressive",
+        "forms": [
+          "fire"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "slang-cap",
+        "lemma": "cap",
+        "pos": "adjective",
+        "register": "slang",
+        "domain": null,
+        "gloss": "a lie; falsehood",
+        "forms": [
+          "cap"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "slang-no-cap",
+        "lemma": "no cap",
+        "pos": "adjective",
+        "register": "slang",
+        "domain": null,
+        "gloss": "no lie; for real",
+        "forms": [
+          "no cap"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "slang-mid",
+        "lemma": "mid",
+        "pos": "adjective",
+        "register": "slang",
+        "domain": null,
+        "gloss": "mediocre; unimpressive",
+        "forms": [
+          "mid"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "slang-based",
+        "lemma": "based",
+        "pos": "adjective",
+        "register": "slang",
+        "domain": null,
+        "gloss": "admirably independent-minded",
+        "forms": [
+          "based"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "slang-sus",
+        "lemma": "sus",
+        "pos": "adjective",
+        "register": "slang",
+        "domain": null,
+        "gloss": "suspicious",
+        "forms": [
+          "sus"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "slang-ghost",
+        "lemma": "ghost",
+        "pos": "adjective",
+        "register": "slang",
+        "domain": null,
+        "gloss": "to abruptly cut off contact",
+        "forms": [
+          "ghost"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "slang-flex",
+        "lemma": "flex",
+        "pos": "adjective",
+        "register": "slang",
+        "domain": null,
+        "gloss": "to show off",
+        "forms": [
+          "flex"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "slang-salty",
+        "lemma": "salty",
+        "pos": "adjective",
+        "register": "slang",
+        "domain": null,
+        "gloss": "bitter or resentful",
+        "forms": [
+          "salty"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "slang-shade",
+        "lemma": "shade",
+        "pos": "adjective",
+        "register": "slang",
+        "domain": null,
+        "gloss": "a subtle insult",
+        "forms": [
+          "shade"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "slang-tea",
+        "lemma": "tea",
+        "pos": "adjective",
+        "register": "slang",
+        "domain": null,
+        "gloss": "gossip",
+        "forms": [
+          "tea"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "slang-stan",
+        "lemma": "stan",
+        "pos": "adjective",
+        "register": "slang",
+        "domain": null,
+        "gloss": "an obsessive fan",
+        "forms": [
+          "stan"
+        ],
+        "relations": []
+      },
+      {
+        "sense_id": "slang-ratio",
+        "lemma": "ratio",
+        "pos": "adjective",
+        "register": "slang",
+        "domain": null,
+        "gloss": "to receive more replies than likes (a sign of disapproval)",
+        "forms": [
+          "ratio"
+        ],
+        "relations": []
+      }
+    ]
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "pack_id": "entityvocab",
+  "version": "0.8.0",
+  "name": "ENKI Entity Resolution Vocabulary Pack",
+  "description": "Canonical entity resolution rules + closed entity subtype vocabulary for the Enki knowledge graph. v0.6 drops the 7 stub enrichment types (property_records, satellite_imagery, registration_lookup, flight_history, port_calls, social_profiles, news_mentions); enrichment is now operator-triggered per-type from the dossier UI. v0.5 added entity_subtypes.json (the source of truth for valid canonical_type values) and fixed alias_seeds.json to use only valid subtypes. The LDU consults entity_subtypes at write time (admit_candidate) and the trigger enforces it at the DB layer.",
+  "definitions": [
+    {
+      "id": "entity.vocab.system",
+      "path": "definitions/entityvocab.system.json",
+      "type": "system"
+    },
+    {
+      "id": "entity.vocab.entity_subtypes",
+      "path": "definitions/entityvocab.entity_subtypes.json",
+      "type": "custom"
+    },
+    {
+      "id": "entity.vocab.resolution_rules",
+      "path": "definitions/entityvocab.resolution_rules.json",
+      "type": "custom"
+    },
+    {
+      "id": "entity.vocab.enrichment_types",
+      "path": "definitions/entityvocab.enrichment_types.json",
+      "type": "custom"
+    },
+    {
+      "id": "entity.vocab.alias_seeds",
+      "path": "definitions/entityvocab.alias_seeds.json",
+      "type": "custom"
+    }
+  ],
+  "dependencies": ["nodevocab", "identity"],
+  "namespaces_owned": ["entity.vocab"],
+  "metadata": {
+    "created": "2026-04-11T00:00:00Z",
+    "updated": "2026-06-09T00:00:00Z",
+    "author": "ENKI System",
+    "license": "AGPLv3",
+    "status": "LOCKED",
+    "change_control": "v0.6: dropped 7 stub enrichment types (property_records, satellite_imagery, registration_lookup, flight_history, port_calls, social_profiles, news_mentions). Switched enrichment model to operator-triggered per-type. v0.5: added entity_subtypes.json (closed vocabulary) + fixed alias_seeds.json (removed country/state/military_branch/military_facility — those are not valid entity subtypes). LDU lock-down patch coordinated."
+  }
+}

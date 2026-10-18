@@ -1,0 +1,29 @@
+{
+  "pack_id": "envelopevocab",
+  "version": "0.1.0",
+  "name": "ENKI Card Envelope Vocabulary Pack",
+  "description": "Canonical card envelope schema. Every knowledge node, signal, entity, place, event, topic, source, document, chronicle, assessment, and pattern in Enki carries an envelope conforming to this schema. Same shape for every node type. Subtype-specific required slots live in completenessvocab. Once published under content hash, the v1 envelope shape is immutable for the lifetime of the active set.",
+  "definitions": [
+    {
+      "id": "envelope.vocab.system",
+      "path": "definitions/envelopevocab.system.json",
+      "type": "system"
+    },
+    {
+      "id": "envelope.vocab.envelope_v1",
+      "path": "definitions/envelopevocab.envelope_v1.json",
+      "type": "custom"
+    }
+  ],
+  "dependencies": ["identity"],
+  "namespaces_owned": [
+    "envelope.vocab"
+  ],
+  "metadata": {
+    "created": "2026-04-10T00:00:00Z",
+    "author": "ENKI System",
+    "license": "AGPLv3",
+    "status": "LOCKED",
+    "change_control": "Tier 1 vocabulary extension (Gate A) for additive slots; full ceremony (Gate A+B+C) for breaking changes. Breaking changes require publishing envelope_v2 as a new definition; v1 remains queryable forever via LDU lineage."
+  }
+}

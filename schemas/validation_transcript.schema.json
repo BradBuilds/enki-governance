@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://enki.foundation/schemas/validation_transcript.schema.json",
+  "title": "ENKI Validation Transcript",
+  "description": "Deterministic record of spine validation steps for audit and activation verification (S1.4)",
+  "type": "object",
+  "required": ["version", "entries", "entry_count"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "description": "Transcript format version"
+    },
+    "entry_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total number of validation entries"
+    },
+    "entries": {
+      "type": "array",
+      "description": "Chronological validation steps",
+      "items": {
+        "type": "object",
+        "required": ["step_type", "pack_id", "outcome", "sequence_number"],
+        "properties": {
+          "step_type": {
+            "type": "string",
+            "description": "Validation step type (e.g., 'capability_validation', 'namespace_check', 'hash_verification')"
+          },
+          "pack_id": {
+            "type": "string",
+            "description": "Pack identifier being validated"
+          },
+          "outcome": {
+            "type": "string",
+            "enum": ["pass", "fail", "skipped"],
+            "description": "Validation outcome"
+          },
+          "sequence_number": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Monotonic step counter (execution order)"
+          },
+          "error_code": {
+            "type": "string",
+            "description": "Error code (present if outcome=fail)"
+          },
+          "context": {
+            "type": "object",
+            "description": "Structured validation context (deterministic)"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "ISO 8601 UTC timestamp (for audit, not included in hash)"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "id": "assertion_vocab.system",
+  "type": "system",
+  "version": "0.1.0",
+  "description": "Core Assertion Vocabulary Pack system properties and conceptual model",
+  "content": {
+    "pack_name": "ENKI Assertion Vocabulary Pack",
+    "purpose": "Canonical vocabulary for constructing assertions in ENKI systems",
+    "scope": "vocabulary_only",
+    "conceptual_model": {
+      "structure": "subject → predicate → object",
+      "components": {
+        "subject": {
+          "description": "Entity from Identity Pack",
+          "references": "identity.entities",
+          "examples": ["person", "organization", "device", "dataset", "definition_pack"]
+        },
+        "predicate": {
+          "description": "Canonical verb from predicates vocabulary",
+          "references": "assertion_vocab.predicates",
+          "examples": ["is_a", "owns", "created", "references"]
+        },
+        "object": {
+          "description": "Value of specified kind",
+          "references": "assertion_vocab.object_kinds",
+          "examples": ["entity_ref", "string", "number", "timestamp", "uri"]
+        }
+      }
+    },
+    "dependencies_note": "Conceptually depends on Identity Pack (identity) for entity vocabulary",
+    "version_scheme": "semantic",
+    "non_goals": [
+      "assertion_storage",
+      "assertion_validation_logic",
+      "conflict_resolution",
+      "truth_maintenance",
+      "query_engine",
+      "access_control",
+      "audit_trails",
+      "networking"
+    ]
+  },
+  "metadata": {
+    "created": "2025-12-31T00:00:00Z",
+    "author": "ENKI System"
+  },
+  "dependencies": []
+}

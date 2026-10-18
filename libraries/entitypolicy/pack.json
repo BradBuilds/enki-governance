@@ -1,0 +1,8 @@
+{
+  "id": "entitypolicy",
+  "name": "Entity Collapse Policy",
+  "version": "0.1.0",
+  "type": "policy",
+  "description": "Governed weights/thresholds for INSTANCE-layer (entity) collapse via the one equation. Identifier-dominant; name evidence secondary; identifier_conflict veto. Separate pack from collapsepolicy (sense layer) — same engine, different governance.",
+  "manifest": ["definitions/entitypolicy.weights.json"]
+}

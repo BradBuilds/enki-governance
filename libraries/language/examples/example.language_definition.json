@@ -1,0 +1,18 @@
+{
+  "id": "example.language_definition",
+  "name": "Template Language Definition",
+  "description": "Template showing how to use the language pack",
+  "template_for": "Any natural language",
+  "structure": {
+    "script": "Select from language.scripts",
+    "phonology": "Reference language.phonology inventory",
+    "morphology": "Apply language.morphology processes",
+    "semantics": "Use language.semantics relations",
+    "pragmatics": "Apply language.pragmatics patterns"
+  },
+  "usage": "Copy this template and fill in language-specific values",
+  "metadata": {
+    "created": "2026-01-13T00:00:00Z",
+    "author": "ENKI System"
+  }
+}

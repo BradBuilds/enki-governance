@@ -1,0 +1,25 @@
+{
+  "id": "case.vocab.event_types",
+  "type": "custom",
+  "version": "0.1.0",
+  "description": "Types of mutations that can happen to a case. Each mutation creates an append-only case_event record.",
+  "content": {
+    "category": "case_event_types",
+    "event_types": [
+      {"event_type_id": "status_changed", "description": "Case moved to new status"},
+      {"event_type_id": "note_added", "description": "Investigation note attached"},
+      {"event_type_id": "signal_linked", "description": "Signal auto-linked via observable correlation"},
+      {"event_type_id": "alert_linked", "description": "Alert escalated to this case"},
+      {"event_type_id": "observable_added", "description": "New observable added to watchlist"},
+      {"event_type_id": "observable_removed", "description": "Observable deactivated from watchlist"},
+      {"event_type_id": "evidence_attached", "description": "File or document linked to case"},
+      {"event_type_id": "owner_changed", "description": "Case assigned to different person"},
+      {"event_type_id": "priority_changed", "description": "Priority level changed"},
+      {"event_type_id": "tag_added", "description": "Classification tag added"},
+      {"event_type_id": "tag_removed", "description": "Classification tag removed"},
+      {"event_type_id": "resolution_set", "description": "Resolution type and summary recorded"}
+    ]
+  },
+  "metadata": {"created": "2026-03-21T00:00:00Z", "author": "ENKI System"},
+  "dependencies": ["case.vocab.system"]
+}

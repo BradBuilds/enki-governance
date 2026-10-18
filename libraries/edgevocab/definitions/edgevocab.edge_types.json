@@ -1,0 +1,1550 @@
+{
+  "id": "edge.vocab.edge_types",
+  "type": "custom",
+  "version": "0.3.0",
+  "description": "Canonical edge types. v0.3.0 (2026-05-15): adds conversation cluster (communicated_with, met_with, had_meeting_with) + travel cluster (traveled_to, arrived_at, departed_from) + controls. These edges were promoted from corpus-discovery observations during the May 2026 clean-slate validation \u2014 verbs like 'said', 'told', 'asked', 'replied' kept appearing in extracted statements without target edges. v0.2.0 (2026-05-11): testimony cluster, mention cluster, statement cluster, beneficial-ownership cluster, family cluster, travel cluster (initial), issue-anchor cluster.",
+  "content": {
+    "edges": {
+      "mentions": {
+        "label": "Mentions",
+        "description": "Source references target without making a strong claim about it. The cheapest, most permissive edge.",
+        "source_types": [
+          "document",
+          "chronicle",
+          "assessment"
+        ],
+        "target_types": [
+          "entity",
+          "place",
+          "topic",
+          "event",
+          "document"
+        ],
+        "inverse": null,
+        "fires_automatically": true
+      },
+      "co_occurs_with": {
+        "label": "Co-occurs With",
+        "description": "Two entities or places appeared together in the same signal or event. Symmetric.",
+        "source_types": [
+          "entity",
+          "place"
+        ],
+        "target_types": [
+          "entity",
+          "place"
+        ],
+        "symmetric": true,
+        "fires_automatically": true
+      },
+      "located_at": {
+        "label": "Located At",
+        "description": "Spatial anchor \u2014 entity or event has a location.",
+        "source_types": [
+          "entity",
+          "event"
+        ],
+        "target_types": [
+          "place"
+        ],
+        "fires_automatically": true
+      },
+      "participated_in": {
+        "label": "Participated In",
+        "description": "Entity was an actor in an event.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "event"
+        ],
+        "inverse": "involved",
+        "fires_automatically": true,
+        "sub_roles": [
+          "subject",
+          "object",
+          "perpetrator",
+          "target",
+          "witness",
+          "facilitator"
+        ]
+      },
+      "involved": {
+        "label": "Involved (inverse of participated_in)",
+        "description": "Event involved an entity. Inverse side of participated_in for query convenience.",
+        "source_types": [
+          "event"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "inverse": "participated_in",
+        "fires_automatically": true
+      },
+      "same_as": {
+        "label": "Same As",
+        "description": "Two nodes are confirmed to refer to the same real-world thing. Used after entity merge.",
+        "source_types": [
+          "entity",
+          "place",
+          "event"
+        ],
+        "target_types": [
+          "entity",
+          "place",
+          "event"
+        ],
+        "symmetric": true,
+        "fires_automatically": false,
+        "_doc": "Symmetric and merge-driven. Created by resolver after high-confidence match. Lower-confidence matches use 'possibly_same_as' (proposed for v1.1)."
+      },
+      "part_of": {
+        "label": "Part Of",
+        "description": "Hierarchical containment. Place\u2192Place (city in country), Topic\u2192Topic (subtopic in topic), Chronicle\u2192Chronicle (day in week), Entity\u2192Topic (entity is part of a campaign).",
+        "source_types": [
+          "place",
+          "topic",
+          "chronicle",
+          "entity",
+          "event"
+        ],
+        "target_types": [
+          "place",
+          "topic",
+          "chronicle",
+          "case"
+        ],
+        "fires_automatically": true
+      },
+      "follows": {
+        "label": "Follows",
+        "description": "Temporal succession. Used for Chronicle\u2192Chronicle (yesterday\u2192today) and Event\u2192Event (cause\u2192effect-in-time).",
+        "source_types": [
+          "chronicle",
+          "event"
+        ],
+        "target_types": [
+          "chronicle",
+          "event"
+        ],
+        "fires_automatically": true
+      },
+      "supports": {
+        "label": "Supports",
+        "description": "Source assessment provides corroborating evidence for target assessment.",
+        "source_types": [
+          "assessment",
+          "document"
+        ],
+        "target_types": [
+          "assessment"
+        ],
+        "fires_automatically": true,
+        "increases_target_confidence": true
+      },
+      "contrasts": {
+        "label": "Contrasts",
+        "description": "Source assessment contradicts or undermines target assessment.",
+        "source_types": [
+          "assessment",
+          "document"
+        ],
+        "target_types": [
+          "assessment"
+        ],
+        "fires_automatically": true,
+        "decreases_target_confidence": true
+      },
+      "derived_from": {
+        "label": "Derived From",
+        "description": "Lineage edge \u2014 node was created or extracted from another node or signal.",
+        "source_types": [
+          "entity",
+          "place",
+          "event",
+          "topic",
+          "document",
+          "assessment",
+          "pattern",
+          "chronicle"
+        ],
+        "target_types": [
+          "document",
+          "signal",
+          "chronicle"
+        ],
+        "fires_automatically": true,
+        "_doc": "This is the audit edge \u2014 every node should have at least one derived_from edge unless it was manually created."
+      },
+      "cites": {
+        "label": "Cites",
+        "description": "Document explicitly references another document (link, citation, quote).",
+        "source_types": [
+          "document"
+        ],
+        "target_types": [
+          "document"
+        ],
+        "inverse": "cited_by",
+        "fires_automatically": true
+      },
+      "cited_by": {
+        "label": "Cited By (inverse of cites)",
+        "description": "Inverse of cites. Maintained for query convenience.",
+        "source_types": [
+          "document"
+        ],
+        "target_types": [
+          "document"
+        ],
+        "inverse": "cites",
+        "fires_automatically": true
+      },
+      "supersedes": {
+        "label": "Supersedes",
+        "description": "Source node replaces target node. Used for corrections, version updates, and human edits overriding AI-generated content.",
+        "source_types": [
+          "chronicle",
+          "assessment",
+          "document",
+          "entity"
+        ],
+        "target_types": [
+          "chronicle",
+          "assessment",
+          "document",
+          "entity"
+        ],
+        "inverse": "superseded_by",
+        "fires_automatically": false
+      },
+      "superseded_by": {
+        "label": "Superseded By",
+        "description": "Inverse of supersedes. Maintained on the older node so queries can find the current version.",
+        "source_types": [
+          "chronicle",
+          "assessment",
+          "document",
+          "entity"
+        ],
+        "target_types": [
+          "chronicle",
+          "assessment",
+          "document",
+          "entity"
+        ],
+        "inverse": "supersedes",
+        "fires_automatically": false
+      },
+      "covers": {
+        "label": "Covers",
+        "description": "Chronicle node covers (summarizes activity for) other nodes within its time window.",
+        "source_types": [
+          "chronicle"
+        ],
+        "target_types": [
+          "event",
+          "entity",
+          "topic",
+          "document",
+          "assessment",
+          "pattern"
+        ],
+        "fires_automatically": true
+      },
+      "tracks": {
+        "label": "Tracks",
+        "description": "Watch intent or case actively tracks this entity / place / topic.",
+        "source_types": [
+          "case",
+          "thread",
+          "watch_intent"
+        ],
+        "target_types": [
+          "entity",
+          "place",
+          "topic"
+        ],
+        "fires_automatically": false
+      },
+      "matches_pattern": {
+        "label": "Matches Pattern",
+        "description": "Node is a member of an emergent pattern. Created by pattern detection workers (v2).",
+        "source_types": [
+          "entity",
+          "event",
+          "place",
+          "document"
+        ],
+        "target_types": [
+          "pattern"
+        ],
+        "fires_automatically": true,
+        "_v1_status": "Defined in v1; populated by workers in v2."
+      },
+      "officer_of": {
+        "label": "Officer Of",
+        "description": "Person holds an officer position in an organization. Source: SEC EDGAR, state SOS records.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "inverse": "has_officer",
+        "fires_automatically": false,
+        "sub_roles": [
+          "ceo",
+          "cfo",
+          "coo",
+          "secretary",
+          "president",
+          "vice_president",
+          "director",
+          "treasurer"
+        ]
+      },
+      "has_officer": {
+        "label": "Has Officer",
+        "description": "Organization has a person as officer. Inverse of officer_of.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "inverse": "officer_of",
+        "fires_automatically": false
+      },
+      "donor_to": {
+        "label": "Donor To",
+        "description": "Person or organization donated to a political committee or nonprofit. Source: FEC, IRS 990.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "fires_automatically": false
+      },
+      "contracted_with": {
+        "label": "Contracted With",
+        "description": "Organization received a government contract from an agency. Source: USAspending.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "fires_automatically": false
+      },
+      "filed_with": {
+        "label": "Filed With",
+        "description": "Entity has filings with a regulatory body (SEC, FEC, state SOS). Source: SEC EDGAR, FEC.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "fires_automatically": false
+      },
+      "litigant_in": {
+        "label": "Litigant In",
+        "description": "Entity is a party in a court case. Source: CourtListener, PACER.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "event"
+        ],
+        "fires_automatically": false
+      },
+      "subsidiary_of": {
+        "label": "Subsidiary Of",
+        "description": "Organization is a subsidiary or controlled entity of another. Source: SEC 10-K, state SOS.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "inverse": "parent_of",
+        "fires_automatically": false
+      },
+      "parent_of": {
+        "label": "Parent Of",
+        "description": "Organization is a parent or controlling entity. Inverse of subsidiary_of.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "inverse": "subsidiary_of",
+        "fires_automatically": false
+      },
+      "registered_at": {
+        "label": "Registered At",
+        "description": "Organization is registered at an address. Source: state SOS, SEC.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "place"
+        ],
+        "fires_automatically": false
+      },
+      "investigated": {
+        "label": "Investigated",
+        "description": "Lineage edge \u2014 entity investigation produced this finding. Audit trail for investigation provenance.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "assessment",
+          "entity",
+          "event"
+        ],
+        "fires_automatically": false
+      },
+      "_v03_conversation_cluster": {
+        "_doc": "v0.3 additions: communication/meeting edges promoted from corpus discovery. The collapse pipeline surfaces conversational verbs (said/met/asked/etc.) and these edges receive them. Symmetric so A\u2192B and B\u2192A collapse to one assessment."
+      },
+      "communicated_with": {
+        "label": "Communicated With",
+        "description": "Two entities exchanged information (verbal, written, electronic). Symmetric. Source: extracted from any verb describing speech, writing, calls, email, or messaging.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "symmetric": true,
+        "fires_automatically": true
+      },
+      "met_with": {
+        "label": "Met With",
+        "description": "Two entities had a personal meeting or encounter. Symmetric. Includes meetings, lunches, briefings, summits.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "symmetric": true,
+        "fires_automatically": true
+      },
+      "had_meeting_with": {
+        "label": "Had Meeting With",
+        "description": "Two entities had a formal meeting (lunch, briefing, summit, etc.). Symmetric. More formal-tone than met_with \u2014 same semantic.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "symmetric": true,
+        "fires_automatically": true
+      },
+      "traveled_to": {
+        "label": "Traveled To",
+        "description": "Person traveled to a place at a known time. Surfaces from flight logs, immigration records, news mentions.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "place"
+        ],
+        "fires_automatically": false
+      },
+      "arrived_at": {
+        "label": "Arrived At",
+        "description": "Entity arrived at a place. Asymmetric.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "place"
+        ],
+        "fires_automatically": true
+      },
+      "departed_from": {
+        "label": "Departed From",
+        "description": "Entity left from a place. Asymmetric.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "place"
+        ],
+        "fires_automatically": true
+      },
+      "controls": {
+        "label": "Controls",
+        "description": "De-facto control without majority ownership (voting agreements, board control, trust arrangements). Often what enforcement filings care about.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "fires_automatically": false
+      },
+      "_v02_testimony_cluster": {
+        "_doc": "v0.2.0 (2026-05-11) \u2014 adds 'who told on who' edges plus mention/document edges plus beneficial-ownership edges plus statement edges. Each new edge below has source/target/fires_automatically set explicitly. These edges power court-record analysis (testimony chains), Acme/UFO corpus navigation (mention provenance), and OpenCorporates+ICIJ chain mapping (ultimate beneficial owner)."
+      },
+      "testified_against": {
+        "label": "Testified Against",
+        "description": "Person testified or gave evidence against another person, often in a deposition or trial. Asymmetric. Source: court_filing extraction, deposition transcripts.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "inverse": "testimony_received_from",
+        "fires_automatically": false
+      },
+      "testified_for": {
+        "label": "Testified For",
+        "description": "Person provided testimony supporting another person or organization (e.g. character witness, alibi).",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "fires_automatically": false
+      },
+      "testimony_received_from": {
+        "label": "Testimony Received From",
+        "description": "Inverse of testified_against \u2014 held on the named party so 'who testified about X?' queries are cheap.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "inverse": "testified_against",
+        "fires_automatically": false
+      },
+      "accused_by": {
+        "label": "Accused By",
+        "description": "Person was accused of conduct by another person. Used for allegation graphs prior to or independent of formal testimony.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "fires_automatically": false
+      },
+      "accused": {
+        "label": "Accused",
+        "description": "Inverse of accused_by \u2014 held on the accuser so 'who has X accused?' is cheap.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "inverse": "accused_by",
+        "fires_automatically": false
+      },
+      "named_as_associate": {
+        "label": "Named as Associate",
+        "description": "Person named another person as an associate, contact, or known party. Weaker than testified_against; covers passing mentions in depositions and address books.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "fires_automatically": false
+      },
+      "informed_on": {
+        "label": "Informed On",
+        "description": "Person provided information about another person to authorities or investigators. Often confidential or sealed.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "fires_automatically": false
+      },
+      "alleged": {
+        "label": "Alleged",
+        "description": "Person made an allegation about another (entity or event). The allegation itself is typically a Statement node; this edge is a graph shortcut.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity",
+          "event"
+        ],
+        "fires_automatically": false
+      },
+      "denied": {
+        "label": "Denied",
+        "description": "Person denied an allegation or statement.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity",
+          "event",
+          "assessment"
+        ],
+        "fires_automatically": false
+      },
+      "witnessed": {
+        "label": "Witnessed",
+        "description": "Person observed an event. Source: witness lists, deposition Q&A.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "event"
+        ],
+        "fires_automatically": false
+      },
+      "represented_by": {
+        "label": "Represented By",
+        "description": "Person is represented (legally, diplomatically) by another person or organization.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "fires_automatically": false
+      },
+      "_v02_mention_cluster": {
+        "_doc": "Mention \u2194 document edges. Mentions are first-class nodes; these edges anchor them to their document/page/paragraph and to their candidate entity."
+      },
+      "mention_of": {
+        "label": "Mention Of",
+        "description": "Mention node refers to a canonical entity. Confidence carried on the edge data, not the type.",
+        "source_types": [
+          "mention"
+        ],
+        "target_types": [
+          "entity",
+          "place",
+          "topic"
+        ],
+        "fires_automatically": true
+      },
+      "mention_in_document": {
+        "label": "Mention In Document",
+        "description": "Mention occurs inside a document.",
+        "source_types": [
+          "mention"
+        ],
+        "target_types": [
+          "document"
+        ],
+        "fires_automatically": true
+      },
+      "mention_on_page": {
+        "label": "Mention On Page",
+        "description": "Mention occurs on a specific page node.",
+        "source_types": [
+          "mention"
+        ],
+        "target_types": [
+          "document"
+        ],
+        "fires_automatically": true
+      },
+      "appears_in": {
+        "label": "Appears In",
+        "description": "Convenience edge from a canonical entity to documents it has mentions in. Aggregate of mention_of + mention_in_document.",
+        "source_types": [
+          "entity",
+          "place",
+          "topic"
+        ],
+        "target_types": [
+          "document"
+        ],
+        "fires_automatically": true
+      },
+      "has_mention": {
+        "label": "Has Mention",
+        "description": "Inverse of mention_in_document \u2014 held on the document so 'all mentions in this doc' is cheap.",
+        "source_types": [
+          "document"
+        ],
+        "target_types": [
+          "mention"
+        ],
+        "inverse": "mention_in_document",
+        "fires_automatically": true
+      },
+      "_v02_statement_cluster": {
+        "_doc": "Statement node edges. Statements are an event subtype carrying speaker + predicate + object + document trail."
+      },
+      "said_by": {
+        "label": "Said By",
+        "description": "Statement was made by a person.",
+        "source_types": [
+          "event"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "fires_automatically": true
+      },
+      "said_about": {
+        "label": "Said About",
+        "description": "Statement is about an entity or event.",
+        "source_types": [
+          "event"
+        ],
+        "target_types": [
+          "entity",
+          "event",
+          "place",
+          "topic"
+        ],
+        "fires_automatically": true
+      },
+      "stated_in": {
+        "label": "Stated In",
+        "description": "Statement was made in / recorded in a document.",
+        "source_types": [
+          "event"
+        ],
+        "target_types": [
+          "document"
+        ],
+        "fires_automatically": true
+      },
+      "corroborates": {
+        "label": "Corroborates",
+        "description": "Statement or assessment corroborates another. Different from 'supports' \u2014 corroboration is independent evidence for the same claim.",
+        "source_types": [
+          "event",
+          "assessment"
+        ],
+        "target_types": [
+          "event",
+          "assessment"
+        ],
+        "fires_automatically": false
+      },
+      "contradicts": {
+        "label": "Contradicts",
+        "description": "Statement or assessment directly contradicts another.",
+        "source_types": [
+          "event",
+          "assessment"
+        ],
+        "target_types": [
+          "event",
+          "assessment"
+        ],
+        "fires_automatically": false
+      },
+      "_v02_ownership_cluster": {
+        "_doc": "Beneficial-ownership and corporate-control edges. The existing owns/owned_by/subsidiary_of/parent_of stay; these add the deeper chain."
+      },
+      "owns": {
+        "label": "Owns",
+        "description": "Entity (person or org) owns another entity. Asset ownership, not corporate parent/subsidiary (use subsidiary_of for that).",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "inverse": "owned_by",
+        "fires_automatically": false
+      },
+      "owned_by": {
+        "label": "Owned By",
+        "description": "Inverse of owns.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "inverse": "owns",
+        "fires_automatically": false
+      },
+      "beneficial_owner_of": {
+        "label": "Beneficial Owner Of",
+        "description": "Person is the ultimate human beneficiary of an organization, regardless of nominal/legal ownership chain. Surfaces shell-company chains. Source: ICIJ Offshore Leaks, OpenCorporates UBO data, Companies House PSC.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "fires_automatically": false
+      },
+      "ultimate_owner_of": {
+        "label": "Ultimate Owner Of",
+        "description": "Top of the ownership tree for a given entity. Distinct from beneficial_owner_of in that the ultimate owner can be another corporation, sovereign, or trust \u2014 not necessarily an individual.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "fires_automatically": false
+      },
+      "shareholder_of": {
+        "label": "Shareholder Of",
+        "description": "Entity holds shares in an organization. Edge data carries percentage if known.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "fires_automatically": false
+      },
+      "founded_by": {
+        "label": "Founded By",
+        "description": "Organization was founded by a person or other organization.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "inverse": "founded",
+        "fires_automatically": false
+      },
+      "founded": {
+        "label": "Founded",
+        "description": "Inverse of founded_by.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "inverse": "founded_by",
+        "fires_automatically": false
+      },
+      "trustee_of": {
+        "label": "Trustee Of",
+        "description": "Person serves as trustee of a trust or estate (legal control without ownership).",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "fires_automatically": false
+      },
+      "_v02_family_cluster": {
+        "_doc": "Family edges. The Wikidata cascade already produces spouse/parent/child/sibling discoveries; these are the formal vocab."
+      },
+      "spouse_of": {
+        "label": "Spouse Of",
+        "description": "Marital relationship. Symmetric in practice, but stored as one direction with the reverse computed.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "symmetric": true,
+        "fires_automatically": false
+      },
+      "parent_of_person": {
+        "label": "Parent Of (Person)",
+        "description": "Parent-child relationship for persons. Named distinctly from corporate parent_of.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "inverse": "child_of",
+        "fires_automatically": false
+      },
+      "child_of": {
+        "label": "Child Of",
+        "description": "Inverse of parent_of_person.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "inverse": "parent_of_person",
+        "fires_automatically": false
+      },
+      "sibling_of": {
+        "label": "Sibling Of",
+        "description": "Sibling relationship. Symmetric.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "symmetric": true,
+        "fires_automatically": false
+      },
+      "_v02_travel_cluster": {
+        "_doc": "Travel / co-presence edges for flight-log, manifest, and event-attendance analysis."
+      },
+      "flew_with": {
+        "label": "Flew With",
+        "description": "Two people appear on the same flight manifest. Surfaced from flight_log documents. Symmetric.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "symmetric": true,
+        "fires_automatically": false
+      },
+      "accompanied": {
+        "label": "Accompanied",
+        "description": "Person accompanied another person to a destination or event. Different from flew_with (co-presence on a vehicle).",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "fires_automatically": false
+      },
+      "_v02_issue_cluster": {
+        "_doc": "Edges connecting issue nodes to the entities/documents they describe. Issue nodes themselves live in the issue category."
+      },
+      "candidate_merge_of": {
+        "label": "Candidate Merge Of",
+        "description": "Collapse-candidate node points to the two entities under consideration.",
+        "source_types": [
+          "issue"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "fires_automatically": true
+      },
+      "contradicts_in_doc": {
+        "label": "Contradicts In Document",
+        "description": "Contradiction node anchors to the document + span the conflict appears in.",
+        "source_types": [
+          "issue"
+        ],
+        "target_types": [
+          "document"
+        ],
+        "fires_automatically": true
+      },
+      "concerns_entity": {
+        "label": "Concerns Entity",
+        "description": "Issue node concerns a canonical entity (e.g. a contradiction about a fact about a named person).",
+        "source_types": [
+          "issue"
+        ],
+        "target_types": [
+          "entity",
+          "place",
+          "topic"
+        ],
+        "fires_automatically": true
+      },
+      "employed": {
+        "label": "Employed",
+        "description": "Entity employed another entity (job, paid position, formal engagement). Inverse: works_for.",
+        "source_types": [
+          "entity",
+          "organization"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "fires_automatically": false
+      },
+      "appointed": {
+        "label": "Appointed",
+        "description": "Authority appointed an entity to a role/position. Stronger than employed; implies a formal designation.",
+        "source_types": [
+          "entity",
+          "organization",
+          "government_agency"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "fires_automatically": false
+      },
+      "represented": {
+        "label": "Represented",
+        "description": "Entity acted as legal/political/agent representative of another. Lawyer\u2192client, agent\u2192principal.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity",
+          "organization"
+        ],
+        "fires_automatically": false
+      },
+      "introduced": {
+        "label": "Introduced",
+        "description": "Entity introduced another entity to a third party. Key edge for network mapping.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "fires_automatically": false
+      },
+      "claimed_to_know": {
+        "label": "Claimed To Know",
+        "description": "Source claims familiarity with target (often weak signal \u2014 'I know him', 'we met once'). Distinct from communicated_with.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "fires_automatically": false
+      },
+      "corroborated": {
+        "label": "Corroborated",
+        "description": "Source confirmed/verified/validated a claim made by/about target. Use for affirmative assertion alignments.",
+        "source_types": [
+          "entity",
+          "document",
+          "assessment"
+        ],
+        "target_types": [
+          "entity",
+          "assessment"
+        ],
+        "fires_automatically": false
+      },
+      "hosted": {
+        "label": "Hosted",
+        "description": "Entity hosted an event/meeting/gathering \u2014 controlled the venue or invited list. Stronger than participated_in.",
+        "source_types": [
+          "entity",
+          "place"
+        ],
+        "target_types": [
+          "event",
+          "entity"
+        ],
+        "fires_automatically": false
+      },
+      "paid": {
+        "label": "Paid",
+        "description": "Entity made payment to another entity. Money flow direction: source\u2192target.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "fires_automatically": false
+      },
+      "received_from": {
+        "label": "Received From",
+        "description": "Entity received funds/property/communication from another. Inverse: paid / transferred_to.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "fires_automatically": false
+      },
+      "transferred_to": {
+        "label": "Transferred To",
+        "description": "Entity transferred property/funds/title to another. Distinct from paid (which is money-specific).",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "fires_automatically": false
+      },
+      "headquartered_in": {
+        "label": "Headquartered In",
+        "description": "Organization's principal place of business is in target place.",
+        "source_types": [
+          "organization",
+          "government_agency",
+          "company"
+        ],
+        "target_types": [
+          "place"
+        ],
+        "fires_automatically": false
+      },
+      "traveled_with": {
+        "label": "Traveled With",
+        "description": "Entity traveled in the company of another. Distinct from traveled_to (destination-anchored).",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "fires_automatically": false
+      },
+      "studies": {
+        "label": "Studies",
+        "description": "An actor studies or investigates a phenomenon, capability, or subject.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity",
+          "topic"
+        ],
+        "inverse": "studied_by",
+        "fires_automatically": false,
+        "domain": "research"
+      },
+      "studied_by": {
+        "label": "Studied By",
+        "description": "Inverse of studies.",
+        "source_types": [
+          "entity",
+          "topic"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "inverse": "studies",
+        "fires_automatically": false,
+        "domain": "research"
+      },
+      "conducts": {
+        "label": "Conducts",
+        "description": "An actor conducts a program, experiment, study, or operation.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity",
+          "topic",
+          "event"
+        ],
+        "inverse": "conducted_by",
+        "fires_automatically": false,
+        "domain": "research"
+      },
+      "conducted_by": {
+        "label": "Conducted By",
+        "description": "Inverse of conducts.",
+        "source_types": [
+          "entity",
+          "topic",
+          "event"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "inverse": "conducts",
+        "fires_automatically": false,
+        "domain": "research"
+      },
+      "funds": {
+        "label": "Funds",
+        "description": "Provides funding/grants to a program, project, or actor.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity",
+          "topic"
+        ],
+        "inverse": "funded_by",
+        "fires_automatically": false,
+        "domain": "research"
+      },
+      "funded_by": {
+        "label": "Funded By",
+        "description": "Inverse of funds.",
+        "source_types": [
+          "entity",
+          "topic"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "inverse": "funds",
+        "fires_automatically": false,
+        "domain": "research"
+      },
+      "sponsors": {
+        "label": "Sponsors",
+        "description": "Sponsors or provides cover/backing for a program or actor (e.g. a front organization).",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity",
+          "topic"
+        ],
+        "inverse": "sponsored_by",
+        "fires_automatically": false,
+        "domain": "research"
+      },
+      "sponsored_by": {
+        "label": "Sponsored By",
+        "description": "Inverse of sponsors.",
+        "source_types": [
+          "entity",
+          "topic"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "inverse": "sponsors",
+        "fires_automatically": false,
+        "domain": "research"
+      },
+      "tests": {
+        "label": "Tests",
+        "description": "Tests a technique, substance, hypothesis, or subject.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity",
+          "topic"
+        ],
+        "inverse": "tested_by",
+        "fires_automatically": false,
+        "domain": "research"
+      },
+      "tested_by": {
+        "label": "Tested By",
+        "description": "Inverse of tests.",
+        "source_types": [
+          "entity",
+          "topic"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "inverse": "tests",
+        "fires_automatically": false,
+        "domain": "research"
+      },
+      "administered_to": {
+        "label": "Administered To",
+        "description": "A substance or technique was administered to a subject.",
+        "source_types": [
+          "entity",
+          "topic"
+        ],
+        "target_types": [
+          "entity",
+          "topic"
+        ],
+        "inverse": null,
+        "fires_automatically": false,
+        "domain": "research"
+      },
+      "subproject_of": {
+        "label": "Subproject Of",
+        "description": "A subproject or sub-program is part of a larger program.",
+        "source_types": [
+          "entity",
+          "topic"
+        ],
+        "target_types": [
+          "entity",
+          "topic"
+        ],
+        "inverse": "has_subproject",
+        "fires_automatically": false,
+        "domain": "research"
+      },
+      "has_subproject": {
+        "label": "Has Subproject",
+        "description": "Inverse of subproject_of.",
+        "source_types": [
+          "entity",
+          "topic"
+        ],
+        "target_types": [
+          "entity",
+          "topic"
+        ],
+        "inverse": "subproject_of",
+        "fires_automatically": false,
+        "domain": "research"
+      },
+      "proposes": {
+        "label": "Proposes",
+        "description": "Proposes a study, method, tool, or course of action.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity",
+          "topic"
+        ],
+        "inverse": "proposed_by",
+        "fires_automatically": false,
+        "domain": "research"
+      },
+      "proposed_by": {
+        "label": "Proposed By",
+        "description": "Inverse of proposes.",
+        "source_types": [
+          "entity",
+          "topic"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "inverse": "proposes",
+        "fires_automatically": false,
+        "domain": "research"
+      },
+      "develops": {
+        "label": "Develops",
+        "description": "Develops a tool, technique, or capability.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity",
+          "topic"
+        ],
+        "inverse": "developed_by",
+        "fires_automatically": false,
+        "domain": "research"
+      },
+      "developed_by": {
+        "label": "Developed By",
+        "description": "Inverse of develops.",
+        "source_types": [
+          "entity",
+          "topic"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "inverse": "develops",
+        "fires_automatically": false,
+        "domain": "research"
+      },
+      "uses_method": {
+        "label": "Uses Method",
+        "description": "Employs or applies a method, technique, or tool.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity",
+          "topic"
+        ],
+        "inverse": null,
+        "fires_automatically": false,
+        "domain": "research"
+      },
+      "targets": {
+        "label": "Targets",
+        "description": "A program or effort targets a capability, phenomenon, or objective.",
+        "source_types": [
+          "entity",
+          "topic"
+        ],
+        "target_types": [
+          "entity",
+          "topic"
+        ],
+        "inverse": null,
+        "fires_automatically": false,
+        "domain": "research"
+      },
+      "evaluates": {
+        "label": "Evaluates",
+        "description": "Evaluates or assesses data, results, or a claim.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity",
+          "topic"
+        ],
+        "inverse": null,
+        "fires_automatically": false,
+        "domain": "research"
+      },
+      "concludes": {
+        "label": "Concludes",
+        "description": "Reports a finding or conclusion about a subject.",
+        "source_types": [
+          "entity",
+          "document"
+        ],
+        "target_types": [
+          "entity",
+          "topic"
+        ],
+        "inverse": null,
+        "fires_automatically": false,
+        "domain": "research"
+      },
+      "authorizes": {
+        "label": "Authorizes",
+        "description": "Authorizes or approves an action, program, or operation.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity",
+          "topic",
+          "event"
+        ],
+        "inverse": "authorized_by",
+        "fires_automatically": false,
+        "domain": "research"
+      },
+      "authorized_by": {
+        "label": "Authorized By",
+        "description": "Inverse of authorizes.",
+        "source_types": [
+          "entity",
+          "topic",
+          "event"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "inverse": "authorizes",
+        "fires_automatically": false,
+        "domain": "research"
+      },
+      "supervises": {
+        "label": "Supervises",
+        "description": "Supervises or directs a program, unit, or person.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity",
+          "topic"
+        ],
+        "inverse": "supervised_by",
+        "fires_automatically": false,
+        "domain": "research"
+      },
+      "supervised_by": {
+        "label": "Supervised By",
+        "description": "Inverse of supervises.",
+        "source_types": [
+          "entity",
+          "topic"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "inverse": "supervises",
+        "fires_automatically": false,
+        "domain": "research"
+      },
+      "reports_to": {
+        "label": "Reports To",
+        "description": "Organizational reporting relationship (unit/person reports to another).",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "inverse": null,
+        "fires_automatically": false,
+        "domain": "research"
+      },
+      "requests": {
+        "label": "Requests",
+        "description": "Requests authority, approval, resources, or an action.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity",
+          "topic"
+        ],
+        "inverse": null,
+        "fires_automatically": false,
+        "domain": "research"
+      },
+      "trains": {
+        "label": "Trains",
+        "description": "Trains subjects, agents, or personnel.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "inverse": "trained_by",
+        "fires_automatically": false,
+        "domain": "research"
+      },
+      "trained_by": {
+        "label": "Trained By",
+        "description": "Inverse of trains.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "inverse": "trains",
+        "fires_automatically": false,
+        "domain": "research"
+      },
+      "recruits": {
+        "label": "Recruits",
+        "description": "Recruits subjects, agents, or personnel.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "inverse": "recruited_by",
+        "fires_automatically": false,
+        "domain": "research"
+      },
+      "recruited_by": {
+        "label": "Recruited By",
+        "description": "Inverse of recruits.",
+        "source_types": [
+          "entity"
+        ],
+        "target_types": [
+          "entity"
+        ],
+        "inverse": "recruits",
+        "fires_automatically": false,
+        "domain": "research"
+      }
+    }
+  },
+  "metadata": {
+    "created": "2026-04-10T00:00:00Z",
+    "author": "ENKI System"
+  },
+  "dependencies": []
+}
