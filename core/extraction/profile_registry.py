@@ -34,6 +34,14 @@ log = logging.getLogger("enki.extraction.profile_registry")
 _CACHE: dict[str, str] = {}
 _CACHE_LOCK = threading.Lock()
 
+# The label for rows that were written before their producer was recorded.
+# It asserts one thing only: we do not know what produced these. It is NOT
+# a stand-in for the current model — stamping them with today's model would
+# manufacture provenance and silently corrupt every later comparison that
+# filters on profile. Its fingerprint is derived from 'unrecorded', so it
+# can never collide with a real regime and no peer can ever match it.
+PRE_STAMP_PROFILE_ID = "unrecorded__statements__pre_stamp"
+
 
 def compute_fingerprint(
     *,
@@ -58,6 +66,19 @@ def compute_fingerprint(
     ]
     src = "||".join(parts)
     return hashlib.sha256(src.encode()).hexdigest()
+
+
+def prompt_version_for(prompt_text: str) -> str:
+    """Content-derived prompt version: the first 12 hex of sha256(prompt).
+
+    A hand-maintained version string only records a regime change when
+    somebody remembers to bump it, and the one time it is forgotten two
+    different extraction regimes share a profile_id and become permanently
+    indistinguishable. Deriving the version from the prompt text makes the
+    bump automatic and the identity content-derived, which is the same rule
+    the sense addresses follow: identity is content, never a count.
+    """
+    return "p" + hashlib.sha256((prompt_text or "").encode()).hexdigest()[:12]
 
 
 def _profile_id_for(model_name: str, prompt_template: str, prompt_version: str) -> str:
@@ -130,6 +151,42 @@ def get_or_create_profile(
     with _CACHE_LOCK:
         _CACHE[profile_id] = profile_id
     return profile_id
+
+
+def register_pre_stamp_profile(cur) -> str:
+    """Register the 'we do not know what produced this' profile and return
+    its id. Idempotent; takes an open cursor so a backfill can register and
+    stamp inside one transaction.
+
+    Deliberately NOT reusing the seeded 'legacy_v1' row: that row claims
+    model_name='gemma3:4b', which is a specific and probably wrong claim
+    about statements written across several model changes.
+    """
+    cur.execute(
+        """
+        INSERT INTO extraction_profiles (
+            profile_id, model_name, model_digest, ollama_version,
+            prompt_template, prompt_version, temperature,
+            fingerprint, capabilities, notes
+        ) VALUES (%s, 'unrecorded', NULL, NULL,
+                  'unrecorded', 'unrecorded', 0,
+                  %s, %s, %s)
+        ON CONFLICT (profile_id) DO NOTHING
+        """,
+        (
+            PRE_STAMP_PROFILE_ID,
+            compute_fingerprint(
+                model_name="unrecorded", prompt_template="unrecorded",
+                prompt_version="unrecorded", temperature=0.0,
+            ),
+            ["statement_extraction"],
+            "Statements written before the batched extractor stamped a "
+            "profile. Model and prompt are not recoverable per row. Not "
+            "reproducible by any node, including this one — treat as "
+            "evidence, never as a comparison baseline.",
+        ),
+    )
+    return PRE_STAMP_PROFILE_ID
 
 
 def derive_profile_from_llm(llm, prompt_template: str = "entity_extraction_v1",

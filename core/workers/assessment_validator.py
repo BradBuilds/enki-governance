@@ -278,19 +278,20 @@ def _validate_assessment(node: dict, tenant_id: str):
                     "validated_at": datetime.now(timezone.utc).isoformat(),
                 }
 
+                # completeness_score/_tier deliberately not written — see
+                # core/gdu/completeness.py. What was computed here (0.3 base,
+                # raised by corroborations, lowered by contradictions) measures
+                # EVIDENTIAL STANDING, not slot fill; those counts already live
+                # in corroboration_count / contradiction_count.
                 cur.execute("""
                     UPDATE knowledge_nodes
                     SET envelope = %s,
                         enrichment_status = 'complete',
-                        completeness_score = %s,
-                        completeness_tier = %s,
                         subtype = %s,
                         updated_at = NOW()
                     WHERE node_id = %s AND tenant_id = %s
                 """, (
                     json.dumps(envelope),
-                    completeness_score,
-                    completeness_tier,
                     new_subtype,
                     node_id, tenant_id,
                 ))
@@ -646,14 +647,16 @@ def _maybe_demote(cur, node_id: str, tenant_id: str):
 
     # If a fact got contradicted, demote to claim and update status
     if subtype == "fact" and contr > 0:
+        # The tier demotion that used to live here (verified->solid,
+        # solid->partial) is removed. A contradiction is a fact about EVIDENCE,
+        # not about how many declared slots are filled, and demoting the tier
+        # while leaving completeness_score untouched is precisely how tier and
+        # score drifted apart. The contradiction is still recorded where it
+        # belongs: the node demotes fact -> claim and its evidence status
+        # becomes 'contested'. Tier follows score, via the governed ladder.
         cur.execute("""
             UPDATE knowledge_nodes
             SET subtype = 'claim',
-                completeness_tier = CASE
-                    WHEN %s = 'verified' THEN 'solid'
-                    WHEN %s = 'solid' THEN 'partial'
-                    ELSE completeness_tier
-                END,
                 envelope = jsonb_set(
                     envelope,
                     ARRAY['evidence', 'status'],
@@ -661,7 +664,7 @@ def _maybe_demote(cur, node_id: str, tenant_id: str):
                 ),
                 updated_at = NOW()
             WHERE node_id = %s
-        """, (tier, tier, node_id))
+        """, (node_id,))
         _STATUS["demotions"] += 1
         log.info("Demoted %s fact → claim (contradiction emerged)", node_id)
 

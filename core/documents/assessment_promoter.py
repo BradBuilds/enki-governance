@@ -403,6 +403,46 @@ def _bump_predicate_observation(lemma: str, edge_type: str) -> None:
         conn.commit()
 
 
+# ─── Structural grade (Phase 2) ───────────────────────────────────────
+
+GRADE_COLLAPSIBLE = "collapsible"
+GRADE_UNTRUSTED = "untrusted"
+GRADE_EVIDENCE_ONLY = "evidence_only"
+
+
+def _grade_for_promotion(stmt_id, tenant, subj_id, obj_id, evt_time, loc_id,
+                         lemma, verb_surf, raw) -> Optional[dict]:
+    """Grade one statement and persist the verdict.
+
+    Returns None if grading is unavailable, in which case the promoter falls
+    through to its original checks — a node that cannot grade must keep
+    working, not stop promoting.
+    """
+    try:
+        from core.documents.statement_grade import GRADE_VERSION, grade_statement
+        with get_connection() as conn:
+            with conn.cursor() as cur:
+                g = grade_statement(
+                    cur, speaker_entity_id=subj_id, object_entity_id=obj_id,
+                    event_time=evt_time, event_location_entity_id=loc_id,
+                    predicate_lemma=lemma, predicate_verb_surface=verb_surf,
+                    raw_text=raw, tenant=tenant)
+                cur.execute(
+                    """
+                    UPDATE statements
+                       SET structure_grade = %s, structure_reasons = %s,
+                           grade_version = %s, graded_at = now()
+                     WHERE statement_id = %s
+                    """,
+                    (g["grade"], g["reasons"], GRADE_VERSION, stmt_id),
+                )
+            conn.commit()
+        return g
+    except Exception:
+        log.exception("grading failed for statement %s — falling through", stmt_id)
+        return None
+
+
 # ─── Public ───────────────────────────────────────────────────────────
 
 def promote_pending(tenant_id: str = "default", limit: Optional[int] = None) -> dict:
@@ -411,6 +451,7 @@ def promote_pending(tenant_id: str = "default", limit: Optional[int] = None) -> 
         "scanned": 0, "promoted": 0, "rejected_no_predicate": 0,
         "rejected_no_subject": 0, "rejected_type_pair": 0,
         "rejected_other": 0, "new_assessments": 0,
+        "untrusted": 0, "evidence_only": 0,
         "tier_changes": defaultdict(int),
     }
     with get_connection() as conn:
@@ -433,29 +474,55 @@ def promote_pending(tenant_id: str = "default", limit: Optional[int] = None) -> 
     for (stmt_id, t_id, subj_id, lemma, verb_surf, obj_id, raw,
          polarity, conf, evt_time, loc_id, modality) in rows:
         stats["scanned"] += 1
-        if not subj_id:
-            _mark_statement(stmt_id, "rejected", "no_subject_entity")
-            stats["rejected_no_subject"] += 1
+
+        # ── Structure first (Phase 2) ──
+        # Collapse eligibility is a FUNCTION of the structural grade, not a
+        # gate in front of it. A statement that is not structurally sound is
+        # never promoted, but it is not rejected either — `untrusted` keeps
+        # its reasons so a substrate change can re-ask the question, and
+        # `evidence_only` keeps it searchable as what it is. The only thing
+        # that changes here is which lane a NON-promotion lands in; nothing
+        # that promoted before stops promoting.
+        grade = _grade_for_promotion(
+            stmt_id, t_id or tenant_id, subj_id, obj_id, evt_time, loc_id,
+            lemma, verb_surf, raw)
+        if grade and grade["grade"] == GRADE_EVIDENCE_ONLY:
+            _mark_statement(stmt_id, "evidence_only",
+                            ",".join(grade["reasons"])[:200])
+            stats["evidence_only"] += 1
             continue
-        # An assessment whose subject and object are the SAME entity is a
-        # self-reference, not a fact ("X did-to X"). This happens after
-        # entity coreference merges fold a bare name into its full identity.
-        # Reject rather than mint a self-loop assessment.
+        if grade and grade["grade"] == GRADE_UNTRUSTED:
+            _mark_statement(stmt_id, "untrusted",
+                            ",".join(grade["reasons"])[:200])
+            stats["untrusted"] += 1
+            continue
+
+        if not subj_id:
+            # Unreachable once grading is on (the grade catches it first) and
+            # kept so a node with no grader still behaves.
+            _mark_statement(stmt_id, "untrusted", "no_subject_entity")
+            stats["untrusted"] += 1
+            continue
         if obj_id is not None and subj_id == obj_id:
-            _mark_statement(stmt_id, "rejected", "self_reference")
-            stats["rejected_other"] += 1
+            _mark_statement(stmt_id, "evidence_only", "self_reference")
+            stats["evidence_only"] += 1
             continue
         lemma = lemma or ""
         edge_resolution = _resolve_predicate(lemma)
         if not edge_resolution:
-            _mark_statement(stmt_id, "rejected", f"no_predicate_mapping:{lemma}")
+            # A VOCABULARY GAP, not a defect in the statement. This was the
+            # single largest rejection class (4,323) and it was terminal —
+            # 2,063 of those statements are structurally sound and were held
+            # only because nothing had a word for their verb yet. Untrusted
+            # keeps them re-askable when the dictionary grows.
+            _mark_statement(stmt_id, "untrusted", f"no_predicate_mapping:{lemma}")
             stats["rejected_no_predicate"] += 1
             continue
         edge_type, _pred_conf = edge_resolution
 
         reason = _validate_type_pair(subj_id, edge_type, obj_id)
         if reason is not None:
-            _mark_statement(stmt_id, "rejected", f"type_pair_invalid:{reason}")
+            _mark_statement(stmt_id, "untrusted", f"type_pair_invalid:{reason}")
             stats["rejected_type_pair"] += 1
             continue
 

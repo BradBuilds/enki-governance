@@ -64,9 +64,13 @@ def _load_node_base(cur, node_id: str, tenant_id: str) -> dict:
         "node_type": row[3],
         "subtype": row[4],
         "envelope": env,
+        # NULL score/tier propagate as null rather than 0.0/"stub". An unscored
+        # node is not a node measured at zero, and it is not a stub — both of
+        # those are claims. The summary builder below already guards on `if
+        # tier:`, so an abstaining node simply omits the completeness line.
         "completeness": {
-            "score": float(row[6] or 0),
-            "tier": row[7] or "stub",
+            "score": float(row[6]) if row[6] is not None else None,
+            "tier": row[7],
         },
         "master_entity_id": row[8],
         "master_topic_id": row[9],

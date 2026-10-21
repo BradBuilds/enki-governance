@@ -215,6 +215,26 @@ def _find_or_create_concept_for_type(
                 ),
             )
             cid = cur.fetchone()[0]
+
+        # Attestation (C3) — this INSERT also fires trg_mirror_entity, so it
+        # also mints a knowledge_node that would otherwise go unrecorded.
+        # address=False is honest and not an oversight: unlike _create_entity
+        # below, this path writes no base60_address at all, so the mirrored node
+        # gets whatever gdu_assign_address() returns inside the trigger. The
+        # attestation states what THIS writer did.
+        from core.gdu.attest import attest_admission
+        attest_admission(
+            conn, tenant_id,
+            operation="admit",
+            writer="documents.entity_promotion._find_or_create_concept_for_type",
+            checks_run={"boundary": False, "vocab": False,
+                        "address": False, "collapse": True},
+            node_id=f"entity:{cid}", entity_id=cid,
+            category="entity", subtype=canonical_type,
+            input_type=canonical_type, mapped_type=canonical_type,
+            reason=f"concept entity minted for type '{canonical_type}'",
+        )
+
         conn.commit()
     return cid
 
@@ -399,6 +419,50 @@ def _create_entity(
                 ),
             )
             entity_id = cur.fetchone()[0]
+
+        # ─── Attestation (C3) ──────────────────────────────────────────
+        # This INSERT fires trg_mirror_entity (migration 032), which creates a
+        # knowledge_nodes row in plpgsql. That mirrored node was unattested:
+        # measured on node-A after the auto_node fix, event and document writes went
+        # to 0 unattested while entity and topic did not, and the surviving rows
+        # carry exactly the envelope key set mirror_entity_to_knowledge_node()
+        # builds.
+        #
+        # The attestation goes on the ENTITY insert rather than on the mirrored
+        # node, because the node is a projection of this row — attesting the
+        # mirror would record the copy and leave the original unrecorded. It
+        # also cannot go in the trigger: a plpgsql reimplementation of
+        # chain_payload would be a SECOND hash implementation, and two
+        # implementations of one hash is the defect this module was extracted to
+        # end.
+        #
+        # node_id matches the trigger's own construction ('entity:' || entity_id)
+        # so the admission row and the mirrored node join.
+        from core.gdu.attest import attest_admission
+        attest_admission(
+            conn, tenant_id,
+            operation="admit",
+            writer="documents.entity_promotion._create_entity",
+            checks_run={
+                # Promotion works from clustered document mentions, not model
+                # output, so there is no LDU-W boundary check to run.
+                "boundary": False,
+                # canonical_type is not checked against the governed vocabulary
+                # on this path — recorded as False rather than assumed. This is
+                # the kind of gap the field exists to surface.
+                "vocab": False,
+                "address": base60 is not None,
+                # Reached only after the caller's cluster lookup misses, which
+                # IS the dedup decision for this path.
+                "collapse": True,
+            },
+            node_id=f"entity:{entity_id}", entity_id=entity_id,
+            category="entity", subtype=canonical_type, base60=base60,
+            input_type=canonical_type, mapped_type=canonical_type,
+            reason=f"promoted from document mention cluster ({entity_kind})",
+            lineage_stamp={"active_set_version": active_set},
+        )
+
         conn.commit()
     return entity_id
 

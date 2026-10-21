@@ -22,6 +22,7 @@ _log = logging.getLogger("enki.gdu.pack_registry")
 _NODE_TAXONOMY: Optional[dict] = None
 _EDGE_TYPES: Optional[dict] = None
 _SLOT_SPECS: Optional[dict] = None
+_COMPLETENESS_TIERS: Optional[dict] = None
 _INITIALIZED = False
 
 # ── Fixed category order (base-60 first digit) ─────────────────────────
@@ -53,7 +54,7 @@ _SUBTYPE_INDEX: dict[str, dict[str, int]] = {}
 def _load_packs():
     """Load all vocabulary packs through GDU strict mode. Falls back to
     filesystem if GDU context is unavailable (dev/test)."""
-    global _NODE_TAXONOMY, _EDGE_TYPES, _SLOT_SPECS, _INITIALIZED
+    global _NODE_TAXONOMY, _EDGE_TYPES, _SLOT_SPECS, _COMPLETENESS_TIERS, _INITIALIZED
     global _SUBTYPE_ORDERS, _SUBTYPE_INDEX
 
     if _INITIALIZED:
@@ -62,6 +63,7 @@ def _load_packs():
     _NODE_TAXONOMY = _load_nodevocab()
     _EDGE_TYPES = _load_edgevocab()
     _SLOT_SPECS = _load_completenessvocab()
+    _COMPLETENESS_TIERS = _load_completeness_tiers()
 
     # Build subtype order caches from taxonomy
     if _NODE_TAXONOMY:
@@ -119,6 +121,12 @@ def _load_json_file(pack_name: str, filename: str) -> dict:
                 content = data.get("content", data)
                 if isinstance(content, dict):
                     content.setdefault("__pack_version__", _read_pack_version(pack_name))
+                    # The definition file carries its OWN version, outside the
+                    # content block, and it can move independently of pack.json
+                    # (slot_specs is at 0.1.1 while completenessvocab/pack.json
+                    # says 0.1.0). Consumers that stamp provenance need the one
+                    # that actually tracks the content they read.
+                    content.setdefault("__definition_version__", data.get("version"))
                 return content
         else:
             _log.warning("Pack file not found: %s", path)
@@ -140,6 +148,10 @@ def _load_completenessvocab() -> dict:
     return _load_json_file("completenessvocab", "completenessvocab.slot_specs.json")
 
 
+def _load_completeness_tiers() -> dict:
+    return _load_json_file("completenessvocab", "completenessvocab.tiers.json")
+
+
 # ── Public API ──────────────────────────────────────────────────────────
 
 def get_node_taxonomy() -> dict:
@@ -158,6 +170,19 @@ def get_slot_specs() -> dict:
     """Completeness slot specs from completenessvocab."""
     _load_packs()
     return _SLOT_SPECS or {}
+
+
+def get_completeness_tiers() -> dict:
+    """The tier ladder from completenessvocab — {tier: {min_score, max_score, ...}}.
+
+    The thresholds are pack content under change control ("Adding a new tier
+    requires full ceremony"), so they are read here rather than restated in
+    Python. `bronze` and `empty` are currently written to knowledge_nodes by
+    code paths that never consulted this ladder; those are ungoverned strings,
+    not tiers.
+    """
+    _load_packs()
+    return (_COMPLETENESS_TIERS or {}).get("tiers", {})
 
 
 def get_valid_categories() -> set[str]:

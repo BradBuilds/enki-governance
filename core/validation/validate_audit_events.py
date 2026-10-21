@@ -13,6 +13,8 @@ Phase 2: Emits audit events on validation outcomes.
 """
 
 import json
+import os
+from functools import lru_cache
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 from dataclasses import dataclass
@@ -51,7 +53,7 @@ class ValidationResult:
 class AuditEventValidator:
     """Validates audit event instances against canonical vocabulary"""
     
-    def __init__(self, audit_vocab_pack, identity_pack):
+    def __init__(self, audit_vocab_pack, identity_pack, extra_event_types=frozenset()):
         """
         Initialize validator with required vocabulary packs
         
@@ -61,6 +63,7 @@ class AuditEventValidator:
         """
         self.audit_vocab_pack = audit_vocab_pack
         self.identity_pack = identity_pack
+        self.extra_event_types = set(extra_event_types)
         
         # Load schema
         schema_path = Path(__file__).parent.parent.parent / "schemas" / "audit_event_instance.schema.json"
@@ -80,6 +83,8 @@ class AuditEventValidator:
             self.valid_event_types = {evt["event_type_id"] for evt in event_types}
         else:
             self.valid_event_types = set()
+        # Event types declared by your own admitted libraries (see ENKI_EVENT_LIBRARIES)
+        self.valid_event_types |= self.extra_event_types
         
         # Get severity levels from Audit Vocabulary Pack
         severity_def = self.audit_vocab_pack.index.by_id.get("audit_vocab.severity")
@@ -233,6 +238,46 @@ class AuditEventValidator:
 
 
 # Module-level convenience functions
+
+@lru_cache(maxsize=8)
+def _extra_event_types(libraries_setting: str) -> frozenset:
+    """
+    Event types declared by your own libraries.
+
+    ENKI_EVENT_LIBRARIES is a comma-separated list of library folders under libraries/.
+    Each library is loaded through the GDU, so it must be admitted in the active set with a
+    matching content hash; an unadmitted or modified library is refused. A library may only
+    declare event types inside the namespaces it owns (namespaces_owned in its pack.json),
+    so it can never redefine the built-in vocabulary.
+    """
+    names = [n.strip() for n in libraries_setting.split(",") if n.strip()]
+    if not names:
+        return frozenset()
+    gdu = get_gdu()
+    found = set()
+    for name in names:
+        pack_dir = Path("libraries") / name
+        result = gdu.load_pack(name, pack_dir)
+        if not result.ok:
+            raise RuntimeError(f"Event library '{name}' could not be loaded: {result.errors}")
+        manifest = json.loads((pack_dir / "pack.json").read_text(encoding="utf-8"))
+        owned = tuple(f"{ns}." for ns in manifest.get("namespaces_owned", []))
+        for definition in result.definitions:
+            for evt in definition.content.get("event_types", []) or []:
+                event_type = evt.get("event_type_id")
+                if not event_type:
+                    continue
+                if not owned or not event_type.startswith(owned):
+                    raise RuntimeError(
+                        f"Event library '{name}' declares '{event_type}' outside the namespaces it owns {list(manifest.get('namespaces_owned', []))}"
+                    )
+                found.add(event_type)
+    return frozenset(found)
+
+
+def _configured_extra_event_types() -> frozenset:
+    return _extra_event_types(os.environ.get("ENKI_EVENT_LIBRARIES", ""))
+
 def validate_audit_event_instance(event: Dict[str, Any], emit_events: bool = True) -> ValidationResult:
     """
     Validate a single audit event instance (convenience function)
@@ -260,7 +305,7 @@ def validate_audit_event_instance(event: Dict[str, Any], emit_events: bool = Tru
     if not identity_result.ok:
         raise RuntimeError(f"Failed to load identity pack: {identity_result.error}")
     
-    validator = AuditEventValidator(audit_vocab_result, identity_result)
+    validator = AuditEventValidator(audit_vocab_result, identity_result, _configured_extra_event_types())
     return validator.validate_event(event, emit_events)
 
 
@@ -291,5 +336,5 @@ def validate_audit_event_batch(events: List[Dict[str, Any]], emit_events: bool =
     if not identity_result.ok:
         raise RuntimeError(f"Failed to load identity pack: {identity_result.error}")
     
-    validator = AuditEventValidator(audit_vocab_result, identity_result)
+    validator = AuditEventValidator(audit_vocab_result, identity_result, _configured_extra_event_types())
     return validator.validate_batch(events, emit_events)

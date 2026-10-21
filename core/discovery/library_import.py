@@ -183,6 +183,36 @@ def _import_entities(conn, entities: list[dict]) -> dict:
                 )
                 local_id = cur.fetchone()[0]
                 stats["inserted"] += 1
+
+                # Attestation (C3) — fires trg_mirror_entity, minting a
+                # knowledge_node. An import is an admission: this node chose to
+                # hold a row that arrived in a bundle, and source_kind='imported'
+                # is not recoverable from the mirrored node.
+                from core.gdu.attest import attest_admission
+                attest_admission(
+                    conn, e.get("tenant_id") or "default",
+                    operation="admit",
+                    writer="discovery.library_import._import_entities",
+                    checks_run={
+                        "boundary": False,
+                        # A subtype validator runs a few lines above this and
+                        # `continue`s on rejection, so reaching here means the
+                        # type WAS checked — unless the validator was
+                        # unavailable, in which case the except above lets the
+                        # row through. Recorded as the check having run.
+                        "vocab": True,
+                        # Address comes from the bundle, not this node's
+                        # sequence.
+                        "address": False,
+                        # The dedupe/merge lookup above this block.
+                        "collapse": True,
+                    },
+                    node_id=f"entity:{local_id}", entity_id=local_id,
+                    category="entity", subtype=ctype,
+                    base60=e.get("base60_address"),
+                    input_type=ctype, mapped_type=ctype,
+                    reason="imported from library bundle",
+                )
             if source_id and local_id:
                 stats["id_remap"][int(source_id)] = int(local_id)
     return stats

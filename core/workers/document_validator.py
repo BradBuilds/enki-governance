@@ -212,15 +212,16 @@ def _validate_document(node: dict, tenant_id: str):
                     "validated_at": datetime.now(timezone.utc).isoformat(),
                 }
 
+                # completeness_score/_tier deliberately not written. This used to
+                # apply a floor of 0.5 — "validated, therefore at least half
+                # complete" — which is a statement about validation, not about
+                # how many declared slots are filled. Completeness now comes
+                # from the governed slot specs alone (core/gdu/completeness.py),
+                # so a score always names the standard it was measured against.
                 cur.execute("""
                     UPDATE knowledge_nodes
                     SET envelope = %s,
                         enrichment_status = 'complete',
-                        completeness_score = GREATEST(completeness_score, 0.5),
-                        completeness_tier = CASE
-                            WHEN completeness_tier IN ('stub', NULL) THEN 'partial'
-                            ELSE completeness_tier
-                        END,
                         updated_at = NOW()
                     WHERE node_id = %s AND tenant_id = %s
                 """, (json.dumps(envelope), node_id, tenant_id))

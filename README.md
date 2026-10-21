@@ -206,22 +206,26 @@ a relationship **Graph**, **Library** browser, **Chat** over your corpus, **Conn
 **Settings** (data-source keys, satellite, privacy). Everything the collapse engine produces is
 navigable here, every claim carrying its receipt. Default: `http://localhost:5173`.
 
-## Optional: the WordNet sense layer
+## On the sense layer, and why it is not here
 
-The core ships **42 governance packs** (the default active set pins 25 of them). Two of them — the WordNet sense packs — hold
-large derived data that we build from an established open project rather than commit to git:
-**[Open English WordNet](https://github.com/globalwordnet/english-wordnet) (`oewn:2023`, CC-BY-4.0)**,
-via the [`wn`](https://github.com/goodmami/wn) library. Enable sense-grounding with:
+The engine has a word-sense layer — it can ground a term to a dictionary sense instead of
+guessing from context. The **converters for Open English WordNet are deliberately not
+published**, and the reasoning is worth stating rather than hiding.
 
-```bash
-./scripts/import-lexicon.sh
-```
+OEWN is CC-BY-4.0. The data policy for this project is public-domain only, and that is a
+policy about **use**, not merely redistribution — validating against a resource is using it.
+Shipping the converters would invite downstream nodes to build a CC-BY substrate and then
+federate it onward, where the attribution obligation travels with every derivative and
+eventually someone gets it wrong. Quietly attaching that obligation to other people's
+corpora is not a trade we are willing to make on their behalf.
 
-This downloads OEWN (~35 MB), builds ~120k senses + sense-frequency into the two packs, and
-loads them into the spine. Core collapse works fine without it — this adds word-sense
-disambiguation. Because it goes through `wn`, you can also pull **other or multilingual
-wordnets** for broader coverage (`wn download <lexicon>`), and the domain glossaries
-(legal, finance, intel, military, cyber, biomed) already ship in the packs.
+So core collapse runs without a sense layer, and it works: entity resolution, typed
+relationships, receipts and governance do not depend on it. The domain glossaries (legal,
+finance, intel, military, cyber, biomed) do ship in the packs.
+
+If you want sense-grounding on your own node, point the lexicon loader at a
+public-domain source, or accept the CC-BY obligation knowingly for a corpus you control.
+What we will not do is ship a path that makes that decision for you silently.
 
 ## Requirements
 

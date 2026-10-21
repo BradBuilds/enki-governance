@@ -1929,19 +1929,20 @@ async def trigger_research(
 
                     # Also update the entity record if it exists
                     if entity_id:
+                        # completeness_score/_tier deliberately not written — see
+                        # core/gdu/completeness.py. Note the tier expression here
+                        # was `GREATEST(completeness_tier, 'partial')`, a STRING
+                        # comparison: alphabetically 'stub' > 'solid' > 'partial',
+                        # so it promoted a solid entity to 'stub'. The governed
+                        # ladder maps score to tier and is the only thing that
+                        # should decide it.
                         cur.execute("""
                             UPDATE entities
                             SET envelope = %s,
-                                completeness_score = GREATEST(completeness_score, 0.5),
-                                completeness_tier = CASE
-                                    WHEN %s THEN 'solid'
-                                    ELSE GREATEST(completeness_tier, 'partial')
-                                END,
                                 updated_at = NOW()
                             WHERE entity_id = %s AND tenant_id = %s
                         """, (
                             json.dumps({"profile": profile}),
-                            bool(profile.get("wikidata_id")),
                             entity_id, auth.tenant_id,
                         ))
 

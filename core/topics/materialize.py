@@ -143,6 +143,35 @@ def create_topic(
                      json.dumps(membership_rule), created_by),
                 )
                 topic_id = cur.fetchone()[0]
+
+                # Attestation (C3) — this INSERT fires trg_mirror_topic
+                # (migration 032), minting a knowledge_nodes row that would
+                # otherwise be unrecorded. Inside the `else` branch on purpose:
+                # the UPDATE arm above touches an existing topic whose admission
+                # was already attested when it was created, and re-attesting it
+                # would record a second admission for one node.
+                from core.gdu.attest import attest_admission
+                attest_admission(
+                    conn, tenant_id,
+                    operation="admit",
+                    writer="topics.materialize.create_topic",
+                    checks_run={
+                        # Operator/rule-driven topic creation, not model output.
+                        "boundary": False,
+                        # `subtype` is passed straight into canonical_type with
+                        # no check against the governed vocabulary.
+                        "vocab": False,
+                        # No base-60 written here; the mirror trigger addresses
+                        # the node via gdu_assign_address().
+                        "address": False,
+                        # Reached only after the SELECT above misses.
+                        "collapse": True,
+                    },
+                    node_id=f"topic:{topic_id}",
+                    category="topic", subtype=subtype,
+                    input_type=subtype, mapped_type=subtype,
+                    reason=f"topic materialized by {created_by}: '{label}'"[:500],
+                )
         conn.commit()
 
     out = {

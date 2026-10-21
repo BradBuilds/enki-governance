@@ -31,8 +31,10 @@
     topics?: string[];
     entity_count?: number;
     completeness?: {
-      score: number;
-      tier: string;
+      // Nullable: the scorer abstains when no pack declares what a subtype
+      // should contain, and a freshly built envelope has not been scored yet.
+      score: number | null;
+      tier: string | null;
       filled_slots: number;
       total_slots: number;
       gaps: string[];
@@ -51,6 +53,10 @@
     verified: { color: "#10b981", label: "Verified" },
   };
 
+  // NOT a tier. A distinct visual for "no tier", so an abstention is legible as
+  // an abstention instead of borrowing the bottom rung of the governed ladder.
+  const UNSCORED_BADGE = { color: "#374151", label: "Unscored" };
+
   // ─── domain accents — purely cosmetic, no domain logic ────────────
   const DOMAIN_ACCENT: Record<string, string> = {
     politics:    "#dc2626",
@@ -65,16 +71,22 @@
     other:       "#6b7280",
   };
 
-  // All derived values use safe fallbacks. The card is the invariant —
-  // even an envelope with NO completeness data renders, with a 'stub'
-  // badge and 0% score, instead of crashing.
-  let tier = $derived(card?.completeness?.tier || "stub");
-  let tierBadge = $derived(TIER_BADGE[tier] || TIER_BADGE.stub);
+  // The card is the invariant — an envelope with NO completeness data still
+  // renders rather than crashing. But it renders as UNSCORED, not as a stub at
+  // 0%: `|| "stub"` turned "nothing measured this" into "measured, and nearly
+  // empty", which is a claim the substrate never made. Crash-safety and
+  // value-invention are different things, and this line was doing both.
+  let tierBadge = $derived(
+    card?.completeness?.tier
+      ? (TIER_BADGE[card.completeness.tier] ?? UNSCORED_BADGE)
+      : UNSCORED_BADGE
+  );
   let domainColor = $derived(DOMAIN_ACCENT[card?.domain || "other"] || DOMAIN_ACCENT.other);
+  // null when unscored, so the badge shows no percentage rather than "0%".
   let scorePct = $derived(
     typeof card?.completeness?.score === "number"
       ? Math.round(card.completeness.score * 100)
-      : 0
+      : null
   );
   let typeLabel = $derived(card?.subtype
     ? `${card?.node_type || "node"}/${card.subtype}`
@@ -133,7 +145,7 @@
   <header class="card-head">
     <span class="type-pill">{typeLabel}</span>
     <span class="tier-badge" style="background: {tierBadge.color}">
-      {tierBadge.label} · {scorePct}%
+      {tierBadge.label}{scorePct === null ? "" : ` · ${scorePct}%`}
     </span>
     <span class="time">{timeAgo}</span>
     <button

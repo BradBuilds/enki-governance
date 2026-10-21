@@ -1,7 +1,7 @@
 {
   "id": "node.vocab.node_types",
   "type": "custom",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "description": "Canonical 14 node categories. v0.8.0 (2026-05-14) adds the `library` category (topic-anchored addressable subgraphs that track bibliographic references, acquired documents, extracted facts) plus two new subtypes: `document.bibliographic_reference` (known reference, acquired-or-not) and `source.bibliographic_index` (Google Books, Scholar, archive.org as first-class addressable sources). This closes the OSINT-discovery loop: discover references via bibliographic indices → acquire as PDFs → ingest → extract facts → harvest cited references → repeat. v0.7.0 adds the `definition` category. v0.6.0 adds `lemma` subtype. v0.5.0 added the `form` category. See docs/BASE60_CYCLICAL_LANGUAGE_MODEL_2026-05-14.md.",
   "content": {
     "categories": {
@@ -10,400 +10,1068 @@
         "label": "Entity",
         "description": "A thing that persists across time and can be referred to by name or identifier",
         "subtypes": {
-          "person": {"label": "Person", "identifiers": ["full_name", "date_of_birth", "passport", "ssn", "email", "phone"]},
-          "organization": {"label": "Organization", "identifiers": ["legal_name", "ein", "lei", "duns", "ticker"]},
-          "vessel": {"label": "Vessel", "identifiers": ["mmsi", "imo", "call_sign", "vessel_name"]},
-          "aircraft": {"label": "Aircraft", "identifiers": ["icao24", "registration", "tail_number", "callsign"]},
-          "vehicle": {"label": "Vehicle", "identifiers": ["vin", "license_plate"]},
-          "facility": {"label": "Facility", "identifiers": ["facility_name", "operator", "address"]},
-          "account": {"label": "Account", "identifiers": ["handle", "platform", "url", "account_id"]},
-          "device": {"label": "Device", "identifiers": ["device_id", "imei", "mac_address", "serial"]},
-          "unit": {"label": "Military / Operational Unit", "identifiers": ["designation", "parent_command"]},
-          "weapon_system": {"label": "Weapon System / Equipment Class", "identifiers": ["system_name", "manufacturer", "designation"]},
-          "product": {"label": "Product / Service", "identifiers": ["product_name", "vendor", "version"]},
-          "government_agency": {"label": "Government Agency", "identifiers": ["agency_name", "jurisdiction", "parent_government"]},
-          "mass_media": {"label": "Mass Media Outlet", "identifiers": ["outlet_name", "domain", "publisher"]}
+          "person": {
+            "label": "Person",
+            "identifiers": [
+              "full_name",
+              "date_of_birth",
+              "passport",
+              "ssn",
+              "email",
+              "phone"
+            ]
+          },
+          "organization": {
+            "label": "Organization",
+            "identifiers": [
+              "legal_name",
+              "ein",
+              "lei",
+              "duns",
+              "ticker"
+            ]
+          },
+          "vessel": {
+            "label": "Vessel",
+            "identifiers": [
+              "mmsi",
+              "imo",
+              "call_sign",
+              "vessel_name"
+            ]
+          },
+          "aircraft": {
+            "label": "Aircraft",
+            "identifiers": [
+              "icao24",
+              "registration",
+              "tail_number",
+              "callsign"
+            ]
+          },
+          "vehicle": {
+            "label": "Vehicle",
+            "identifiers": [
+              "vin",
+              "license_plate"
+            ]
+          },
+          "facility": {
+            "label": "Facility",
+            "identifiers": [
+              "facility_name",
+              "operator",
+              "address"
+            ]
+          },
+          "account": {
+            "label": "Account",
+            "identifiers": [
+              "handle",
+              "platform",
+              "url",
+              "account_id"
+            ]
+          },
+          "device": {
+            "label": "Device",
+            "identifiers": [
+              "device_id",
+              "imei",
+              "mac_address",
+              "serial"
+            ]
+          },
+          "unit": {
+            "label": "Military / Operational Unit",
+            "identifiers": [
+              "designation",
+              "parent_command"
+            ]
+          },
+          "weapon_system": {
+            "label": "Weapon System / Equipment Class",
+            "identifiers": [
+              "system_name",
+              "manufacturer",
+              "designation"
+            ]
+          },
+          "product": {
+            "label": "Product / Service",
+            "identifiers": [
+              "product_name",
+              "vendor",
+              "version"
+            ]
+          },
+          "government_agency": {
+            "label": "Government Agency",
+            "identifiers": [
+              "agency_name",
+              "jurisdiction",
+              "parent_government"
+            ]
+          },
+          "mass_media": {
+            "label": "Mass Media Outlet",
+            "identifiers": [
+              "outlet_name",
+              "domain",
+              "publisher"
+            ]
+          },
+          "person_body": {
+            "label": "Person (physical description)",
+            "description": "The physical description of a human being, as a concept in its own right. Separate from `person` because a description and an identity are different things that may or may not bind: an unidentified body, or a witness description with no name attached, is a real observation and binding it to a named person is a CLAIM requiring evidence. Modelling it as columns on `person` would make that binding automatic and unfalsifiable.",
+            "identifiers": []
+          }
         }
       },
-
       "place": {
         "id": "place",
         "label": "Place",
         "description": "A location, region, or named area",
         "subtypes": {
-          "country": {"label": "Country", "identifiers": ["iso_3166_alpha2", "iso_3166_alpha3"]},
-          "admin_region": {"label": "Administrative Region", "identifiers": ["region_code", "parent_country"]},
-          "city": {"label": "City", "identifiers": ["city_name", "country", "geonames_id"]},
-          "poi": {"label": "Point of Interest", "identifiers": ["poi_name", "category", "coordinates"]},
-          "facility_location": {"label": "Facility Location", "identifiers": ["facility_name", "coordinates"]},
-          "coordinate_cluster": {"label": "Coordinate Cluster", "identifiers": ["bbox"]},
-          "named_area": {"label": "Named Operation Area", "identifiers": ["area_name"]},
-          "maritime_area": {"label": "Maritime Area", "identifiers": ["region_name", "polygon"]},
-          "airspace": {"label": "Airspace", "identifiers": ["airspace_id", "type"]}
+          "country": {
+            "label": "Country",
+            "identifiers": [
+              "iso_3166_alpha2",
+              "iso_3166_alpha3"
+            ]
+          },
+          "admin_region": {
+            "label": "Administrative Region",
+            "identifiers": [
+              "region_code",
+              "parent_country"
+            ]
+          },
+          "city": {
+            "label": "City",
+            "identifiers": [
+              "city_name",
+              "country",
+              "geonames_id"
+            ]
+          },
+          "poi": {
+            "label": "Point of Interest",
+            "identifiers": [
+              "poi_name",
+              "category",
+              "coordinates"
+            ]
+          },
+          "facility_location": {
+            "label": "Facility Location",
+            "identifiers": [
+              "facility_name",
+              "coordinates"
+            ]
+          },
+          "coordinate_cluster": {
+            "label": "Coordinate Cluster",
+            "identifiers": [
+              "bbox"
+            ]
+          },
+          "named_area": {
+            "label": "Named Operation Area",
+            "identifiers": [
+              "area_name"
+            ]
+          },
+          "maritime_area": {
+            "label": "Maritime Area",
+            "identifiers": [
+              "region_name",
+              "polygon"
+            ]
+          },
+          "airspace": {
+            "label": "Airspace",
+            "identifiers": [
+              "airspace_id",
+              "type"
+            ]
+          }
         }
       },
-
       "event": {
         "id": "event",
         "label": "Event",
         "description": "A discrete occurrence at a specific time",
         "subtypes": {
-          "strike": {"label": "Strike / Attack", "required_fields": ["event_time", "location", "perpetrator_or_unknown"]},
-          "transaction": {"label": "Financial Transaction", "required_fields": ["amount", "parties"]},
-          "arrival": {"label": "Arrival", "required_fields": ["entity", "location", "event_time"]},
-          "departure": {"label": "Departure", "required_fields": ["entity", "location", "event_time"]},
-          "meeting": {"label": "Meeting", "required_fields": ["participants", "location_or_virtual"]},
-          "statement": {"label": "Public Statement", "required_fields": ["speaker", "subject"]},
-          "broadcast": {"label": "Broadcast", "required_fields": ["source", "channel"]},
-          "publication": {"label": "Publication", "required_fields": ["author", "title"]},
-          "alert": {"label": "Alert / Notice", "required_fields": ["issuer", "severity"]},
-          "sighting": {"label": "Sighting", "required_fields": ["entity", "location", "event_time"]},
-          "transfer": {"label": "Asset Transfer", "required_fields": ["from", "to", "asset"]},
-          "earthquake": {"label": "Earthquake", "required_fields": ["magnitude", "location", "depth"]},
-          "weather": {"label": "Weather Event / Alert", "required_fields": ["hazard_type", "area", "severity"]},
-          "appointment": {"label": "Appointment / Designation", "required_fields": ["person", "role", "appointer"]},
-          "contract": {"label": "Contract / Agreement", "required_fields": ["parties", "value_or_terms"]},
-          "position_report": {"label": "Position Report", "required_fields": ["entity", "coordinates", "event_time"]},
-          "sensor_reading": {"label": "Sensor Reading", "required_fields": ["sensor_id", "reading", "event_time"]}
+          "strike": {
+            "label": "Strike / Attack",
+            "required_fields": [
+              "event_time",
+              "location",
+              "perpetrator_or_unknown"
+            ]
+          },
+          "transaction": {
+            "label": "Financial Transaction",
+            "required_fields": [
+              "amount",
+              "parties"
+            ]
+          },
+          "arrival": {
+            "label": "Arrival",
+            "required_fields": [
+              "entity",
+              "location",
+              "event_time"
+            ]
+          },
+          "departure": {
+            "label": "Departure",
+            "required_fields": [
+              "entity",
+              "location",
+              "event_time"
+            ]
+          },
+          "meeting": {
+            "label": "Meeting",
+            "required_fields": [
+              "participants",
+              "location_or_virtual"
+            ]
+          },
+          "statement": {
+            "label": "Public Statement",
+            "required_fields": [
+              "speaker",
+              "subject"
+            ]
+          },
+          "broadcast": {
+            "label": "Broadcast",
+            "required_fields": [
+              "source",
+              "channel"
+            ]
+          },
+          "publication": {
+            "label": "Publication",
+            "required_fields": [
+              "author",
+              "title"
+            ]
+          },
+          "alert": {
+            "label": "Alert / Notice",
+            "required_fields": [
+              "issuer",
+              "severity"
+            ]
+          },
+          "sighting": {
+            "label": "Sighting",
+            "required_fields": [
+              "entity",
+              "location",
+              "event_time"
+            ]
+          },
+          "transfer": {
+            "label": "Asset Transfer",
+            "required_fields": [
+              "from",
+              "to",
+              "asset"
+            ]
+          },
+          "earthquake": {
+            "label": "Earthquake",
+            "required_fields": [
+              "magnitude",
+              "location",
+              "depth"
+            ]
+          },
+          "weather": {
+            "label": "Weather Event / Alert",
+            "required_fields": [
+              "hazard_type",
+              "area",
+              "severity"
+            ]
+          },
+          "appointment": {
+            "label": "Appointment / Designation",
+            "required_fields": [
+              "person",
+              "role",
+              "appointer"
+            ]
+          },
+          "contract": {
+            "label": "Contract / Agreement",
+            "required_fields": [
+              "parties",
+              "value_or_terms"
+            ]
+          },
+          "position_report": {
+            "label": "Position Report",
+            "required_fields": [
+              "entity",
+              "coordinates",
+              "event_time"
+            ]
+          },
+          "sensor_reading": {
+            "label": "Sensor Reading",
+            "required_fields": [
+              "sensor_id",
+              "reading",
+              "event_time"
+            ]
+          }
         }
       },
-
       "topic": {
         "id": "topic",
         "label": "Topic",
         "description": "An abstract subject that signals are about",
         "subtypes": {
-          "conflict": {"label": "Armed Conflict"},
-          "operation": {"label": "Named Operation"},
-          "treaty": {"label": "Treaty / Agreement"},
-          "protocol": {"label": "Technical Protocol"},
-          "technology": {"label": "Technology Domain"},
-          "ideology": {"label": "Ideology / Doctrine"},
-          "market": {"label": "Market / Sector"},
-          "supply_chain": {"label": "Supply Chain"},
-          "program": {"label": "Government / Industry Program"},
-          "doctrine": {"label": "Military Doctrine"},
-          "investigation": {"label": "Investigation / Case"},
-          "event": {"label": "Event / Occurrence"},
-          "relationship": {"label": "Relationship / Association"},
-          "aspect": {"label": "Aspect / Facet of a Subject"},
-          "legal": {"label": "Legal Matter"},
-          "reference": {"label": "Reference / List / Timeline"},
-          "theme": {"label": "Theme / General Subject"}
+          "conflict": {
+            "label": "Armed Conflict"
+          },
+          "operation": {
+            "label": "Named Operation"
+          },
+          "treaty": {
+            "label": "Treaty / Agreement"
+          },
+          "protocol": {
+            "label": "Technical Protocol"
+          },
+          "technology": {
+            "label": "Technology Domain"
+          },
+          "ideology": {
+            "label": "Ideology / Doctrine"
+          },
+          "market": {
+            "label": "Market / Sector"
+          },
+          "supply_chain": {
+            "label": "Supply Chain"
+          },
+          "program": {
+            "label": "Government / Industry Program"
+          },
+          "doctrine": {
+            "label": "Military Doctrine"
+          },
+          "investigation": {
+            "label": "Investigation / Case"
+          },
+          "event": {
+            "label": "Event / Occurrence"
+          },
+          "relationship": {
+            "label": "Relationship / Association"
+          },
+          "aspect": {
+            "label": "Aspect / Facet of a Subject"
+          },
+          "legal": {
+            "label": "Legal Matter"
+          },
+          "reference": {
+            "label": "Reference / List / Timeline"
+          },
+          "theme": {
+            "label": "Theme / General Subject"
+          }
         }
       },
-
       "source": {
         "id": "source",
         "label": "Source",
         "description": "A producer of signals — POV and reliability live here",
         "subtypes": {
-          "outlet": {"label": "News Outlet"},
-          "feed": {"label": "RSS / Atom Feed"},
-          "account": {"label": "Social Media Account / Handle"},
-          "sensor": {"label": "Sensor"},
-          "connector": {"label": "Pull / Stream Connector"},
-          "dataset": {"label": "Dataset"},
-          "leak": {"label": "Leak / Dump"},
-          "official": {"label": "Official Government Source"},
-          "ngo": {"label": "NGO / Research Org"},
-          "blog": {"label": "Blog / Personal Site"},
-          "forum": {"label": "Forum / Aggregator"},
-          "bibliographic_index": {"label": "Bibliographic Index", "_note": "Google Books, Scholar, archive.org, Wikipedia bibliography, JSTOR — catalogs we query for reference discovery"}
+          "outlet": {
+            "label": "News Outlet"
+          },
+          "feed": {
+            "label": "RSS / Atom Feed"
+          },
+          "account": {
+            "label": "Social Media Account / Handle"
+          },
+          "sensor": {
+            "label": "Sensor"
+          },
+          "connector": {
+            "label": "Pull / Stream Connector"
+          },
+          "dataset": {
+            "label": "Dataset"
+          },
+          "leak": {
+            "label": "Leak / Dump"
+          },
+          "official": {
+            "label": "Official Government Source"
+          },
+          "ngo": {
+            "label": "NGO / Research Org"
+          },
+          "blog": {
+            "label": "Blog / Personal Site"
+          },
+          "forum": {
+            "label": "Forum / Aggregator"
+          },
+          "bibliographic_index": {
+            "label": "Bibliographic Index",
+            "_note": "Google Books, Scholar, archive.org, Wikipedia bibliography, JSTOR — catalogs we query for reference discovery"
+          }
         }
       },
-
       "document": {
         "id": "document",
         "label": "Document",
         "description": "A discrete piece of evidence. Top-level documents (article/pdf/leak_document/...) plus internal-structure subtypes (section/page/paragraph) for hierarchical-collapse on long documents like court filings and FOIA releases.",
         "subtypes": {
-          "article": {"label": "News Article"},
-          "article_live_blog": {"label": "Live Blog / Liveblog"},
-          "image": {"label": "Image"},
-          "video": {"label": "Video"},
-          "pdf": {"label": "PDF Document"},
-          "audio": {"label": "Audio / Recording"},
-          "dataset_row": {"label": "Dataset Row"},
-          "leak_document": {"label": "Leaked Document"},
-          "satellite_tile": {"label": "Satellite Imagery Tile"},
-          "transcript": {"label": "Transcript"},
-          "report": {"label": "Report / Whitepaper"},
-          "social_post": {"label": "Social Media Post"},
-          "email": {"label": "Email"},
-          "press_release": {"label": "Press Release"},
-          "court_filing": {"label": "Court Filing / Docket Entry", "identifiers": ["docket_number", "bates_range", "case_id"]},
-          "deposition": {"label": "Deposition Transcript"},
-          "exhibit": {"label": "Exhibit", "identifiers": ["exhibit_number", "case_id"]},
-          "foia_release": {"label": "FOIA Release", "identifiers": ["foia_request_id", "agency"]},
-          "declassified_doc": {"label": "Declassified Document"},
-          "flight_log": {"label": "Flight Log Page / Manifest"},
-          "section": {"label": "Document Section / Chapter", "_hierarchy": "child_of_document", "_v04_note": "internal structure"},
-          "page": {"label": "Document Page", "_hierarchy": "child_of_section_or_document", "_v04_note": "internal structure"},
-          "paragraph": {"label": "Document Paragraph", "_hierarchy": "child_of_page", "_v04_note": "internal structure; carries SimHash for boilerplate clustering"},
-          "bibliographic_reference": {"label": "Bibliographic Reference", "_v08_note": "A known reference discovered via Google Books / Scholar / Wikipedia bibliography / archive.org. May or may not be acquired as a PDF yet — acquisition_status field tracks state. When acquired, also gets a regular document_id."}
+          "article": {
+            "label": "News Article"
+          },
+          "article_live_blog": {
+            "label": "Live Blog / Liveblog"
+          },
+          "image": {
+            "label": "Image"
+          },
+          "video": {
+            "label": "Video"
+          },
+          "pdf": {
+            "label": "PDF Document"
+          },
+          "audio": {
+            "label": "Audio / Recording"
+          },
+          "dataset_row": {
+            "label": "Dataset Row"
+          },
+          "leak_document": {
+            "label": "Leaked Document"
+          },
+          "satellite_tile": {
+            "label": "Satellite Imagery Tile"
+          },
+          "transcript": {
+            "label": "Transcript"
+          },
+          "report": {
+            "label": "Report / Whitepaper"
+          },
+          "social_post": {
+            "label": "Social Media Post"
+          },
+          "email": {
+            "label": "Email"
+          },
+          "press_release": {
+            "label": "Press Release"
+          },
+          "court_filing": {
+            "label": "Court Filing / Docket Entry",
+            "identifiers": [
+              "docket_number",
+              "bates_range",
+              "case_id"
+            ]
+          },
+          "deposition": {
+            "label": "Deposition Transcript"
+          },
+          "exhibit": {
+            "label": "Exhibit",
+            "identifiers": [
+              "exhibit_number",
+              "case_id"
+            ]
+          },
+          "foia_release": {
+            "label": "FOIA Release",
+            "identifiers": [
+              "foia_request_id",
+              "agency"
+            ]
+          },
+          "declassified_doc": {
+            "label": "Declassified Document"
+          },
+          "flight_log": {
+            "label": "Flight Log Page / Manifest"
+          },
+          "section": {
+            "label": "Document Section / Chapter",
+            "_hierarchy": "child_of_document",
+            "_v04_note": "internal structure"
+          },
+          "page": {
+            "label": "Document Page",
+            "_hierarchy": "child_of_section_or_document",
+            "_v04_note": "internal structure"
+          },
+          "paragraph": {
+            "label": "Document Paragraph",
+            "_hierarchy": "child_of_page",
+            "_v04_note": "internal structure; carries SimHash for boilerplate clustering"
+          },
+          "bibliographic_reference": {
+            "label": "Bibliographic Reference",
+            "_v08_note": "A known reference discovered via Google Books / Scholar / Wikipedia bibliography / archive.org. May or may not be acquired as a PDF yet — acquisition_status field tracks state. When acquired, also gets a regular document_id."
+          }
         }
       },
-
       "mention": {
         "id": "mention",
         "label": "Mention",
         "description": "A per-occurrence reference to an entity inside a document. Distinct from the canonical entity. Bound = resolved to an entity; unresolved = surface form with no confident binding; disputed = multiple candidates with no winner. Unresolved + disputed mentions remain as first-class nodes so the analyst can navigate, inspect surrounding context, and decide deliberately rather than letting the resolver auto-merge ambiguous data.",
         "subtypes": {
-          "mention_bound":      {"label": "Bound Mention", "_note": "candidate_entity_id is set with confidence above threshold"},
-          "mention_unresolved": {"label": "Unresolved Mention", "_note": "no confident entity binding; analyst-decidable"},
-          "mention_disputed":   {"label": "Disputed Mention", "_note": "two+ candidate entities; review required"},
-          "mention_rejected":   {"label": "Rejected Mention", "_note": "analyst confirmed this is not any known entity"},
-          "mention_coref":      {"label": "Coreferent Mention", "_note": "pronoun or short-form binding to a prior named mention"}
+          "mention_bound": {
+            "label": "Bound Mention",
+            "_note": "candidate_entity_id is set with confidence above threshold"
+          },
+          "mention_unresolved": {
+            "label": "Unresolved Mention",
+            "_note": "no confident entity binding; analyst-decidable"
+          },
+          "mention_disputed": {
+            "label": "Disputed Mention",
+            "_note": "two+ candidate entities; review required"
+          },
+          "mention_rejected": {
+            "label": "Rejected Mention",
+            "_note": "analyst confirmed this is not any known entity"
+          },
+          "mention_coref": {
+            "label": "Coreferent Mention",
+            "_note": "pronoun or short-form binding to a prior named mention"
+          }
         }
       },
-
       "issue": {
         "id": "issue",
         "label": "Issue",
         "description": "First-class nodes for ambiguity that needs analyst decision. The system prefers to surface a problem AS A NODE rather than silently merge or silently discard. Each issue subtype has its own review-card UI and clears itself when the analyst makes a call.",
         "subtypes": {
-          "collapse_candidate":      {"label": "Collapse Candidate", "_note": "two entities the resolver thinks might be the same"},
-          "contradiction":           {"label": "Contradiction", "_note": "cross-document fact disagreement OR cross-source disagreement"},
-          "extraction_contradiction":{"label": "Extraction Contradiction", "_note": "OCR vs LLM-vision disagree on the same span"},
-          "type_conflict":           {"label": "Type Conflict", "_note": "two paths produced entities of different types at the same span"},
-          "redaction_mark":          {"label": "Redaction Mark", "_note": "redacted span — preserved as a node with surrounding context"},
-          "coref_ambiguous":         {"label": "Ambiguous Coreference", "_note": "pronoun resolution failed"},
-          "extraction_quality_flag": {"label": "Extraction Quality Flag", "_note": "low-confidence OCR, needs re-extraction"},
-          "cross_doc_corroboration": {"label": "Cross-Document Corroboration", "_note": "same claim asserted across multiple docs — strengthens with each new corroboration"}
+          "collapse_candidate": {
+            "label": "Collapse Candidate",
+            "_note": "two entities the resolver thinks might be the same"
+          },
+          "contradiction": {
+            "label": "Contradiction",
+            "_note": "cross-document fact disagreement OR cross-source disagreement"
+          },
+          "extraction_contradiction": {
+            "label": "Extraction Contradiction",
+            "_note": "OCR vs LLM-vision disagree on the same span"
+          },
+          "type_conflict": {
+            "label": "Type Conflict",
+            "_note": "two paths produced entities of different types at the same span"
+          },
+          "redaction_mark": {
+            "label": "Redaction Mark",
+            "_note": "redacted span — preserved as a node with surrounding context"
+          },
+          "coref_ambiguous": {
+            "label": "Ambiguous Coreference",
+            "_note": "pronoun resolution failed"
+          },
+          "extraction_quality_flag": {
+            "label": "Extraction Quality Flag",
+            "_note": "low-confidence OCR, needs re-extraction"
+          },
+          "cross_doc_corroboration": {
+            "label": "Cross-Document Corroboration",
+            "_note": "same claim asserted across multiple docs — strengthens with each new corroboration"
+          }
         }
       },
-
       "chronicle": {
         "id": "chronicle",
         "label": "Chronicle",
         "description": "A temporal anchor — summary of activity over a defined window",
         "subtypes": {
-          "day": {"label": "Daily Chronicle"},
-          "week": {"label": "Weekly Chronicle"},
-          "month": {"label": "Monthly Chronicle"},
-          "quarter": {"label": "Quarterly Chronicle"},
-          "named_period": {"label": "Named Period Chronicle"}
+          "day": {
+            "label": "Daily Chronicle"
+          },
+          "week": {
+            "label": "Weekly Chronicle"
+          },
+          "month": {
+            "label": "Monthly Chronicle"
+          },
+          "quarter": {
+            "label": "Quarterly Chronicle"
+          },
+          "named_period": {
+            "label": "Named Period Chronicle"
+          }
         },
         "_v1_note": "Only 'day' is generated automatically in v1. Other scopes are scaffolded for v2."
       },
-
       "assessment": {
         "id": "assessment",
         "label": "Assessment",
         "description": "An epistemic statement about the world",
         "subtypes": {
-          "fact": {"label": "Fact", "min_sources": 2, "demotes_on_contradiction": true},
-          "observation": {"label": "Observation", "min_sources": 1},
-          "claim": {"label": "Claim", "demotes_on_contradiction": true},
-          "hypothesis": {"label": "Hypothesis"},
-          "question": {"label": "Question"},
-          "recommendation": {"label": "Recommendation"}
+          "fact": {
+            "label": "Fact",
+            "min_sources": 2,
+            "demotes_on_contradiction": true
+          },
+          "observation": {
+            "label": "Observation",
+            "min_sources": 1
+          },
+          "claim": {
+            "label": "Claim",
+            "demotes_on_contradiction": true
+          },
+          "hypothesis": {
+            "label": "Hypothesis"
+          },
+          "question": {
+            "label": "Question"
+          },
+          "recommendation": {
+            "label": "Recommendation"
+          }
         }
       },
-
       "pattern": {
         "id": "pattern",
         "label": "Pattern",
         "description": "An emergent shape that only exists because multiple signals form it",
         "subtypes": {
-          "pattern_of_life": {"label": "Pattern of Life", "_v1_note": "scaffold only — v2"},
-          "recurring_meeting": {"label": "Recurring Meeting", "_v1_note": "scaffold only — v2"},
-          "supply_route": {"label": "Supply Route", "_v1_note": "scaffold only — v2"},
-          "shell_company_chain": {"label": "Shell Company Chain", "_v1_note": "scaffold only — v2"},
-          "communication_cluster": {"label": "Communication Cluster", "_v1_note": "scaffold only — v2"},
-          "financial_flow": {"label": "Financial Flow", "_v1_note": "scaffold only — v2"}
+          "pattern_of_life": {
+            "label": "Pattern of Life",
+            "_v1_note": "scaffold only — v2"
+          },
+          "recurring_meeting": {
+            "label": "Recurring Meeting",
+            "_v1_note": "scaffold only — v2"
+          },
+          "supply_route": {
+            "label": "Supply Route",
+            "_v1_note": "scaffold only — v2"
+          },
+          "shell_company_chain": {
+            "label": "Shell Company Chain",
+            "_v1_note": "scaffold only — v2"
+          },
+          "communication_cluster": {
+            "label": "Communication Cluster",
+            "_v1_note": "scaffold only — v2"
+          },
+          "financial_flow": {
+            "label": "Financial Flow",
+            "_v1_note": "scaffold only — v2"
+          }
         },
         "_v1_status": "Pattern category is defined in v1 but pattern detection workers are deferred to v2. The category exists so the schema doesn't need to change when patterns are built."
       },
-
       "form": {
         "id": "form",
         "label": "Form",
         "description": "A surface form (token / lemma) that has appeared in at least one document. Every distinct form gets a stable base-60 address so the corpus-wide collapse decisions made on that form aggregate into an empirical, addressable, reversible language model. A form is NOT an entity — it is the physical text. The form's `language_form_distributions` view shows which addresses (concepts, instances, language pack categories) it has resolved to across the corpus, and with what frequency. This closes the resolution cycle: prior occurrences sharpen the prior for future occurrences. See docs/BASE60_CYCLICAL_LANGUAGE_MODEL_2026-05-14.md.",
         "subtypes": {
-          "noun":          {"label": "Common Noun", "_note": "common nouns; often resolve to a concept of the same name"},
-          "verb":          {"label": "Verb", "_note": "may resolve to event concepts (arrive→event.arrival)"},
-          "adjective":     {"label": "Adjective", "_note": "modifier; rarely an entity by itself"},
-          "function_word": {"label": "Function Word", "_note": "pronouns, determiners, prepositions, discourse markers (this/one/it/however)"},
-          "initialism":    {"label": "Initialism / Acronym", "_note": "uppercase short forms (PBL, VA, PMP) — high disambiguation value"},
-          "number_word":   {"label": "Written Number", "_note": "one, first, twenty — numeric pack handles digits"},
-          "name_token":    {"label": "Name Token / Particle", "_note": "partial-name fragments (San, Van, Mc, de la) awaiting completion"},
-          "unknown":       {"label": "Unclassified Form", "_note": "parking lot before first classification — every new form starts here"},
-          "lemma":         {"label": "Lemma / Lexical Stem", "_note": "orthographic stem that groups surface variants (AIRCRAFT, aircraft, Aircraft, aircrafts → lemma:aircraft). Lemma carries canonical_concept_address — the dictionary edge from lexicon to ontology."}
+          "noun": {
+            "label": "Common Noun",
+            "_note": "common nouns; often resolve to a concept of the same name"
+          },
+          "verb": {
+            "label": "Verb",
+            "_note": "may resolve to event concepts (arrive→event.arrival)"
+          },
+          "adjective": {
+            "label": "Adjective",
+            "_note": "modifier; rarely an entity by itself"
+          },
+          "function_word": {
+            "label": "Function Word",
+            "_note": "pronouns, determiners, prepositions, discourse markers (this/one/it/however)"
+          },
+          "initialism": {
+            "label": "Initialism / Acronym",
+            "_note": "uppercase short forms (PBL, VA, PMP) — high disambiguation value"
+          },
+          "number_word": {
+            "label": "Written Number",
+            "_note": "one, first, twenty — numeric pack handles digits"
+          },
+          "name_token": {
+            "label": "Name Token / Particle",
+            "_note": "partial-name fragments (San, Van, Mc, de la) awaiting completion"
+          },
+          "unknown": {
+            "label": "Unclassified Form",
+            "_note": "parking lot before first classification — every new form starts here"
+          },
+          "lemma": {
+            "label": "Lemma / Lexical Stem",
+            "_note": "orthographic stem that groups surface variants (AIRCRAFT, aircraft, Aircraft, aircrafts → lemma:aircraft). Lemma carries canonical_concept_address — the dictionary edge from lexicon to ontology."
+          }
         }
       },
-
       "definition": {
         "id": "definition",
         "label": "Definition",
         "description": "First-class addressable schema. Until v0.7.0 the system's edge vocabulary, type-pair contracts, and concept-instance rules lived only as JSON config — they had no base-60 address, no evidence count, no reversibility. Promoting them to a node category makes the cyclical model self-validating: every definition can be challenged by evidence, every governance rule has provenance, and corpus-discovered patterns can propose new definitions through the `definition_candidates` view. See docs/BASE60_CYCLICAL_LANGUAGE_MODEL_2026-05-14.md.",
         "subtypes": {
-          "edge_type_def":      {"label": "Edge Type Definition", "_note": "one row per declared edge type from edgevocab; carries source_types × target_types contract"},
-          "type_pair_def":      {"label": "Type Pair Definition", "_note": "(src_canonical_type, edge_type, dst_canonical_type) triple promoted from edge_type_observations once sufficient evidence accumulates"},
-          "concept_link_def":   {"label": "Concept Link Definition", "_note": "rule that links instances of canonical_type=X to the concept entity for X"},
-          "lemma_concept_def":  {"label": "Lemma → Concept Definition", "_note": "the dictionary edge from lexicon (lemma) to ontology (concept). Foundation of cross-ENKI shared meaning."},
-          "constraint_def":     {"label": "Constraint Definition", "_note": "any other governance rule (validation, completeness, collapse policy) lifted to addressable status"}
+          "edge_type_def": {
+            "label": "Edge Type Definition",
+            "_note": "one row per declared edge type from edgevocab; carries source_types × target_types contract"
+          },
+          "type_pair_def": {
+            "label": "Type Pair Definition",
+            "_note": "(src_canonical_type, edge_type, dst_canonical_type) triple promoted from edge_type_observations once sufficient evidence accumulates"
+          },
+          "concept_link_def": {
+            "label": "Concept Link Definition",
+            "_note": "rule that links instances of canonical_type=X to the concept entity for X"
+          },
+          "lemma_concept_def": {
+            "label": "Lemma → Concept Definition",
+            "_note": "the dictionary edge from lexicon (lemma) to ontology (concept). Foundation of cross-ENKI shared meaning."
+          },
+          "constraint_def": {
+            "label": "Constraint Definition",
+            "_note": "any other governance rule (validation, completeness, collapse policy) lifted to addressable status"
+          }
         }
       },
-
       "library": {
         "id": "library",
         "label": "Library",
         "description": "A topic-anchored addressable subgraph that tracks (a) bibliographic references discovered for the topic, (b) documents acquired and ingested, (c) entities + facts extracted, (d) adjacent libraries linked via shared references or entities. Libraries are the navigation layer of the cyclical model: every library has a base-60 address (13.X.Y), every member belongs by reference, and libraries cascade — one library's discovered references become another library's starting set. The OSINT-discovery loop runs INSIDE a library: discover refs via bibliographic indices → acquire as PDFs → ingest → extract facts → harvest cited references → repeat with bounded depth. See conversation 2026-05-14.",
         "subtypes": {
-          "entity_library":       {"label": "Entity Library", "_note": "focal: one entity (Alex Acme library, Khufu library)"},
-          "relationship_library": {"label": "Relationship Library", "_note": "focal: an edge between two entities (Acme↔Vale library)"},
-          "event_library":        {"label": "Event Library", "_note": "focal: a specific event (Roswell Incident library, 1995-09-12 flight library)"},
-          "topic_library":        {"label": "Topic Library", "_note": "focal: an abstract topic (Project Blue Book library, Pyramid Construction library)"},
-          "corpus_library":       {"label": "Corpus Library", "_note": "focal: a dataset or document collection (example_corpus library)"}
+          "entity_library": {
+            "label": "Entity Library",
+            "_note": "focal: one entity (Alex Acme library, Khufu library)"
+          },
+          "relationship_library": {
+            "label": "Relationship Library",
+            "_note": "focal: an edge between two entities (Acme↔Vale library)"
+          },
+          "event_library": {
+            "label": "Event Library",
+            "_note": "focal: a specific event (Roswell Incident library, 1995-09-12 flight library)"
+          },
+          "topic_library": {
+            "label": "Topic Library",
+            "_note": "focal: an abstract topic (Project Blue Book library, Pyramid Construction library)"
+          },
+          "corpus_library": {
+            "label": "Corpus Library",
+            "_note": "focal: a dataset or document collection (example_corpus library)"
+          }
         }
       }
     },
-
     "collapse_key_rules": {
       "_description": "Per-subtype rules the GDU gateway uses to compute the collapse_key for new nodes. Each rule lists a `composition` array — the components hashed together to produce the key — and optional `normalize_rules`. A subtype with no rule entry falls back to the default {composition: ['title']} behavior. Phase 2.3 promotes these rules from hardcoded `lower(title)` so the collapse footprint can be tuned without code changes.",
-
       "event.strike": {
-        "composition": ["subtype", "top_n_entity_ids:3", "time_bucket_hours:24"],
+        "composition": [
+          "subtype",
+          "top_n_entity_ids:3",
+          "time_bucket_hours:24"
+        ],
         "hash_with": "sha256"
       },
       "event.meeting": {
-        "composition": ["subtype", "hash_of_participants", "date"]
+        "composition": [
+          "subtype",
+          "hash_of_participants",
+          "date"
+        ]
       },
       "event.publication": {
-        "composition": ["subtype", "source_url"],
+        "composition": [
+          "subtype",
+          "source_url"
+        ],
         "_note": "publications never collapse — every URL is its own node"
       },
       "event.broadcast": {
-        "composition": ["subtype", "source", "channel", "date"]
+        "composition": [
+          "subtype",
+          "source",
+          "channel",
+          "date"
+        ]
       },
       "event.statement": {
-        "composition": ["subtype", "speaker_normalized", "date"]
+        "composition": [
+          "subtype",
+          "speaker_normalized",
+          "date"
+        ]
       },
       "event.transaction": {
-        "composition": ["subtype", "parties_sorted_hash", "amount_bucket", "date"]
+        "composition": [
+          "subtype",
+          "parties_sorted_hash",
+          "amount_bucket",
+          "date"
+        ]
       },
       "event.earthquake": {
-        "composition": ["subtype", "lat_round:1", "lng_round:1", "date", "magnitude_bucket:0.5"]
+        "composition": [
+          "subtype",
+          "lat_round:1",
+          "lng_round:1",
+          "date",
+          "magnitude_bucket:0.5"
+        ]
       },
       "event.weather": {
-        "composition": ["subtype", "hazard_type", "area", "date"]
+        "composition": [
+          "subtype",
+          "hazard_type",
+          "area",
+          "date"
+        ]
       },
       "event.appointment": {
-        "composition": ["subtype", "person_normalized", "role", "appointer_normalized"]
+        "composition": [
+          "subtype",
+          "person_normalized",
+          "role",
+          "appointer_normalized"
+        ]
       },
       "event.contract": {
-        "composition": ["subtype", "parties_sorted_hash", "date"]
+        "composition": [
+          "subtype",
+          "parties_sorted_hash",
+          "date"
+        ]
       },
       "event.sighting": {
-        "composition": ["subtype", "entity_normalized", "lat_round:1", "lng_round:1", "time_bucket_hours:24"]
+        "composition": [
+          "subtype",
+          "entity_normalized",
+          "lat_round:1",
+          "lng_round:1",
+          "time_bucket_hours:24"
+        ]
       },
-
       "document.article": {
-        "composition": ["source_url"],
+        "composition": [
+          "source_url"
+        ],
         "_note": "every URL is its own document — never collapses"
       },
       "document.report": {
-        "composition": ["source_url"]
+        "composition": [
+          "source_url"
+        ]
       },
       "document.imagery": {
-        "composition": ["source_url"]
+        "composition": [
+          "source_url"
+        ]
       },
-
       "entity.person": {
-        "composition": ["identifier_hash_if_present", "normalized_name"],
-        "normalize_rules": ["strip_titles", "strip_suffixes", "reject_iso_codes", "reject_qids", "case_fold"]
+        "composition": [
+          "identifier_hash_if_present",
+          "normalized_name"
+        ],
+        "normalize_rules": [
+          "strip_titles",
+          "strip_suffixes",
+          "reject_iso_codes",
+          "reject_qids",
+          "case_fold"
+        ]
       },
       "entity.organization": {
-        "composition": ["identifier_hash_if_present", "normalized_name"],
-        "normalize_rules": ["strip_legal_suffixes", "reject_iso_codes", "case_fold"]
+        "composition": [
+          "identifier_hash_if_present",
+          "normalized_name"
+        ],
+        "normalize_rules": [
+          "strip_legal_suffixes",
+          "reject_iso_codes",
+          "case_fold"
+        ]
       },
       "entity.vessel": {
-        "composition": ["identifier_hash_if_present", "normalized_name"],
+        "composition": [
+          "identifier_hash_if_present",
+          "normalized_name"
+        ],
         "_note": "MMSI/IMO when present beats name"
       },
       "entity.aircraft": {
-        "composition": ["identifier_hash_if_present", "normalized_name"]
+        "composition": [
+          "identifier_hash_if_present",
+          "normalized_name"
+        ]
       },
       "entity.vehicle": {
-        "composition": ["identifier_hash_if_present", "normalized_name"]
+        "composition": [
+          "identifier_hash_if_present",
+          "normalized_name"
+        ]
       },
       "entity.facility": {
-        "composition": ["identifier_hash_if_present", "normalized_name"]
+        "composition": [
+          "identifier_hash_if_present",
+          "normalized_name"
+        ]
       },
       "entity.account": {
-        "composition": ["platform", "handle"]
+        "composition": [
+          "platform",
+          "handle"
+        ]
       },
       "entity.device": {
-        "composition": ["identifier_hash_if_present", "normalized_name"]
+        "composition": [
+          "identifier_hash_if_present",
+          "normalized_name"
+        ]
       },
       "entity.unit": {
-        "composition": ["normalized_name", "parent_command"]
+        "composition": [
+          "normalized_name",
+          "parent_command"
+        ]
       },
       "entity.weapon_system": {
-        "composition": ["normalized_name", "manufacturer"]
+        "composition": [
+          "normalized_name",
+          "manufacturer"
+        ]
       },
       "entity.product": {
-        "composition": ["normalized_name", "vendor"]
+        "composition": [
+          "normalized_name",
+          "vendor"
+        ]
       },
       "entity.government_agency": {
-        "composition": ["normalized_name", "jurisdiction"]
+        "composition": [
+          "normalized_name",
+          "jurisdiction"
+        ]
       },
       "entity.mass_media": {
-        "composition": ["domain"]
+        "composition": [
+          "domain"
+        ]
       },
-
       "place.country": {
-        "composition": ["iso_3166_alpha3"],
+        "composition": [
+          "iso_3166_alpha3"
+        ],
         "_note": "ISO alpha-3 is the strict canonical for countries"
       },
       "place.admin_region": {
-        "composition": ["normalized_name", "parent_country"]
+        "composition": [
+          "normalized_name",
+          "parent_country"
+        ]
       },
       "place.city": {
-        "composition": ["normalized_name", "country"]
+        "composition": [
+          "normalized_name",
+          "country"
+        ]
       },
       "place.poi": {
-        "composition": ["normalized_name", "lat_round:3", "lng_round:3"]
+        "composition": [
+          "normalized_name",
+          "lat_round:3",
+          "lng_round:3"
+        ]
       },
       "place.facility_location": {
-        "composition": ["facility_name", "lat_round:3", "lng_round:3"]
+        "composition": [
+          "facility_name",
+          "lat_round:3",
+          "lng_round:3"
+        ]
       },
       "place.coordinate_cluster": {
-        "composition": ["bbox_normalized"]
+        "composition": [
+          "bbox_normalized"
+        ]
       },
       "place.named_area": {
-        "composition": ["normalized_name"]
+        "composition": [
+          "normalized_name"
+        ]
       },
       "place.maritime_area": {
-        "composition": ["normalized_name"]
+        "composition": [
+          "normalized_name"
+        ]
       },
       "place.airspace": {
-        "composition": ["airspace_id"]
+        "composition": [
+          "airspace_id"
+        ]
       },
-
       "topic.conflict": {
-        "composition": ["subtype", "normalized_name"]
+        "composition": [
+          "subtype",
+          "normalized_name"
+        ]
       },
       "topic.operation": {
-        "composition": ["subtype", "normalized_name"]
+        "composition": [
+          "subtype",
+          "normalized_name"
+        ]
       },
       "topic.treaty": {
-        "composition": ["subtype", "normalized_name"]
+        "composition": [
+          "subtype",
+          "normalized_name"
+        ]
       },
-
       "source.feed": {
-        "composition": ["domain", "path"]
+        "composition": [
+          "domain",
+          "path"
+        ]
       },
       "chronicle.daily": {
-        "composition": ["date", "tenant_id"]
+        "composition": [
+          "date",
+          "tenant_id"
+        ]
       },
       "assessment.fact": {
-        "composition": ["subject_node_id", "predicate", "object_normalized"]
+        "composition": [
+          "subject_node_id",
+          "predicate",
+          "object_normalized"
+        ]
       },
       "assessment.claim": {
-        "composition": ["subject_node_id", "predicate", "object_normalized"]
+        "composition": [
+          "subject_node_id",
+          "predicate",
+          "object_normalized"
+        ]
       }
     }
   },

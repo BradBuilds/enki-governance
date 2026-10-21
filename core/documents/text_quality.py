@@ -136,6 +136,63 @@ def chunk_quality(cur, text: str, *, min_dict_ratio: float = 0.5,
     return verdict(is_real, dict_ratio, has_pred, structure_ok, reason, func_ratio)
 
 
+_CAPS_BOUNDARY = re.compile(r'[.!?:;]["\')\]]?\s+|\n+')
+
+
+def caps_ratio(raw: str) -> float:
+    """Fraction of alphabetic tokens capitalised where prose would not capitalise:
+    ALL-CAPS anywhere, or Title-Case away from a sentence start.
+
+    Language-general, not domain knowledge — prose flows in lower case, while
+    headers, captions and case captions are set in caps or title case.
+    `lexical_tokens` already applies exactly this test per TOKEN ("ALL-CAPS label →
+    skip"); this aggregates it to a span verdict.
+
+    Measured separation on a legal-deposition corpus: real prose 0.00-0.33 (an
+    all-caps speaker label followed by prose, "<NAME>: I know they never met.", is
+    the 0.33 — correctly kept because the rest of the span is a sentence); document
+    furniture 0.50-1.00 (a court caption line measures 1.00).
+    """
+    starts = set()
+    starts.add(0)
+    for m in _CAPS_BOUNDARY.finditer(raw or ""):
+        starts.add(m.end())
+    toks = [(m.group(0), m.start()) for m in _WORD.finditer(raw or "")
+            if len(m.group(0)) > 1]
+    if not toks:
+        return 0.0
+    n = sum(1 for t, pos in toks
+            if t.isupper() or (t[0].isupper() and pos not in starts))
+    return n / len(toks)
+
+
+def span_quality(cur, span: str, *, max_caps_ratio: float = 0.60,
+                 tenant: str = "default") -> dict:
+    """Grade a STATEMENT'S SOURCE SPAN — stricter than the paragraph gate.
+
+    The paragraph gate already works: every statement in the corpus comes from a
+    `prose`, non-boilerplate paragraph that passed `chunk_quality`. The furniture
+    that reaches the fact layer is not the paragraph — it is the SENTENCE that
+    `_canonical_span()` carved out of it: page stamps, docket headers, captions and
+    splitter fragments embedded inside otherwise-good prose.
+
+    So the span is graded on the paragraph signals PLUS capitalisation, which is
+    what distinguishes a caption from a claim. Deliberately a separate function:
+    `chunk_quality`/`is_real_sentence` gates the sense layer and is covered by
+    `validate_language_layer.py`'s 25 assertions — this must not change that
+    behaviour.
+
+    Returns the chunk verdict extended with `caps_ratio` and `span_ok`.
+    """
+    v = chunk_quality(cur, span, tenant=tenant)
+    cr = caps_ratio(span)
+    v["caps_ratio"] = round(cr, 3)
+    v["span_ok"] = bool(v.get("is_real_sentence")) and cr < max_caps_ratio
+    if not v["span_ok"] and v.get("is_real_sentence") and cr >= max_caps_ratio:
+        v["reason"] = f"header_or_caption(caps={cr:.2f})"
+    return v
+
+
 def band(v: dict) -> str:
     """Route a verdict into one of four lanes — the human stays out of the
     confident ones:

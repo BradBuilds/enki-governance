@@ -173,11 +173,22 @@ def _build_event_envelope(
         "temporal": {"event_time": ev.get("event_time")},
         "spatial": {"place_text": ev.get("place_text") or []},
         "entities": entities,
-        "evidence": {"epistemic_type": "observation"},
+        # The extractor's confidence belongs on the CONFIDENCE axis. It used to be
+        # written as {"completeness": {"score": confidence, "tier": "bronze"}},
+        # which conflated two different questions — how much we know about the
+        # event versus how sure we are it happened — and put the answer to the
+        # second in the column that answers the first. On the production node that
+        # left 47,540 event rows carrying the tier "bronze", a value no pack
+        # declares and the governed ladder (stub/partial/solid/verified) has no
+        # slot for. Completeness is now computed from the governed slot specs by
+        # core.gdu.completeness and is not asserted here.
+        "evidence": {
+            "epistemic_type": "observation",
+            "confidence": float(ev.get("confidence") or 0.6),
+        },
         "relationships": {
             "derived_from": [parent_article_node_id] if parent_article_node_id else [],
         },
-        "completeness": {"score": float(ev.get("confidence") or 0.6), "tier": "bronze"},
     }
 
 

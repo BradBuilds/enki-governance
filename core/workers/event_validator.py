@@ -295,18 +295,20 @@ def _validate_event(node: dict, tenant_id: str):
                     "validated_at": now.isoformat(),
                 })
 
+                # completeness_score/_tier deliberately not written — see
+                # core/gdu/completeness.py. The inline weights here (0.4 base,
+                # +0.1/+0.15/+0.25/+0.05) were a second, ungoverned slot spec
+                # living in Python, with its own tier thresholds that disagreed
+                # with the pack ladder — which is how event 0.90 came to read
+                # 'bronze' while event 0.83 read 'solid'.
                 cur.execute("""
                     UPDATE knowledge_nodes
                     SET envelope = %s,
                         enrichment_status = 'complete',
-                        completeness_score = %s,
-                        completeness_tier = %s,
                         updated_at = NOW()
                     WHERE node_id = %s AND tenant_id = %s
                 """, (
                     json.dumps(envelope),
-                    round(min(completeness_score, 1.0), 2),
-                    completeness_tier,
                     node_id, tenant_id,
                 ))
 

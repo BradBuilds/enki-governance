@@ -708,8 +708,44 @@ def _apply_extraction_envelope(*, envelope: dict, document_id: int,
                                 producer_node_id,
                             ),
                         )
-                        entity_id_map[pid] = cur.fetchone()[0]
+                        _new_eid = cur.fetchone()[0]
+                        entity_id_map[pid] = _new_eid
                         rows_inserted["entities_new"] += 1
+
+                        # Attestation (C3) — fires trg_mirror_entity, minting a
+                        # knowledge_node. Same reasoning as library_subscriber:
+                        # accepting a peer's entity IS an admission decision by
+                        # this node, and which producer it came from cannot be
+                        # reconstructed after the fact.
+                        from core.gdu.attest import attest_admission
+                        attest_admission(
+                            conn, tenant_id,
+                            operation="admit",
+                            writer="workers.extraction_subscriber.pull_extractions",
+                            checks_run={
+                                # Producer payload. The verification gates above
+                                # this block screen the EXTRACTION, not the
+                                # (category, subtype) against the local pack.
+                                "boundary": False,
+                                "vocab": False,
+                                # Producer's address, carried across rather than
+                                # minted from this node's sequence.
+                                "address": False,
+                                # ckey lookup above is the dedup decision.
+                                "collapse": True,
+                            },
+                            node_id=f"entity:{_new_eid}", entity_id=_new_eid,
+                            category="entity", subtype=etype,
+                            base60=e.get("base60_address"),
+                            input_type=etype, mapped_type=etype,
+                            reason=f"federation pull from {producer_node_id}"[:500],
+                            lineage_stamp={
+                                "active_set_version":
+                                    (e.get("admitted_under_active_set") or "pulled_v1")[:32],
+                                "pack_versions": e.get("admitted_under_pack_versions") or {},
+                                "pulled_from_node_id": producer_node_id,
+                            },
+                        )
 
                 # ─── Mentions → document_mentions + entity_mentions ───
                 for m in mentions_payload:

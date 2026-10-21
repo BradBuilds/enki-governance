@@ -109,12 +109,15 @@ def _project_card(row: dict) -> dict:
         _safe_str(p) for p in _safe_list(spatial, "place_text") if p
     ]
 
-    # Score — must be a number 0..1
+    # Score — a number 0..1, or None when nothing has scored this envelope.
+    # It used to fall back to 0.0, which reports "measured, and empty" for a
+    # thing that was never measured. build_empty() now seeds null deliberately,
+    # so this branch is reached by every freshly built envelope.
     raw_score = completeness.get("score")
-    if isinstance(raw_score, (int, float)):
+    if isinstance(raw_score, (int, float)) and not isinstance(raw_score, bool):
         score_val = float(raw_score)
     else:
-        score_val = 0.0
+        score_val = None
 
     return {
         "node_id":      _safe_str(row.get("node_id"), default="unknown"),
@@ -135,7 +138,9 @@ def _project_card(row: dict) -> dict:
         "entity_count": len(_safe_list(env, "entities")),
         "completeness": {
             "score":        score_val,
-            "tier":         _safe_str(completeness.get("tier"), default="stub"),
+            # None, not "stub" — an unscored envelope has no tier, and naming
+            # one asserts a measurement nothing made.
+            "tier":         _safe_str(completeness.get("tier"), default=None),
             "filled_slots": int(completeness.get("filled_slots") or 0),
             "total_slots":  int(completeness.get("total_slots") or 0),
             "gaps":         [_safe_str(g) for g in _safe_list(completeness, "gaps")],

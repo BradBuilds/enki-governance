@@ -515,33 +515,39 @@ def _update_entity_dossier(
 
 
 def _update_completeness_scores(tenant_id: str, dsn: Optional[str] = None):
-    """Recompute completeness scores for entities that were enriched."""
+    """Rescore recently-enriched entities through the governed scorer.
+
+    This used to be a THIRD slot specification, written in SQL: its own weights
+    (0.15 canonical_name, 0.20 identifiers, 0.10 aliases, 0.10 embedding,
+    signal_count/10 capped at 0.20, plus per-identifier bonuses) and its own tier
+    ladder (0.75 / 0.50 / 0.25) which did not match the governed one
+    (0.90 / 0.70 / 0.40). An entity scored here read 'verified' at 0.75 while the
+    pack ladder called 0.75 'solid'.
+
+    The intent — "rescore what we just enriched" — is right and is kept. Only the
+    scoring is delegated, so completeness has one definition
+    (completenessvocab.slot_specs, via core.gdu.completeness) and one ladder.
+    """
+    from core.gdu.completeness import score_node
+
     with get_connection(dsn) as conn:
         with conn.cursor() as cur:
             cur.execute("""
-                UPDATE entities SET
-                    completeness_score = (
-                        CASE WHEN canonical_name IS NOT NULL AND canonical_name != '' THEN 0.15 ELSE 0 END +
-                        CASE WHEN identifiers IS NOT NULL AND identifiers != '{}'::jsonb THEN 0.20 ELSE 0 END +
-                        CASE WHEN aliases IS NOT NULL AND array_length(aliases, 1) > 0 THEN 0.10 ELSE 0 END +
-                        CASE WHEN embedding IS NOT NULL THEN 0.10 ELSE 0 END +
-                        LEAST(signal_count::numeric / 10.0, 0.20) +
-                        CASE WHEN (identifiers->>'nationality') IS NOT NULL THEN 0.05 ELSE 0 END +
-                        CASE WHEN (identifiers->>'current_role') IS NOT NULL THEN 0.10 ELSE 0 END +
-                        CASE WHEN (identifiers->>'date_of_birth') IS NOT NULL THEN 0.10 ELSE 0 END
-                    ),
-                    completeness_tier = CASE
-                        WHEN completeness_score >= 0.75 THEN 'verified'
-                        WHEN completeness_score >= 0.50 THEN 'solid'
-                        WHEN completeness_score >= 0.25 THEN 'partial'
-                        ELSE 'stub'
-                    END,
-                    updated_at = NOW()
-                WHERE tenant_id = %s
-                  AND entity_id IN (
-                      SELECT DISTINCT entity_id FROM entity_enrichment_queue
-                      WHERE tenant_id = %s AND status = 'complete'
-                        AND completed_at > NOW() - INTERVAL '1 hour'
-                  )
+                SELECT DISTINCT kn.node_id
+                  FROM knowledge_nodes kn
+                 WHERE kn.tenant_id = %s
+                   AND kn.master_entity_id IN (
+                       SELECT DISTINCT entity_id FROM entity_enrichment_queue
+                        WHERE tenant_id = %s AND status = 'complete'
+                          AND completed_at > NOW() - INTERVAL '1 hour'
+                   )
             """, (tenant_id, tenant_id))
-        conn.commit()
+            node_ids = [r[0] for r in cur.fetchall()]
+
+    # Outside the cursor: score_node opens its own connection per node and
+    # commits each independently, so one bad node cannot roll back the rest.
+    for node_id in node_ids:
+        try:
+            score_node(node_id, tenant_id, dsn)
+        except Exception as e:
+            log.warning("completeness rescore failed for %s: %s", node_id, e)

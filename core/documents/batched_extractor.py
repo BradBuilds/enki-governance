@@ -131,7 +131,21 @@ RULES:
 - date_iso = ISO 8601 if stated, else null.
 - location_text = place name as text, else null.
 - modality ∈ asserted/hedged/quoted/denied.
-- polarity ∈ affirmative/negative.
+- polarity ∈ affirmative/negative. Polarity is ONLY about whether the
+  sentence asserts the predicate HOLDS between subject and object, or
+  asserts that it does NOT hold. It is not about negative words appearing
+  anywhere in the sentence, and it is not about the verb's meaning.
+    "The court denied the motion."
+        -> predicate=deny, polarity=AFFIRMATIVE. The court DID deny.
+           A negative-meaning verb is still an affirmative claim.
+    "The respondent has not filed any complaint since 2015."
+        -> predicate=file, polarity=NEGATIVE. The filing did not happen.
+    "The author wrote, 'this isn't much.'"
+        -> predicate=write, polarity=AFFIRMATIVE. The author DID write.
+           The "isn't" is inside quoted content and negates nothing
+           about the writing.
+  If the negation is not attached to the predicate you extracted,
+  polarity is affirmative.
 
 Return ONE JSON object:
   {{"results": [
@@ -465,39 +479,59 @@ def _call_statement_batch(batch, mentions_by_paragraph, llm, retries: int = 2):
     return None
 
 
-def _persist_statements_from_results(results, batch, document_id, tenant_id, stats):
+def _persist_statements_from_results(results, batch, document_id, tenant_id, stats,
+                                     profile_id=None):
     """Persist one batch's parsed results. raw_text is the CANONICAL source span
-    (Fix 1), not the LLM's quote."""
+    (Fix 1), not the LLM's quote.
+
+    EVERY exit path is counted, and the counts are persisted by the caller.
+    The accounting identity is
+
+        llm_statements_seen
+            == statements_persisted + sum(dropped_*) + persist_errors
+
+    which is the only way to know how much of what the extractor produced
+    never reaches the database at all. Three of these counters already
+    existed and were computed into a dict that was returned and discarded;
+    two paths (a subject that resolves to no mention, and a malformed
+    statement object) were dropping silently with no counter at all.
+    """
     for ridx, result in enumerate(results):
         if ridx >= len(batch):
-            break
+            stats["results_over_batch"] += 1
+            continue
         paragraph_id, page_id, para_text = batch[ridx]
         stmts = result.get("statements") or []
         if not isinstance(stmts, list):
+            stats["results_malformed"] += 1
             continue
         for s in stmts:
+            stats["llm_statements_seen"] += 1
             if not isinstance(s, dict):
+                stats["dropped_malformed"] += 1
                 continue
             subject = (s.get("subject") or "").strip()
             verb = (s.get("predicate_verb") or "").strip().lower()
             obj = str(s.get("object") or "").strip()
             if not subject or not verb:
+                stats["dropped_malformed"] += 1
                 continue
             if verb in _FORBIDDEN_PREDICATES:
-                stats["dropped_copula"] = stats.get("dropped_copula", 0) + 1
+                stats["dropped_copula"] += 1
                 continue
             if not obj:
-                stats["dropped_no_object"] = stats.get("dropped_no_object", 0) + 1
+                stats["dropped_no_object"] += 1
                 continue
             subj_ref = _find_mention_for_surface(paragraph_id, subject)
             if not subj_ref:
+                stats["dropped_subject_unresolved"] += 1
                 continue
             obj_ref = _find_mention_for_surface(paragraph_id, obj) if obj else None
             obj_mention_id, obj_entity_id = (obj_ref or (None, None))
             has_date = bool(s.get("date_iso"))
             has_loc = bool(s.get("location_text"))
             if obj_mention_id is None and not has_date and not has_loc:
-                stats["dropped_object_unresolved"] = stats.get("dropped_object_unresolved", 0) + 1
+                stats["dropped_object_unresolved"] += 1
                 continue
             try:
                 _persist_statement(
@@ -514,10 +548,90 @@ def _persist_statements_from_results(results, batch, document_id, tenant_id, sta
                     confidence=float(s.get("confidence") or 0.6),
                     predicate_verb_surface=verb,
                     predicate_lemma=_lemmatize_verb(verb),
+                    extraction_profile_id=profile_id,
+                    object_text=obj,
                 )
                 stats["statements_persisted"] += 1
             except Exception:
+                stats["persist_errors"] += 1
                 log.exception("persist failed for paragraph %d", paragraph_id)
+
+
+def _statement_profile_id(llm) -> Optional[str]:
+    """The extraction regime that is about to write these statements.
+
+    The version is the CONTENT of _BATCH_STATEMENT_PROMPT, so editing the
+    prompt mints a new profile with no bookkeeping — a prompt change can
+    never be mistaken for the regime it replaced, which is the whole point
+    of stamping.
+
+    Returns None rather than a guess when the model cannot be identified.
+    NULL says "unknown" honestly; a fallback label would say something
+    false about which model ran, and that is the error this fixes.
+    """
+    try:
+        from core.extraction.profile_registry import (
+            get_or_create_profile, prompt_version_for,
+        )
+        model_name = getattr(llm, "model", None) or getattr(llm, "model_name", None)
+        if not model_name:
+            return None
+        profile_id = get_or_create_profile(
+            model_name=model_name,
+            prompt_template="statement_extraction_batched",
+            prompt_version=prompt_version_for(_BATCH_STATEMENT_PROMPT),
+            capabilities=["statement_extraction"],
+            notes="Batched statement extraction. prompt_version is sha256 "
+                  "of the prompt text — it moves whenever the prompt does.",
+        )
+        # The registry falls back to 'legacy_v1' on a DB error. Stamping that
+        # would file this run under a different, older regime.
+        return None if profile_id == "legacy_v1" else profile_id
+    except Exception:
+        log.exception("profile derivation failed; statements will be unstamped")
+        return None
+
+
+def _persist_extraction_run(document_id, tenant_id, profile_id, stats) -> None:
+    """Record what this run produced and what it dropped.
+
+    Non-fatal by construction: the statements are already committed, and
+    losing the accounting row must never look like losing the statements.
+    """
+    try:
+        with get_connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    INSERT INTO statement_extraction_runs
+                        (tenant_id, document_id, extraction_profile_id,
+                         paragraphs, batches, batch_failures, llm_calls,
+                         skipped_garbage, paragraphs_in_failed_batches,
+                         llm_statements_seen, statements_persisted,
+                         dropped_malformed, dropped_copula, dropped_no_object,
+                         dropped_subject_unresolved, dropped_object_unresolved,
+                         persist_errors, results_over_batch, results_malformed,
+                         elapsed_s)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+                            %s, %s, %s, %s, %s, %s, %s, %s)
+                    """,
+                    (tenant_id, document_id, profile_id,
+                     stats.get("paragraphs"), stats.get("batches"),
+                     stats.get("batch_failures"), stats.get("llm_calls"),
+                     stats.get("skipped_garbage"),
+                     stats.get("paragraphs_in_failed_batches"),
+                     stats.get("llm_statements_seen"),
+                     stats.get("statements_persisted"),
+                     stats.get("dropped_malformed"), stats.get("dropped_copula"),
+                     stats.get("dropped_no_object"),
+                     stats.get("dropped_subject_unresolved"),
+                     stats.get("dropped_object_unresolved"),
+                     stats.get("persist_errors"), stats.get("results_over_batch"),
+                     stats.get("results_malformed"), stats.get("elapsed_s")),
+                )
+            conn.commit()
+    except Exception:
+        log.exception("could not persist extraction run for document %d", document_id)
 
 
 def extract_statements_batched(
@@ -578,8 +692,19 @@ def extract_statements_batched(
                     {"surface_form": surface, "suggested_type": stype}
                 )
 
+    profile_id = _statement_profile_id(llm)
     stats = {"paragraphs": len(paragraphs), "statements_persisted": 0,
              "batches": 0, "batch_failures": 0, "llm_calls": 0,
+             "extraction_profile_id": profile_id,
+             # Everything the extractor produced, and every way it can be
+             # lost before it reaches the database. See the identity in
+             # _persist_statements_from_results.
+             "llm_statements_seen": 0,
+             "dropped_malformed": 0, "dropped_copula": 0,
+             "dropped_no_object": 0, "dropped_subject_unresolved": 0,
+             "dropped_object_unresolved": 0, "persist_errors": 0,
+             "results_over_batch": 0, "results_malformed": 0,
+             "paragraphs_in_failed_batches": 0,
              "started_at": time.time()}
 
     for i in range(0, len(paragraphs), batch_size):
@@ -588,8 +713,13 @@ def extract_statements_batched(
         stats["llm_calls"] += 1
         results = _call_statement_batch(batch, mentions_by_paragraph, llm)
         if results is not None:
-            _persist_statements_from_results(results, batch, document_id, tenant_id, stats)
+            _persist_statements_from_results(results, batch, document_id, tenant_id,
+                                             stats, profile_id=profile_id)
         else:
+            # A failed batch loses an unknowable number of statements, but the
+            # paragraphs it covered ARE knowable — record them so the loss has
+            # a size rather than being invisible.
+            stats["paragraphs_in_failed_batches"] += len(batch)
             # Do NOT split on failure: splitting changes the LLM's context
             # (whole-batch vs per-paragraph) and, because failures are transient,
             # that made statements non-deterministic run-to-run. Keep the batch
@@ -599,6 +729,7 @@ def extract_statements_batched(
             stats["batch_failures"] += 1
     stats["skipped_garbage"] = skipped_garbage
     stats["elapsed_s"] = round(time.time() - stats.pop("started_at"), 1)
+    _persist_extraction_run(document_id, tenant_id, profile_id, stats)
     return stats
 
 

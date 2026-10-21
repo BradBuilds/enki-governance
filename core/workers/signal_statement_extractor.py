@@ -133,11 +133,23 @@ def _persist_signal_statement(
     confidence: float,
     predicate_verb_surface: str,
     predicate_lemma: str,
+    object_text: Optional[str] = None,
 ) -> int:
     """Write a statement row sourced from an RSS signal (document_id NULL,
-    signal_rid set)."""
+    signal_rid set).
+
+    Carried the same misfile as the document path — location_text into the
+    surrounding_text column — and is fixed the same way (migration 137).
+    """
     with get_connection() as conn:
         with conn.cursor() as cur:
+            location_entity_id = None
+            if location_text:
+                try:
+                    from core.documents.place_observations import agreed_entity_id
+                    location_entity_id, _reason = agreed_entity_id(cur, location_text)
+                except Exception:
+                    log.exception("place observation failed for %r", location_text)
             cur.execute(
                 """
                 INSERT INTO statements
@@ -148,11 +160,12 @@ def _persist_signal_statement(
                      modality, confidence, polarity,
                      extraction_method, event_time,
                      predicate_verb_surface, predicate_lemma,
-                     surrounding_text, validation_status,
+                     location_text, event_location_entity_id,
+                     object_text, validation_status,
                      signal_rid)
                 VALUES (%s, NULL, NULL, NULL, %s, %s, %s, %s, %s, %s, %s,
-                        %s, %s, %s, 'llm_v1_signal', %s, %s, %s, %s, 'pending',
-                        %s)
+                        %s, %s, %s, 'llm_v1_signal', %s, %s, %s, %s, %s, %s,
+                        'pending', %s)
                 RETURNING statement_id
                 """,
                 (tenant_id,
@@ -162,7 +175,8 @@ def _persist_signal_statement(
                  modality, confidence, polarity,
                  event_time,
                  predicate_verb_surface, predicate_lemma,
-                 location_text, signal_rid),
+                 location_text, location_entity_id,
+                 object_text, signal_rid),
             )
             stmt_id = cur.fetchone()[0]
         conn.commit()
@@ -302,6 +316,7 @@ def extract_from_signal(*, signal_rid: int, tenant_id: str, llm: Any) -> dict:
                 confidence=c["confidence"],
                 predicate_verb_surface=c["verb"],
                 predicate_lemma=_lemmatize_verb(c["verb"]),
+                object_text=c.get("object") or None,
             )
             persisted += 1
         except Exception:

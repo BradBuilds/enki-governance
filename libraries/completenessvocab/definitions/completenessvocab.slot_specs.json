@@ -1,11 +1,10 @@
 {
   "id": "completeness.vocab.slot_specs",
   "type": "custom",
-  "version": "0.1.1",
+  "version": "0.4.0",
   "description": "Per-node-type slot specifications. For each (node_type, subtype) pair, declares which envelope slots are required, optional, or not applicable. The scorer uses these to compute completeness.",
   "content": {
     "_doc": "Each spec lists required_slots (counted in denominator) and not_applicable_slots (excluded from denominator). Optional slots are neither required nor excluded — they bonus the score if present but don't penalize if missing.",
-
     "specs": {
       "document.article": {
         "required_slots": [
@@ -29,13 +28,25 @@
           "media.thumbnail",
           "identity.byline_raw",
           "summary.body_original",
-          "summary.feed_summary"
+          "summary.feed_summary",
+          "identifiers.doi",
+          "identifiers.isbn"
         ],
         "not_applicable_slots": [
           "spatial.coordinates"
-        ]
+        ],
+        "decisive_slots": [
+          "identifiers.doi",
+          "identifiers.isbn"
+        ],
+        "slot_keys": {
+          "_doc": "Accepted key spellings inside the `identifiers` jsonb for a slot. Defaults to the last path segment when absent. Exists because the SAME identifier arrives under several spellings and a flat key list silently loses the ones it does not name: measured 2026-08-09, 383 entities carry `wikidata_qid` and NEITHER `qid` nor `wikidata_id`, so their Wikidata QID was invisible to the decisive check. 184 of them are people."
+        },
+        "_source_basis": {
+          "identifiers.doi": "DOI — incumbent decisive set",
+          "identifiers.isbn": "ISBN — incumbent decisive set"
+        }
       },
-
       "document.social_post": {
         "required_slots": [
           "identity.title_display",
@@ -57,7 +68,6 @@
           "spatial.coordinates"
         ]
       },
-
       "event.earthquake": {
         "required_slots": [
           "identity.title_display",
@@ -83,7 +93,6 @@
           "identity.byline_raw"
         ]
       },
-
       "event.weather": {
         "required_slots": [
           "identity.title_display",
@@ -108,7 +117,6 @@
           "summary.quotes"
         ]
       },
-
       "event.strike": {
         "required_slots": [
           "identity.title_display",
@@ -130,7 +138,6 @@
           "media.thumbnail"
         ]
       },
-
       "event.contract": {
         "required_slots": [
           "identity.title_display",
@@ -147,28 +154,52 @@
           "media.thumbnail"
         ]
       },
-
       "entity.person": {
         "required_slots": [
           "identity.canonical_name",
           "subtype",
           "evidence.confidence",
-          "evidence.source_count"
+          "evidence.source_count",
+          "body"
         ],
         "optional_slots": [
           "identity.aliases",
           "spatial.place_text",
           "media.thumbnail",
-          "summary.key_facts"
+          "summary.key_facts",
+          "identifiers.fec_id",
+          "identifiers.candidate_id",
+          "identifiers.qid"
         ],
         "not_applicable_slots": [
           "temporal.event_time",
           "summary.body_original",
           "summary.quotes",
           "spatial.coordinates"
-        ]
+        ],
+        "decisive_slots": [
+          "identifiers.fec_id",
+          "identifiers.candidate_id",
+          "identifiers.qid"
+        ],
+        "slot_keys": {
+          "_doc": "Accepted key spellings inside the `identifiers` jsonb for a slot. Defaults to the last path segment when absent. Exists because the SAME identifier arrives under several spellings and a flat key list silently loses the ones it does not name: measured 2026-08-09, 383 entities carry `wikidata_qid` and NEITHER `qid` nor `wikidata_id`, so their Wikidata QID was invisible to the decisive check. 184 of them are people.",
+          "identifiers.qid": [
+            "qid",
+            "wikidata_id",
+            "wikidata_qid"
+          ]
+        },
+        "_source_basis": {
+          "identifiers.fec_id": "FEC candidate id — measured on 465 persons",
+          "identifiers.candidate_id": "FEC candidate_id — incumbent decisive set",
+          "identifiers.qid": "Wikidata QID — measured on 184 persons (wikidata_qid) + 27 (wikidata_id)",
+          "body": "contacts physical-description columns (operator-entered); the body is a concept of its own so a description can exist unbound to an identity"
+        },
+        "slot_targets": {
+          "body": "entity.person_body"
+        }
       },
-
       "entity.organization": {
         "required_slots": [
           "identity.canonical_name",
@@ -180,33 +211,116 @@
           "identity.aliases",
           "spatial.place_text",
           "media.thumbnail",
-          "summary.key_facts"
+          "summary.key_facts",
+          "identifiers.ein",
+          "identifiers.cik",
+          "identifiers.lei",
+          "identifiers.uei",
+          "identifiers.cage",
+          "identifiers.duns",
+          "identifiers.company_number",
+          "identifiers.ticker",
+          "identifiers.committee_id",
+          "identifiers.permid",
+          "identifiers.qid"
         ],
         "not_applicable_slots": [
           "temporal.event_time",
           "summary.body_original",
           "summary.quotes"
-        ]
+        ],
+        "decisive_slots": [
+          "identifiers.ein",
+          "identifiers.cik",
+          "identifiers.lei",
+          "identifiers.uei",
+          "identifiers.cage",
+          "identifiers.duns",
+          "identifiers.company_number",
+          "identifiers.ticker",
+          "identifiers.committee_id",
+          "identifiers.permid",
+          "identifiers.qid"
+        ],
+        "slot_keys": {
+          "_doc": "Accepted key spellings inside the `identifiers` jsonb for a slot. Defaults to the last path segment when absent. Exists because the SAME identifier arrives under several spellings and a flat key list silently loses the ones it does not name: measured 2026-08-09, 383 entities carry `wikidata_qid` and NEITHER `qid` nor `wikidata_id`, so their Wikidata QID was invisible to the decisive check. 184 of them are people.",
+          "identifiers.qid": [
+            "qid",
+            "wikidata_id",
+            "wikidata_qid"
+          ]
+        },
+        "_source_basis": {
+          "identifiers.ein": "IRS EIN — measured on 4,044 organizations",
+          "identifiers.cik": "SEC CIK — measured on 205",
+          "identifiers.ticker": "exchange ticker — measured on 205",
+          "identifiers.committee_id": "FEC committee id — measured on 1,049",
+          "identifiers.uei": "SAM.gov UEI — measured on 133",
+          "identifiers.qid": "Wikidata QID — measured on 167 (qid) + 74 (wikidata_qid) + 49 (wikidata_id)",
+          "identifiers.lei": "GLEIF LEI — incumbent decisive set; 0 rows on node-A today",
+          "identifiers.cage": "CAGE code — incumbent decisive set; 0 rows on node-A today",
+          "identifiers.duns": "D-U-N-S — incumbent decisive set; 0 rows on node-A today",
+          "identifiers.company_number": "OpenCorporates company_number — incumbent set; 0 rows today",
+          "identifiers.permid": "Refinitiv PermID — incumbent set; 0 rows today"
+        }
       },
-
       "entity.vessel": {
+        "_doc": "CONSTITUTIVE DECOMPOSITION (0.2.0). The previous spec required canonical_name, subtype and evidence.confidence — envelope hygiene, which measured whether a card was well-formed, not whether we know what the vessel IS. These slots are what a vessel is made of. Expect fill rates near zero: that is the honest reading, not a regression.",
+        "_source_basis": {
+          "_doc": "Every required slot below is derived from a source that ACTUALLY PUBLISHES it. Nothing here is a model's belief about what a vessel has. If a slot cannot be traced to a row in this table it does not belong in the spec.",
+          "identifiers.imo": "OFAC SDN remarks; assets.vessel_imo",
+          "identifiers.mmsi": "assets.vessel_mmsi",
+          "identifiers.call_sign": "OFAC SDN sdn.csv field 5 (call_sign); assets.vessel_callsign",
+          "registration.flag_state": "OFAC SDN field 9 (vess_flag); assets.vessel_flag_state",
+          "ownership.owner": "OFAC SDN field 10 (vess_owner); assets.vessel_owner",
+          "classification.hull_type": "OFAC SDN field 6 (vess_type); assets.vessel_type",
+          "dimensions.gross_tonnage": "OFAC SDN fields 7-8 (tonnage, grt)",
+          "_excluded_operator": "The drafting plan listed `operator`, and it is DELIBERATELY ABSENT. Neither OFAC SDN nor the assets table publishes it. Owner and operator genuinely differ in shipping (bareboat charter), so the concept is real — but including a slot no connected source publishes would be imported judgement, which this project forbids. Add it when a source that publishes it (Equasis, IHS) is connected.",
+          "identifiers.qid": "Wikidata QID — measured on 5 vessels (wikidata_qid)",
+          "_decisive_note": "ONLY identifiers.imo and identifiers.qid are decisive. mmsi and call_sign are declared constitutive slots but are NOT decisive: both are REASSIGNED on reflagging, so neither settles identity without a clock — and there is no utterance clock until Phase 5. Treating them as decisive would merge two different hulls that held the same MMSI in different decades. The incumbent frozenset gets this right by omission; here it is on purpose."
+        },
+        "_temporal_note": "These slots split by lifetime, which Phase 4 will need. HULL-PERMANENT: identifiers.imo, classification.hull_type, dimensions.gross_tonnage — an IMO number survives renaming, reflagging and sale. REGISTRATION-CURRENT: identifiers.mmsi, identifiers.call_sign, registration.flag_state, ownership.owner — all reassigned on reflagging, so all are interval-valued and none is true 'now' without a clock.",
         "required_slots": [
           "identity.canonical_name",
           "subtype",
-          "evidence.confidence"
+          "identifiers.imo",
+          "identifiers.mmsi",
+          "identifiers.call_sign",
+          "registration.flag_state",
+          "ownership.owner",
+          "classification.hull_type",
+          "dimensions.gross_tonnage"
         ],
         "optional_slots": [
           "identity.aliases",
+          "evidence.confidence",
           "spatial.coordinates",
-          "media.thumbnail"
+          "media.thumbnail",
+          "identifiers.qid"
         ],
         "not_applicable_slots": [
           "summary.body_original",
           "summary.quotes",
           "summary.feed_summary"
-        ]
+        ],
+        "slot_targets": {
+          "_doc": "A slot that points at another node declares the node type it points at. Declared ONLY where a target genuinely exists: an IMO number and a tonnage are scalars, and inventing a node type for them would fabricate structure. Consumed by nothing yet — Phase 3 reads it to type the enrichment queue entry.",
+          "registration.flag_state": "place.country",
+          "ownership.owner": "entity"
+        },
+        "decisive_slots": [
+          "identifiers.imo",
+          "identifiers.qid"
+        ],
+        "slot_keys": {
+          "_doc": "Accepted key spellings inside the `identifiers` jsonb for a slot. Defaults to the last path segment when absent. Exists because the SAME identifier arrives under several spellings and a flat key list silently loses the ones it does not name: measured 2026-08-09, 383 entities carry `wikidata_qid` and NEITHER `qid` nor `wikidata_id`, so their Wikidata QID was invisible to the decisive check. 184 of them are people.",
+          "identifiers.qid": [
+            "qid",
+            "wikidata_id",
+            "wikidata_qid"
+          ]
+        }
       },
-
       "place.country": {
         "required_slots": [
           "identity.canonical_name",
@@ -214,16 +328,39 @@
         ],
         "optional_slots": [
           "spatial.bbox",
-          "spatial.coordinates"
+          "spatial.coordinates",
+          "identifiers.iso3",
+          "identifiers.geonames_id",
+          "identifiers.osm_id",
+          "identifiers.qid"
         ],
         "not_applicable_slots": [
           "summary.body_original",
           "summary.feed_summary",
           "entities",
           "evidence.epistemic_type"
-        ]
+        ],
+        "decisive_slots": [
+          "identifiers.iso3",
+          "identifiers.geonames_id",
+          "identifiers.osm_id",
+          "identifiers.qid"
+        ],
+        "slot_keys": {
+          "_doc": "Accepted key spellings inside the `identifiers` jsonb for a slot. Defaults to the last path segment when absent. Exists because the SAME identifier arrives under several spellings and a flat key list silently loses the ones it does not name: measured 2026-08-09, 383 entities carry `wikidata_qid` and NEITHER `qid` nor `wikidata_id`, so their Wikidata QID was invisible to the decisive check. 184 of them are people.",
+          "identifiers.qid": [
+            "qid",
+            "wikidata_id",
+            "wikidata_qid"
+          ]
+        },
+        "_source_basis": {
+          "identifiers.iso3": "ISO 3166-1 alpha-3 — measured on 26 countries",
+          "identifiers.geonames_id": "GeoNames id — incumbent decisive set",
+          "identifiers.osm_id": "OpenStreetMap id — incumbent decisive set",
+          "identifiers.qid": "Wikidata QID — measured on 41 (qid) + 26 (wikidata_id) + 7 (wikidata_qid)"
+        }
       },
-
       "place.city": {
         "required_slots": [
           "identity.canonical_name",
@@ -233,15 +370,35 @@
         ],
         "optional_slots": [
           "identity.aliases",
-          "media.thumbnail"
+          "media.thumbnail",
+          "identifiers.geonames_id",
+          "identifiers.osm_id",
+          "identifiers.qid"
         ],
         "not_applicable_slots": [
           "summary.body_original",
           "summary.feed_summary",
           "evidence.epistemic_type"
-        ]
+        ],
+        "decisive_slots": [
+          "identifiers.geonames_id",
+          "identifiers.osm_id",
+          "identifiers.qid"
+        ],
+        "slot_keys": {
+          "_doc": "Accepted key spellings inside the `identifiers` jsonb for a slot. Defaults to the last path segment when absent. Exists because the SAME identifier arrives under several spellings and a flat key list silently loses the ones it does not name: measured 2026-08-09, 383 entities carry `wikidata_qid` and NEITHER `qid` nor `wikidata_id`, so their Wikidata QID was invisible to the decisive check. 184 of them are people.",
+          "identifiers.qid": [
+            "qid",
+            "wikidata_id",
+            "wikidata_qid"
+          ]
+        },
+        "_source_basis": {
+          "identifiers.geonames_id": "GeoNames id — incumbent decisive set",
+          "identifiers.osm_id": "OpenStreetMap id — incumbent decisive set",
+          "identifiers.qid": "Wikidata QID — measured on 12 cities (wikidata_qid)"
+        }
       },
-
       "topic.conflict": {
         "required_slots": [
           "identity.canonical_name",
@@ -260,7 +417,6 @@
           "summary.quotes"
         ]
       },
-
       "source.outlet": {
         "required_slots": [
           "identity.canonical_name",
@@ -280,7 +436,6 @@
           "evidence.epistemic_type"
         ]
       },
-
       "chronicle.day": {
         "required_slots": [
           "identity.title_display",
@@ -303,7 +458,6 @@
           "source.discussion_url"
         ]
       },
-
       "assessment.fact": {
         "required_slots": [
           "identity.title_display",
@@ -329,7 +483,6 @@
           "evidence.contradictions": "0"
         }
       },
-
       "assessment.claim": {
         "required_slots": [
           "identity.title_display",
@@ -345,7 +498,6 @@
           "spatial.place_text"
         ]
       },
-
       "assessment.question": {
         "_doc": "A research inquiry — user highlighted a term and we investigated it. 'solid' when we have a classification + narrative + at least one resolved entity or reality-checked source. 'verified' adds Wikidata hit with confidence >= 0.7.",
         "required_slots": [
@@ -368,7 +520,6 @@
           "spatial.coordinates"
         ]
       },
-
       "assessment.observation": {
         "required_slots": [
           "identity.title_display",
@@ -382,9 +533,44 @@
           "source.outlet_name",
           "temporal.event_time"
         ]
+      },
+      "entity.person_body": {
+        "_doc": "CONSTITUTIVE DECOMPOSITION of a physical description. Expect fill rates at or near zero: the columns these derive from exist and hold 0 rows. That is the honest reading, not a regression.",
+        "_source_basis": {
+          "_doc": "Derived from the `contacts` table's physical-description columns (schema_v2.sql). THIS IS AN OPERATOR-ENTERED SOURCE, NOT A REGISTRY — the same status the vessel spec gave the `assets` table, and labelled here for the same reason: so nobody later mistakes it for registry-grade evidence. A registry-grade basis would be a published physical-descriptor schema; when one is connected, these slots should be re-derived from it.",
+          "eye_color": "contacts.eye_color (operator-entered)",
+          "hair_color": "contacts.hair_color (operator-entered)",
+          "skin_tone": "contacts.skin_tone (operator-entered)",
+          "height_cm": "contacts.height_cm (operator-entered)",
+          "weight_kg": "contacts.weight_kg (operator-entered)",
+          "build": "contacts.build (operator-entered)",
+          "distinguishing_marks": "contacts.distinguishing_marks (operator-entered)"
+        },
+        "_confirmation_note": "EVERY slot here requires_confirmation. These are claims about the body of a real person, where a wrong guess is a harm rather than a bad datapoint. They are never auto-queued for research and never auto-filled: an operator enters or confirms them, or they stay empty. The gap stays VISIBLE so the incompleteness is honest — what is refused is the automated filling, not the admission that we do not know.",
+        "required_slots": [
+          "eye_color",
+          "hair_color",
+          "skin_tone",
+          "height_cm",
+          "weight_kg",
+          "build",
+          "distinguishing_marks"
+        ],
+        "optional_slots": [],
+        "requires_confirmation": [
+          "eye_color",
+          "hair_color",
+          "skin_tone",
+          "height_cm",
+          "weight_kg",
+          "build",
+          "distinguishing_marks"
+        ],
+        "slot_targets": {},
+        "dimension": "physical",
+        "_dimension_note": "This spec IS a dimension. Its slots are bare leaf names (eye_color, build) rather than family-prefixed paths, because they are already scoped by the node type — `person_body.eye_color` needs no `physical.` prefix to say what it is. Declaring the dimension once at the spec is the honest form; adding each leaf name to the dimension vocabulary's prefix list would be encoding one subtype's field names into the shared vocabulary."
       }
     },
-
     "default_spec": {
       "_doc": "Used when a (node_type, subtype) is not in the specs map. Conservative — requires only identity and source.",
       "required_slots": [
@@ -393,12 +579,17 @@
         "evidence.epistemic_type",
         "evidence.background_relevance"
       ]
+    },
+    "_unassigned_decisive": {
+      "_doc": "Decisive keys from the incumbent flat set whose subtype has no spec yet. PARKED, NOT REJECTED — they stay in all_decisive_keys() so nothing this move touches gets weaker, and they are listed here so the gap is visible rather than silently dropped. Each leaves this list when its subtype declares a decomposition.",
+      "icao": "aircraft (226 entities on node-A) — no entity.aircraft spec exists yet"
     }
   },
   "metadata": {
     "created": "2026-04-10T00:00:00Z",
     "author": "ENKI System",
-    "_design_basis": "Slot specs derived from corpus pressure test in tests/scenarios/envelope_pressuretest/. The USGS earthquake spec correctly excludes entities (geological events have no actor entities); the news article spec correctly requires entities and topics."
+    "_design_basis": "Slot specs derived from corpus pressure test in tests/scenarios/envelope_pressuretest/. The USGS earthquake spec correctly excludes entities (geological events have no actor entities); the news article spec correctly requires entities and topics.",
+    "_change_0_2_0": "entity.vessel rewritten from envelope hygiene to constitutive decomposition (Phase 1.1, 2026-08-06). Slots derived from what OFAC SDN and the assets table actually publish; see _source_basis in the spec. `operator` deliberately excluded — no connected source publishes it. Fill rate for entity.vessel is expected to collapse; that is the intended, honest outcome."
   },
   "dependencies": []
 }

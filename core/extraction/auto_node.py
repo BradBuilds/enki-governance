@@ -169,7 +169,12 @@ def upsert_knowledge_node(
     base60_addr = None
     base60_cat = None
     base60_sub = None
-    if node_type and subtype and is_valid_node_type(node_type, subtype):
+    # Captured rather than left inline in the `if` because it is attested below.
+    # Note what it does NOT do: a False here does not stop the write, it only
+    # skips addressing. So the honest attestation is "vocabulary was checked and
+    # the answer was X", not "this row is vocabulary-valid".
+    vocab_ok = bool(node_type and subtype and is_valid_node_type(node_type, subtype))
+    if vocab_ok:
         try:
             from core.gdu.address import assign_address
             from core.gdu.pack_registry import get_category_index, get_subtype_index
@@ -230,8 +235,10 @@ def upsert_knowledge_node(
             envelope_version   = EXCLUDED.envelope_version,
             node_type          = EXCLUDED.node_type,
             subtype            = EXCLUDED.subtype,
-            completeness_score = EXCLUDED.completeness_score,
-            completeness_tier  = EXCLUDED.completeness_tier,
+            -- completeness_* intentionally NOT carried across on conflict.
+            -- EXCLUDED holds NULL now that the writer no longer asserts a score,
+            -- so copying it would erase a governed score every time a node is
+            -- re-upserted. Completeness is owned by core/gdu/completeness.py.
             master_entity_id   = COALESCE(EXCLUDED.master_entity_id, knowledge_nodes.master_entity_id),
             master_topic_id    = COALESCE(EXCLUDED.master_topic_id,  knowledge_nodes.master_topic_id),
             base60_address     = COALESCE(knowledge_nodes.base60_address, EXCLUDED.base60_address),
@@ -242,7 +249,7 @@ def upsert_knowledge_node(
             gdu_canonical                = EXCLUDED.gdu_canonical,
             ldu_t_id                     = COALESCE(EXCLUDED.ldu_t_id, knowledge_nodes.ldu_t_id),
             updated_at                   = NOW()
-        RETURNING (xmax = 0) AS inserted
+        RETURNING (xmax = 0) AS inserted, base60_address
     """
     params = {
         "node_id": node_id,
@@ -263,8 +270,16 @@ def upsert_knowledge_node(
         "envelope_version": envelope.get("envelope_version") or "v1",
         "node_type": envelope.get("node_type") or "source",
         "subtype": envelope.get("subtype"),
-        "completeness_score": float(get_path(envelope, "completeness.score") or 0.0),
-        "completeness_tier": get_path(envelope, "completeness.tier") or "empty",
+        # Completeness is NOT asserted by the writer any more. It is computed
+        # from the governed slot specs (core.gdu.completeness) and stamped with
+        # the packs + scorer that produced it, so a score always says which
+        # standard it was measured against. Passing the envelope's own claim
+        # through here is what produced the tier 'empty' — a string no pack
+        # declares. NULL means not yet scored, which is true at insert time;
+        # scripts/reconcile_completeness.py scores it regardless of which of the
+        # thirteen insert paths created the row.
+        "completeness_score": None,
+        "completeness_tier": None,
         "entity_id": entity_id,
         "topic_id": topic_id,
         "base60_address": base60_addr,
@@ -292,6 +307,62 @@ def upsert_knowledge_node(
             cur.execute(full_sql, params)
             row = cur.fetchone()
             inserted = bool(row[0]) if row else False
+            # The address the row ACTUALLY holds, not the one just minted.
+            # assign_address() runs before every upsert including re-upserts, but
+            # ON CONFLICT keeps the incumbent address
+            # (COALESCE(knowledge_nodes.base60_address, EXCLUDED...)). So on a
+            # re-upsert `base60_addr` is a freshly minted address that was
+            # discarded, and attesting it would record a coordinate this node has
+            # never occupied — a false statement, permanently, inside a hash
+            # chain. Read back what was stored.
+            #
+            # (That the discarded address was minted at all is a pre-existing
+            # sequence leak in this function, not introduced here: every
+            # re-upsert burns a base-60 address. Worth fixing, but it belongs to
+            # the collapse/derived half, not to attestation.)
+            stored_base60 = row[1] if row and len(row) > 1 else base60_addr
+
+        # ─── Attestation (C3) ──────────────────────────────────────────
+        # This writer produced 100% of the ungoverned writes: measured on node-A
+        # 2026-08-06, all 2,687 nodes created in 24h without a gdu_admission_log
+        # record carried envelope + depth + concepts + admitted_under_active_set,
+        # a column signature only this function writes. The static count is
+        # "fourteen files INSERT INTO knowledge_nodes"; the runtime count was one.
+        #
+        # It is NOT rerouted through gateway.admit_node — the comment above
+        # explains why that would mint a second row at a different node_id, and
+        # collapse behaviour is the DERIVED half that decision C deliberately
+        # left alone. Only the attestation moves here.
+        #
+        # Inside the transaction, before the commit, deliberately. Completeness
+        # is scored after commit (gateway._score_admitted) because a lost score
+        # is recoverable by the reconciler; an admission record is not
+        # recoverable by anything, so a node that commits without one is
+        # permanently unattested. This is the one place where failing the write
+        # is better than losing the record.
+        from core.gdu.attest import attest_admission
+        type_path = f"{node_type}.{subtype}" if subtype else str(node_type)
+        attest_admission(
+            conn, tenant_id,
+            operation="admit" if inserted else "collapse",
+            writer="extraction.auto_node.upsert_knowledge_node",
+            checks_run={
+                # No LDU-W -> GDU boundary check on this path: the envelope
+                # arrives already typed and validate_llm_output is never called.
+                "boundary": False,
+                "vocab": vocab_ok,
+                "address": stored_base60 is not None,
+                # ON CONFLICT (node_id) on an envelope-derived deterministic
+                # node_id — the same dedup mechanism as gateway.admit_edge.
+                "collapse": True,
+            },
+            node_id=node_id, entity_id=entity_id,
+            category=node_type, subtype=subtype, base60=stored_base60,
+            input_type=type_path, mapped_type=type_path,
+            reason=("new node" if inserted else "re-upsert onto existing node_id"),
+            lineage_stamp=stamp,
+        )
+
         conn.commit()
         return {
             "status": "ok",

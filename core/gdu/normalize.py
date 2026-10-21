@@ -108,6 +108,46 @@ def _ensure_compiled() -> None:
             log.warning("reject_pattern %s invalid regex: %s", rid, e)
 
 
+def fold_surface(name: str) -> str:
+    """The role-INDEPENDENT part of normalization: unicode, whitespace, case.
+
+    Split out of `normalize()` because two different questions were being answered
+    by one function, and the smaller one has a second consumer.
+
+      `normalize()`   — "what is the canonical NAME here", which strips titles and
+                        legal suffixes and therefore depends on the role. `Dr.
+                        John Smith` -> `john smith` only if you know it is a
+                        person.
+      `fold_surface()` — "are these the same SURFACE FORM", which does not. `ASUS`,
+                        `Asus` and `asus` are one spelling under any role.
+
+    `form_nodes.surface_form_normalized` wants the second. It is the key that
+    decides form identity, so folding it with a role-dependent rule would make a
+    form's identity depend on what the caller happened to think it was.
+
+    Idempotent by construction — every step is a projection — so a caller that has
+    already run `normalize()` can pass its output through this unchanged.
+
+    Reads the SAME pack keys `normalize()` does (`unicode_form`, `trim`,
+    `collapse_whitespace`, `case_fold`). A local `.lower()` would be a second owner
+    of a rule the pack declares, which is the defect this codebase has now paid for
+    with twelve completeness writers, two hash-chain implementations and a
+    decisive-key list beside the decomposition it duplicated.
+    """
+    if not name:
+        return ""
+    _load_rules()
+    rules = _RULES or {}
+    s = unicodedata.normalize(rules.get("unicode_form") or "NFC", name)
+    if rules.get("trim", True):
+        s = s.strip()
+    if rules.get("collapse_whitespace", True):
+        s = re.sub(r"\s+", " ", s)
+    if rules.get("case_fold", True):
+        s = s.lower()
+    return s
+
+
 def normalize(name: str, *, role: str = "name") -> NormalizeResult:
     """Normalize an entity name per entityvocab.normalize_rules.
 
@@ -128,22 +168,16 @@ def normalize(name: str, *, role: str = "name") -> NormalizeResult:
     rules = _RULES or {}
     applied: list[str] = []
 
-    # 1. Unicode normalize
-    form = (rules.get("unicode_form") or "NFC")
-    s = unicodedata.normalize(form, name)
-    applied.append(f"unicode:{form}")
-
-    # 2. Trim + collapse whitespace
+    # 1-3. Unicode, whitespace, case — delegated to `fold_surface` so the form
+    # layer and the name layer cannot drift apart on what "the same spelling"
+    # means. `applied` still itemises the steps for audit.
+    s = fold_surface(name)
+    applied.append(f"unicode:{rules.get('unicode_form') or 'NFC'}")
     if rules.get("trim", True):
-        s = s.strip()
         applied.append("trim")
     if rules.get("collapse_whitespace", True):
-        s = re.sub(r"\s+", " ", s)
         applied.append("collapse_whitespace")
-
-    # 3. Case fold
     if rules.get("case_fold", True):
-        s = s.lower()
         applied.append("case_fold")
 
     # 3.5 EARLY reject pass — runs BEFORE strip_prefixes so position-title

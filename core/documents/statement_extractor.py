@@ -59,7 +59,15 @@ CRITICAL RULES:
     * date_iso — when the asserted action happened (ISO 8601 if available, null if not stated)
     * location_text — where the action occurred (place name as text, null if not stated)
     * modality — "asserted" | "hedged" | "quoted" | "denied"
-    * polarity — "affirmative" | "negative"
+    * polarity — "affirmative" | "negative". ONLY about whether the sentence
+      asserts the predicate HOLDS between subject and object, or asserts that it
+      does NOT. Not about negative words appearing anywhere, and not about the
+      verb's meaning:
+        "The court denied the motion."         -> deny,  AFFIRMATIVE (it did deny)
+        "Respondent has not filed since 2015." -> file,  NEGATIVE    (no filing)
+        "The author wrote, 'this isn't much.'" -> write, AFFIRMATIVE (they did write)
+      If the negation is not attached to the predicate you extracted, polarity
+      is affirmative.
     * confidence — 0.0..1.0 (your own confidence the claim is in the text)
 
 Return ONLY a JSON object of the shape:
@@ -269,9 +277,26 @@ def _persist_statement(
     predicate_verb_surface: str,
     predicate_lemma: str,
     extraction_profile_id: Optional[str] = None,
+    object_text: Optional[str] = None,
 ) -> int:
+    """Persist one statement.
+
+    `location_text` goes in its OWN column. It used to be passed into
+    `surrounding_text` — a field named for sentence context — which stranded
+    3,256 place names, left `event_location_entity_id` NULL on every row, and
+    made the UI render a bare place name as if it were the surrounding
+    sentence. `object_text` is kept even when the object resolved to no
+    mention, so the claim can be re-resolved when the substrate improves.
+    """
     with get_connection() as conn:
         with conn.cursor() as cur:
+            location_entity_id = None
+            if location_text:
+                try:
+                    from core.documents.place_observations import agreed_entity_id
+                    location_entity_id, _reason = agreed_entity_id(cur, location_text)
+                except Exception:
+                    log.exception("place observation failed for %r", location_text)
             cur.execute(
                 """
                 INSERT INTO statements
@@ -282,10 +307,12 @@ def _persist_statement(
                      modality, confidence, polarity,
                      extraction_method, event_time,
                      predicate_verb_surface, predicate_lemma,
-                     surrounding_text, validation_status,
+                     location_text, event_location_entity_id,
+                     object_text, validation_status,
                      extraction_profile_id)
                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-                        %s, %s, %s, 'llm_v1', %s, %s, %s, %s, 'pending', %s)
+                        %s, %s, %s, 'llm_v1', %s, %s, %s, %s, %s, %s,
+                        'pending', %s)
                 RETURNING statement_id
                 """,
                 (tenant_id, document_id, page_id, paragraph_id,
@@ -295,7 +322,8 @@ def _persist_statement(
                  modality, confidence, polarity,
                  event_time,
                  predicate_verb_surface, predicate_lemma,
-                 location_text,
+                 location_text, location_entity_id,
+                 object_text,
                  extraction_profile_id),
             )
             stmt_id = cur.fetchone()[0]

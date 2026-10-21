@@ -170,14 +170,19 @@ async def get_facets(
                     for r in cur.fetchall():
                         enrichment[r[0]] = {
                             "conflict_count": r[1] or 0,
-                            "tier": r[2] or "stub",
+                            # NULL tier stays NULL. `or "stub"` here converted the
+                            # scorer's abstention into a governed tier at read
+                            # time — the same defect migration 142 removed from the
+                            # mirror triggers, one layer up. A node nothing has
+                            # scored is not a stub; "stub" is a measurement.
+                            "tier": r[2],
                             "verified": r[3] is not None,
                         }
                     for entries in result.values():
                         for e in entries:
                             ent = enrichment.get(e["label"], {})
                             e["conflict_count"] = ent.get("conflict_count", 0)
-                            e["tier"] = ent.get("tier", "stub")
+                            e["tier"] = ent.get("tier")
                             e["verified"] = ent.get("verified", False)
 
     except Exception as e:
@@ -802,7 +807,8 @@ async def get_snapshot_network(
                     for r in cur.fetchall():
                         if r[0] in nodes_set:
                             nodes_set[r[0]]["conflict_count"] = r[1] or 0
-                            nodes_set[r[0]]["tier"] = r[2] or "stub"
+                            # NULL stays NULL — see the note above.
+                            nodes_set[r[0]]["tier"] = r[2]
                             nodes_set[r[0]]["verified"] = r[4] is not None
                             nodes_set[r[0]]["last_researched"] = r[3].isoformat() if r[3] else None
 

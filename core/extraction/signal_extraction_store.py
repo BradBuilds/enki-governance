@@ -193,7 +193,7 @@ def upsert_signal_extraction(
     sig_type_trunc = (signal_type or "")[:128]
     node_id_trunc = (node_id or "")[:255]
     outlet_trunc = (source_outlet or "")[:255] if source_outlet else None
-    tier_trunc = (completeness.get("tier") or "stub")[:16]
+    tier_trunc = (completeness.get("tier") or "")[:16] or None
     subtype_val = envelope.get("subtype")
     subtype_trunc = subtype_val[:64] if subtype_val else None
     node_type_trunc = (envelope.get("node_type") or "")[:32]
@@ -224,8 +224,9 @@ def upsert_signal_extraction(
             envelope_version    = EXCLUDED.envelope_version,
             node_type           = EXCLUDED.node_type,
             subtype             = EXCLUDED.subtype,
-            completeness_score  = EXCLUDED.completeness_score,
-            completeness_tier   = EXCLUDED.completeness_tier,
+            -- completeness_* intentionally NOT carried across on conflict; see
+            -- core/gdu/completeness.py. EXCLUDED is NULL now, so copying it
+            -- would erase any score already recorded for this extraction.
             master_entity_id    = COALESCE(EXCLUDED.master_entity_id, signal_extractions.master_entity_id),
             master_topic_id     = COALESCE(EXCLUDED.master_topic_id,  signal_extractions.master_topic_id),
             source_url          = EXCLUDED.source_url,
@@ -279,8 +280,11 @@ def upsert_signal_extraction(
         "envelope_version": envelope.get("envelope_version") or "v1",
         "node_type": node_type_trunc or None,
         "subtype": subtype_trunc,
-        "completeness_score": float(completeness.get("score") or 0.0),
-        "completeness_tier": tier_trunc,
+        # Not asserted here — see core/gdu/completeness.py. The envelope no
+        # longer carries a completeness claim for the writer to copy, and
+        # defaulting to 0.0/'stub' would fabricate one. NULL = not yet scored.
+        "completeness_score": None,
+        "completeness_tier": None,
         "entity_id": entity_id,
         "topic_id": topic_id,
         "source_url": source_url[:2048] if source_url else None,

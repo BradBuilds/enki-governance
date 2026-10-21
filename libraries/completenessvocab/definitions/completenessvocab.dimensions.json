@@ -1,0 +1,73 @@
+{
+  "id": "completeness.vocab.dimensions",
+  "type": "custom",
+  "version": "0.1.0",
+  "description": "The dimensions a decomposition can cover, and the three states of coverage.",
+  "content": {
+    "_doc": "The dimensions a thing can have. A slot spec says how much of a frame is FILLED; this says whether the frame was ever DRAWN. entity.person declared zero temporal slots, and nothing in the system could tell that apart from a person who happens to have no dates — the spec cannot report a question it never asked.\n\nDERIVED, NOT INVENTED. Every dimension below is a grouping of slot families that already exist across the 19 governed specs (measured 2026-08-09): summary 35, evidence 30, identifiers 27, identity 24, spatial 21, source 17, temporal 9, relationships 4. The dimensions name what the corpus already distinguishes; they do not impose a taxonomy on it.\n\nTHREE STATES, the same trichotomy as filled/blocked/empty:\n  covered         the spec declares at least one slot in this dimension\n  not_applicable  the spec says so explicitly — considered and ruled out\n  NEVER ASKED     neither — the honest gap, and the only one that is a finding",
+    "dimensions": {
+      "identity": {
+        "label": "Identity",
+        "doc": "What names this thing and settles which one it is.",
+        "prefixes": [
+          "identity",
+          "identifiers",
+          "subtype"
+        ]
+      },
+      "physical": {
+        "label": "Physical",
+        "doc": "What it is made of or measures — a body, a hull, a tonnage.",
+        "prefixes": [
+          "body",
+          "dimensions",
+          "classification"
+        ]
+      },
+      "temporal": {
+        "label": "Temporal",
+        "doc": "When it happened, or over what period it held. A thing with no temporal dimension cannot have a history.",
+        "prefixes": [
+          "temporal"
+        ]
+      },
+      "spatial": {
+        "label": "Spatial",
+        "doc": "Where it is or was.",
+        "prefixes": [
+          "spatial"
+        ]
+      },
+      "relational": {
+        "label": "Relational",
+        "doc": "What it is connected to — participants, ownership, registration, membership.",
+        "prefixes": [
+          "entities",
+          "topics",
+          "relationships",
+          "ownership",
+          "registration"
+        ]
+      },
+      "provenance": {
+        "label": "Provenance",
+        "doc": "Where the claim came from and how well attested it is.",
+        "prefixes": [
+          "source",
+          "evidence"
+        ]
+      },
+      "descriptive": {
+        "label": "Descriptive",
+        "doc": "Prose about the thing. Present in almost every spec, and the weakest dimension — a headline is not knowledge.",
+        "prefixes": [
+          "summary",
+          "media"
+        ]
+      }
+    },
+    "_spec_level_note": "A spec may declare `dimension: <name>`, meaning every slot it contains belongs to that dimension. Used by sub-concept specs whose slots are bare leaf names scoped by the node type rather than by a family prefix."
+  },
+  "metadata": {},
+  "dependencies": []
+}

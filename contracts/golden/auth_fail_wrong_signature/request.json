@@ -2,7 +2,7 @@
   "method": "GET",
   "path": "/query/assertions",
   "headers": {
-    "X-Device-ID": "admin-yubikey-001",
+    "X-Device-ID": "example-admin-device",
     "X-Challenge-ID": "<CHALLENGE_ID>",
     "X-Tenant-ID": "practice-001",
     "X-Body-SHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",

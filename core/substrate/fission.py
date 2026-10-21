@@ -613,6 +613,38 @@ def apply(entity_id: int, *, applied_by: str = "fission_detector",
             )
             new_entity_id = cur.fetchone()[0]
 
+            # Attestation (C3) — fires trg_mirror_entity, minting a
+            # knowledge_node for the split-out entity. A fission is the one
+            # admission here that is genuinely NOT an observation: nothing new
+            # was seen, an existing entity was judged to be two. That judgement
+            # is unreconstructable from the resulting rows, which is precisely
+            # why it has to be recorded at the moment it is made.
+            from core.gdu.attest import attest_admission
+            attest_admission(
+                conn, tenant_id,
+                operation="admit",
+                writer="substrate.fission.apply_fission",
+                checks_run={
+                    "boundary": False,
+                    # etype is inherited from the entity being split, not
+                    # re-checked against the pack.
+                    "vocab": False,
+                    # new_base60 IS minted from the governed sequence by the
+                    # caller — the one True on this path.
+                    "address": new_base60 is not None,
+                    # A fission is the INVERSE of collapse. Recording True would
+                    # claim a dedup check ran; what actually ran was a partition
+                    # decision, which is the opposite operation.
+                    "collapse": False,
+                },
+                node_id=f"entity:{new_entity_id}", entity_id=new_entity_id,
+                category="entity", subtype=etype, base60=new_base60,
+                input_type=etype, mapped_type=etype,
+                reason=(f"fission from entity {entity_id}: "
+                        f"{cand.cluster_b.get('first_name', '?')} cluster split out "
+                        f"(score={cand.partition_score})")[:500],
+            )
+
             # Move document_mentions for cluster_b's docs
             cur.execute(
                 """UPDATE document_mentions SET entity_id = %s

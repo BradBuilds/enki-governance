@@ -256,6 +256,7 @@ def _run_investigation(inv: dict, tenant_id: str):
     requested = head + tail
 
     sources_completed = []
+    sources_blocked: list[str] = []
     total_findings = 0
     total_discovered = 0
     detected_country: Optional[str] = None
@@ -329,7 +330,15 @@ def _run_investigation(inv: dict, tenant_id: str):
             total_discovered += discovered_count
             _STATUS["entities_discovered"] += discovered_count
 
-            if result.get("status") != "error":
+            if result.get("status") == "blocked":
+                # Refused, not empty — keep it out of sources_completed so a
+                # coverage gap never reads as a corroborated negative.
+                sources_blocked.append(source_name)
+                log.warning(
+                    "Investigation %d: source %s blocked for '%s' — coverage gap",
+                    inv_id, source_name, name,
+                )
+            elif result.get("status") != "error":
                 sources_completed.append(source_name)
 
             # Rate limit between sources
@@ -345,11 +354,13 @@ def _run_investigation(inv: dict, tenant_id: str):
                 UPDATE entity_investigations
                 SET status = 'complete',
                     sources_completed = %s,
+                    sources_blocked = %s,
                     findings_count = %s,
                     entities_discovered = %s,
                     completed_at = NOW()
                 WHERE investigation_id = %s
-            """, (sources_completed, total_findings, total_discovered, inv_id))
+            """, (sources_completed, sources_blocked, total_findings,
+                  total_discovered, inv_id))
 
             # Persist detected jurisdiction onto the entity envelope so
             # future investigations + other workers can use it without
@@ -1215,7 +1226,12 @@ def _admit_discovered_entity(
         # to LDU. Structured identifiers from SEC/FEC/court/contract feeds
         # are strong type evidence and make these candidates promotion-
         # ready quickly once signal_count thresholds are met.
-        from core.ldu.admit_candidate import admit_candidate, DECISIVE_IDENTIFIER_KEYS
+        from core.ldu.admit_candidate import admit_candidate
+        # Read the governed decomposition directly rather than reaching
+        # through admit_candidate for it — the pack is the authority, and
+        # an import chain through an unrelated module is how a second
+        # owner of one truth quietly appears.
+        from core.ldu.decisive_identifiers import all_decisive_keys
         type_evidence = {k: v for k, v in (identifiers or {}).items() if v} or None
         result = admit_candidate(
             surface_form=name,
@@ -1239,7 +1255,7 @@ def _admit_discovered_entity(
         # promoter worker is disabled (sealed collapse mode) because it is
         # deterministic and identifier-gated, not a bulk sweep.
         if result.concept_id and type_evidence and any(
-            type_evidence.get(k) for k in DECISIVE_IDENTIFIER_KEYS
+            type_evidence.get(k) for k in all_decisive_keys()
         ):
             try:
                 from core.ldu.promote import promote_concept
@@ -1603,7 +1619,7 @@ def load_investigation_results(inv_id: int, tenant_id: str) -> dict:
                 SELECT investigation_id, entity_id, seed_name, seed_type,
                        status, sources_requested, sources_completed,
                        findings_count, entities_discovered,
-                       started_at, completed_at, error
+                       started_at, completed_at, error, sources_blocked
                 FROM entity_investigations
                 WHERE investigation_id = %s AND tenant_id = %s
             """, (inv_id, tenant_id))
@@ -1624,6 +1640,9 @@ def load_investigation_results(inv_id: int, tenant_id: str) -> dict:
                 "started_at": row[9].isoformat() if row[9] else None,
                 "completed_at": row[10].isoformat() if row[10] else None,
                 "error": row[11],
+                # Coverage gaps, surfaced alongside the results so a reader can
+                # see what was never asked. Absence here is not evidence.
+                "sources_blocked": row[12] or [],
             }
 
             # Findings grouped by source

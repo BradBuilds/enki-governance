@@ -46,18 +46,16 @@ You can also run these steps by hand — see the script; it's short and readable
   entity to see its typed, sourced relationships; click a receipt to jump to the exact
   page it came from.
 
-## Optional: WordNet sense layer
+## A note on the sense layer
 
-All 42 governance packs ship, but the two WordNet sense packs need their large data built
-from [Open English WordNet](https://github.com/globalwordnet/english-wordnet) (`oewn:2023`,
-CC-BY-4.0). Enable sense-grounding (word-sense disambiguation) with:
+The word-sense layer is not shipped. Open English WordNet is CC-BY-4.0, and this project's
+data policy is public-domain only — a policy about **use**, not just redistribution, since
+validating against a resource is using it. Publishing the converters would invite downstream
+nodes to build a CC-BY substrate and federate it onward, carrying an attribution obligation
+into other people's corpora. See the README for the full reasoning.
 
-```bash
-./scripts/import-lexicon.sh
-```
-
-Heavy (downloads OEWN ~35 MB, builds ~120k senses) and needs network. Core collapse works
-without it. Via the `wn` library you can also pull other/multilingual wordnets for coverage.
+Core collapse does not need it. Entity resolution, typed relationships, receipts and the
+governance chain all work without a sense layer, and the domain glossaries ship in the packs.
 
 ## Optional: sign your pack set
 

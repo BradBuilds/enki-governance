@@ -632,8 +632,45 @@ def _apply_v2_bundle_sections(
                             upstream_node_id,
                         ),
                     )
-                    entity_id_map[ckey] = cur.fetchone()[0]
+                    _new_eid = cur.fetchone()[0]
+                    entity_id_map[ckey] = _new_eid
                     summary["entities_created"] += 1
+
+                    # Attestation (C3) — fires trg_mirror_entity, which mints a
+                    # knowledge_node. A federation pull is still an admission:
+                    # this node is deciding to hold a row it did not observe
+                    # itself, and which upstream node it came from is exactly
+                    # the kind of provenance that cannot be reconstructed later.
+                    from core.gdu.attest import attest_admission
+                    attest_admission(
+                        conn, tenant_id,
+                        operation="admit",
+                        writer="workers.library_subscriber.pull_library",
+                        checks_run={
+                            # Producer-supplied payload; no local boundary check.
+                            "boundary": False,
+                            # canonical_type is carried through from the
+                            # producer and not re-validated against this node's
+                            # pack — which matters, because the producer may be
+                            # on a different active set.
+                            "vocab": False,
+                            # The base-60 address is the PRODUCER'S, carried
+                            # across, not minted from this node's sequence.
+                            # False is the honest answer: an address this node
+                            # did not govern.
+                            "address": False,
+                            # ckey (canonical_entity_key) lookup above is the
+                            # dedup decision for a pull.
+                            "collapse": True,
+                        },
+                        node_id=f"entity:{_new_eid}", entity_id=_new_eid,
+                        category="entity", subtype=etype[:128],
+                        base60=e.get("base60_address"),
+                        input_type=etype[:128], mapped_type=etype[:128],
+                        reason=f"federation pull from {upstream_node_id}"[:500],
+                        lineage_stamp={"active_set_version": active_set[:32],
+                                       "pulled_from_node_id": upstream_node_id},
+                    )
 
             # ─── Relationships ────────────────────────────────────────
             # entity_relationships has UNIQUE on

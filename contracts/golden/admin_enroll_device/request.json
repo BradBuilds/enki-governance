@@ -2,7 +2,7 @@
   "method": "POST",
   "path": "/admin/enroll_device",
   "headers": {
-    "X-Device-ID": "admin-yubikey-001",
+    "X-Device-ID": "example-admin-device",
     "X-Challenge-ID": "<CHALLENGE_ID>",
     "X-Tenant-ID": "practice-001",
     "X-Body-SHA256": "computed-at-runtime",

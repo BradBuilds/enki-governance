@@ -85,7 +85,8 @@ Governance tooling (runnable):
 ## Run it
 
 - Quickstart: `git clone https://github.com/BradBuilds/enki-governance && cd enki-governance && cp .env.example .env && docker compose up -d && ./scripts/first-run.sh`
-- Optional WordNet sense layer (Open English WordNet via `wn`): `./scripts/import-lexicon.sh`
+- No word-sense layer ships: Open English WordNet is CC-BY-4.0 and this project's data
+  policy is public-domain only. Core collapse does not require it. See README.
 - Optional: sign your pack set — `python scripts/governance/setup_governance.py`
 - LLM extraction runs locally via Ollama. Default model: `gemma4:e2b` (Google Gemma 4, ~5B,
   pulled automatically, no account). Runs on CPU (entities) or GPU (full typed relationships).

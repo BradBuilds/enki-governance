@@ -4253,6 +4253,10 @@ def get_assessment_statements(assessment_id: int):
                        s.raw_text, s.summarized_text, s.modality, s.polarity,
                        s.confidence, s.predicate_verb_surface, s.predicate_lemma,
                        s.event_time, s.surrounding_text,
+                       -- Until migration 137 the place name sat in
+                       -- surrounding_text, so this route rendered a bare
+                       -- place name as if it were the sentence context.
+                       s.location_text, s.event_location_entity_id, s.object_text,
                        d.title AS doc_title, d.dataset_id
                   FROM statements s
                   LEFT JOIN documents d ON d.document_id = s.document_id

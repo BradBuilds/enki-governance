@@ -26,7 +26,7 @@ import time so any pack update changes scoring without code changes.
 from __future__ import annotations
 
 import logging
-from typing import Any, Optional
+from typing import Optional
 
 log = logging.getLogger("enki.extraction.completeness")
 
@@ -71,118 +71,99 @@ def _load_pack() -> None:
                 _SPECS = spec_doc["specs"]
                 _DEFAULT_SPEC = spec_doc.get("default_spec") or {}
         except Exception as e2:
-            log.error("scorer cannot load completenessvocab: %s", e2)
+            # NO HARDCODED FALLBACK. This branch used to install
+            # {"required_slots": ["identity.title_display"]} — a slot list written
+            # in Python, which is domain knowledge the packs own and the project
+            # rule forbids. Worse, it scored silently: a node measured against an
+            # invented one-slot standard looked complete.
+            #
+            # Leaving these empty makes the core abstain (no spec, no default ->
+            # None), which the adapters record as UNDEFINED. A scorer that cannot
+            # load its governance does not get to guess.
+            log.error("scorer cannot load completenessvocab: %s — "
+                      "completeness will be UNDEFINED until the pack loads", e2)
             _TIERS = {}
             _SPECS = {}
-            _DEFAULT_SPEC = {"required_slots": ["identity.title_display"]}
+            _DEFAULT_SPEC = {}
 
 
-def _get_path(env: dict, path: str) -> Any:
-    cur: Any = env
-    for seg in path.split("."):
-        if isinstance(cur, dict) and seg in cur:
-            cur = cur[seg]
-        else:
-            return None
-    return cur
+def score_envelope(envelope: dict, blocked_slots: Optional[set] = None) -> dict:
+    """Compute the completeness sub-object for one envelope. Envelope adapter.
 
+    Mutates envelope.completeness in place and returns it, unchanged in shape
+    from before the merge — the 5 callers keep working without edits.
 
-def _is_filled(value: Any) -> bool:
-    """Generic emptiness check. A slot counts as filled when it has
-    real content. Empty strings, empty lists, empty dicts, and None
-    all count as unfilled."""
-    if value is None:
-        return False
-    if isinstance(value, str):
-        return bool(value.strip())
-    if isinstance(value, (list, dict)):
-        return len(value) > 0
-    if isinstance(value, bool):
-        return True  # explicit booleans count
-    if isinstance(value, (int, float)):
-        return True  # zero is a valid measurement
-    return True
+    WHAT MOVED. This function used to carry its own copy of the arithmetic, and
+    that copy disagreed with the DB-side scorer: a different optional-slot bonus
+    formula (`min(0.25, filled_opt * 0.5/len(required))` against
+    `min(filled_opt * 0.05, 0.15)`), a different rounding (3 places against 2),
+    a tier lookup that walked the ladder in dict order and silently returned
+    "stub" for a score inside no band, and a `verified` check special-cased by
+    name instead of following `demotes_to`. Measured across every reachable fill
+    state of the governed specs, the two disagreed on score 70.3% of the time and
+    on tier 8.8-11.6% (see `scripts/verify_completeness_core.py`).
 
+    Scores from this path therefore MOVE — mostly downward, because the old
+    optional bonus was up to 0.25 against the governed 0.15. That is the intended
+    outcome, the same shape as Phase 1: the old number flattered.
 
-def _spec_for(node_type: Optional[str], subtype: Optional[str]) -> dict:
-    if not _SPECS:
-        return _DEFAULT_SPEC or {}
-    if node_type and subtype:
-        key = f"{node_type}.{subtype}"
-        if key in _SPECS:
-            return _SPECS[key]
-    return _DEFAULT_SPEC or {}
-
-
-def _tier_for_score(score: float, *, corroborations: int, contradictions: int) -> str:
-    if not _TIERS:
-        return "stub"
-    candidate = "stub"
-    for name, t in _TIERS.items():
-        lo, hi = t.get("min_score", 0.0), t.get("max_score", 1.0)
-        if lo <= score <= hi:
-            candidate = name
-    # Verified extra requirements
-    if candidate == "verified":
-        extra = (_TIERS.get("verified") or {}).get("extra_requirements") or {}
-        if corroborations < extra.get("corroborations_min", 0):
-            return "solid"
-        if contradictions > extra.get("contradictions_max", 0):
-            return "solid"
-    return candidate
-
-
-def score_envelope(envelope: dict) -> dict:
-    """Compute the completeness sub-object for one envelope.
-
-    Mutates envelope.completeness in place. Returns the new
-    completeness dict for callers that want to log it.
+    ABSTENTION IS NOW POSSIBLE HERE. The core returns None when nothing declares
+    what a subtype should contain, and this function now writes NULL score and
+    NULL tier rather than manufacturing a number. `validate_shape` requires the
+    keys to exist, not to be non-null, so a null-scored envelope is still valid —
+    and a null tier is what the downstream reader already handles.
     """
     _load_pack()
 
+    from core.gdu.completeness_core import compute
+
     node_type = envelope.get("node_type")
     subtype = envelope.get("subtype")
-    spec = _spec_for(node_type, subtype)
 
-    required = list(spec.get("required_slots") or [])
-    optional = list(spec.get("optional_slots") or [])
-
-    filled_req = 0
-    gaps: list[str] = []
-    for path in required:
-        val = _get_path(envelope, path)
-        if _is_filled(val):
-            filled_req += 1
-        else:
-            gaps.append(path)
-
-    filled_opt = sum(1 for p in optional if _is_filled(_get_path(envelope, p)))
-
-    total = max(1, len(required))
-    base = filled_req / total
-
-    # Optional bonus: each optional slot worth at most 1/(2*len(required))
-    # so the optional set as a whole can lift the score by up to ~0.25
-    opt_bonus = 0.0
-    if optional:
-        per_opt = 0.5 / max(1, len(required))
-        opt_bonus = min(0.25, filled_opt * per_opt)
-
-    score = round(min(1.0, base + opt_bonus), 3)
-
-    corr = int(_get_path(envelope, "evidence.corroborations") or 0)
-    contra = int(_get_path(envelope, "evidence.contradictions") or 0)
-    tier = _tier_for_score(score, corroborations=corr, contradictions=contra)
+    # The core reads nested dicts directly, so the envelope is passed as-is —
+    # no projection needed on this side. `specs`/`tiers` are handed in from this
+    # module's GDU-loaded cache rather than re-read, so the envelope path and the
+    # DB path agree even if one of them is running against a pinned pack.
+    # Phase 3: the caller may know that a source refused for specific slots.
+    # Optional here rather than read from `slot_blocks` as the DB adapter does,
+    # because an envelope is scored BEFORE it is a node — there is no node_id to
+    # look blocks up by yet. The extractor that was refused is the only thing
+    # that knows, so it has to say.
+    result = compute(
+        node_type or "", subtype or "", envelope,
+        specs={"specs": _SPECS or {}, "default_spec": _DEFAULT_SPEC or {}},
+        tiers=_TIERS or None,
+        blocked_slots=blocked_slots,
+    )
 
     completeness = envelope.setdefault("completeness", {})
-    completeness["score"] = score
-    completeness["tier"] = tier
-    completeness["filled_slots"] = filled_req
-    completeness["total_slots"] = total
-    completeness["gaps"] = gaps
+
+    if result is None:
+        # Undefined, not zero. Nothing governs this subtype, so there is no
+        # standard to measure against and no honest number to write.
+        completeness["score"] = None
+        completeness["tier"] = None
+        completeness["filled_slots"] = 0
+        completeness["total_slots"] = 0
+        completeness["gaps"] = []
+        completeness["blocked"] = []
+        completeness["optional_filled"] = 0
+        completeness["optional_total"] = 0
+        completeness["spec_used"] = "unscoreable:no_spec"
+        return completeness
+
+    completeness["score"] = result.score
+    completeness["tier"] = result.tier
+    completeness["filled_slots"] = result.filled_slots
+    completeness["total_slots"] = result.total_slots
+    completeness["gaps"] = result.gaps
+    # Reported SEPARATELY from gaps, never merged into them: a blocked slot is a
+    # question we could not ask, and the card that shows "3 gaps" must not turn
+    # "the registry was down" into "the fact does not exist".
+    completeness["blocked"] = result.blocked
     # Diagnostic — useful for the card renderer to show "+X bonus"
-    completeness["optional_filled"] = filled_opt
-    completeness["optional_total"] = len(optional)
-    completeness["spec_used"] = f"{node_type}.{subtype}" if node_type and subtype else "default"
+    completeness["optional_filled"] = result.optional_filled
+    completeness["optional_total"] = result.optional_total
+    completeness["spec_used"] = result.spec_used
 
     return completeness

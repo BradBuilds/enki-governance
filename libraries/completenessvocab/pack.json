@@ -1,6 +1,6 @@
 {
   "pack_id": "completenessvocab",
-  "version": "0.1.0",
+  "version": "0.5.0",
   "name": "ENKI Completeness Vocabulary Pack",
   "description": "Defines the four card completeness tiers (stub, partial, solid, verified) and the per-node-type slot specifications that determine how completeness is computed. Every card carries a completeness score and tier; this pack defines what those scores mean and which slots each subtype requires.",
   "definitions": [
@@ -18,9 +18,18 @@
       "id": "completeness.vocab.slot_specs",
       "path": "definitions/completenessvocab.slot_specs.json",
       "type": "custom"
+    },
+    {
+      "id": "completeness.vocab.dimensions",
+      "path": "definitions/completenessvocab.dimensions.json",
+      "type": "custom"
     }
   ],
-  "dependencies": ["identity", "nodevocab", "envelopevocab"],
+  "dependencies": [
+    "identity",
+    "nodevocab",
+    "envelopevocab"
+  ],
   "namespaces_owned": [
     "completeness.vocab"
   ],

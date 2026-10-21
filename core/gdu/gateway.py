@@ -1,9 +1,17 @@
 """
 GDU Gateway — The Final Collapse
 
-Single authorized write path for all node, entity, and edge operations.
-Nothing touches knowledge_nodes, entities, or knowledge_edges without
-going through this module.
+The INTENDED sole write path for all node, entity, and edge operations —
+but measurably not the actual one. Corrected 2026-08-05: on the live node-A node,
+2,889 of 3,578 nodes created in 24h (80.7%) did NOT transit this gateway, and
+only 62,668 of 184,491 nodes (34.0%) appear in gdu_admission_log. Fourteen
+files outside this module issue a direct `INSERT INTO knowledge_nodes`.
+
+This module is fail-closed for everything that reaches it. It is not a
+chokepoint until those call sites are consolidated onto it — tracked as its
+own project, deliberately not folded into the substrate phases. Base-60
+addressing is unaffected either way: an address is a pure function of content,
+not of the code path that wrote the row.
 
 The gateway IS the collapse — multiple signals, multiple LDU-W extractions,
 one final node at one base-60 address. You query the collapse, not the expansion.
@@ -33,7 +41,6 @@ import json
 import logging
 import uuid
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
 from typing import Optional
 
 from storage.postgres.db import get_connection
@@ -244,9 +251,22 @@ class GDUGateway:
                 action, category, canonical_subtype, base60,
                 entity_type, canonical_subtype,
                 f"{'new entity' if is_new else 'collapsed into existing'}{remap_note}",
+                writer="gdu.gateway.admit_entity",
+                # All four ran: validate_llm_output is the first statement in
+                # this method (boundary + vocab, and its canonical answer is
+                # what `canonical_subtype` holds), the address came from
+                # assign_address or from the governed row this collapsed into,
+                # and _resolve_or_create_entity IS the collapse check.
+                checks_run={"boundary": True, "vocab": True,
+                            "address": base60 is not None, "collapse": True},
             )
 
             conn.commit()
+
+        # Completeness, from the governed slot specs. Scored on collapse as well
+        # as on first admission because collapsing raises source_count, and
+        # evidence.source_count is a declared slot.
+        self._score_admitted(node_id, tenant_id, dsn)
 
         # Auto-research trigger (Phase 1 of research-collapse plan, May 8 2026).
         # Pre-rebuild this fired from node_builder.py:808; after the May 4
@@ -348,8 +368,18 @@ class GDUGateway:
                         "collapse", category, subtype, base60,
                         f"{category}.{subtype}", f"{category}.{subtype}",
                         f"collapsed into {node_id} (source_count={source_count + 1})",
+                        writer="gdu.gateway.admit_node",
+                        # boundary=False: admit_node takes an already-typed
+                        # (category, subtype) and never calls
+                        # validate_llm_output — only admit_entity does. Recording
+                        # that honestly is the point of this field; the old chain
+                        # implied it had run.
+                        checks_run={"boundary": False, "vocab": True,
+                                    "address": base60 is not None,
+                                    "collapse": True},
                     )
                     conn.commit()
+                    self._score_admitted(node_id, tenant_id, dsn)
 
                     return AdmissionResult(
                         node_id=node_id,
@@ -395,8 +425,19 @@ class GDUGateway:
                 "admit", category, subtype, base60,
                 f"{category}.{subtype}", f"{category}.{subtype}",
                 "new node",
+                writer="gdu.gateway.admit_node",
+                # collapse is conditional and must be recorded as such: the
+                # collapse check only runs when the caller supplies a
+                # collapse_key. Without one this is an unchecked create, and
+                # claiming otherwise would be exactly the flattering default
+                # this field refuses.
+                checks_run={"boundary": False, "vocab": True,
+                            "address": base60 is not None,
+                            "collapse": bool(collapse_key)},
             )
             conn.commit()
+
+        self._score_admitted(node_id, tenant_id, dsn)
 
         return AdmissionResult(
             node_id=node_id,
@@ -474,6 +515,14 @@ class GDUGateway:
                 action, None, None, None,
                 relationship, relationship,
                 f"{source_node_id} → {target_node_id}",
+                writer="gdu.gateway.admit_edge",
+                # address=False is correct, not a gap: edges are contingent and
+                # carry no base-60 address by design — only concepts sit at
+                # coordinates. collapse=True because edge_id is
+                # sha1(source|target|relationship) with symmetric endpoints
+                # canonicalised, so the ON CONFLICT above IS the dedup.
+                checks_run={"boundary": False, "vocab": True,
+                            "address": False, "collapse": True},
             )
             conn.commit()
 
@@ -554,6 +603,15 @@ class GDUGateway:
                     "route_ldup", None, None, None,
                     input_type, None,
                     reason,
+                    writer="gdu.gateway.route_to_ldup",
+                    # Nothing was admitted, so no admission check passed — all
+                    # four are False, and that is a true statement rather than a
+                    # missing one. WHY it was refused lives in `reason`, which is
+                    # inside the hash; the rejection is as tamper-evident as an
+                    # admission, which matters because suppressing a rejection is
+                    # the cheaper attack.
+                    checks_run={"boundary": False, "vocab": False,
+                                "address": False, "collapse": False},
                 )
                 conn.commit()
 
@@ -1413,6 +1471,36 @@ class GDUGateway:
 
     # ── Internal: Admission Logging ─────────────────────────────────────
 
+    def _score_admitted(self, node_id: Optional[str], tenant_id: str,
+                        dsn: Optional[str] = None) -> None:
+        """Compute and stamp completeness for a node the gateway just admitted.
+
+        The governed scorer (completenessvocab.slot_specs) had no caller until
+        this hook, which is why `completeness_score` in production was written
+        instead by eight unrelated code paths — an event's confidence, a
+        Wikipedia hit, a SQL floor of 0.5 — none of which read the slot specs.
+        Every score written from here carries the pack versions that produced it
+        (migration 141), so scores computed under different specs are never
+        silently compared.
+
+        Runs AFTER commit, on its own connection, deliberately: a scoring
+        failure must not roll back an otherwise valid admission. An unscored
+        node is honest (regime stays NULL, meaning never scored) whereas a lost
+        admission is not.
+
+        Best-effort, but LOUD. The auto-research trigger below this in
+        admit_entity was silently swallowed at DEBUG for weeks and that hid its
+        root cause, so failures here surface at WARNING.
+        """
+        if not node_id:
+            return
+        try:
+            from core.gdu.completeness import score_node
+            score_node(node_id, tenant_id, dsn)
+        except Exception as e:
+            _log.warning("completeness scoring failed for node_id=%s: %s",
+                         node_id, e)
+
     def _log_admission(
         self, conn, tenant_id: str,
         node_id: Optional[str], entity_id: Optional[int],
@@ -1420,40 +1508,31 @@ class GDUGateway:
         operation: str, category: Optional[str], subtype: Optional[str],
         base60: Optional[str], input_type: Optional[str],
         mapped_type: Optional[str], reason: str,
+        writer: str, checks_run: dict,
     ):
-        """Write to gdu_admission_log with hash chain."""
-        stamp = get_lineage_stamp()
+        """Write to gdu_admission_log. Thin adapter over `core.gdu.attest`.
 
-        # Compute chain hash
-        with conn.cursor() as cur:
-            cur.execute("""
-                SELECT mutation_hash FROM gdu_admission_log
-                WHERE tenant_id = %s ORDER BY rid DESC LIMIT 1
-            """, (tenant_id,))
-            prev_row = cur.fetchone()
-            previous_hash = prev_row[0] if prev_row else None
+        The hash chain used to be built inline here and carried three defects
+        that only showed up once C3 went to widen it (see `core/gdu/attest.py`
+        for the measurements): the hashed payload contained a Python-side `ts`
+        that was never stored, so no row could ever be recomputed; `reason` was
+        hashed in full and stored truncated; and the head was read unlocked, so
+        concurrent admissions forked it 671 times.
 
-        payload = json.dumps({
-            "node_id": node_id, "entity_id": entity_id, "edge_id": edge_id,
-            "operation": operation, "category": category, "subtype": subtype,
-            "base60": base60, "reason": reason,
-            "ts": datetime.now(timezone.utc).isoformat(),
-        }, sort_keys=True)
+        `writer` and `checks_run` are now REQUIRED and have no default here on
+        purpose. The gateway does not get to be the implicit answer any more —
+        once the other fourteen writers attest, "who wrote this and what did
+        they actually check" is the question the log exists to answer, and a
+        default at this layer would quietly answer it wrong for whoever calls
+        next.
+        """
+        from core.gdu.attest import attest_admission
 
-        hash_input = (previous_hash or "genesis") + payload
-        mutation_hash = hashlib.sha256(hash_input.encode()).hexdigest()
-
-        with conn.cursor() as cur:
-            cur.execute("""
-                INSERT INTO gdu_admission_log
-                    (tenant_id, node_id, entity_id, edge_id,
-                     operation, category, subtype, base60_address,
-                     input_type, mapped_type, reason,
-                     lineage_stamp, mutation_hash, previous_hash)
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-            """, (
-                tenant_id, node_id, entity_id, edge_id,
-                operation, category, subtype, base60,
-                input_type, mapped_type, reason[:500],
-                json.dumps(stamp), mutation_hash, previous_hash,
-            ))
+        attest_admission(
+            conn, tenant_id,
+            operation=operation, writer=writer, checks_run=checks_run,
+            node_id=node_id, entity_id=entity_id, edge_id=edge_id,
+            category=category, subtype=subtype, base60=base60,
+            input_type=input_type, mapped_type=mapped_type, reason=reason,
+            lineage_stamp=get_lineage_stamp(),
+        )

@@ -56,12 +56,31 @@ log = logging.getLogger("enki.ldu.admit_candidate")
 # real-world entity (Tier A per the internal LDU/GDU plan). A concept carrying one
 # of these has decisive evidence of a distinct entity: it should be minted at
 # evidence_tier "A" (promote at signal_count ≥ 1), not stranded at the G floor.
-# This is the closed set — bare co-occurrence / name-only stays at the floor.
-DECISIVE_IDENTIFIER_KEYS = frozenset({
-    "qid", "wikidata_id", "cik", "ein", "fec_id", "committee_id", "candidate_id",
-    "uei", "cage", "duns", "lei", "company_number", "ticker", "isbn", "doi",
-    "imo", "icao", "geonames_id", "osm_id", "permid",
-})
+#
+# Phase 2.1/2.2: this was a 20-key frozenset written here in Python. It is now
+# pack content, declared per subtype as a PROPERTY OF A SLOT in the governed
+# decomposition (`completenessvocab.slot_specs` -> `decisive_slots`), because an
+# IMO is decisive not by appearing on a list but because that slot alone settles
+# which hull this is. See core/ldu/decisive_identifiers.py.
+#
+# The name is kept as a module-level accessor so the two existing consumers keep
+# working unchanged. It is a FUNCTION now, not a constant: a constant would be
+# evaluated at import time and freeze whichever pack happened to be loaded then,
+# which is the same "current on its face, false in fact" failure the completeness
+# regime stamp exists to catch.
+def DECISIVE_IDENTIFIER_KEYS() -> frozenset:  # noqa: N802  (kept for callers)
+    """Every decisive identifier key across all subtypes, from the pack.
+
+    Deliberately the UNION and not the per-subtype set: both consumers ask only
+    "does this carry any decisive identifier", so the union preserves today's
+    behaviour exactly and this phase moves knowledge into the pack without moving
+    any collapse decision. Callers that know the subtype should prefer
+    `decisive_identifiers.decisive_keys_for(subtype)` — that is what stops an
+    organisation's EIN lifting a person to Tier A — but switching them is a
+    separate change with its own measurement.
+    """
+    from core.ldu.decisive_identifiers import all_decisive_keys
+    return all_decisive_keys()
 
 
 # ── Result type ─────────────────────────────────────────────────────────────
@@ -212,12 +231,14 @@ def admit_candidate(
 
     # Identifier-decisive tier stamp. A caller-provided decisive identifier
     # (FEC committee_id, EIN, CIK, UEI, QID, …) IS Tier-A evidence — it names a
-    # distinct registered entity on its own. Only lift the G floor (never
-    # downgrade a stronger thesaurus tier like A/B).
-    if evidence_tier in (None, "G") and any(
-        identifiers.get(k) for k in DECISIVE_IDENTIFIER_KEYS
-    ):
-        evidence_tier = "A"
+    # distinct registered entity on its own.
+    #
+    # The rule now lives in ONE place. It used to be inline here, which is why
+    # `ensure_substrate_for_entity` — handed the same identifiers on the gateway
+    # path — stamped its hardcoded default instead and left 520 `fec_id` person
+    # concepts at tier D beside 537 identical ones at A.
+    from core.ldu.decisive_identifiers import tier_with_decisive
+    evidence_tier = tier_with_decisive(evidence_tier, identifiers)
 
     # ── Step 2.5: LDU subtype lock-down (entityvocab.entity_subtypes) ─────
     # The thesaurus may have left canonical_subtype as the raw LLM value
@@ -349,7 +370,34 @@ def _ensure_form_node(
     form_address format: "11.0.<sha16>" — form is category 11, single
     bucket for now (subtype 0). Address is deterministic across nodes
     because it's derived from the normalized surface form hash.
+
+    `normalized` IS RE-FOLDED HERE AND THE PARAMETER IS ADVISORY. A keyword named
+    `normalized` looks like a precondition and is really an honour system: nothing
+    stops a caller passing a raw name, and two of this function's three call sites
+    did exactly that — `ensure_substrate_for_entity` passed `canonical_name` and
+    `write_persona_split_substrate` passed `form_surface`, both unfolded.
+
+    Measured on node-A 2026-08-10: 7,929 form rows carry a non-lowercase
+    `surface_form_normalized`, in 5,699 case clusters covering 11,440 forms and
+    reaching 11,480 concepts. `johnson & johnson`, `Johnson & Johnson` and
+    `JOHNSON & JOHNSON` are three separate forms with three different hashes and
+    therefore three separate identities. None before June; 6,734 in July and 1,196
+    in August, the newest minted minutes before this was written — a LIVE defect,
+    not legacy residue.
+
+    Fixing the two callers would have left the trap armed for the third. The
+    function that WRITES `surface_form_normalized` is the only place that can
+    guarantee what it means, so it computes the fold instead of trusting it.
+    `fold_surface` is idempotent and role-independent, so the one call site that
+    was already correct is unaffected — its value folds to itself.
+
+    NO BACKFILL: the 11,440 existing case-variant forms stay. This stops the
+    source; merging what it already produced is a separate, identity-moving
+    decision that must not ride along on a normaliser fix.
     """
+    from core.gdu.normalize import fold_surface
+
+    normalized = fold_surface(normalized or surface_form)
     h = _surface_hash(normalized)
     form_address = f"11.0.{h}"
 
@@ -920,6 +968,15 @@ def ensure_substrate_for_entity(
     """
     identifiers = identifiers or {}
     type_evidence = type_evidence or {}
+
+    # `evidence_tier` defaults to "D" here, and this path is handed the caller's
+    # identifiers — so a person arriving through the gateway with an FEC id was
+    # stamped D while the same person arriving through `admit_candidate` was
+    # stamped A. The lift is applied here for the same reason `_ensure_form_node`
+    # folds its own input: the function that WRITES the value is the only place
+    # that can guarantee what it means.
+    from core.ldu.decisive_identifiers import tier_with_decisive
+    evidence_tier = tier_with_decisive(evidence_tier, identifiers)
 
     subtype_path = f"{category}.{canonical_subtype}"
 

@@ -54,8 +54,8 @@
     },
     {
       "pack_id": "nodevocab",
-      "version": "0.8.1",
-      "content_hash": "sha256:e7a967c8fe6ec21e95749739204f7bbfd5032da9a2a6e04494b295e471ffee93"
+      "version": "0.9.0",
+      "content_hash": "sha256:b99389379d5b6b037f29c29b27bd953265aa52c58a9b8ced3f81b24c71e49642"
     },
     {
       "pack_id": "edgevocab",
@@ -64,8 +64,8 @@
     },
     {
       "pack_id": "completenessvocab",
-      "version": "0.1.0",
-      "content_hash": "sha256:9b50212f29028daef0bdce3f7453d38d0a7c97b058fff1b7a0bd3a26e2fe8b14"
+      "version": "0.5.0",
+      "content_hash": "sha256:065fc99013e23402228a7d89bc9b5d24c4c24a04d8def8e9bce8b18aa93ef8be"
     },
     {
       "pack_id": "intentvocab",

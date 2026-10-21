@@ -1,11 +1,13 @@
 from __future__ import annotations
 
 import hashlib
+import os
 from pathlib import Path
 from typing import Optional, Dict, Any
 
 
-BASE_DIR = Path("storage/artifacts")
+# Where stored artifacts live: <data folder>/artifacts, or ENKI_ARTIFACTS_DIR if set
+BASE_DIR = Path(os.environ.get("ENKI_ARTIFACTS_DIR") or os.path.join(os.environ.get("ENKI_DATA_DIR") or "storage", "artifacts"))
 
 
 def compute_bytes_cid(data: bytes) -> str:

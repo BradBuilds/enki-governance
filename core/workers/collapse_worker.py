@@ -413,6 +413,65 @@ def _extract_topics(document_id: int, llm) -> dict:
     return {"extracted": len(labels), "created": created, "linked": linked}
 
 
+# Statement extraction is retried because batch failures are INTERMITTENT —
+# document 417 failed 17 consecutive times and then parsed cleanly when asked
+# directly. So a retry is rational. What it lacked was a bound: the guard was
+# "extract if the document has no statements", which stays true forever on a
+# document that will never produce one, and the worker re-ran the same 28
+# documents 175 times for 5.91 of 6.04 GPU hours of nothing.
+_MAX_STATEMENT_ATTEMPTS = 5
+_STATEMENT_BACKOFF_HOURS = (0, 1, 4, 12, 24)
+
+
+def _statement_attempt_verdict(document_id: int) -> tuple[bool, str]:
+    """Should we run statement extraction on this document now?
+
+    Returns (go, reason). The attempt history lives in
+    statement_extraction_runs, so this costs one indexed lookup and needs no
+    new state. A document that has already yielded a statement is done; one
+    that has burned its attempts is left alone until something upstream
+    changes (better mentions, a new extraction profile) — at which point its
+    history is what says whether to try again.
+    """
+    with get_connection() as conn:
+        with conn.cursor() as cur:
+            cur.execute(
+                "SELECT COUNT(*) FROM statements WHERE document_id = %s",
+                (document_id,),
+            )
+            if int(cur.fetchone()[0] or 0) > 0:
+                return False, "already has statements"
+
+            try:
+                cur.execute(
+                    """
+                    SELECT count(*), max(created_at),
+                           COALESCE(sum(llm_statements_seen), 0)
+                      FROM statement_extraction_runs
+                     WHERE document_id = %s
+                    """,
+                    (document_id,),
+                )
+                attempts, last_at, seen = cur.fetchone()
+            except Exception:
+                # Table absent (pre-migration-136 node): behave as before.
+                return True, "no attempt history available"
+
+    attempts = int(attempts or 0)
+    if attempts == 0:
+        return True, "first attempt"
+    if attempts >= _MAX_STATEMENT_ATTEMPTS:
+        return False, (f"{attempts} attempts, {seen} statements seen, none kept "
+                       f"— capped")
+
+    from datetime import datetime, timedelta, timezone
+    wait = timedelta(hours=_STATEMENT_BACKOFF_HOURS[
+        min(attempts, len(_STATEMENT_BACKOFF_HOURS) - 1)])
+    if last_at and datetime.now(timezone.utc) - last_at < wait:
+        return False, f"attempt {attempts + 1} backing off for {wait}"
+    return True, f"attempt {attempts + 1} of {_MAX_STATEMENT_ATTEMPTS}"
+
+
 def process_document(document_id: int, library_id: int, batch_size: int = 8) -> dict:
     """Run the full extraction chain on one document."""
     from core.ai.config import get_tenant_provider
@@ -502,20 +561,18 @@ def process_document(document_id: int, library_id: int, batch_size: int = 8) -> 
         log.debug("topic extraction failed for doc %d: %s", document_id, e)
         stats["topics"] = {"error": str(e)[:200]}
 
-    # 3) Statements (if none yet)
-    with get_connection() as conn:
-        with conn.cursor() as cur:
-            cur.execute(
-                "SELECT COUNT(*) FROM statements WHERE document_id = %s",
-                (document_id,),
-            )
-            statement_count = int(cur.fetchone()[0] or 0)
-    if statement_count == 0:
-        log.info("collapse[%d]: statements pass…", document_id)
+    # 3) Statements (if none yet, and if we have not already tried and failed
+    #    too many times — see _statement_attempt_verdict)
+    go, why = _statement_attempt_verdict(document_id)
+    if go:
+        log.info("collapse[%d]: statements pass… (%s)", document_id, why)
         stats["statements"] = extract_statements_batched(
             document_id=document_id, llm=llm, batch_size=batch_size,
             skip_boilerplate=False,
         )
+    else:
+        log.info("collapse[%d]: statements skipped (%s)", document_id, why)
+        stats["statements"] = {"skipped": why}
 
     # 4) Property extraction — Gemma tags property+value+precision_tier
     # per mention; collapse operator handles refinement/conflict admission.

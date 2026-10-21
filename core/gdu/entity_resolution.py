@@ -1328,6 +1328,37 @@ def _create_entity(
             stamp.get("ldu_t_id"),
         ))
         row = cur.fetchone()
+
+    # Attestation (C3) — this INSERT fires trg_mirror_entity (migration 032),
+    # minting a knowledge_node that would otherwise carry no admission record.
+    # Attested on the entity, not on the mirrored node: the node is a projection.
+    if row:
+        from core.gdu.attest import attest_admission
+        attest_admission(
+            conn, tenant_id,
+            operation="admit",
+            writer="gdu.entity_resolution._create_entity",
+            checks_run={
+                # This is the resolver's own create path, reached without the
+                # gateway's validate_llm_output boundary check.
+                "boundary": False,
+                # entity_type is written straight through; no pack check here.
+                "vocab": False,
+                # No base-60 assigned on this path — the mirror trigger's
+                # gdu_assign_address() decides, and gdu_canonical is whatever
+                # the caller computed.
+                "address": False,
+                # Reached only after every resolution layer above has missed,
+                # which IS this path's dedup decision.
+                "collapse": True,
+            },
+            node_id=f"entity:{row[0]}", entity_id=row[0],
+            category="entity", subtype=entity_type,
+            input_type=entity_type, mapped_type=entity_type,
+            reason=f"resolver create: no match for '{name}'"[:500],
+            lineage_stamp=stamp,
+        )
+
     conn.commit()
     entity_id = row[0] if row else None
     return ResolutionResult(entity_id, "create", 1.0, "new entity", gdu_canonical, True)

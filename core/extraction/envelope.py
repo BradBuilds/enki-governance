@@ -161,9 +161,15 @@ def build_empty(node_type: str = "source", *, signal_rid: Optional[int] = None) 
             "part_of": [],
         },
 
+        # Seeded as NULL, not 0.0/"empty". A blank envelope has not been scored;
+        # it is not a node measured at zero completeness. "empty" was also a tier
+        # NO pack declares — the governed ladder is stub/partial/solid/verified —
+        # so this seed was minting an invalid value into every envelope created,
+        # which is where a share of the tier 'empty' rows in production came from.
+        # score_envelope overwrites these; until it runs, NULL is the true reading.
         "completeness": {
-            "score": 0.0,
-            "tier": "empty",
+            "score": None,
+            "tier": None,
             "filled_slots": 0,
             "total_slots": 0,
             "gaps": [],

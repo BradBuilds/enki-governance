@@ -638,16 +638,65 @@ def _normalize_form4_name(name: str) -> str:
     return f"{given} {surname}"
 
 
-def _fetch_text(url: str, timeout: int = 15) -> Optional[str]:
-    """Fetch raw text from a URL."""
+# WAF interstitials arrive either as an HTTP 403 or as a *200* whose body is a
+# bot-check page. Both mean the source refused to answer — which is not the same
+# fact as the source answering "nothing found", and must not be recorded as one.
+_CHALLENGE_MARKERS = (
+    "just a moment...",
+    "__cf_chl",
+    "cf-challenge",
+    "cdn-cgi/challenge-platform",
+    "enable javascript and cookies to continue",
+    "attention required! | cloudflare",
+    "haproxy challenge",
+    "checking your browser before accessing",
+    "verify you are human",
+)
+
+
+def _is_challenge_page(text: str) -> bool:
+    """True if the body is a bot-check interstitial rather than real content.
+
+    Challenge pages are small and declare themselves in the first few KB; a
+    long document that merely quotes one of these phrases is real content.
+    """
+    if not text or len(text) > 60_000:
+        return False
+    return any(m in text[:4000].lower() for m in _CHALLENGE_MARKERS)
+
+
+def _fetch_text_ex(url: str, timeout: int = 15) -> tuple[Optional[str], str]:
+    """Fetch raw text, returning (body, status).
+
+    status is one of "ok", "blocked", "http_error", "fetch_failed". Sources that
+    need to tell "the registry said no" apart from "the registry refused to
+    answer" should use this and propagate "blocked", so the investigation
+    record shows a gap instead of a clean empty result. See _fetch_text for the
+    body-only form.
+    """
     try:
         req = urllib.request.Request(url)
         req.add_header("User-Agent", _UA)
         with urllib.request.urlopen(req, context=_SSL_CTX, timeout=timeout) as resp:
-            return resp.read().decode("utf-8", errors="replace")
+            body = resp.read().decode("utf-8", errors="replace")
+        if _is_challenge_page(body):
+            log.warning("Bot-challenge interstitial from %s", url[:120])
+            return None, "blocked"
+        return body, "ok"
+    except urllib.error.HTTPError as e:
+        if e.code in (401, 403, 429):
+            log.warning("HTTP %d — source refused: %s", e.code, url[:120])
+            return None, "blocked"
+        log.debug("HTTP %d for %s: %s", e.code, url[:100], e.reason)
+        return None, "http_error"
     except Exception as e:
         log.debug("Text fetch failed for %s: %s", url, e)
-        return None
+        return None, "fetch_failed"
+
+
+def _fetch_text(url: str, timeout: int = 15) -> Optional[str]:
+    """Fetch raw text from a URL."""
+    return _fetch_text_ex(url, timeout)[0]
 
 
 def _xml_tag(xml: str, tag: str) -> Optional[str]:
@@ -2935,6 +2984,118 @@ def investigate_wayback(name: str, entity_type: str = "person") -> dict:
     return result
 
 
+def _sunbiz_mirror_detail(doc_number: str) -> Optional[dict]:
+    """Pull the per-entity FL record from the mirror: status, FEI/EIN, home
+    jurisdiction, registered agent, and the officer table with addresses.
+
+    The officer address column is the highest-value field the register carries —
+    it is what distinguishes a Florida shell from a foreign-run company — and it
+    is absent from the search listing, so it needs this second fetch.
+    """
+    import re, html as _html
+
+    body, status = _fetch_text_ex(
+        f"https://opengovus.com/florida-corporation/{doc_number}", timeout=20)
+    if status != "ok" or not body:
+        return None
+    body = re.sub(r"(?is)<(script|style).*?</\1>", " ", body)
+
+    def cells(row: str) -> list[str]:
+        return [
+            _html.unescape(re.sub(r"<[^>]+>", " ", c)).strip()
+            for c in re.findall(r"<t[dh][^>]*>(.*?)</t[dh]>", row, re.S)
+        ]
+
+    detail: dict = {"officers": []}
+    field_map = {
+        "corporate status": "status",
+        "corporate fei number": "fei_ein",
+        "state country": "home_jurisdiction",
+        "corporate file date": "file_date",
+        "corporate principal address": "principal_address",
+        "corporate mailing address": "mailing_address",
+        "registered agent name": "registered_agent",
+        "registered agent address": "registered_agent_address",
+    }
+    for table in re.findall(r"<table.*?</table>", body, re.S):
+        rows = re.findall(r"<tr>(.*?)</tr>", table, re.S)
+        header = cells(rows[0]) if rows else []
+        # The officer table is the one keyed Title | Name | Type | Address.
+        if [h.lower() for h in header[:2]] == ["title", "name"]:
+            for row in rows[1:]:
+                c = cells(row)
+                if len(c) >= 2 and c[1]:
+                    detail["officers"].append({
+                        "title": c[0] or None,
+                        "name": c[1],
+                        "address": c[3] if len(c) > 3 and c[3] else None,
+                    })
+            continue
+        for row in rows:
+            c = cells(row)
+            if len(c) == 2 and c[0].lower().rstrip(":") in field_map:
+                detail[field_map[c[0].lower().rstrip(":")]] = c[1] or None
+
+    return detail or None
+
+
+def _sunbiz_mirror_search(name: str, query_tokens: list[str]) -> tuple[list[dict], str]:
+    """Search the FL registry via the OpenGovUS mirror. Returns (rows, status).
+
+    Fallback path only — search.sunbiz.org is the authority, but it sits behind
+    a WAF that refuses non-browser clients. This mirror republishes the same DOS
+    dataset (doc number, principal address, registered agent, file date) and is
+    ungated. Rows are stamped as mirror-derived by the caller so a mirror read is
+    never presented as a reading of the register itself.
+    """
+    from urllib.parse import quote_plus
+    import re, html as _html
+
+    url = f"https://opengovus.com/florida-corporation?q={quote_plus(name)}"
+    body, status = _fetch_text_ex(url, timeout=20)
+    if status != "ok" or not body:
+        return [], status if status != "ok" else "no_data"
+
+    body = re.sub(r"(?is)<(script|style).*?</\1>", " ", body)
+    body = body.split("Search Result", 1)[-1]
+
+    rows: list[dict] = []
+    seen: set[str] = set()
+    for raw_row in re.findall(r"<tr>(.*?)</tr>", body, re.S):
+        cells = [
+            _html.unescape(re.sub(r"<[^>]+>", "", c)).strip()
+            for c in re.findall(r"<t[dh][^>]*>(.*?)</t[dh]>", raw_row, re.S)
+        ]
+        if len(cells) < 4 or cells[0] == "Business Name":
+            continue
+        entity_name, address, agent, file_date = cells[0], cells[1], cells[2], cells[3]
+        if not entity_name or entity_name in seen:
+            continue
+
+        # The mirror's search is a loose OR across name/address/agent — a query
+        # for "John Smith" returns every John Smith in Florida. Require every
+        # query token to appear in the name or the agent field before treating
+        # the row as a match; the officer-name collision is precisely what makes
+        # this source dangerous to promote unfiltered.
+        haystack = f"{entity_name} {agent}".lower()
+        if not all(tok in haystack for tok in query_tokens):
+            continue
+
+        seen.add(entity_name)
+        doc_match = re.search(r"/florida-corporation/([A-Za-z0-9]+)", raw_row)
+        rows.append({
+            "entity_name": entity_name,
+            "address": address or None,
+            "registered_agent": agent or None,
+            "file_date": file_date or None,
+            "doc_number": doc_match.group(1) if doc_match else None,
+            "url": (f"https://opengovus.com/florida-corporation/{doc_match.group(1)}"
+                    if doc_match else url),
+        })
+
+    return rows, ("ok" if rows else "no_data")
+
+
 def investigate_sunbiz_fl(name: str, entity_type: str = "person") -> dict:
     """Florida Sunbiz state business registry. Public search by officer
     name returns business affiliations + registered agent addresses
@@ -2944,6 +3105,13 @@ def investigate_sunbiz_fl(name: str, entity_type: str = "person") -> dict:
     Pattern source for other states: NY DOS, CA SOS, TX SOS, DE Division
     of Corporations all expose similar public search. Add `investigate_sunbiz_ny`
     etc. following this same pattern.
+
+    search.sunbiz.org began returning a Cloudflare managed challenge to every
+    non-browser client (verified 2026-08-04), which silently reduced this source
+    to zero coverage. The direct path is still tried first — it is the authority
+    and may come back — but a refusal now falls through to a mirror rather than
+    being reported as an empty register, and a total failure returns status
+    "blocked" so the gap is visible instead of banked as a negative.
     """
     result = {"source": "sunbiz_fl", "findings": [], "discovered_entities": [], "status": "ok"}
     if entity_type not in ("person", "organization", "company"):
@@ -2964,21 +3132,85 @@ def investigate_sunbiz_fl(name: str, entity_type: str = "person") -> dict:
                 "https://search.sunbiz.org/Inquiry/CorporationSearch/SearchResults?"
                 f"inquirytype=EntityName&searchTerm={quote_plus(name)}"
             )
-        html = _fetch_text(url, timeout=20)
+        html, fetch_status = _fetch_text_ex(url, timeout=20)
+
+        # Sunbiz officer search returns everyone whose FIRST name matches the
+        # query — "Georgia Brook" returns hundreds of "GEORGIA, *". Filter
+        # to results that contain ALL query tokens (case-insensitive) so we
+        # only surface real matches. Corporate suffixes are dropped: the
+        # register writes "Acme MOBILE CORP." where the seed says
+        # "Acme Mobile Corporation", and requiring "corp" as a literal
+        # token discards the row we were looking for.
+        query_tokens = [
+            t for t in (tok.strip(".,").lower() for tok in name.split())
+            if len(t) >= 2 and t not in _NAME_STOPWORDS
+        ]
+        if not query_tokens:  # name was nothing but suffixes — fall back
+            query_tokens = [t.lower() for t in name.split() if len(t) >= 2]
+
         if not html:
-            result["status"] = "no_data"
+            # Authority refused or was unreachable — try the mirror before
+            # concluding anything about what Florida does or doesn't hold.
+            rows, mirror_status = _sunbiz_mirror_search(name, query_tokens)
+            if not rows:
+                # Both paths dark. "blocked" beats "no_data": we learned nothing
+                # about this name, and a later corroboration pass must not read
+                # this as Florida having no record.
+                result["status"] = (
+                    "blocked" if "blocked" in (fetch_status, mirror_status) else "no_data"
+                )
+                return result
+
+            # Enrich the strongest matches with the per-entity record (officers,
+            # status, FEI). Bounded — one extra fetch each, rate-limited, and a
+            # long officer list is rarely the point past the first few hits.
+            for row in rows[:5]:
+                if row["doc_number"]:
+                    _rate_limit("sunbiz_fl")
+                    row["detail"] = _sunbiz_mirror_detail(row["doc_number"])
+
+            for row in rows:
+                result["findings"].append({
+                    "finding_type": "fl_business_affiliation",
+                    "title": row["entity_name"],
+                    "data": {
+                        "state": "FL",
+                        "entity_name": row["entity_name"],
+                        "doc_number": row["doc_number"],
+                        "detail": row.get("detail"),
+                        "principal_address": row["address"],
+                        "registered_agent": row["registered_agent"],
+                        "file_date": row["file_date"],
+                        "url": row["url"],
+                        "match_role": "officer" if entity_type == "person" else "entity",
+                        # Provenance: this did NOT come from the register.
+                        "source_authority": "mirror",
+                        "mirror": "opengovus.com",
+                        "authority_url": "https://search.sunbiz.org/",
+                    },
+                    # Below the 0.75 the authoritative path earns — a mirror can
+                    # lag the register (status especially) and cannot be re-read
+                    # to confirm.
+                    "confidence": 0.6,
+                    "source_url": row["url"],
+                })
+                if entity_type == "person":
+                    result["discovered_entities"].append({
+                        "name": row["entity_name"],
+                        "entity_type": "organization",
+                        "discovered_via": "sunbiz_fl_officer_mirror",
+                        "evidence_url": row["url"],
+                    })
+            result["status"] = "ok"
+            result["degraded"] = "authority_blocked_mirror_used"
             return result
+
         # Extract result rows. Sunbiz markup: <a href="/Inquiry/CorporationSearch/SearchResultDetail?...">NAME</a>
         import re
         matches = re.findall(
             r'<a[^>]+href="(/Inquiry/CorporationSearch/SearchResultDetail\?[^"]+)"[^>]*>([^<]+)</a>',
             html,
         )
-        # Sunbiz officer search returns everyone whose FIRST name matches the
-        # query — "Georgia Brook" returns hundreds of "GEORGIA, *". Filter
-        # to results that contain ALL query tokens (case-insensitive) so we
-        # only surface real matches.
-        query_tokens = [t.lower() for t in name.split() if len(t) >= 2]
         seen: set[str] = set()
         for href, entity_name_raw in matches[:80]:
             entity_name = entity_name_raw.strip()
@@ -2997,6 +3229,7 @@ def investigate_sunbiz_fl(name: str, entity_type: str = "person") -> dict:
                     "entity_name": entity_name,
                     "url": full_url,
                     "match_role": "officer" if entity_type == "person" else "entity",
+                    "source_authority": "authority",
                 },
                 "confidence": 0.75,
                 "source_url": full_url,
@@ -3578,6 +3811,7 @@ def run_investigation(
         "sources_queried": sources,
         "sources_completed": [],
         "sources_failed": [],
+        "sources_blocked": [],
         "all_findings": [],
         "all_discovered": [],
         "total_findings": 0,
@@ -3599,7 +3833,15 @@ def run_investigation(
             combined["all_findings"].extend(result.get("findings", []))
             combined["all_discovered"].extend(result.get("discovered_entities", []))
 
-            if result.get("status") != "error":
+            status = result.get("status")
+            if status == "blocked":
+                # The source refused to answer. Banking it as completed turns a
+                # gap into a corroborated negative — the caller must be able to
+                # see that Florida (or whoever) was never actually asked.
+                combined["sources_blocked"].append(source_name)
+                log.warning("Source %s blocked for %s — gap, not a negative",
+                            source_name, name)
+            elif status != "error":
                 combined["sources_completed"].append(source_name)
             else:
                 combined["sources_failed"].append(source_name)

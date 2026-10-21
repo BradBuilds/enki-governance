@@ -678,8 +678,8 @@ async def list_entities(topic_id: str, auth: UnifiedAuthInfo = Depends(unified_a
                         ent["dossier"] = {
                             "canonical_name": r[13],
                             "aliases": r[14] or [],
-                            "completeness_score": float(r[15]) if r[15] else 0.0,
-                            "completeness_tier": r[16] or "stub",
+                            "completeness_score": float(r[15]) if r[15] is not None else None,
+                            "completeness_tier": r[16],
                             "identifiers": r[17] or {},
                             "signal_count": r[18] or 0,
                             "gdu_canonical": r[19],
@@ -771,8 +771,10 @@ async def get_topic_graph(topic_id: str, auth: UnifiedAuthInfo = Depends(unified
                         "article_ids": r[6] or [],
                         "canonical_entity_id": r[7],
                         "resolution_status": r[8] or "unresolved",
-                        "completeness_tier": r[9] or "stub",
-                        "completeness_score": float(r[10]) if r[10] else 0.0,
+                        # NULL completeness propagates as null — an unscored node
+                        # is not a stub scored at zero. See feed_facets.py.
+                        "completeness_tier": r[9],
+                        "completeness_score": float(r[10]) if r[10] is not None else None,
                         "aliases": r[11] or [],
                         "conflict_count": r[14] or 0,
                         "dossier": {
@@ -1162,8 +1164,8 @@ async def get_entity_dossier(entity_id: int, auth: UnifiedAuthInfo = Depends(uni
                 "entity_id": row[0], "canonical_type": row[1],
                 "canonical_name": row[2], "normalized_name": row[3],
                 "aliases": row[4] or [], "identifiers": row[5] or {},
-                "completeness_score": float(row[6]) if row[6] else 0.0,
-                "completeness_tier": row[7] or "stub",
+                "completeness_score": float(row[6]) if row[6] is not None else None,
+                "completeness_tier": row[7],
                 "first_seen": row[8].isoformat() if row[8] else None,
                 "last_seen": row[9].isoformat() if row[9] else None,
                 "signal_count": row[10] or 0,

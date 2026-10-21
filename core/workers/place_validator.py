@@ -332,20 +332,21 @@ def _validate_place(node: dict, tenant_id: str):
                     "validated_at": datetime.now(timezone.utc).isoformat(),
                 }
 
+                # completeness_score/_tier deliberately not written — see
+                # core/gdu/completeness.py. Same shape as auto_validator: the
+                # number measures which source confirmed the place, not how many
+                # declared slots are filled. validation_source / validation_id
+                # in the envelope keep that signal.
                 cur.execute("""
                     UPDATE knowledge_nodes
                     SET envelope = %s,
                         enrichment_status = 'complete',
-                        completeness_score = %s,
-                        completeness_tier = %s,
                         subtype = COALESCE(%s, subtype),
                         description = COALESCE(NULLIF(%s, ''), description),
                         updated_at = NOW()
                     WHERE node_id = %s AND tenant_id = %s
                 """, (
                     json.dumps(envelope),
-                    completeness_score,
-                    completeness_tier,
                     corrected_subtype,
                     profile.get("description", "")[:500],
                     node_id, tenant_id,

@@ -392,19 +392,23 @@ def _validate_node(node: dict, tenant_id: str):
                 # the migrator handles category-level moves.
                 if cross_category:
                     # Don't change node_type/subtype — migrator does that.
+                    # completeness_score/_tier deliberately not written — see
+                    # core/gdu/completeness.py. The value computed above measures
+                    # WHICH SOURCE CONFIRMED the entity (0.4 Wikipedia, 0.6
+                    # Wikidata, +0.05 per field), which is corroboration, not slot
+                    # fill. That signal is not lost: validation_source,
+                    # validation_status and validation_id are already recorded in
+                    # the envelope, and the same number still populates the
+                    # envelope's `confidence`.
                     cur.execute("""
                         UPDATE knowledge_nodes
                         SET envelope = %s,
                             enrichment_status = 'complete',
-                            completeness_score = %s,
-                            completeness_tier = %s,
                             description = COALESCE(NULLIF(%s, ''), description),
                             updated_at = NOW()
                         WHERE node_id = %s AND tenant_id = %s
                     """, (
                         json.dumps(envelope),
-                        completeness_score,
-                        completeness_tier,
                         profile.get("description", "")[:500],
                         node_id, tenant_id,
                     ))
@@ -414,8 +418,6 @@ def _validate_node(node: dict, tenant_id: str):
                         UPDATE knowledge_nodes
                         SET envelope = %s,
                             enrichment_status = 'complete',
-                            completeness_score = %s,
-                            completeness_tier = %s,
                             subtype = COALESCE(%s, subtype),
                             entity_type = COALESCE(%s, entity_type),
                             description = COALESCE(NULLIF(%s, ''), description),
@@ -423,8 +425,6 @@ def _validate_node(node: dict, tenant_id: str):
                         WHERE node_id = %s AND tenant_id = %s
                     """, (
                         json.dumps(envelope),
-                        completeness_score,
-                        completeness_tier,
                         corrected_sub,
                         corrected_sub,
                         profile.get("description", "")[:500],
@@ -487,15 +487,11 @@ def _validate_node(node: dict, tenant_id: str):
                         cur.execute("""
                             UPDATE entities
                             SET envelope = %s,
-                                completeness_score = GREATEST(completeness_score, %s),
-                                completeness_tier = %s,
                                 canonical_type = COALESCE(%s, canonical_type),
                                 updated_at = NOW()
                             WHERE entity_id = %s AND tenant_id = %s
                         """, (
                             json.dumps({"profile": profile}),
-                            completeness_score,
-                            completeness_tier,
                             _safe_sub,
                             entity_id, tenant_id,
                         ))
