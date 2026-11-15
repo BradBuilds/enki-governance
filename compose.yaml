@@ -12,7 +12,7 @@ services:
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-enki}
       POSTGRES_USER: ${POSTGRES_USER:-enki_db}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-enki_pass}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env (see .env.example)}
     ports:
       - "5432:5432"
     volumes:
@@ -52,12 +52,12 @@ services:
     user: root            # dev self-host: write emulated key + reload cleanly
     environment:
       ENKI_PROFILE: dev
-      ENKI_ROOT_PASSWORD: ${ENKI_ROOT_PASSWORD:-dev-root-password-change-me}
-      ENKI_DB_DSN: postgresql://${POSTGRES_USER:-enki_db}:${POSTGRES_PASSWORD:-enki_pass}@postgres:5432/${POSTGRES_DB:-enki}
+      ENKI_ROOT_PASSWORD: ${ENKI_ROOT_PASSWORD:?set ENKI_ROOT_PASSWORD in .env (see .env.example)}
+      ENKI_DB_DSN: postgresql://${POSTGRES_USER:-enki_db}:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env (see .env.example)}@postgres:5432/${POSTGRES_DB:-enki}
       ENKI_DB_HOST: postgres
       ENKI_DB_USER: ${POSTGRES_USER:-enki_db}
       ENKI_DB_NAME: ${POSTGRES_DB:-enki}
-      PGPASSWORD: ${POSTGRES_PASSWORD:-enki_pass}
+      PGPASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env (see .env.example)}
       ENKI_USE_GDU_GATEWAY: "true"
       OLLAMA_BASE_URL: http://ollama:11434
       OLLAMA_MODEL: ${OLLAMA_MODEL:-gemma4:e2b}

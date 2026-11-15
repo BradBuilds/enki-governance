@@ -38,3 +38,17 @@ dist/
 *.orig
 .idea/
 .vscode/
+
+# Secrets and key material
+!*.example
+*.pem
+
+# Build notes and AI-tool files live in the build journal, not in git
+CLAUDE.md
+CLAUDE.local.md
+AGENTS.md
+GEMINI.md
+.claude/
+.cursor/
+.cursorrules
+.cursorignore

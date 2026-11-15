@@ -123,7 +123,7 @@
 
 	// First source's paragraph text — the surrounding context where the
 	// claim came from. Far more useful than the bare trigger sentence
-	// ("resides in Wellington" vs the full paragraph that says she was
+	// ("resides in <city>" vs the full paragraph that says she was
 	// brought to Acme's house). Falls back to raw_text if paragraph
 	// isn't joined.
 	const firstSourceQuote = $derived.by(() => {

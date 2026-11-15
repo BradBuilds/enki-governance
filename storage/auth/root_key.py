@@ -5,6 +5,11 @@ Root signer key operations (Ed25519).
 - Root key signs DeviceGrants (authorization artifacts).
 - In EMULATED: root key is stored as AES-256-GCM encrypted file.
 - In PRODUCTION: you may keep the same interface but change storage backend.
+
+There is no built-in root key. Each deployment creates its own key file and
+supplies it at runtime: ENKI_ROOT_KEY_PATH points at the sealed key file and
+ENKI_ROOT_PASSWORD (or the variable named by ENKI_ROOT_KEY_PASSWORD_ENV)
+unseals it. See storage/auth/config.py. Key files must never be committed.
 """
 
 from __future__ import annotations
@@ -54,6 +59,16 @@ def generate_root_key(output_path: str, password: str) -> RootKey:
 
 
 def load_root_key(key_path: str, password: str) -> RootKey:
+    if not key_path or not Path(key_path).is_file():
+        raise FileNotFoundError(
+            f"Root key file not found at {key_path!r}. There is no built-in root key: "
+            "generate one for this deployment and point ENKI_ROOT_KEY_PATH at it."
+        )
+    if not password:
+        raise ValueError(
+            "Root key password is empty. Set ENKI_ROOT_PASSWORD (or the variable "
+            "named by ENKI_ROOT_KEY_PASSWORD_ENV) for this deployment."
+        )
     private_bytes = load_encrypted_key(key_path, password)
 
     private_key = serialization.load_pem_private_key(private_bytes, password=None)

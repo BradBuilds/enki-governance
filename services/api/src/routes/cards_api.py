@@ -3429,7 +3429,7 @@ def get_entity_facts(
             # Pull the FIRST source statement per assessment plus a window
             # of paragraphs (±2 order_index on the same page) so the user
             # sees real context not just the OCR-line the predicate fell on.
-            # "resides in Wellington" alone is useless; the surrounding
+            # "resides in <city>" alone is useless; the surrounding
             # paragraphs tell the full incident story.
             stmt_pool: list[int] = []
             for r in rows:
